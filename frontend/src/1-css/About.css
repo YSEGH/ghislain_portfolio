@@ -19,8 +19,9 @@
 .about .text-container h1 {
   font-size: 35px;
   font-weight: 600;
-  margin-bottom: 3rem;
+  margin: 3rem 0;
   color: #ffff;
+  position: relative;
 }
 .about .text-container h1::before {
   content: "";
@@ -31,7 +32,18 @@
   background-color: #ff7b7b31;
   position: absolute;
   left: -7.5rem;
-  top: -4.5rem;
+  top: -12.5rem;
+  z-index: -1;
+}
+.about .text-container h1::after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 20rem;
+  background-color: #ff0513;
+  position: absolute;
+  left: 17.5rem;
+  top: 1.5rem;
   z-index: -1;
 }
 .about .text-container .paragraphe-container {
@@ -41,6 +53,11 @@
   margin-bottom: 2rem;
   font-size: 14px;
   font-weight: 200;
+}
+.about .photo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .about .photo-container img {
   width: 35rem;
@@ -61,4 +78,22 @@
 }
 
 @media screen and (max-width: 960px) {
+  .about {
+    flex-direction: column;
+    padding: 0 2rem;
+  }
+  .about .text-container,
+  .about .photo-container {
+    width: 100%;
+  }
+  .about .text-container h1::after {
+    display: none;
+  }
+  .about .text-container .paragraphe-container {
+    width: auto;
+  }
+  .about .photo-container img {
+    width: 80vw;
+    margin: 4rem 0;
+  }
 }

@@ -5,7 +5,7 @@ export default function About() {
   return (
     <div className="about">
       <div className="text-container">
-        <h1>About me</h1>
+        <h1>About Me</h1>
         <div className="paragraphe-container">
           <p>
             Consectetur occaecat est sint dolor qui culpa labore enim commodo id
