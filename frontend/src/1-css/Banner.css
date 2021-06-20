@@ -1,0 +1,77 @@
+.banner {
+  height: 100vh;
+  width: 100vw;
+  background-color: #040312;
+}
+.banner .text-container {
+  font-family: "Poppins", sans-serif;
+  color: white;
+  height: 100%;
+  width: 50%;
+  padding-left: 2rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 7.5rem;
+}
+.banner .text-container h1 {
+  font-size: 60px;
+  font-weight: 200;
+}
+.banner .text-container div h1 {
+  font-size: 90px;
+  font-weight: 800;
+  line-height: 90px;
+  margin-bottom: 2rem;
+}
+.banner .text-container div p:nth-child(2) {
+  margin: 1rem 0;
+  font-weight: 300;
+}
+.banner .text-container div p:nth-child(2) span {
+  color: #ff0513;
+}
+.banner .text-container div p:nth-child(3) {
+  font-weight: 300;
+}
+.banner .network-container {
+  display: flex;
+  margin: 0.5rem 0 0 0;
+}
+.banner .buttons-container {
+  display: flex;
+  margin: 3rem 0 0 0;
+}
+.banner .buttons-container button {
+  height: 3.4rem;
+  width: 10rem;
+  border-radius: 60px;
+  border: none;
+  font: 400 14px "Poppins", sans-serif;
+  color: #ffff;
+  margin-right: 1rem;
+}
+.banner .buttons-container button:nth-child(1) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ff0513;
+}
+.banner .buttons-container button:nth-child(2) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 1px solid #ffff;
+}
+
+@media screen and (max-width: 960px) {
+  .banner .text-container div h1 {
+    font-size: 70px;
+  }
+  .banner .text-container {
+    width: 100%;
+    padding-bottom: 2rem;
+  }
+}
