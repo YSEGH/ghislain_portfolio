@@ -1,0 +1,65 @@
+.portfolio {
+  height: 25vh;
+  min-height: 20rem;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 5rem;
+  padding: 0 3rem;
+}
+.portfolio h1 {
+  margin-bottom: 5rem;
+  font-weight: 600;
+}
+.portfolio .buttons-container {
+  display: flex;
+}
+.portfolio .buttons-container button {
+  height: 6rem;
+  width: 20rem;
+  border-radius: 60px;
+  border: none;
+  font: 400 14px "Poppins", sans-serif;
+  color: #ffff;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.portfolio .buttons-container button svg {
+  margin-right: 1rem;
+}
+.portfolio .buttons-container button:nth-child(1) svg {
+  margin-bottom: 1rem;
+}
+.portfolio .buttons-container button:nth-child(1) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ff0513;
+}
+.portfolio .buttons-container button:nth-child(2) {
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 1px solid black;
+}
+@media screen and (max-width: 960px) {
+  .portfolio {
+    height: auto;
+  }
+  .portfolio .buttons-container {
+    flex-direction: column;
+  }
+  .portfolio .buttons-container button {
+    margin-right: 0;
+    margin-bottom: 2rem;
+    height: 4rem;
+    width: 15rem;
+  }
+}

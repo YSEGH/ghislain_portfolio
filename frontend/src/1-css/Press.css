@@ -1,0 +1,30 @@
+.press {
+  height: 100vh;
+  width: 100vw;
+  background-color: #040312;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3rem;
+}
+.press h1 {
+  font-weight: 600;
+  position: relative;
+}
+.press h1::after {
+  content: "";
+  display: block;
+  width: 15rem;
+  height: 1px;
+  background-color: #ff0513;
+  margin: 1rem auto;
+}
+.press p {
+  max-width: 40rem;
+  font-size: 14px;
+  line-height: 2rem;
+  font-weight: 200;
+}

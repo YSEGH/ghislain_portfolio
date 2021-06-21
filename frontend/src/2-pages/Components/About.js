@@ -30,7 +30,7 @@ export default function About() {
         </div>
       </div>
       <div className="photo-container">
-        <img src="/images/Kooza-7.jpg" />
+        <img src="/images/Kooza-7.jpg" alt="ghislain_ramage" />
       </div>
     </div>
   );

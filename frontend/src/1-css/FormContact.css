@@ -1,0 +1,54 @@
+.form-contact {
+  width: 44rem;
+  margin-top: 4rem;
+}
+.form-contact .inputs-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0 0 2rem 0;
+}
+.form-contact .inputs-container input {
+  width: 20rem;
+  height: 2.5rem;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  padding: 1rem;
+}
+.form-contact textarea {
+  width: 42rem;
+  height: 6.5rem;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  padding: 1rem;
+}
+.form-contact button {
+  height: 3.4rem;
+  width: 10rem;
+  border-radius: 60px;
+  border: none;
+  font: 400 14px "Poppins", sans-serif;
+  color: #ffff;
+  margin: 4rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ff0513;
+}
+@media screen and (max-width: 960px) {
+  .form-contact {
+    width: fit-content;
+    margin-top: 4rem;
+  }
+  .form-contact .inputs-container {
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+  .form-contact .inputs-container input {
+    margin-bottom: 2rem;
+  }
+  .form-contact textarea {
+    width: 20rem;
+  }
+}
