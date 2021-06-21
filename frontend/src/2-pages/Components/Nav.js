@@ -5,7 +5,11 @@ import { GiHamburgerMenu } from "react-icons/gi";
 export default function Nav({ color }) {
   return (
     <>
-      <GiHamburgerMenu size={40} className="nav-burger" />
+      <GiHamburgerMenu
+        size={40}
+        style={{ color: color }}
+        className="nav-burger"
+      />
       <ul className="nav">
         <li className="active">About</li>
         <li style={{ color: color }}>Circus</li>
