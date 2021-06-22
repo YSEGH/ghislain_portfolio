@@ -1,6 +1,7 @@
 import React from "react";
 import "../../1-css/Nav.css";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { NavLink } from "react-router-dom";
 
 export default function Nav({ color }) {
   return (
@@ -11,11 +12,57 @@ export default function Nav({ color }) {
         className="nav-burger"
       />
       <ul className="nav">
-        <li className="active">About</li>
-        <li style={{ color: color }}>Circus</li>
-        <li style={{ color: color }}>Photography</li>
-        <li style={{ color: color }}>Blog</li>
-        <li style={{ color: color }}>Contact</li>
+        <li>
+          <NavLink
+            activeClassName="active"
+            activeStyle={{ color: "#ffff" }}
+            to="/"
+            style={{ color: color }}
+            exact
+          >
+            Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            activeClassName="active"
+            activeStyle={{ color: "#ffff" }}
+            to="/circus"
+            style={{ color: color }}
+          >
+            Circus
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            activeClassName="active"
+            activeStyle={{ color: "#ffff" }}
+            to="/photography"
+            style={{ color: color }}
+          >
+            Photography
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            activeClassName="active"
+            activeStyle={{ color: "#ffff" }}
+            to="/blog"
+            style={{ color: color }}
+          >
+            Blog
+          </NavLink>
+        </li>
+        {/* <li>
+          <NavLink
+            activeClassName="active"
+            activeStyle={{ color: "#ffff" }}
+            to="/#contact"
+            style={{ color: color }}
+          >
+            Contact
+          </NavLink>
+        </li> */}
       </ul>
     </>
   );

@@ -1,0 +1,9 @@
+.blogs-container {
+  width: 100%;
+  height: auto;
+  margin: 4rem auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}

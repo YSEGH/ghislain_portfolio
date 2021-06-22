@@ -6,6 +6,7 @@
   background-size: cover;
   background-position: center center;
   cursor: pointer;
+  pointer-events: hover;
 }
 .item-hover {
   transform: translateX(-100%);
@@ -20,6 +21,7 @@
   align-items: flex-start;
   justify-content: flex-end;
   color: #fff;
+  pointer-events: all;
 }
 .item:hover .item-hover {
   transform: translateX(0);

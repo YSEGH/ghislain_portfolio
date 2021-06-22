@@ -1,22 +1,21 @@
-.category {
-  min-height: 100vh;
+.blog {
   height: auto;
+  min-height: 100vh;
   width: 100vw;
+  position: relative;
   padding: 10rem 4rem;
   font-family: "Poppins", sans-serif;
-  position: relative;
-  overflow: hidden;
 }
-.category .text-container {
+.blog .text-container {
   text-align: left;
 }
-.category .text-container h1 {
+.blog .text-container h1 {
   font-weight: 400;
   margin-bottom: 1.5rem;
   position: relative;
   white-space: nowrap;
 }
-.category .text-container h1::after {
+.blog .text-container h1::after {
   content: "";
   height: 1px;
   width: 15rem;
@@ -24,23 +23,23 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 20rem;
+  left: 8rem;
   margin: auto;
 }
-.category .text-container ul {
+.blog .text-container ul {
   display: flex;
 }
-.category .text-container ul li {
+.blog .text-container ul li {
   list-style-type: none;
   margin-right: 1rem;
   font-weight: 200;
 }
 @media screen and (max-width: 960px) {
-  .category .text-container h1::after {
+  .blog .text-container h1::after {
     bottom: -4.5rem;
     left: 0;
   }
-  .category {
+  .blog {
     padding: 10rem 1rem;
   }
 }
