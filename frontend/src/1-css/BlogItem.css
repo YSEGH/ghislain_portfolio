@@ -1,11 +1,13 @@
 .blog-item {
   width: 25%;
   height: auto;
+  margin-bottom: 4rem;
 }
 .blog-item img {
   width: 100%;
   aspect-ratio: 1/1;
   object-fit: cover;
+  cursor: pointer;
 }
 .blog-item h2 {
   font-weight: 400;

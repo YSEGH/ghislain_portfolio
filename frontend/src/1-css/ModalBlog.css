@@ -1,0 +1,214 @@
+.modal-blog {
+  display: none;
+}
+.modal-blog.open,
+.modal-blog.close {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(212, 212, 212, 0.432);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  cursor: auto;
+  pointer-events: all;
+}
+.modal-blog .modal {
+  opacity: inherit;
+  height: 650px;
+  width: fit-content;
+  max-width: 80rem;
+  background-color: #fff;
+  border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  position: sticky;
+  display: flex;
+  cursor: auto;
+  pointer-events: all;
+  padding: 3rem;
+}
+.modal-blog .info-icon {
+  display: none;
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  cursor: pointer;
+}
+.modal-blog .close-icon {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  transition: 0.25s;
+  cursor: pointer;
+}
+.modal-blog .close-icon:hover,
+.modal-blog .info-icon:hover {
+  transform: scale(1.1);
+}
+.modal-blog .modal .photo-container {
+  padding: 1rem;
+  height: 100%;
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.modal-blog .modal .photo-container img {
+  border-radius: 20px;
+  aspect-ratio: 0;
+  height: auto;
+  width: 100%;
+  object-fit: contain;
+}
+.modal-blog .modal .photo-container p:nth-child(2) {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 2rem auto 0 auto;
+}
+.modal-blog .modal .photo-container p:nth-child(3) {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 1rem auto 0 auto;
+}
+
+.modal-blog .modal .photo-container p:nth-child(2) svg,
+.modal-blog .modal .photo-container p:nth-child(3) svg {
+  margin-right: 1rem;
+}
+.modal-blog .modal .text-container-modal {
+  width: 25rem;
+  height: 100%;
+  text-align: left;
+  padding: 5rem 2rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.modal-blog .modal .text-container-modal h2 {
+  font-weight: 400;
+  margin: 1rem 0;
+  position: relative;
+}
+.modal-blog .modal .text-container-modal h2::after {
+  content: "";
+  height: 1px;
+  width: 2rem;
+  background-color: #000;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: -3rem;
+}
+.modal-blog .modal .text-container-modal p {
+  font-weight: 200;
+  font-size: 14px;
+}
+.modal-blog .modal .text-container-modal p:nth-child(2) {
+  font-weight: 300;
+  font-size: 16px;
+  margin-bottom: 2rem;
+}
+.modal-blog .modal .text-container-modal p:nth-child(3) {
+  max-height: 20rem;
+  overflow-y: scroll;
+}
+
+/* Animation OPEN*/
+.modal-blog.open {
+  animation: displayBackgroundModal 0.75s forwards;
+}
+.modal-blog.open .modal {
+  animation-delay: 0.25s;
+  animation: displayModal 0.75s forwards;
+}
+@keyframes displayModal {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes displayBackgroundModal {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Animation CLOSE */
+.modal-blog.close {
+  animation: hideBackgroundModal 0.75s forwards;
+  animation-delay: 0.25s;
+}
+.modal-blog.close .modal {
+  animation: hideModal 0.75s forwards;
+}
+@keyframes hideModal {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+@keyframes hideBackgroundModal {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
+/* Responsive */
+
+@media screen and (max-width: 1050px) {
+  .modal-blog .close-icon {
+    z-index: 3000;
+  }
+  .modal-blog .modal {
+    width: auto;
+    max-width: 30rem;
+    max-height: 90vh;
+    flex-direction: column;
+    overflow-y: scroll;
+  }
+  .modal-blog .modal svg {
+    color: #000;
+  }
+  .modal-blog .modal .photo-container {
+    margin: auto;
+    padding: 0;
+  }
+  .modal-blog .modal .text-container-modal {
+    width: 80%;
+    margin: 2rem auto;
+    height: auto;
+    color: #000;
+    padding: 0;
+  }
+  .modal-blog .modal .text-container-modal h2::after {
+    top: 0;
+    bottom: 0;
+    left: 10rem;
+    width: 9rem;
+  }
+}

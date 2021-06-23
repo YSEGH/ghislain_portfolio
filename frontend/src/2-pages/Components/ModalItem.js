@@ -9,6 +9,7 @@ export default function ModalItem({ item }) {
     const modalItem = document.getElementsByClassName("modal-item")[0];
     modalItem.classList.add("close");
     modalItem.classList.remove("open");
+    console.log(modalItem);
   };
 
   const showText = () => {
@@ -39,9 +40,9 @@ export default function ModalItem({ item }) {
           <Splide
             options={{
               rewind: true,
-              width: "auto",
-              autoHeight: true,
-              gap: "10rem",
+              height: 750,
+              width: "100%",
+              gap: "1rem",
             }}
           >
             <SplideSlide>
@@ -55,7 +56,7 @@ export default function ModalItem({ item }) {
             </SplideSlide>
           </Splide>
         </div>
-        <div className="text-container-modal open">
+        <div className="text-container-modal close">
           <h2>{item.name}</h2>
           <p>
             Fugiat laborum incididunt adipisicing exercitation proident ipsum
