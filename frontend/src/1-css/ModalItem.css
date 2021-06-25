@@ -21,7 +21,8 @@
   height: 750px;
   width: fit-content;
   max-width: 80rem;
-  background-color: #fff;
+  background-color: #040312;
+  color: #fff;
   border-radius: 30px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   position: sticky;
@@ -53,10 +54,10 @@
   width: 50rem;
   margin: auto;
   height: 750px;
-  background-color: #fff;
+  background-color: #040312;
 }
 .modal-item .modal .photo-container img {
-  width: auto;
+  width: 800px;
   height: 750px;
   margin: auto;
   object-fit: contain;
@@ -67,6 +68,8 @@
   border-left: 1px solid rgba(85, 85, 85, 0.13);
   text-align: left;
   padding: 5rem 2rem 2rem 2rem;
+  background-color: #fff;
+  color: #000;
 }
 .modal-item .modal .text-container-modal h2 {
   font-weight: 400;
@@ -170,9 +173,10 @@
     width: 100%;
     height: 750px;
     max-height: 90vh;
+    background-color: #040312;
   }
   .modal-item .modal .photo-container img {
-    width: auto;
+    width: 100%;
     height: 750px;
     max-height: 90vh;
     margin: auto;
@@ -188,6 +192,7 @@
     height: auto;
     color: #fff;
     padding: 0 1rem;
+    border-left: none;
   }
   .modal-item .modal .text-container-modal.open {
     animation: showDiv 0.75s forwards;

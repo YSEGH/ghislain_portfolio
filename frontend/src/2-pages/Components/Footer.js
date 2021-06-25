@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <div className="footer">
       <div className="text-container">
-        <h1>Gislain Gramage</h1>
+        <h1>Ghislain Gramage</h1>
         <ul>
           <li>About</li>
           <li>|</li>

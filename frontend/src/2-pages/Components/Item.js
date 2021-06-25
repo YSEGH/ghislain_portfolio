@@ -13,7 +13,7 @@ export default function Item() {
     <div
       className="item"
       style={{
-        backgroundImage: "url(/images/photo.jpg)",
+        backgroundImage: "url(/images/large.jpg)",
       }}
     >
       <ModalItem item={{ name: "test" }} />

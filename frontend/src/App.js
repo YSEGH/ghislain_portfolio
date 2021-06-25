@@ -1,8 +1,9 @@
 import "./1-css/App.css";
 import Home from "./2-pages/Home";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import Category from "./2-pages/Category";
 import Blog from "./2-pages/Blog";
+import Admin from "./2-pages/Admin.js";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <div className="App">
         <Switch>
           <Route path="/" exact render={() => <Home />} />
+          <Route path="/admin" render={() => <Admin />} />
           <Route
             path="/photography"
             render={() => <Category category={"Photography"} />}

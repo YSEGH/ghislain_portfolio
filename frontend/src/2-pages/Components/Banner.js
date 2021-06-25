@@ -5,7 +5,14 @@ import { FiInstagram, FiFacebook } from "react-icons/fi";
 
 export default function Banner() {
   return (
-    <div className="banner">
+    <div
+      className="banner"
+      style={{
+        backgroundImage: "url(/images/KENZO-2.png)",
+        backgroundSize: "cover",
+        backgroundPosition: "left center",
+      }}
+    >
       <Nav color="white" />
       <div className="text-container">
         <h1>Portfolio</h1>

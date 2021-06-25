@@ -1,0 +1,11 @@
+.admin {
+  height: auto;
+  min-height: 100vh;
+  width: 100vw;
+  position: relative;
+  padding-top: 12rem;
+}
+.admin-component {
+  width: 100%;
+  height: 100vh;
+}

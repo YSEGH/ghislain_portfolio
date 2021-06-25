@@ -32,19 +32,21 @@ export default function ModalBlog({ item }) {
           onClick={() => closeModal()}
         />
         <div className="photo-container">
-          <img src="/images/photo.jpg" alt="Image 1" />
-          <p>
-            <span>
-              <MdDateRange size={40} />
-            </span>
-            04/03/2020
-          </p>
-          <p>
-            <span>
-              <MdPlace size={40} />
-            </span>
-            Paris, France
-          </p>
+          <img src="/images/large.jpg" alt="Image 1" />
+          <div className="details-infos">
+            <p>
+              <span>
+                <MdDateRange size={40} />
+              </span>
+              04/03/2020
+            </p>
+            <p>
+              <span>
+                <MdPlace size={40} />
+              </span>
+              Paris, France
+            </p>
+          </div>
         </div>
         <div className="text-container-modal close">
           <h2>{item.name}</h2>

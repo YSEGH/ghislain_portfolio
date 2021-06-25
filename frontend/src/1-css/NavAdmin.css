@@ -1,0 +1,34 @@
+.nav-admin {
+  height: 5.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 5.5rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.nav-admin li {
+  list-style-type: none;
+  margin-right: 1rem;
+}
+.nav-admin li a {
+  text-decoration: none;
+}
+.nav-admin span {
+  margin: 0 2rem;
+}
+
+@media screen and (max-width: 960px) {
+  .nav-admin {
+    height: 10.5rem;
+    flex-direction: column;
+  }
+  .nav-admin li {
+    margin-right: 0;
+  }
+  .nav-admin span {
+    visibility: hidden;
+  }
+}

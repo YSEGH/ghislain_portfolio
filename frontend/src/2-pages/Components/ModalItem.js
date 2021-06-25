@@ -41,7 +41,8 @@ export default function ModalItem({ item }) {
             options={{
               rewind: true,
               height: 750,
-              width: "100%",
+              width: 800,
+              display: "flex",
               gap: "1rem",
             }}
           >
@@ -49,7 +50,7 @@ export default function ModalItem({ item }) {
               <img src="/images/photo.jpg" alt="Image 1" />
             </SplideSlide>
             <SplideSlide>
-              <img src="/images/photo.jpg" alt="Image 2" />
+              <img src="/images/large.jpg" alt="Image 2" />
             </SplideSlide>
             <SplideSlide>
               <img src="/images/photo.jpg" alt="Image 3" />

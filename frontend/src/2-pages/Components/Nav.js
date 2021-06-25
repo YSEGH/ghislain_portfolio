@@ -53,16 +53,16 @@ export default function Nav({ color }) {
             Blog
           </NavLink>
         </li>
-        {/* <li>
+        <li>
           <NavLink
             activeClassName="active"
             activeStyle={{ color: "#ffff" }}
-            to="/#contact"
+            to="/admin"
             style={{ color: color }}
           >
-            Contact
+            Admin
           </NavLink>
-        </li> */}
+        </li>
       </ul>
     </>
   );
