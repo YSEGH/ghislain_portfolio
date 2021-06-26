@@ -3,6 +3,7 @@ import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import "../1-css/Admin.css";
 import Contenu from "./Components/Contenu";
 import FormAddContenu from "./Components/FormAddContenu";
+import FormDetails from "./Components/FormDetails";
 import Nav from "./Components/Nav";
 import NavAdmin from "./Components/NavAdmin";
 
@@ -19,7 +20,10 @@ export default function Admin() {
               path="/admin/ajouter-contenu"
               render={() => <FormAddContenu />}
             />
-            <Route path="/admin/infos-generales" render={() => <Contenu />} />
+            <Route
+              path="/admin/infos-generales"
+              render={() => <FormDetails />}
+            />
           </Switch>
         </Router>
       </div>

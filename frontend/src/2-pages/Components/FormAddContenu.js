@@ -5,12 +5,17 @@ import { BiImport } from "react-icons/bi";
 import { FaPortrait } from "react-icons/fa";
 import uniqId from "uniqid";
 
-export default function FormAddContenu({ itemFile = null, itemFiles = [] }) {
+export default function FormAddContenu({
+  update = false,
+  itemFile = null,
+  itemFiles = [],
+  item = { type: "", categories: [] },
+}) {
   const [file, setFile] = useState(itemFile);
   const [files, setFiles] = useState(itemFiles);
-  const [type, setType] = useState("");
+  const [type, setType] = useState(item.type);
   const [categoryName, setCategoryName] = useState("");
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState(item.categories);
   const {
     register,
     handleSubmit,
@@ -71,18 +76,21 @@ export default function FormAddContenu({ itemFile = null, itemFiles = [] }) {
         onSubmit={handleSubmit(onSubmit)}
       >
         <h2>Saisissez les détails</h2>
-        <select
-          {...register("type", { required: true })}
-          defaultValue="null"
-          onChange={(e) => handleChange(e)}
-        >
-          <option value="null" disabled="disabled">
-            Que souhaitez vous faire ?
-          </option>
-          <option value="oneFile">Ajouter une image/vidéo</option>
-          <option value="manyFiles">Ajouter un groupe d'images/videos</option>
-          <option value="article">Ajouter un article de blog</option>
-        </select>
+        {!update && (
+          <select
+            {...register("type", { required: true })}
+            defaultValue="null"
+            onChange={(e) => handleChange(e)}
+          >
+            <option value="null" disabled="disabled">
+              Que souhaitez vous faire ?
+            </option>
+            <option value="oneFile">Ajouter une image/vidéo</option>
+            <option value="manyFiles">Ajouter un groupe d'images/videos</option>
+            <option value="article">Ajouter un article de blog</option>
+          </select>
+        )}
+
         {type === "oneFile" || type === "manyFiles" ? (
           <select {...register("art", { required: true })} defaultValue="null">
             <option value="null" disabled="disabled">
@@ -124,127 +132,129 @@ export default function FormAddContenu({ itemFile = null, itemFiles = [] }) {
           ))}
         </div>
       </form>
-      {type === "oneFile" || type === "article" ? (
-        <div className="upload-zone-container">
-          <h2>Importez le fichier</h2>
-          <div className="apercu-zone one-image">
-            {file ? (
-              file.type === "video/mp4" ? (
-                <video src={file.preview} />
-              ) : (
-                <img src={file.preview} />
-              )
-            ) : (
-              <FaPortrait size={250} />
-            )}
-          </div>
-          <div className="upload-zone">
-            <BiImport size={120} />
-            <p>Cliquez ou déposez l'image ici.</p>
-            <input
-              id="file"
-              type="file"
-              {...register("file", { required: true })}
-              onChange={(e) => {
-                if (e.target.files[0]) {
-                  importFile(e.target.files[0]);
-                }
-              }}
-            />
-            <label
-              htmlFor="file"
-              className="drop-zone"
-              onDragLeave={(e) => {
-                e.preventDefault();
-                const dropZone =
-                  document.getElementsByClassName("drop-zone")[0];
-                dropZone.classList.remove("active");
-                console.log("File is out zone");
-              }}
-              onDragOver={(e) => {
-                e.preventDefault();
-                const dropZone =
-                  document.getElementsByClassName("drop-zone")[0];
-                dropZone.classList.add("active");
-                console.log("File is over zone");
-              }}
-              onDrop={(e) => {
-                e.preventDefault();
-                const dropZone =
-                  document.getElementsByClassName("drop-zone")[0];
-                dropZone.classList.remove("active");
-                console.log("File is in the zone");
-                importFile(e.dataTransfer.files[0]);
-              }}
-            ></label>
-          </div>
-        </div>
-      ) : (
-        <div className="upload-zone-container">
-          <h2>Importez vos fichiers</h2>
-          <div className="apercu-zone many-images">
-            {files.length > 0 ? (
-              files.map((file, i) =>
+      {type ? (
+        type === "oneFile" || type === "article" ? (
+          <div className="upload-zone-container">
+            <h2>Importez votre fichier</h2>
+            <div className="apercu-zone one-image">
+              {file ? (
                 file.type === "video/mp4" ? (
-                  <video
-                    key={i}
-                    src={file.preview}
-                    onClick={() => deleteFile(file.id)}
-                  />
+                  <video src={file.preview} />
                 ) : (
-                  <img
-                    key={i}
-                    src={file.preview}
-                    onClick={() => deleteFile(file.id)}
-                  />
+                  <img src={file.preview} />
                 )
-              )
-            ) : (
-              <FaPortrait size={250} />
-            )}
+              ) : (
+                <FaPortrait size={250} />
+              )}
+            </div>
+            <div className="upload-zone">
+              <BiImport size={120} />
+              <p>Cliquez ou déposez votre fichier ici.</p>
+              <input
+                id="file"
+                type="file"
+                {...register("file", { required: true })}
+                onChange={(e) => {
+                  if (e.target.files[0]) {
+                    importFile(e.target.files[0]);
+                  }
+                }}
+              />
+              <label
+                htmlFor="file"
+                className="drop-zone"
+                onDragLeave={(e) => {
+                  e.preventDefault();
+                  const dropZone =
+                    document.getElementsByClassName("drop-zone")[0];
+                  dropZone.classList.remove("active");
+                  console.log("File is out zone");
+                }}
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  const dropZone =
+                    document.getElementsByClassName("drop-zone")[0];
+                  dropZone.classList.add("active");
+                  console.log("File is over zone");
+                }}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  const dropZone =
+                    document.getElementsByClassName("drop-zone")[0];
+                  dropZone.classList.remove("active");
+                  console.log("File is in the zone");
+                  importFile(e.dataTransfer.files[0]);
+                }}
+              ></label>
+            </div>
           </div>
-          <div className="upload-zone">
-            <BiImport size={120} />
-            <p>Cliquez ou déposez les images ici.</p>
-            <input
-              id="file"
-              type="file"
-              multiple
-              {...register("files", { required: true })}
-              onChange={(e) => {
-                if (e.target.files.length > 0) {
-                  importFiles([...e.target.files]);
-                }
-              }}
-            />
-            <label
-              htmlFor="file"
-              className="drop-zone"
-              onDragLeave={(e) => {
-                e.preventDefault();
-                const dropZone =
-                  document.getElementsByClassName("drop-zone")[0];
-                dropZone.classList.remove("active");
-                console.log("File is out zone");
-              }}
-              onDragOver={(e) => {
-                e.preventDefault();
-                const dropZone =
-                  document.getElementsByClassName("drop-zone")[0];
-                dropZone.classList.add("active");
-                console.log("File is over zone");
-              }}
-              onDrop={(e) => {
-                e.preventDefault();
-                const dropZone =
-                  document.getElementsByClassName("drop-zone")[0];
-                dropZone.classList.remove("active");
-                importFiles([...e.dataTransfer.files]);
-              }}
-            ></label>
+        ) : (
+          <div className="upload-zone-container">
+            <h2>Importez vos fichiers</h2>
+            <div className="apercu-zone many-images">
+              {files.length > 0 ? (
+                files.map((file, i) =>
+                  file.type === "video/mp4" ? (
+                    <video
+                      key={i}
+                      src={file.preview}
+                      onClick={() => deleteFile(file.id)}
+                    />
+                  ) : (
+                    <img
+                      key={i}
+                      src={file.preview}
+                      onClick={() => deleteFile(file.id)}
+                    />
+                  )
+                )
+              ) : (
+                <FaPortrait size={250} />
+              )}
+            </div>
+            <div className="upload-zone">
+              <BiImport size={120} />
+              <p>Cliquez ou déposez vos fichiers ici.</p>
+              <input
+                id="file"
+                type="file"
+                multiple
+                {...register("files", { required: true })}
+                onChange={(e) => {
+                  if (e.target.files.length > 0) {
+                    importFiles([...e.target.files]);
+                  }
+                }}
+              />
+              <label
+                htmlFor="file"
+                className="drop-zone"
+                onDragLeave={(e) => {
+                  e.preventDefault();
+                  const dropZone =
+                    document.getElementsByClassName("drop-zone")[0];
+                  dropZone.classList.remove("active");
+                  console.log("File is out zone");
+                }}
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  const dropZone =
+                    document.getElementsByClassName("drop-zone")[0];
+                  dropZone.classList.add("active");
+                  console.log("File is over zone");
+                }}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  const dropZone =
+                    document.getElementsByClassName("drop-zone")[0];
+                  dropZone.classList.remove("active");
+                  importFiles([...e.dataTransfer.files]);
+                }}
+              ></label>
+            </div>
           </div>
-        </div>
-      )}
+        )
+      ) : null}
       <button className="validation-contenu" form="form-contenu" type="submit">
         Valider
       </button>
