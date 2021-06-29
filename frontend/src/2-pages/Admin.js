@@ -18,7 +18,7 @@ export default function Admin() {
             <Route path="/admin/contenu" render={() => <Contenu />} />
             <Route
               path="/admin/ajouter-contenu"
-              render={() => <FormAddContenu />}
+              render={() => <FormAddContenu update={false} />}
             />
             <Route
               path="/admin/infos-generales"

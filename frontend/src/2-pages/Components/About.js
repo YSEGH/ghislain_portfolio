@@ -1,9 +1,11 @@
 import React from "react";
 import "../../1-css/About.css";
+import Nav from "./Nav";
 
 export default function About() {
   return (
     <div className="about" id="about">
+      <Nav color="black" />
       <div className="text-container">
         <h1>About Me</h1>
         <div className="paragraphe-container">

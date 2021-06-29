@@ -4,14 +4,25 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { NavLink } from "react-router-dom";
 
 export default function Nav({ color }) {
+  const displayNav = () => {
+    const nav = document.getElementsByClassName("nav")[0];
+    if (nav.classList.contains("open")) {
+      nav.classList.remove("open");
+      nav.classList.add("close");
+    } else {
+      nav.classList.remove("close");
+      nav.classList.add("open");
+    }
+  };
   return (
     <>
       <GiHamburgerMenu
         size={40}
         style={{ color: color }}
         className="nav-burger"
+        onClick={() => displayNav()}
       />
-      <ul className="nav">
+      <ul className="nav close">
         <li>
           <NavLink
             activeClassName="active"
@@ -21,6 +32,17 @@ export default function Nav({ color }) {
             exact
           >
             Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            activeClassName="active"
+            activeStyle={{ color: "#ffff" }}
+            to="/about"
+            style={{ color: color }}
+            exact
+          >
+            About
           </NavLink>
         </li>
         <li>
@@ -57,7 +79,7 @@ export default function Nav({ color }) {
           <NavLink
             activeClassName="active"
             activeStyle={{ color: "#ffff" }}
-            to="/admin"
+            to="/admin/contenu"
             style={{ color: color }}
           >
             Admin

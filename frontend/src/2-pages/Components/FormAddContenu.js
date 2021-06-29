@@ -75,7 +75,7 @@ export default function FormAddContenu({
         className="form-contenu"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <h2>Saisissez les détails</h2>
+        {update ? <h2>Détails</h2> : <h2>Saisissez les détails</h2>}
         {!update && (
           <select
             {...register("type", { required: true })}
@@ -135,7 +135,12 @@ export default function FormAddContenu({
       {type ? (
         type === "oneFile" || type === "article" ? (
           <div className="upload-zone-container">
-            <h2>Importez votre fichier</h2>
+            {update ? (
+              <h2>Modifiez votre fichier</h2>
+            ) : (
+              <h2>Importez votre fichier</h2>
+            )}
+
             <div className="apercu-zone one-image">
               {file ? (
                 file.type === "video/mp4" ? (
@@ -168,21 +173,18 @@ export default function FormAddContenu({
                   const dropZone =
                     document.getElementsByClassName("drop-zone")[0];
                   dropZone.classList.remove("active");
-                  console.log("File is out zone");
                 }}
                 onDragOver={(e) => {
                   e.preventDefault();
                   const dropZone =
                     document.getElementsByClassName("drop-zone")[0];
                   dropZone.classList.add("active");
-                  console.log("File is over zone");
                 }}
                 onDrop={(e) => {
                   e.preventDefault();
                   const dropZone =
                     document.getElementsByClassName("drop-zone")[0];
                   dropZone.classList.remove("active");
-                  console.log("File is in the zone");
                   importFile(e.dataTransfer.files[0]);
                 }}
               ></label>
@@ -234,14 +236,12 @@ export default function FormAddContenu({
                   const dropZone =
                     document.getElementsByClassName("drop-zone")[0];
                   dropZone.classList.remove("active");
-                  console.log("File is out zone");
                 }}
                 onDragOver={(e) => {
                   e.preventDefault();
                   const dropZone =
                     document.getElementsByClassName("drop-zone")[0];
                   dropZone.classList.add("active");
-                  console.log("File is over zone");
                 }}
                 onDrop={(e) => {
                   e.preventDefault();

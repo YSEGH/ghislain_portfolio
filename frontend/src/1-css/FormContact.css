@@ -11,17 +11,23 @@
 }
 .form-contact .inputs-container input {
   width: 20rem;
-  height: 2.5rem;
+  height: auto;
   border: none;
   font-family: "Poppins", sans-serif;
   padding: 1rem;
+  background-color: #fff;
+  border-image: initial;
+  box-sizing: border-box;
 }
 .form-contact textarea {
   width: 42rem;
-  height: 6.5rem;
+  height: 8.5rem;
   border: none;
   font-family: "Poppins", sans-serif;
   padding: 1rem;
+  background-color: #fff;
+  border-image: initial;
+  box-sizing: border-box;
 }
 .form-contact button {
   height: 3.4rem;

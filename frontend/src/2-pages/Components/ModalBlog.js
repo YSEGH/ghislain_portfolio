@@ -12,17 +12,6 @@ export default function ModalBlog({ item }) {
     modalItem.classList.remove("open");
   };
 
-  const showText = () => {
-    const text = document.getElementsByClassName("text-container-modal")[0];
-    if (text.classList.contains("open")) {
-      text.classList.add("close");
-      text.classList.remove("open");
-    } else {
-      text.classList.add("open");
-      text.classList.remove("close");
-    }
-  };
-
   return (
     <div className="modal-blog" onClick={() => closeModal()}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>

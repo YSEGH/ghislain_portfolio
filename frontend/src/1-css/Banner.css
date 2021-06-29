@@ -1,14 +1,17 @@
 .banner {
-  height: 100vh;
+  height: auto;
   min-height: 100vh;
   width: 100vw;
   background-color: #040312;
   position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 .banner .text-container {
   font-family: "Poppins", sans-serif;
   color: white;
-  height: 100%;
+  height: 100vh;
   width: 50%;
   padding-left: 2rem;
   text-align: left;
@@ -22,7 +25,7 @@
   font-weight: 200;
 }
 .banner .text-container div h1 {
-  font-size: 90px;
+  font-size: 90px !important;
   font-weight: 800;
   line-height: 90px;
   margin-bottom: 2rem;
@@ -66,12 +69,19 @@
 }
 
 @media screen and (max-width: 960px) {
-  .banner .text-container div h1 {
-    font-size: 70px;
+  .banner {
+    display: flex;
+    align-items: center;
   }
   .banner .text-container {
     width: 100%;
     padding: 2rem 1rem;
+    justify-content: space-around;
+  }
+}
+@media screen and (max-width: 650px) {
+  .banner .text-container div h1 {
+    font-size: 70px !important;
   }
 }
 @media screen and (max-width: 450px) {
@@ -79,8 +89,8 @@
     height: auto;
   }
   .banner .buttons-container {
-    margin-top: 4rem;
     justify-content: space-around;
+    margin-top: 4rem;
   }
   .banner .buttons-container button {
     margin-right: 0rem;

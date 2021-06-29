@@ -23,7 +23,7 @@
   width: fit-content;
   max-width: 80rem;
   background-color: #fff;
-  border-radius: 30px;
+  border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   position: sticky;
   display: flex;
@@ -105,8 +105,10 @@
 
 @media screen and (max-width: 1050px) {
   .modal-contenu .close-icon {
+    position: absolute;
     top: 1.5rem;
     right: 1.5rem;
+    color: #000;
   }
   .modal-contenu .modal {
     width: auto;

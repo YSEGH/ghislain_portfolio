@@ -6,16 +6,26 @@ import { GiBarracksTent } from "react-icons/gi";
 export default function Portfolio() {
   return (
     <div className="portfolio">
-      <h1>Want to see my work ?</h1>
-      <div className="buttons-container">
-        <button>
+      <h1>You want to see my work ?</h1>
+      <div
+        className="part circus"
+        style={{ backgroundImage: "url(/images/KENZO-2.png)" }}
+      >
+        <div className="mask"></div>
+        <div className="text-container">
           <GiBarracksTent size={40} />
-          Circus
-        </button>
-        <button>
+          <h2>Circus</h2>
+        </div>
+      </div>
+      <div
+        className="part photography"
+        style={{ backgroundImage: "url(/images/large.jpg)" }}
+      >
+        <div className="mask"></div>
+        <div className="text-container">
           <MdPhotoCamera size={40} />
-          Photography
-        </button>
+          <h2>Photo</h2>
+        </div>
       </div>
     </div>
   );

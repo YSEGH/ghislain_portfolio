@@ -1,8 +1,7 @@
 import React from "react";
 import "../../1-css/ModalItem.css";
-import { Splide, SplideSlide } from "@splidejs/react-splide";
-import "@splidejs/splide/dist/css/themes/splide-skyblue.min.css";
 import { MdDateRange, MdPlace, MdInfoOutline, MdClose } from "react-icons/md";
+import Carrousel from "./Carrousel";
 
 export default function ModalItem({ item }) {
   const closeModal = () => {
@@ -37,25 +36,7 @@ export default function ModalItem({ item }) {
           onClick={() => closeModal()}
         />
         <div className="photo-container">
-          <Splide
-            options={{
-              rewind: true,
-              height: 750,
-              width: 800,
-              display: "flex",
-              gap: "1rem",
-            }}
-          >
-            <SplideSlide>
-              <img src="/images/photo.jpg" alt="Image 1" />
-            </SplideSlide>
-            <SplideSlide>
-              <img src="/images/large.jpg" alt="Image 2" />
-            </SplideSlide>
-            <SplideSlide>
-              <img src="/images/photo.jpg" alt="Image 3" />
-            </SplideSlide>
-          </Splide>
+          <Carrousel />
         </div>
         <div className="text-container-modal close">
           <h2>{item.name}</h2>

@@ -1,5 +1,6 @@
 .press {
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   width: 100vw;
   background-color: #040312;
   color: #fff;
@@ -8,7 +9,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0 3rem;
+  padding: 2rem 3rem;
 }
 .press h1 {
   font-weight: 600;

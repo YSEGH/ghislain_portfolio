@@ -9,6 +9,7 @@
   justify-content: center;
 }
 .details h2 {
+  font-size: 1.5em !important;
   margin: 2rem;
   font-weight: 400;
 }
@@ -30,6 +31,7 @@
   font-family: "Poppins", sans-serif;
   padding: 0.5rem;
   outline: none;
+  box-sizing: border-box;
 }
 .form-details textarea {
   height: 10rem;

@@ -30,8 +30,8 @@ export default function Banner() {
             <FiFacebook size={30} />
           </div>
           <div className="buttons-container">
-            <button>Circus</button>
-            <button>Photography</button>
+            <button>Contact</button>
+            <button>About</button>
           </div>
         </div>
       </div>

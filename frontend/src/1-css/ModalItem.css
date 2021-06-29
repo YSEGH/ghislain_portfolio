@@ -3,27 +3,28 @@
 }
 .modal-item.open,
 .modal-item.close {
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgba(212, 212, 212, 0.432);
+  /*   background-color: rgba(212, 212, 212, 0.432);
+ */
+  background-color: #040312;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 100000;
   cursor: auto;
   pointer-events: all;
 }
 .modal-item .modal {
   opacity: inherit;
-  height: 750px;
-  width: fit-content;
-  max-width: 80rem;
+  height: 100vh;
+  width: 100vw;
   background-color: #040312;
   color: #fff;
-  border-radius: 30px;
+  border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   position: sticky;
   display: flex;
@@ -31,6 +32,7 @@
   overflow: hidden;
   cursor: auto;
   pointer-events: all;
+  max-height: none !important;
 }
 .modal-item .info-icon {
   display: none;
@@ -40,6 +42,7 @@
   cursor: pointer;
 }
 .modal-item .close-icon {
+  color: #000;
   position: absolute;
   top: 2rem;
   right: 2rem;
@@ -51,20 +54,23 @@
   transform: scale(1.1);
 }
 .modal-item .modal .photo-container {
-  width: 50rem;
+  width: 65vw;
   margin: auto;
-  height: 750px;
+  height: 100vh;
   background-color: #040312;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .modal-item .modal .photo-container img {
-  width: 800px;
-  height: 750px;
+  width: 65vw;
+  height: 100vh;
   margin: auto;
   object-fit: contain;
 }
 .modal-item .modal .text-container-modal {
-  width: 25rem;
-  height: 100%;
+  width: 35rem;
+  height: 100vh;
   border-left: 1px solid rgba(85, 85, 85, 0.13);
   text-align: left;
   padding: 5rem 2rem 2rem 2rem;
@@ -162,24 +168,21 @@
     z-index: 3000;
   }
   .modal-item .modal {
-    width: auto;
-    max-width: 30rem;
-    max-height: 90vh;
+    width: 100vw;
+    max-width: 100vw;
+    max-height: 100vh;
   }
   .modal-item .modal svg {
     color: #fff;
   }
   .modal-item .modal .photo-container {
-    width: 100%;
-    height: 750px;
-    max-height: 90vh;
+    width: 100vw;
+    height: 100vh;
     background-color: #040312;
   }
   .modal-item .modal .photo-container img {
-    width: 100%;
-    height: 750px;
-    max-height: 90vh;
-    margin: auto;
+    width: 100vw;
+    height: auto;
     object-fit: contain;
   }
   .modal-item .modal .text-container-modal {
@@ -193,6 +196,7 @@
     color: #fff;
     padding: 0 1rem;
     border-left: none;
+    background-color: transparent;
   }
   .modal-item .modal .text-container-modal.open {
     animation: showDiv 0.75s forwards;

@@ -10,7 +10,6 @@ export default function Home() {
   return (
     <div>
       <Banner />
-      <About />
       <Portfolio />
       <Press />
       <Form />

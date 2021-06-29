@@ -10,7 +10,7 @@ export default function Press() {
         Et ullamco dolore ipsum culpa amet consequat exercitation. Et ullamco
         dolore ipsum culpa amet consequat exercitation.
       </p>
-      {/* <Carrousel /> */}
+      <Carrousel />
     </div>
   );
 }

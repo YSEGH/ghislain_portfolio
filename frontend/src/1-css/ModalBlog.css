@@ -22,7 +22,7 @@
   width: fit-content;
   max-width: 80rem;
   background-color: #fff;
-  border-radius: 30px;
+  border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   position: sticky;
   display: flex;
@@ -51,7 +51,6 @@
   justify-content: flex-start;
 }
 .modal-blog .modal .photo-container img {
-  border-radius: 20px;
   aspect-ratio: 0;
   height: auto;
   width: 100%;
@@ -185,7 +184,7 @@
   }
   .modal-blog .modal {
     width: auto;
-    max-width: 30rem;
+    max-width: 90vw;
     height: auto;
     max-height: 90vh;
     flex-direction: column;
@@ -224,5 +223,10 @@
   .modal-blog .modal .text-container-modal p:nth-child(3) {
     max-height: 12rem;
     overflow-y: scroll;
+  }
+}
+@media screen and (max-width: 550px) {
+  .modal-blog .modal .photo-container .details-infos {
+    flex-direction: column;
   }
 }
