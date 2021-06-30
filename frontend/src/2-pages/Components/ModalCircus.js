@@ -1,14 +1,17 @@
 import React from "react";
-import "../../1-css/ModalItem.css";
+import "../../1-css/ModalCircus.css";
 import { MdDateRange, MdPlace, MdInfoOutline, MdClose } from "react-icons/md";
 import Carrousel from "./Carrousel";
 
-export default function ModalItem({ item }) {
+export default function ModalCircus({ item }) {
   const closeModal = () => {
     const modalItem = document.getElementsByClassName("modal-item")[0];
     modalItem.classList.add("close");
     modalItem.classList.remove("open");
-    console.log(modalItem);
+    setTimeout(() => {
+      const slider = document.querySelector(".carousel");
+      slider.scrollLeft = 0;
+    }, 750);
   };
 
   const showText = () => {
@@ -36,7 +39,7 @@ export default function ModalItem({ item }) {
           onClick={() => closeModal()}
         />
         <div className="photo-container">
-          <Carrousel />
+          <Carrousel category="circus" />
         </div>
         <div className="text-container-modal close">
           <h2>{item.name}</h2>

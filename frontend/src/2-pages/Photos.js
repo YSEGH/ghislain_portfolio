@@ -1,24 +1,24 @@
 import React from "react";
-import "../1-css/Blog.css";
-import BlogsContainer from "./Components/BlogsContainer";
+import "../1-css/Category.css";
+import PhotosContainer from "./Components/PhotosContainer";
 import Footer from "./Components/Footer";
 import Nav from "./Components/Nav";
 
-export default function Blog() {
+export default function Photos() {
   return (
     <>
-      <div className="blog">
+      <div className="category photos">
         <Nav color={"black"} />
         <div className="text-container">
-          <h1>Blog</h1>
+          <h1>Photography</h1>
           <ul className="filter-container">
             <li>Asia</li>
             <li>Europe</li>
             <li>USA</li>
             <li>Africa</li>
           </ul>
-          <BlogsContainer />
         </div>
+        <PhotosContainer />
       </div>
     </>
   );

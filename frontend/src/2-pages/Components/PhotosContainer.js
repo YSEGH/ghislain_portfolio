@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import "../../1-css/ItemsContainer.css";
+import "../../1-css/PhotosContainer.css";
 import Item from "./Item";
-import ModalItem from "./ModalItem";
 
-export default function ItemsContainer() {
+export default function PhotosContainer() {
   const text = [
     {
       name: "test1",
@@ -20,12 +19,15 @@ export default function ItemsContainer() {
     {
       name: "test5",
     },
+    {
+      name: "test6",
+    },
   ];
 
   return (
-    <div className="items-container">
+    <div className="items-container photo">
       {text.map((item, i) => (
-        <Item key={i} />
+        <Item category="photo" key={i} />
       ))}
     </div>
   );

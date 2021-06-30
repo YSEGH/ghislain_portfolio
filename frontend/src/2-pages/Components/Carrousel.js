@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "../../1-css/Carrousel.css";
-import { GrNext, GrPrevious } from "react-icons/gr";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import "../../../node_modules/swiper/swiper-bundle.min.css";
+import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
+import ModalPress from "./ModalPress";
 
 const slides = [
+  {
+    src: "/images/press.png",
+  },
+  {
+    src: "/images/press-2.jpg",
+  },
   {
     src: "/images/large.jpg",
   },
@@ -19,7 +21,8 @@ const slides = [
   },
 ];
 
-export default function Carrousel({ classN }) {
+export default function Carrousel({ classN, width, category }) {
+  const [pressImg, setPressImg] = useState("");
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [isDown, setIsDown] = useState(false);
@@ -80,12 +83,19 @@ export default function Carrousel({ classN }) {
     }px)`;
   };
 
+  const displayModal = () => {
+    const modal = document.getElementsByClassName("modal-item")[0];
+    modal.classList.remove("close");
+    modal.classList.add("open");
+  };
+
   useEffect(() => {
     return () => {};
   }, [window.innerWidth]);
 
   return (
-    <div className="carousel">
+    <div className={`carousel ${classN}`}>
+      <ModalPress src={pressImg} />
       <div
         className="carousel-container"
         onMouseDown={(e) => mouseDownHandler(e)}
@@ -93,25 +103,39 @@ export default function Carrousel({ classN }) {
         onMouseUp={(e) => mouseUpHandler(e)}
         onMouseMove={(e) => mouseMoveHandler(e)}
         style={{
-          width:
-            window.innerWidth > 960
-              ? `${slides.length * (window.innerWidth * 0.65)}px`
-              : `${slides.length * window.innerWidth}px`,
+          width: `${slides.length * width}px`,
         }}
       >
         {slides.map((img, i) => (
-          <img className="slide" src={img.src} key={i} />
+          <div className="slide" key={i}>
+            <img
+              src={img.src}
+              style={
+                classN === "press-carousel"
+                  ? { cursor: "zoom-in", pointerEvents: "all" }
+                  : {}
+              }
+              onClick={
+                classN === "press-carousel"
+                  ? () => {
+                      setPressImg(img.src);
+                      displayModal();
+                    }
+                  : null
+              }
+            />
+          </div>
         ))}
       </div>
       {index + 1 < slides.length && (
         <button className="button-slide next" onClick={() => nextSlide()}>
-          {">"}
+          <MdNavigateNext size={40} />
         </button>
       )}
 
       {index > 0 && (
         <button className="button-slide prev" onClick={() => prevSlide()}>
-          {"<"}
+          <MdNavigateBefore size={40} />
         </button>
       )}
     </div>

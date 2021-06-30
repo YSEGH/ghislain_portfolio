@@ -20,7 +20,14 @@
   margin-right: 0.5rem;
   font-weight: 200;
 }
-
+.footer ul li a {
+  text-decoration: none;
+  color: #fff;
+  transition: 0.25s;
+}
+.footer ul li a:hover {
+  text-decoration: underline;
+}
 .footer .text-container {
   border-top: 1px solid rgba(85, 85, 85, 0.034);
   display: flex;

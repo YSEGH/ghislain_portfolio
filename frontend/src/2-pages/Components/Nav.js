@@ -1,6 +1,7 @@
 import React from "react";
 import "../../1-css/Nav.css";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { AiOutlineHome } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 
 export default function Nav({ color }) {
@@ -31,7 +32,7 @@ export default function Nav({ color }) {
             style={{ color: color }}
             exact
           >
-            Home
+            <AiOutlineHome size={25} />
           </NavLink>
         </li>
         <li>
@@ -79,7 +80,7 @@ export default function Nav({ color }) {
           <NavLink
             activeClassName="active"
             activeStyle={{ color: "#ffff" }}
-            to="/admin/contenu"
+            to="/admin"
             style={{ color: color }}
           >
             Admin

@@ -1,6 +1,6 @@
 import React from "react";
-import "../../1-css/About.css";
-import Nav from "./Nav";
+import "../1-css/About.css";
+import Nav from "./Components/Nav";
 
 export default function About() {
   return (

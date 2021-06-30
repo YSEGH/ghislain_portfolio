@@ -19,6 +19,7 @@
   flex-direction: column;
   justify-content: space-between;
   padding-bottom: 7.5rem;
+  padding-top: 2rem;
 }
 .banner .text-container h1 {
   font-size: 60px;
@@ -48,7 +49,7 @@
   display: flex;
   margin: 3rem 0 0 0;
 }
-.banner .buttons-container button {
+.banner .buttons-container .button {
   height: 3.4rem;
   width: 10rem;
   border-radius: 60px;
@@ -59,15 +60,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  transition: 0.25s;
+  text-decoration: none;
 }
-.banner .buttons-container button:nth-child(1) {
+.banner .buttons-container .button:nth-child(1) {
   background-color: #ff0513;
+  border: 1px solid #ff0513;
 }
-.banner .buttons-container button:nth-child(2) {
+.banner .buttons-container .button:nth-child(1):hover {
+  background-color: transparent;
+  color: #ff0513;
+  border: 1px solid #fff;
+}
+.banner .buttons-container .button:nth-child(2) {
   background-color: transparent;
   border: 1px solid #ffff;
 }
-
+.banner .buttons-container .button:nth-child(2):hover {
+  background-color: #fff;
+  color: #ff0513;
+  border: 1px solid #fff;
+}
 @media screen and (max-width: 960px) {
   .banner {
     display: flex;

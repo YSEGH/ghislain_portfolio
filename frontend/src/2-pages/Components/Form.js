@@ -4,7 +4,7 @@ import FormContact from "./FormContact";
 
 export default function Form() {
   return (
-    <div className="form">
+    <div className="form" id="contact">
       <h1>Let's keep in touch</h1>
       <p>
         Sit exercitation ut quis proident Lorem dolor minim deserunt amet sit

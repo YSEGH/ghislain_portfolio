@@ -1,16 +1,16 @@
 import React from "react";
 import "../1-css/Category.css";
-import ItemsContainer from "./Components/ItemsContainer";
+import CircusContainer from "./Components/CircusContainer";
 import Footer from "./Components/Footer";
 import Nav from "./Components/Nav";
 
-export default function Category({ category }) {
+export default function Circus() {
   return (
     <>
-      <div className="category">
+      <div className="category circus">
         <Nav color={"black"} />
         <div className="text-container">
-          <h1>{category}</h1>
+          <h1>Circus</h1>
           <ul className="filter-container">
             <li>Asia</li>
             <li>Europe</li>
@@ -18,9 +18,8 @@ export default function Category({ category }) {
             <li>Africa</li>
           </ul>
         </div>
-        <ItemsContainer />
+        <CircusContainer />
       </div>
-      <Footer />
     </>
   );
 }

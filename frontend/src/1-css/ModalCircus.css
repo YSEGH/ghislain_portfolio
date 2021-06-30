@@ -8,8 +8,6 @@
   position: fixed;
   top: 0;
   left: 0;
-  /*   background-color: rgba(212, 212, 212, 0.432);
- */
   background-color: #040312;
   display: flex;
   align-items: center;
@@ -24,7 +22,6 @@
   width: 100vw;
   background-color: #040312;
   color: #fff;
-  border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   position: sticky;
   display: flex;
@@ -76,6 +73,7 @@
   padding: 5rem 2rem 2rem 2rem;
   background-color: #fff;
   color: #000;
+  pointer-events: none;
 }
 .modal-item .modal .text-container-modal h2 {
   font-weight: 400;

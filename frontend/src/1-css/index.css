@@ -13,6 +13,9 @@ body {
 *::-webkit-scrollbar {
   display: none;
 }
+img {
+  image-rendering: -webkit-optimize-contrast;
+}
 
 select {
   display: block !important;

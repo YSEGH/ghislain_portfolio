@@ -2,6 +2,7 @@ import React from "react";
 import "../../1-css/Banner.css";
 import Nav from "./Nav";
 import { FiInstagram, FiFacebook } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 export default function Banner() {
   return (
@@ -30,8 +31,21 @@ export default function Banner() {
             <FiFacebook size={30} />
           </div>
           <div className="buttons-container">
-            <button>Contact</button>
-            <button>About</button>
+            <button
+              onClick={() => {
+                document.getElementById("contact").scrollIntoView();
+              }}
+              className="button"
+            >
+              Contact
+            </button>
+            <Link
+              to="/about"
+              className="button"
+              onClick={() => window.scrollTo(0, 0)}
+            >
+              About
+            </Link>
           </div>
         </div>
       </div>

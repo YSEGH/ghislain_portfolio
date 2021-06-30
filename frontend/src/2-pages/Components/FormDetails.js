@@ -57,7 +57,7 @@ export default function FormDetails() {
         <button>Valider les modifications</button>
       </form>
       <div className="upload-zone-container">
-        <h2>Importez l'image de présentation</h2>
+        <h2>Modifiez l'image de présentation</h2>
         <div className="apercu-zone one-image">
           {file ? (
             file.type === "video/mp4" ? (
@@ -108,7 +108,7 @@ export default function FormDetails() {
         </div>
       </div>
       <div className="presentation-details">
-        <h2>Rédigez le texte de présentation</h2>
+        <h2>Modifiez le texte de présentation</h2>
         <TextEditor />
       </div>
     </div>

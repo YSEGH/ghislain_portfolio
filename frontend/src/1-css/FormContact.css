@@ -41,6 +41,11 @@
   align-items: center;
   justify-content: center;
   background-color: #ff0513;
+  cursor: pointer;
+  transition: 0.25s;
+}
+.form-contact button:hover {
+  background-color: #a50008;
 }
 @media screen and (max-width: 960px) {
   .form-contact {

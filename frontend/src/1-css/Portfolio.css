@@ -7,6 +7,7 @@
   justify-content: space-around;
   flex-wrap: wrap;
   padding-bottom: 3rem;
+  font-family: "Poppins", sans-serif;
 }
 .portfolio h1 {
   margin-top: 4rem;
@@ -37,6 +38,7 @@
   transition: 0.25s;
   margin: 1rem auto;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  text-decoration: none;
 }
 .portfolio .mask {
   width: 30vw;
@@ -49,10 +51,13 @@
   left: 0;
   background-color: rgba(54, 54, 54, 0.658);
   z-index: 0;
+  transition: 0.25s;
 }
 .portfolio .part:hover {
   transform: scale(1.005);
-  filter: grayscale(0);
+}
+.portfolio .part:hover .mask {
+  background-color: rgba(54, 54, 54, 0.24);
 }
 .portfolio .part .text-container {
   position: relative;
@@ -76,7 +81,7 @@
   position: relative;
   z-index: 5;
   font-size: 35px;
-  font-weight: 400;
+  font-weight: 300;
   text-align: center;
   color: #fff;
 }

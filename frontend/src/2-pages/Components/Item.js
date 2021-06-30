@@ -1,8 +1,9 @@
 import React from "react";
 import "../../1-css/Item.css";
-import ModalItem from "./ModalItem";
+import ModalCircus from "./ModalCircus";
+import ModalPhoto from "./ModalPhoto";
 
-export default function Item() {
+export default function Item({ category }) {
   const displayModal = () => {
     const modal = document.getElementsByClassName("modal-item")[0];
     modal.classList.remove("close");
@@ -15,17 +16,27 @@ export default function Item() {
       style={{
         backgroundImage: "url(/images/large.jpg)",
       }}
+      onClick={() => {
+        displayModal();
+      }}
     >
-      <ModalItem item={{ name: "test" }} />
-      <div
-        className="item-hover"
-        onClick={() => {
-          displayModal();
-        }}
-      >
-        <h2>Circus</h2>
-        <p>Legend test</p>
-      </div>
+      {category === "circus" ? (
+        <ModalCircus item={{ name: "test" }} />
+      ) : (
+        <ModalPhoto item={{ name: "test" }} />
+      )}
+
+      {category !== "photo" && (
+        <div
+          className="item-hover"
+          onClick={() => {
+            displayModal();
+          }}
+        >
+          <h2>Circus</h2>
+          <p>Legend test</p>
+        </div>
+      )}
     </div>
   );
 }
