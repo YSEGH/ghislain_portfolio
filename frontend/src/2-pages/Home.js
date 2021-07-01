@@ -9,7 +9,8 @@ export default function Home() {
     <div>
       <Banner />
       <Portfolio />
-      <Press />
+      {/*       <Press />
+       */}
       <Form />
     </div>
   );

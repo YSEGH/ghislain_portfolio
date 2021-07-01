@@ -161,5 +161,6 @@
   }
   .upload-zone-container div {
     flex-wrap: nowrap;
+    margin-bottom: 4rem;
   }
 }

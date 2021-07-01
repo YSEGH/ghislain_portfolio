@@ -13,12 +13,22 @@
   margin: 2rem;
   font-weight: 400;
 }
+.details button {
+  height: 3rem;
+  width: 20rem;
+  background-color: #ff0513;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: 0.25s;
+  font: 400 20px "Poppins";
+  margin: 3rem auto;
+}
 .form-details {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 3rem;
 }
 
 .form-details input,
@@ -36,16 +46,19 @@
 .form-details textarea {
   height: 10rem;
 }
-.form-details button {
-  height: 3rem;
-  width: 20rem;
-  background-color: #ff0513;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  transition: 0.25s;
-  font: 400 20px "Poppins";
-}
+
 .form-details button:hover {
   background-color: #d6000b;
+}
+
+.text-editor {
+  height: fit-content;
+  min-height: 10rem;
+  width: 50rem;
+  max-width: 80vw;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 2rem;
+  font-weight: 300;
+  text-align: left;
+  margin: auto;
 }

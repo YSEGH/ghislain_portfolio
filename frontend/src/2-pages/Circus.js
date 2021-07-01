@@ -1,7 +1,6 @@
 import React from "react";
 import "../1-css/Category.css";
 import CircusContainer from "./Components/CircusContainer";
-import Footer from "./Components/Footer";
 import Nav from "./Components/Nav";
 
 export default function Circus() {

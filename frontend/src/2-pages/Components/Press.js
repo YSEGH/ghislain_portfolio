@@ -2,6 +2,24 @@ import React from "react";
 import "../../1-css/Press.css";
 import Carrousel from "./Carrousel";
 
+const slides = [
+  {
+    src: "/images/press.png",
+  },
+  {
+    src: "/images/press-2.jpg",
+  },
+  {
+    src: "/images/large.jpg",
+  },
+  {
+    src: "/images/KENZO-2.png",
+  },
+  {
+    src: "/images/KOOZA-7.jpg",
+  },
+];
+
 export default function Press() {
   return (
     <div className="press">
@@ -12,10 +30,12 @@ export default function Press() {
           dolore ipsum culpa amet consequat exercitation.
         </p>
       </div>
-      <Carrousel
-        classN="press-carousel"
-        width={window.innerWidth > 960 ? 640 : window.innerWidth * 0.9}
-      />
+      <div className="press-review-container">
+        <div className="item-review">
+          <h2>Spectacle magnifique et moderne ! </h2>
+          <p>Les échos</p>
+        </div>
+      </div>
     </div>
   );
 }

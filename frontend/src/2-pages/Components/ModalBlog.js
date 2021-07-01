@@ -1,7 +1,5 @@
 import React from "react";
 import "../../1-css/ModalBlog.css";
-import { Splide, SplideSlide } from "@splidejs/react-splide";
-import "@splidejs/splide/dist/css/themes/splide-skyblue.min.css";
 import { MdDateRange, MdPlace, MdInfoOutline, MdClose } from "react-icons/md";
 
 export default function ModalBlog({ item }) {

@@ -25,7 +25,9 @@ export default function FormAddContenu({
   } = useForm();
 
   const handleChange = (event) => {
-    setType(event.target.value);
+    if (event.target.value) {
+      setType(event.target.value);
+    }
   };
 
   const submitCategory = (e) => {
@@ -74,7 +76,9 @@ export default function FormAddContenu({
       <select
         {...register("content", { required: true })}
         defaultValue="null"
-        onChange={(e) => setContent(e.target.value)}
+        onChange={(e) => {
+          setContent(e.target.value);
+        }}
       >
         <option value="null" disabled="disabled">
           Que souhaitez vous ajouter ?
@@ -99,7 +103,7 @@ export default function FormAddContenu({
                 onChange={(e) => handleChange(e)}
               >
                 <option value="null" disabled="disabled">
-                  Que souhaitez vous faire ?
+                  Nombre de fichiers ?
                 </option>
                 <option value="oneFile">Ajouter une image/vidéo</option>
                 <option value="manyFiles">
@@ -116,11 +120,12 @@ export default function FormAddContenu({
               {...register("legend", { required: true })}
               placeholder="Légende"
             />
-
-            <textarea
-              placeholder="Description"
-              {...register("description", { required: true })}
-            />
+            {content !== "photography" && (
+              <textarea
+                placeholder="Description"
+                {...register("description", { required: true })}
+              />
+            )}
           </form>
           <form id="form-category" onSubmit={(e) => submitCategory(e)}>
             <div className="category-input-container">
@@ -201,7 +206,7 @@ export default function FormAddContenu({
                   ></label>
                 </div>
               </div>
-            ) : (
+            ) : content === "circus" && type === "manyFiles" ? (
               <div className="upload-zone-container">
                 <h2>Importez vos fichiers</h2>
                 <div className="apercu-zone many-images">
@@ -264,7 +269,7 @@ export default function FormAddContenu({
                   ></label>
                 </div>
               </div>
-            )
+            ) : null
           ) : null}
           <button
             className="validation-contenu"

@@ -7,6 +7,31 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  overflow: hidden;
+}
+.banner .video-banner {
+  height: auto;
+  min-height: 100vh;
+  width: 100vw;
+  position: absolute;
+  filter: grayscale(1);
+  z-index: 0;
+}
+.banner .mask {
+  height: auto;
+  min-height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.342);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(28, 28, 28, 0.3743872549019608) 100%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
 .banner .text-container {
   font-family: "Poppins", sans-serif;
@@ -20,6 +45,7 @@
   justify-content: space-between;
   padding-bottom: 7.5rem;
   padding-top: 2rem;
+  z-index: 2;
 }
 .banner .text-container h1 {
   font-size: 60px;

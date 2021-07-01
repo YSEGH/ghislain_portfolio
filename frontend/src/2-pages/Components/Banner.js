@@ -8,12 +8,22 @@ export default function Banner() {
   return (
     <div
       className="banner"
-      style={{
-        backgroundImage: "url(/images/KENZO-2.png)",
-        backgroundSize: "cover",
-        backgroundPosition: "left center",
-      }}
+      style={
+        {
+          /*         backgroundSize: "cover",
+        backgroundPosition: "left center", */
+        }
+      }
     >
+      <video
+        className="video-banner"
+        src="/videos/VIDEO-KENZO.mp4"
+        autoPlay
+        type="video/mp4"
+        muted
+        loop
+      />
+      <div className="mask"></div>
       <Nav color="white" />
       <div className="text-container">
         <h1>Portfolio</h1>

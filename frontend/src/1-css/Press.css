@@ -33,3 +33,7 @@
   line-height: 2rem;
   font-weight: 200;
 }
+.react-review-container {
+  width: 40rem;
+  height: 30rem;
+}
