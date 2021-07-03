@@ -80,7 +80,7 @@
 .modal-blog .modal .details-infos p:nth-child(2) svg {
   margin-right: 1rem;
 }
-.modal-blog .modal .text-container-modal {
+.modal-blog .modal .text-container {
   width: 35rem;
   height: 100%;
   text-align: left;
@@ -90,12 +90,12 @@
   align-items: flex-start;
   justify-content: flex-start;
 }
-.modal-blog .modal .text-container-modal h2 {
+.modal-blog .modal .text-container h2 {
   font-weight: 400;
   margin: 1rem 0;
   position: relative;
 }
-.modal-blog .modal .text-container-modal h2::after {
+.modal-blog .modal .text-container h2::after {
   content: "";
   height: 1px;
   width: 2rem;
@@ -107,16 +107,16 @@
   left: -3rem;
   z-index: -1;
 }
-.modal-blog .modal .text-container-modal p {
+.modal-blog .modal .text-container p {
   font-weight: 200;
   font-size: 14px;
 }
-.modal-blog .modal .text-container-modal p:nth-child(3) {
+.modal-blog .modal .text-container p:nth-child(3) {
   font-weight: 300;
   font-size: 16px;
   margin-bottom: 2rem;
 }
-.modal-blog .modal .text-container-modal p:nth-child(4) {
+.modal-blog .modal .text-container p:nth-child(4) {
   max-height: 30rem;
   overflow-y: scroll;
 }
@@ -220,7 +220,7 @@
     margin-bottom: 0;
     width: 50%;
   }
-  .modal-blog .modal .text-container-modal {
+  .modal-blog .modal .text-container {
     width: 80%;
     margin: 1rem auto;
     height: auto;
@@ -228,23 +228,23 @@
     padding: 0;
     overflow-y: scroll;
   }
-  .modal-blog .modal .text-container-modal h2::after {
+  .modal-blog .modal .text-container h2::after {
     top: 0;
     bottom: 0;
     left: 8rem;
     width: 4rem;
   }
-  .modal-blog .modal .text-container-modal p:nth-child(2) {
+  .modal-blog .modal .text-container p:nth-child(2) {
     margin-bottom: 0;
   }
-  .modal-blog .modal .text-container-modal p:nth-child(3) {
+  .modal-blog .modal .text-container p:nth-child(3) {
     font-weight: 300;
     font-size: 16px;
     margin-bottom: 2rem;
     overflow-y: visible;
   }
 
-  .modal-blog .modal .text-container-modal p:nth-child(4) {
+  .modal-blog .modal .text-container p:nth-child(4) {
     max-height: none;
     overflow-y: visible;
   }

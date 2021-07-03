@@ -5,11 +5,10 @@
   overflow: hidden;
 }
 
-.carousel-container {
+.slide-container {
   height: 100%;
   width: 100%;
   transition: 0.25s;
-  transform: translateX(0);
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -44,10 +43,10 @@
   color: #fff;
 }
 .button-slide.next {
-  right: 0;
+  right: 1rem;
 }
 .button-slide.prev {
-  left: 0;
+  left: 1rem;
 }
 .indicator-item.active {
   background-color: #ff0512 !important;
@@ -57,7 +56,7 @@
 }
 @media screen and (max-width: 960px) {
   .carousel {
-    overflow-x: auto;
+    overflow-x: scroll;
     scroll-snap-type: x mandatory;
   }
   .slide {

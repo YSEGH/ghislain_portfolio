@@ -1,12 +1,13 @@
 import mongoose from "mongoose";
 
 const itemSchema = new mongoose.Schema({
+  content: { type: String, required: true },
   type: { type: String, required: true },
   title: { type: String, required: true },
   legend: { type: String, required: true },
   categorie: { type: Array, required: true },
-  photos: { type: Array, required: true },
-  description: { type: String },
+  photos: { type: Array },
+  description: { type: Object },
   date: { type: Date },
   place: { type: String },
 });

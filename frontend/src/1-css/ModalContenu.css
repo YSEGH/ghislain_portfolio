@@ -1,8 +1,8 @@
-.modal-contenu {
+.modal.contenu {
   display: none;
 }
-.modal-contenu.open,
-.modal-contenu.close {
+.modal.contenu.open,
+.modal.contenu.close {
   height: 100%;
   width: 100%;
   position: fixed;
@@ -16,7 +16,7 @@
   cursor: auto;
   pointer-events: all;
 }
-.modal-contenu .modal {
+.modal.contenu .modal-body {
   opacity: inherit;
   height: 100vh;
   max-height: 100vh;
@@ -32,22 +32,22 @@
   overflow-y: scroll;
   padding: 2rem 2rem 5rem 2rem;
 }
-.modal-contenu .close-icon {
+.modal.contenu .close-icon {
   position: sticky;
   top: 0;
   right: 0;
   transition: 0.25s;
   cursor: pointer;
 }
-.modal-contenu .close-icon:hover,
-.modal-contenu .info-icon:hover {
+.modal.contenu .close-icon:hover,
+.modal.contenu .info-icon:hover {
   transform: scale(1.1);
 }
 /* Animation OPEN*/
-.modal-contenu.open {
+.modal.contenu.open {
   animation: displayBackgroundModal 0.75s forwards;
 }
-.modal-contenu.open .modal {
+.modal.contenu.open .modal-body {
   animation-delay: 0.25s;
   animation: displayModal 0.75s forwards;
 }
@@ -71,11 +71,11 @@
 }
 
 /* Animation CLOSE */
-.modal-contenu.close {
+.modal.contenu.close {
   animation: hideBackgroundModal 0.75s forwards;
   animation-delay: 0.25s;
 }
-.modal-contenu.close .modal {
+.modal.contenu.close .modal-body {
   animation: hideModal 0.75s forwards;
 }
 @keyframes hideModal {
@@ -103,13 +103,13 @@
 /* Responsive */
 
 @media screen and (max-width: 1050px) {
-  .modal-contenu .close-icon {
+  .modal.contenu .close-icon {
     position: absolute;
     top: 1.5rem;
     right: 1.5rem;
     color: #000;
   }
-  .modal-contenu .modal {
+  .modal.contenu .modal-body {
     width: 100vw;
     max-width: 100vw;
     height: 100vh;

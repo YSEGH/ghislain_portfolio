@@ -5,13 +5,13 @@ import { MdDateRange, MdPlace, MdInfoOutline, MdClose } from "react-icons/md";
 
 export default function ModalContenu() {
   const closeModal = () => {
-    const modalItem = document.getElementsByClassName("modal-contenu")[0];
+    const modalItem = document.querySelector(".modal.contenu");
     modalItem.classList.add("close");
     modalItem.classList.remove("open");
   };
   return (
-    <div className="modal-contenu" onClick={() => closeModal()}>
-      <div className="modal" onClick={(e) => e.stopPropagation()}>
+    <div className="modal contenu" onClick={() => closeModal()}>
+      <div className="modal-body" onClick={(e) => e.stopPropagation()}>
         <MdClose
           className="close-icon"
           size={25}

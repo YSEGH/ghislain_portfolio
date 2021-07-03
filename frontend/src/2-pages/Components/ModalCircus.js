@@ -5,12 +5,17 @@ import Carrousel from "./Carrousel";
 
 export default function ModalCircus({ item }) {
   const [close, setClose] = useState(false);
+
   const closeModal = () => {
-    const modalItem = document.getElementsByClassName("modal-item")[0];
-    const carousel = document.querySelector(".carousel");
-    const slider = document.querySelector(".carousel-container");
-    modalItem.classList.add("close");
-    modalItem.classList.remove("open");
+    const modal = document.querySelector(`.modal#modal-${item._id}`);
+    const carousel = document.querySelector(
+      `.modal#modal-${item._id} .carousel`
+    );
+    const slider = document.querySelector(
+      `.modal#modal-${item._id} .slide-container`
+    );
+    modal.classList.add("close");
+    modal.classList.remove("open");
     setClose(true);
     setTimeout(() => {
       slider.style.transform = `translateX(0px)`;
@@ -20,7 +25,9 @@ export default function ModalCircus({ item }) {
   };
 
   const showText = () => {
-    const text = document.getElementsByClassName("text-container-modal")[0];
+    const text = document.querySelector(
+      `.modal#modal-${item._id} .text-container`
+    );
     if (text.classList.contains("open")) {
       text.classList.add("close");
       text.classList.remove("open");
@@ -31,8 +38,12 @@ export default function ModalCircus({ item }) {
   };
 
   return (
-    <div className="modal-item" onClick={() => closeModal()}>
-      <div className="modal" onClick={(e) => e.stopPropagation()}>
+    <div
+      className={`modal`}
+      id={`modal-${item._id}`}
+      onClick={() => closeModal()}
+    >
+      <div className="modal-body" onClick={(e) => e.stopPropagation()}>
         <MdInfoOutline
           className="info-icon"
           size={25}
@@ -45,33 +56,31 @@ export default function ModalCircus({ item }) {
         />
         <div className="photo-container">
           <Carrousel
-            category="circus"
-            classN="circus-carousel-t"
+            modalSelector={`.modal#modal-${item._id}`}
+            secondaryClass="carousel-circus"
             close={close}
+            width={
+              window.innerWidth > 1050
+                ? window.innerWidth * 0.65
+                : window.innerWidth
+            }
+            slides={item.photos}
           />
         </div>
-        <div className="text-container-modal close">
-          <h2>{item.name}</h2>
-          <p>
-            Fugiat laborum incididunt adipisicing exercitation proident ipsum
-            sunt. Est sunt magna est magna est esse et in adipisicing eu anim.
-            Id nostrud laborum nulla amet duis reprehenderit aliquip. Non
-            voluptate dolor Lorem sit minim deserunt nisi anim esse sint veniam
-            ea ad. Aute dolor consectetur esse ipsum eiusmod. Eiusmod ullamco ex
-            do proident ad exercitation magna occaecat laborum aute ex
-            reprehenderit.
-          </p>
+        <div className="text-container close">
+          <h2>{item.title}</h2>
+          <p>{item.description}</p>
           <p>
             <span>
               <MdDateRange size={40} />
             </span>
-            04/03/2020
+            {item.date}
           </p>
           <p>
             <span>
               <MdPlace size={40} />
             </span>
-            Paris, France
+            {item.place}
           </p>
         </div>
       </div>

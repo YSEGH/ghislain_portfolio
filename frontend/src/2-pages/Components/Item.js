@@ -1,40 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../1-css/Item.css";
 import ModalCircus from "./ModalCircus";
-import ModalPhoto from "./ModalPhoto";
 
-export default function Item({ category }) {
+export default function Item({
+  secondaryClass,
+  item = {},
+  category,
+  setIndex,
+  modalSelector,
+}) {
   const displayModal = () => {
-    const modal = document.getElementsByClassName("modal-item")[0];
+    const modal = document.querySelector(`${modalSelector}`);
     modal.classList.remove("close");
     modal.classList.add("open");
   };
 
+  useEffect(() => {
+    return () => {};
+  }, []);
+
   return (
     <div
-      className="item"
+      className={`item ${secondaryClass}`}
       style={{
-        backgroundImage: "url(/images/large.jpg)",
+        backgroundImage: `url(${item.photos[0].src})`,
       }}
       onClick={() => {
+        if (item.content === "photography") {
+          setIndex(item.index);
+        }
         displayModal();
       }}
     >
-      {category === "circus" ? (
-        <ModalCircus item={{ name: "test" }} />
-      ) : (
-        <ModalPhoto item={{ name: "test" }} />
-      )}
+      {category === "circus" && <ModalCircus item={item} />}
 
-      {category !== "photo" && (
+      {category === "circus" && (
         <div
           className="item-hover"
           onClick={() => {
             displayModal();
           }}
         >
-          <h2>Circus</h2>
-          <p>Legend test</p>
+          <h2>{item.title}</h2>
+          <p>{item.legend}</p>
         </div>
       )}
     </div>

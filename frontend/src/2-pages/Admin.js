@@ -1,11 +1,11 @@
 import React from "react";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import "../1-css/Admin.css";
-import Contenu from "./Components/Contenu";
 import FormAddContenu from "./Components/FormAddContenu";
 import FormDetails from "./Components/FormDetails";
 import Nav from "./Components/Nav";
 import NavAdmin from "./Components/NavAdmin";
+import TableItems from "./Components/TableItems";
 
 export default function Admin() {
   return (
@@ -15,7 +15,7 @@ export default function Admin() {
       <div className="admin-component">
         <Router>
           <Switch>
-            <Route path="/admin/contenu" render={() => <Contenu />} />
+            <Route path="/admin/contenu" render={() => <TableItems />} />
             <Route
               path="/admin/ajouter-contenu"
               render={() => <FormAddContenu update={false} />}

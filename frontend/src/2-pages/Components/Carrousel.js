@@ -1,92 +1,97 @@
 import React, { useEffect, useState } from "react";
 import "../../1-css/Carrousel.css";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
-import ModalPress from "./ModalPress";
 
-const slides = [
-  {
-    src: "/images/press.png",
-  },
-  {
-    src: "/images/press-2.jpg",
-  },
-  {
-    src: "/images/large.jpg",
-  },
-  {
-    src: "/images/KENZO-2.png",
-  },
-  {
-    src: "/images/KOOZA-7.jpg",
-  },
-];
+export default function Carrousel({
+  modalSelector,
+  width,
+  slides,
+  secondaryClass,
+  initialIndex = 0,
+  close,
+}) {
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const [isDown, setIsDown] = useState(false);
+  const [index, setIndex] = useState(initialIndex);
 
-export default function Carrousel({ classN, width, close }) {
-  const [pressImg, setPressImg] = useState("");
-  const [index, setIndex] = useState(0);
+  const mouseDownHandler = (e) => {
+    const slider = document.querySelector(`${modalSelector} .slide-container`);
+    setIsDown(true);
+    slider.classList.add("active");
+    const start = e.pageX - slider.offsetLeft;
+    const scrollL = slider.scrollLeft;
+    setStartX(start);
+    setScrollLeft(scrollL);
+  };
+  const mouseLeaveHandler = (e) => {
+    const slider = document.querySelector(`${modalSelector} .slide-container`);
+    setIsDown(false);
+    slider.classList.remove("active");
+  };
+  const mouseUpHandler = (e) => {
+    const slider = document.querySelector(`${modalSelector} .slide-container`);
+    setIsDown(false);
+    slider.classList.remove("active");
+  };
+  const mouseMoveHandler = (e) => {
+    const slider = document.querySelector(`${modalSelector} .slide-container`);
+    if (!isDown) {
+      return;
+    }
+    e.preventDefault();
+    const x = e.pageX - slider.offsetLeft;
+    const walk = x - startX;
+    slider.scrollLeft = scrollLeft - walk;
+  };
 
   const nextSlide = () => {
-    const slider = document.querySelector(".carousel-container");
+    const slider = document.querySelector(`${modalSelector} .slide-container`);
     const newIndex = index + 1;
     setIndex(newIndex);
-
-    slider.style.transform = `translateX(-${
-      newIndex * document.getElementsByClassName("slide")[0].offsetWidth
-    }px)`;
+    slider.style.transform = `translateX(-${newIndex * width}px)`;
   };
 
   const prevSlide = () => {
-    const slider = document.querySelector(".carousel-container");
+    const slider = document.querySelector(`${modalSelector} .slide-container`);
     const newIndex = index - 1;
     const translateX = Number(
       slider.style.transform.split("(")[1].split(")")[0].split("px")[0]
     );
     setIndex(newIndex);
-    slider.style.transform = `translateX(${
-      translateX + document.getElementsByClassName("slide")[0].offsetWidth
-    }px)`;
-  };
-
-  const displayModal = () => {
-    const modal = document.getElementsByClassName("modal-item")[0];
-    modal.classList.remove("close");
-    modal.classList.add("open");
+    slider.style.transform = `translateX(${translateX + width}px)`;
   };
 
   useEffect(() => {
+    const carousel = document.querySelector(`${modalSelector} .carousel`);
+    const slider = document.querySelector(`${modalSelector} .slide-container`);
+    const newIndex = initialIndex;
+    setIndex(newIndex);
+
+    if (window.innerWidth > 1050) {
+      slider.style.transform = `translateX(-${newIndex * width}px)`;
+    } else {
+      carousel.scrollLeft = newIndex * width;
+    }
+
     if (close) {
       setIndex(0);
     }
     return () => {};
-  }, [close]);
+  }, [close, initialIndex]);
 
   return (
-    <div className={`carousel ${classN}`}>
-      {classN === "press-carousel" && <ModalPress src={pressImg} />}
+    <div className={`carousel ${secondaryClass}`}>
       <div
-        className="carousel-container"
-        style={{
-          width: `${slides.length * width}px`,
-        }}
+        className={`slide-container`}
+        onMouseDown={(e) => mouseDownHandler(e)}
+        onMouseLeave={(e) => mouseLeaveHandler(e)}
+        onMouseUp={(e) => mouseUpHandler(e)}
+        onMouseMove={(e) => mouseMoveHandler(e)}
       >
         {slides.map((img, i) => (
-          <div className="slide" key={i}>
-            <img
-              src={img.src}
-              style={
-                classN === "press-carousel"
-                  ? { cursor: "zoom-in", pointerEvents: "all" }
-                  : {}
-              }
-              onClick={
-                classN === "press-carousel"
-                  ? () => {
-                      setPressImg(img.src);
-                      displayModal();
-                    }
-                  : null
-              }
-            />
+          <div className={`slide`} key={i} style={{ width: width }}>
+            <img src={img.src} />
           </div>
         ))}
       </div>

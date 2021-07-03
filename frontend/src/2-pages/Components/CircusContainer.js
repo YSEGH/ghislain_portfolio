@@ -1,33 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import "../../1-css/CircusContainer.css";
 import Item from "./Item";
 
-export default function CircusContainer() {
-  const text = [
-    {
-      name: "test1",
-    },
-    {
-      name: "test2",
-    },
-    {
-      name: "test3",
-    },
-    {
-      name: "test4",
-    },
-    {
-      name: "test5",
-    },
-    {
-      name: "test6",
-    },
-  ];
-
+export default function CircusContainer({ items }) {
   return (
     <div className="items-container circus">
-      {text.map((item, i) => (
-        <Item category="circus" key={i} />
+      {items.map((item, i) => (
+        <Item
+          category="circus"
+          key={i}
+          item={Object.assign(item, { index: i })}
+          secondaryClass={"item-circus"}
+          modalSelector={`.modal#modal-${item._id}`}
+        />
       ))}
     </div>
   );

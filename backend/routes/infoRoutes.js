@@ -29,7 +29,7 @@ router.put("/", upload.single("image"), async (req, res) => {
       try {
         let result = await uploadFiles(req.file);
         if (result) {
-          filePath = `/api/images/${result.Key}`;
+          filePath = `/api/files/${result.Key}`;
         }
       } catch (error) {
         return res

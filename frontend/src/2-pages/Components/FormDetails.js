@@ -13,6 +13,8 @@ import {
 } from "../../3-actions/infoActions";
 
 export default function FormDetails() {
+  const instanceRef = useRef(null);
+
   const dispatch = useDispatch();
   const updateInfos = useSelector((state) => state.updateInfos);
   const {
@@ -33,8 +35,6 @@ export default function FormDetails() {
     setValue,
     formState: { errors },
   } = useForm();
-
-  const instanceRef = useRef(null);
 
   const importFile = (fileImport) => {
     const image = fileImport;

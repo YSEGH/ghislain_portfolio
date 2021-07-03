@@ -51,6 +51,17 @@
   background-color: #d6000b;
 }
 
+.details {
+  height: auto;
+  width: 100vw;
+  font-family: "Poppins", sans-serif;
+  padding-bottom: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .text-editor {
   height: fit-content;
   min-height: 10rem;

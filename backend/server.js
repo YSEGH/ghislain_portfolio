@@ -20,7 +20,7 @@ app.use(express.json());
 app.use("/api/user", userRouter);
 app.use("/api/info", infoRouter);
 app.use("/api/item", itemRouter);
-app.use("/api/images", imageRouter);
+app.use("/api/files", imageRouter);
 
 app.listen(process.env.PORT || 3001, () => {
   console.log(`Serveur démarre sur le port ${process.env.PORT || 3001}`);

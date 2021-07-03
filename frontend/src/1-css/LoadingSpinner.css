@@ -21,7 +21,8 @@
   color: #fff;
   position: relative;
 }
-.small-component.loading svg {
+.small-component.loading svg,
+.loading-svg {
   animation: rotate 1s infinite;
 }
 .small-component.loading.fixed {

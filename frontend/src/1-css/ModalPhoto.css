@@ -1,15 +1,13 @@
-.modal-item.photo {
+.modal.photo {
   display: none;
 }
-.modal-item.photo.open,
-.modal-item.photo.close {
+.modal.photo.open,
+.modal.photo.close {
   height: 100vh;
   width: 100vw;
   position: fixed;
   top: 0;
   left: 0;
-  /*   background-color: rgba(212, 212, 212, 0.432);
- */
   background-color: #040312;
   display: flex;
   align-items: center;
@@ -18,7 +16,7 @@
   cursor: auto;
   pointer-events: all;
 }
-.modal-item.photo .modal {
+.modal.photo .modal-body {
   opacity: inherit;
   height: 100vh;
   width: 100vw;
@@ -34,14 +32,7 @@
   pointer-events: all;
   max-height: none !important;
 }
-.modal-item.photo .info-icon {
-  display: none;
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
-  cursor: pointer;
-}
-.modal-item.photo .close-icon {
+.modal.photo .close-icon {
   color: #fff;
   position: absolute;
   top: 2rem;
@@ -49,12 +40,12 @@
   transition: 0.25s;
   cursor: pointer;
   z-index: 100;
+  pointer-events: all;
 }
-.modal-item.photo .close-icon:hover,
-.modal-item.photo .info-icon:hover {
+.modal.photo .close-icon:hover {
   transform: scale(1.1);
 }
-.modal-item.photo .modal .photo-container {
+.modal.photo .modal-body .photo-container {
   width: 100vw;
   margin: auto;
   height: 100vh;
@@ -63,7 +54,7 @@
   align-items: center;
   justify-content: center;
 }
-.modal-item.photo .modal .photo-container img {
+.modal.photo .modal-body .photo-container img {
   width: 100vw;
   height: 100vh;
   margin: auto;
@@ -71,10 +62,10 @@
 }
 
 /* Animation OPEN*/
-.modal-item.photo.open {
+.modal.photo.open {
   animation: displayBackgroundModal 0.75s forwards;
 }
-.modal-item.photo.open .modal {
+.modal.photo.open .modal-body {
   animation-delay: 0.25s;
   animation: displayModal 0.75s forwards;
 }
@@ -98,11 +89,11 @@
 }
 
 /* Animation CLOSE */
-.modal-item.photo.close {
-  animation: hideBackgroundModal 0.75s forwards;
-  animation-delay: 0.25s;
+.modal.photo.close {
+  animation: hideBackgroundModal 0s forwards;
+  animation-delay: 0s;
 }
-.modal-item.photo.close .modal {
+.modal.photo.close .modal-body {
   animation: hideModal 0.75s forwards;
 }
 @keyframes hideModal {
@@ -124,75 +115,5 @@
   100% {
     opacity: 0;
     transform: translateY(-100%);
-  }
-}
-
-/* Responsive */
-
-@media screen and (max-width: 1050px) {
-  .modal-item.photo .info-icon {
-    z-index: 3000;
-    display: block;
-  }
-  .modal-item.photo .close-icon {
-    z-index: 3000;
-  }
-  .modal-item.photo .modal {
-    width: 100vw;
-    max-width: 100vw;
-    max-height: 100vh;
-  }
-  .modal-item.photo .modal svg {
-    color: #fff;
-  }
-  .modal-item.photo .modal .photo-container {
-    width: 100vw;
-    height: 100vh;
-    background-color: #040312;
-  }
-  .modal-item.photo .modal .photo-container img {
-    width: 100vw;
-    height: auto;
-    object-fit: contain;
-  }
-  .modal-item.photo .modal .text-container-modal {
-    position: absolute;
-    bottom: 2rem;
-    right: 0;
-    left: 0;
-    width: 80%;
-    margin: auto;
-    height: auto;
-    color: #fff;
-    padding: 0 1rem;
-    border-left: none;
-    background-color: transparent;
-  }
-  .modal-item.photo .modal .text-container-modal.open {
-    animation: showDiv 0.75s forwards;
-  }
-  .modal-item.photo .modal .text-container-modal.close {
-    animation: hideDiv 0.75s forwards;
-  }
-  @keyframes showDiv {
-    0% {
-      transform: translateY(150%);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes hideDiv {
-    0% {
-      transform: translateY(0);
-    }
-    100% {
-      transform: translateY(150%);
-    }
-  }
-  .modal-item.photo .modal .text-container-modal p:nth-child(2) {
-    height: 10rem;
-    overflow: scroll;
   }
 }

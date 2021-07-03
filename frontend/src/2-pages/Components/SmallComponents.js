@@ -3,12 +3,12 @@ import { ImSpinner6 } from "react-icons/im";
 import { TiTick } from "react-icons/ti";
 import "../../1-css/LoadingSpinner.css";
 
+function LoadingSVG() {
+  return <ImSpinner6 className="loading-svg" size={40} />;
+}
+
 function LoadingSpinner() {
-  return (
-    <div className="small-component loading">
-      <ImSpinner6 size={40} />
-    </div>
-  );
+  return <div className="small-component loading"></div>;
 }
 function LoadingSpinnerFixed() {
   return (
@@ -25,4 +25,4 @@ function SuccessUpdate() {
   );
 }
 
-export { LoadingSpinner, LoadingSpinnerFixed, SuccessUpdate };
+export { LoadingSVG, LoadingSpinner, LoadingSpinnerFixed, SuccessUpdate };

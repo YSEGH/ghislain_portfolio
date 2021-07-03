@@ -35,8 +35,10 @@
   outline: none;
   box-sizing: border-box !important;
 }
-.form-add-contenu textarea {
-  height: 10rem;
+.form-add-contenu .text-editor {
+  min-height: 10rem;
+  width: 20rem;
+  font-size: 14px;
 }
 .form-add-contenu button {
   height: 3rem;

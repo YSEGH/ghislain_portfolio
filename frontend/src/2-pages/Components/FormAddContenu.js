@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import EditorJs from "react-editor-js";
 import "../../1-css/FormAddContenu.css";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { BiImport } from "react-icons/bi";
 import { FaPortrait } from "react-icons/fa";
 import uniqId from "uniqid";
+import { addItemHandler, resetItemSuccess } from "../../3-actions/itemActions";
+import { LoadingSVG } from "./SmallComponents";
+import { EDITOR_JS_TOOLS } from "../../constants";
 
 export default function FormAddContenu({
   update = false,
@@ -11,6 +16,11 @@ export default function FormAddContenu({
   itemFiles = [],
   item = { type: "", categories: [], content: null },
 }) {
+  const addItem = useSelector((state) => state.addItem);
+  const { loading: loadingAdd, success: successAdd, error: errorAdd } = addItem;
+
+  const instanceRef = useRef(null);
+  const dispatch = useDispatch();
   const [content, setContent] = useState(item.content);
   const [file, setFile] = useState(itemFile);
   const [files, setFiles] = useState(itemFiles);
@@ -21,6 +31,7 @@ export default function FormAddContenu({
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -69,12 +80,52 @@ export default function FormAddContenu({
     setFiles(images);
   };
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    const savedData = await instanceRef.current.save();
+    const formData = new FormData();
+    const item = {
+      content: data.content,
+      type:
+        content === "circus" && data.type
+          ? data.type === "oneFile"
+            ? "single"
+            : "group"
+          : "single",
+      title: data.title,
+      legend: data.legend,
+      description: savedData,
+      categorie: categories,
+      date: data.date,
+      place: data.place,
+    };
+    formData.append("item", JSON.stringify(item));
+    if (content === "circus" && data.type === "manyFiles") {
+      for (let i = 0; i < files.length; i++) {
+        formData.append("files", files[i]);
+      }
+    } else {
+      formData.append("file", file);
+    }
+
+    /* dispatch(addItemHandler(formData)); */
+  };
+
+  useEffect(() => {
+    if (successAdd) {
+      reset({});
+      dispatch(resetItemSuccess());
+      setFile(null);
+      setFiles([]);
+      setCategories([]);
+      instanceRef.current.clear();
+    }
+    return () => {};
+  }, [successAdd]);
 
   return (
     <div className="form-add-contenu">
       <select
-        {...register("content", { required: true })}
+        {...register("content")}
         defaultValue="null"
         onChange={(e) => {
           setContent(e.target.value);
@@ -98,7 +149,7 @@ export default function FormAddContenu({
             {update ? <h2>Détails</h2> : <h2>Saisissez les détails</h2>}
             {!update && content === "circus" && (
               <select
-                {...register("type", { required: true })}
+                {...register("type")}
                 defaultValue="null"
                 onChange={(e) => handleChange(e)}
               >
@@ -120,11 +171,23 @@ export default function FormAddContenu({
               {...register("legend", { required: true })}
               placeholder="Légende"
             />
+            <input
+              {...register("date", { required: true })}
+              placeholder="Date"
+              type="date"
+            />
+            <input
+              {...register("place", { required: true })}
+              placeholder="Lieu"
+            />
             {content !== "photography" && (
-              <textarea
-                placeholder="Description"
-                {...register("description", { required: true })}
-              />
+              <div className="text-editor">
+                <EditorJs
+                  instanceRef={(instance) => (instanceRef.current = instance)}
+                  tools={EDITOR_JS_TOOLS}
+                  data={{}}
+                />
+              </div>
             )}
           </form>
           <form id="form-category" onSubmit={(e) => submitCategory(e)}>
@@ -174,7 +237,7 @@ export default function FormAddContenu({
                   <input
                     id="file"
                     type="file"
-                    {...register("file", { required: true })}
+                    {...register("file")}
                     onChange={(e) => {
                       if (e.target.files[0]) {
                         importFile(e.target.files[0]);
@@ -237,7 +300,7 @@ export default function FormAddContenu({
                     id="file"
                     type="file"
                     multiple
-                    {...register("files", { required: true })}
+                    {...register("files")}
                     onChange={(e) => {
                       if (e.target.files.length > 0) {
                         importFiles([...e.target.files]);
@@ -275,8 +338,9 @@ export default function FormAddContenu({
             className="validation-contenu"
             form="form-contenu"
             type="submit"
+            disabled={loadingAdd ? true : false}
           >
-            Valider
+            {loadingAdd ? <LoadingSVG /> : "Valider"}
           </button>
         </>
       )}

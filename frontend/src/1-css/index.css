@@ -13,6 +13,16 @@ body {
 *::-webkit-scrollbar {
   display: none;
 }
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+button[disabled] {
+  background-color: rgb(168, 168, 168) !important;
+  color: #fff !important;
+  cursor: auto !important;
+}
 img {
   image-rendering: -webkit-optimize-contrast;
 }

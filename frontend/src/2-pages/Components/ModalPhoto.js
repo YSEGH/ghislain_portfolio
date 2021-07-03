@@ -3,26 +3,23 @@ import "../../1-css/ModalPhoto.css";
 import { MdClose } from "react-icons/md";
 import Carrousel from "./Carrousel";
 
-export default function ModalPhoto({ item }) {
+export default function ModalPhoto({ items, index }) {
   const [close, setClose] = useState(false);
 
   const closeModal = () => {
-    const modalItem = document.getElementsByClassName("modal-item")[0];
-    const carousel = document.querySelector(".carousel");
-    const slider = document.querySelector(".carousel-container");
+    const modalItem = document.querySelector(`.modal.photo`);
     modalItem.classList.add("close");
     modalItem.classList.remove("open");
     setClose(true);
     setTimeout(() => {
-      slider.style.transform = `translateX(0px)`;
+      modalItem.classList.remove("close");
       setClose(false);
-      carousel.scrollLeft = 0;
     }, 750);
   };
 
   return (
-    <div className="modal-item photo" onClick={() => closeModal()}>
-      <div className="modal" onClick={(e) => e.stopPropagation()}>
+    <div className="modal photo" onClick={() => closeModal()}>
+      <div className="modal-body" onClick={(e) => e.stopPropagation()}>
         <MdClose
           className="close-icon"
           size={25}
@@ -30,9 +27,14 @@ export default function ModalPhoto({ item }) {
         />
         <div className="photo-container">
           <Carrousel
-            category="photo"
-            classN="modal-photography"
+            modalSelector=".modal.photo"
+            secondaryClass="carousel-photography"
             close={close}
+            width={window.innerWidth}
+            initialIndex={index}
+            slides={items.map((item) => {
+              return item.photos[0];
+            })}
           />
         </div>
       </div>

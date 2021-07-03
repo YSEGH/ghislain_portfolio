@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../1-css/Category.css";
+import { useDispatch, useSelector } from "react-redux";
 import PhotosContainer from "./Components/PhotosContainer";
-import Footer from "./Components/Footer";
+import { getItemsHandler, resetItemSuccess } from "../3-actions/itemActions";
 import Nav from "./Components/Nav";
 
 export default function Photos() {
+  const getItem = useSelector((state) => state.getItem);
+  const { loading, items, error } = getItem;
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getItemsHandler("photography"));
+    return () => {
+      dispatch(resetItemSuccess());
+    };
+  }, []);
+
   return (
     <>
       <div className="category photos">
@@ -18,7 +31,7 @@ export default function Photos() {
             <li>Africa</li>
           </ul>
         </div>
-        <PhotosContainer />
+        <PhotosContainer items={items} />
       </div>
     </>
   );
