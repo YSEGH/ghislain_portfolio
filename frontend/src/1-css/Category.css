@@ -34,6 +34,21 @@
   list-style-type: none;
   margin-right: 1rem;
   font-weight: 200;
+  text-transform: capitalize;
+}
+.category .text-container ul li a {
+  display: block;
+
+  cursor: pointer;
+  padding: 0.5rem;
+}
+.category .text-container ul li a:hover {
+  font-weight: 300;
+}
+.category .text-container ul li a.active {
+  background-color: #ed3833;
+  color: #fff;
+  padding: 0.5rem;
 }
 @media screen and (max-width: 960px) {
   .category .text-container h1::after {

@@ -18,6 +18,7 @@
   font-weight: 200;
   text-align: justify;
   font-size: 14px;
+  overflow: scroll;
 }
 .blog-item a {
   display: block;

@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "../../1-css/ModalCircus.css";
 import { MdDateRange, MdPlace, MdInfoOutline, MdClose } from "react-icons/md";
 import Carrousel from "./Carrousel";
+import EditorJs from "react-editor-js";
+import { EDITOR_JS_TOOLS } from "../../constants";
 
 export default function ModalCircus({ item }) {
   const [close, setClose] = useState(false);
+  const instanceRef = useRef(null);
 
   const closeModal = () => {
     const modal = document.querySelector(`.modal#modal-${item._id}`);
@@ -69,7 +72,14 @@ export default function ModalCircus({ item }) {
         </div>
         <div className="text-container close">
           <h2>{item.title}</h2>
-          <p>{item.description}</p>
+          <div className="editor-js">
+            <EditorJs
+              instanceRef={(instance) => (instanceRef.current = instance)}
+              tools={EDITOR_JS_TOOLS}
+              data={item.description}
+              readOnly
+            />
+          </div>
           <p>
             <span>
               <MdDateRange size={40} />

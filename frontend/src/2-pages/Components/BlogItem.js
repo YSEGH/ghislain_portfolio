@@ -3,13 +3,7 @@ import "../../1-css/BlogItem.css";
 import ModalBlog from "./ModalBlog";
 
 export default function BlogItem({ item }) {
-  const [text, setText] = useState(
-    item.description.blocks
-      .map((para, i) => {
-        return para.data.text;
-      })
-      .join(", ")
-  );
+  const [text, setText] = useState("");
 
   const displayModal = () => {
     const modal = document.querySelector(`.modal-blog#modal-${item._id}`);
@@ -18,8 +12,15 @@ export default function BlogItem({ item }) {
   };
 
   useEffect(() => {
-    console.log(item.description);
+    console.log(item);
     console.log(text);
+    setText(
+      item.description.blocks
+        .map((para, i) => {
+          return para.data.text;
+        })
+        .join(", ")
+    );
     return () => {};
   }, []);
   return (

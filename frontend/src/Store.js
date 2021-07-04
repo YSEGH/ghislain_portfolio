@@ -4,6 +4,7 @@ import { getInfosReducer, updateInfosReducer } from "./4-reducers/infoReducers";
 import {
   addItemReducer,
   deleteItemReducer,
+  getFiltersReducer,
   getItemsReducer,
   updateItemReducer,
 } from "./4-reducers/itemReducers";
@@ -15,6 +16,7 @@ const reducer = combineReducers({
   addItem: addItemReducer,
   updateItem: updateItemReducer,
   deleteItem: deleteItemReducer,
+  getFilters: getFiltersReducer,
 });
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducer, {}, composeEnhancer(applyMiddleware(thunk)));

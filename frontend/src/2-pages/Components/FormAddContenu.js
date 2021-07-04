@@ -45,7 +45,7 @@ export default function FormAddContenu({
     e.preventDefault();
     if (e.target[0].value) {
       const category = categories;
-      setCategories([...category, e.target[0].value]);
+      setCategories([...category, e.target[0].value.toLowerCase()]);
       setCategoryName("");
     }
   };
@@ -81,7 +81,10 @@ export default function FormAddContenu({
   };
 
   const onSubmit = async (data) => {
-    const savedData = await instanceRef.current.save();
+    let savedData = null;
+    if (instanceRef.current) {
+      savedData = await instanceRef.current.save();
+    }
     const formData = new FormData();
     const item = {
       content: data.content,
@@ -107,7 +110,7 @@ export default function FormAddContenu({
       formData.append("file", file);
     }
 
-    /* dispatch(addItemHandler(formData)); */
+    dispatch(addItemHandler(formData));
   };
 
   useEffect(() => {
@@ -117,7 +120,9 @@ export default function FormAddContenu({
       setFile(null);
       setFiles([]);
       setCategories([]);
-      instanceRef.current.clear();
+      if (instanceRef.current) {
+        instanceRef.current.clear();
+      }
     }
     return () => {};
   }, [successAdd]);

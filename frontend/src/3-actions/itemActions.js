@@ -11,17 +11,33 @@ const addItemHandler = (item) => async (dispatch) => {
   }
 };
 
-const getItemsHandler = (contentType, categories) => async (dispatch) => {
-  dispatch({ type: "GET_ITEM_REQUEST" });
+const getItemsHandler =
+  (contentType, filters = null) =>
+  async (dispatch) => {
+    dispatch({ type: "GET_ITEM_REQUEST" });
+    try {
+      const { data } = await axios.get(`/api/item/${contentType}`, {
+        params: { filters },
+      });
+      dispatch({ type: "GET_ITEM_SUCCESS", payload: data });
+    } catch (error) {
+      console.log(error.response.data.message);
+      dispatch({
+        type: "GET_ITEM_FAIL",
+        payload: error.response.data.message,
+      });
+    }
+  };
+
+const getFiltersHandler = (contentType) => async (dispatch) => {
+  dispatch({ type: "GET_FILTERS_REQUEST" });
   try {
-    const { data } = await axios.get(`/api/item/${contentType}`, {
-      params: categories,
-    });
-    dispatch({ type: "GET_ITEM_SUCCESS", payload: data });
+    const { data } = await axios.get(`/api/item/filters/${contentType}`);
+    dispatch({ type: "GET_FILTERS_SUCCESS", payload: data });
   } catch (error) {
     console.log(error.response.data.message);
     dispatch({
-      type: "GET_ITEM_FAIL",
+      type: "GET_FILTERS_FAIL",
       payload: error.response.data.message,
     });
   }
@@ -58,6 +74,7 @@ const resetItemSuccess = () => (dispatch) => {
 };
 
 export {
+  getFiltersHandler,
   getItemsHandler,
   addItemHandler,
   deleteItemHandler,

@@ -20,7 +20,9 @@ router.post(
       title: itemAdd.title,
       legend: itemAdd.legend,
       categorie: itemAdd.categorie,
-      description: itemAdd.description,
+      description: itemAdd.description
+        ? itemAdd.description
+        : { blocks: [], time: "", version: "" },
       date: itemAdd.date,
       place: itemAdd.place,
     });
@@ -66,13 +68,58 @@ router.post(
 );
 
 router.get("/:contentType", async (req, res) => {
+  let filteredItems = [];
+  let items = [];
   try {
-    const items = await Item.find({ content: req.params.contentType });
-    return res.status(200).send(items);
+    items = await Item.find({ content: req.params.contentType });
+
+    if (req.query.filters) {
+      filteredItems = items.filter((item, i) => {
+        let filterCheck = req.query.filters.every((v) =>
+          item.categorie.includes(v)
+        );
+        if (filterCheck) {
+          return item;
+        }
+        return;
+      });
+    } else {
+      filteredItems = items;
+    }
+
+    return res.status(200).send(filteredItems);
   } catch (error) {
     return res
       .status(400)
       .send({ message: "Impossible de récupérer les données." });
+  }
+});
+
+router.get("/filters/:contentType", async (req, res) => {
+  let filters = [];
+  try {
+    const items = await Item.find({ content: req.params.contentType });
+
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+      item.categorie.map((cate, i) => {
+        const cateExist = filters.find(
+          (x) => x.name.toLowerCase() === cate.toLowerCase()
+        );
+        if (cateExist) {
+          filters.map((filter) =>
+            filter.name === cate ? { ...filter, qty: filter.qty++ } : filter
+          );
+        } else {
+          filters.push({ name: cate.toLowerCase(), qty: 1 });
+        }
+      });
+    }
+    return res.status(200).send(filters);
+  } catch (error) {
+    return res
+      .status(400)
+      .send({ message: "Impossible de récupérer les filtres." });
   }
 });
 

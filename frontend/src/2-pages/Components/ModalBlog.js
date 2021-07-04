@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "../../1-css/ModalBlog.css";
 import EditorJs from "react-editor-js";
 import { EDITOR_JS_TOOLS } from "../../constants";
@@ -14,6 +14,11 @@ export default function ModalBlog({ item }) {
     modalItem.classList.add("close");
     modalItem.classList.remove("open");
   };
+
+  useEffect(() => {
+    console.log(item.description);
+    return () => {};
+  }, []);
 
   return (
     <div
@@ -61,12 +66,14 @@ export default function ModalBlog({ item }) {
           </div>
           <h2>{item.title}</h2>
           <p>{item.legend}</p>
-          <EditorJs
-            instanceRef={(instance) => (instanceRef.current = instance)}
-            tools={EDITOR_JS_TOOLS}
-            data={item.description}
-            readOnly
-          />
+          <div className="editor-js">
+            <EditorJs
+              instanceRef={(instance) => (instanceRef.current = instance)}
+              tools={EDITOR_JS_TOOLS}
+              data={item.description}
+              readOnly
+            />
+          </div>
         </div>
       </div>
     </div>

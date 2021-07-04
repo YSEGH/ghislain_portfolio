@@ -1,4 +1,4 @@
-.blog {
+/* .blog {
   height: auto;
   min-height: 100vh;
   width: 100vw;
@@ -33,6 +33,7 @@
   list-style-type: none;
   margin-right: 1rem;
   font-weight: 200;
+  text-transform: capitalize;
 }
 @media screen and (max-width: 960px) {
   .blog .text-container h1::after {
@@ -43,3 +44,4 @@
     padding: 10rem 1rem;
   }
 }
+ */

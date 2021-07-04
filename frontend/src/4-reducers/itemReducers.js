@@ -43,6 +43,21 @@ const getItemsReducer = (state = { loading: true, items: [] }, action) => {
   }
 };
 
+const getFiltersReducer = (state = { loading: true, filters: [] }, action) => {
+  switch (action.type) {
+    case "GET_FILTERS_REQUEST":
+      return { loading: true, filters: [] };
+    case "GET_FILTERS_SUCCESS":
+      return { loading: false, filters: action.payload };
+    case "GET_FILTERS_FAIL":
+      return { loading: false, error: action.payload };
+    case "ITEM_RESET":
+      return { loading: true, filters: [] };
+    default:
+      return state;
+  }
+};
+
 const deleteItemReducer = (state = {}, action) => {
   switch (action.type) {
     case "DELETE_ITEM_REQUEST":
@@ -60,6 +75,7 @@ const deleteItemReducer = (state = {}, action) => {
 
 export {
   getItemsReducer,
+  getFiltersReducer,
   addItemReducer,
   updateItemReducer,
   deleteItemReducer,
