@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import { getInfosReducer, updateInfosReducer } from "./4-reducers/infoReducers";
 import {
   addItemReducer,
+  deleteFileReducer,
   deleteItemReducer,
   getFiltersReducer,
   getItemsReducer,
@@ -17,6 +18,7 @@ const reducer = combineReducers({
   updateItem: updateItemReducer,
   deleteItem: deleteItemReducer,
   getFilters: getFiltersReducer,
+  deleteFile: deleteFileReducer,
 });
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducer, {}, composeEnhancer(applyMiddleware(thunk)));

@@ -11,6 +11,7 @@ import {
   getInfosHandler,
   updateInfosHandler,
 } from "../../3-actions/infoActions";
+import { LoadingSVG } from "./SmallComponents";
 
 export default function FormDetails() {
   const instanceRef = useRef(null);
@@ -170,7 +171,13 @@ export default function FormDetails() {
           )}
         </div>
       </div>
-      <button form="form-details">Valider les modifications</button>
+      <button
+        form="form-details"
+        type="submit"
+        disabled={loadingUpdate ? true : false}
+      >
+        {loadingUpdate ? <LoadingSVG /> : "Valider les modifications"}
+      </button>
     </div>
   );
 }

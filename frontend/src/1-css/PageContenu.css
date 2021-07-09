@@ -1,8 +1,9 @@
-.modal.contenu {
-  display: none;
+.page.page-contenu {
+  display: block;
+  border-top: 1px solid rgba(211, 211, 211, 0.25);
 }
-.modal.contenu.open,
-.modal.contenu.close {
+.page.page-contenu.open,
+.page.page-contenu.close {
   height: 100%;
   width: 100%;
   position: fixed;
@@ -16,14 +17,12 @@
   cursor: auto;
   pointer-events: all;
 }
-.modal.contenu .modal-body {
+.page.page-contenu .page-body {
   opacity: inherit;
-  height: 100vh;
-  max-height: 100vh;
+  height: auto;
   width: 100vw;
   max-width: 100vw;
   background-color: #fff;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   position: sticky;
   display: flex;
   align-items: flex-start;
@@ -32,26 +31,25 @@
   overflow-y: scroll;
   padding: 2rem 2rem 5rem 2rem;
 }
-.modal.contenu .close-icon {
-  position: sticky;
-  top: 0;
-  right: 0;
+.page.page-contenu .back-icon {
+  margin: 2rem;
+  display: block;
+  margin-right: auto;
   transition: 0.25s;
   cursor: pointer;
 }
-.modal.contenu .close-icon:hover,
-.modal.contenu .info-icon:hover {
+.page.page-contenu .back-icon:hover {
   transform: scale(1.1);
 }
 /* Animation OPEN*/
-.modal.contenu.open {
-  animation: displayBackgroundModal 0.75s forwards;
+.page.page-contenu.open {
+  animation: displayBackgroundpage 0.75s forwards;
 }
-.modal.contenu.open .modal-body {
+.page.page-contenu.open .page-body {
   animation-delay: 0.25s;
-  animation: displayModal 0.75s forwards;
+  animation: displaypage 0.75s forwards;
 }
-@keyframes displayModal {
+@keyframes displaypage {
   0% {
     transform: translateY(-100%);
   }
@@ -59,7 +57,7 @@
     transform: translateY(0);
   }
 }
-@keyframes displayBackgroundModal {
+@keyframes displayBackgroundpage {
   0% {
     transform: translateY(-100%);
     opacity: 0;
@@ -71,14 +69,14 @@
 }
 
 /* Animation CLOSE */
-.modal.contenu.close {
-  animation: hideBackgroundModal 0.75s forwards;
+.page.page-contenu.close {
+  animation: hideBackgroundpage 0.75s forwards;
   animation-delay: 0.25s;
 }
-.modal.contenu.close .modal-body {
-  animation: hideModal 0.75s forwards;
+.page.page-contenu.close .page-body {
+  animation: hidepage 0.75s forwards;
 }
-@keyframes hideModal {
+@keyframes hidepage {
   0% {
     transform: translateY(0);
   }
@@ -86,7 +84,7 @@
     transform: translateY(-100%);
   }
 }
-@keyframes hideBackgroundModal {
+@keyframes hideBackgroundpage {
   0% {
     transform: translateY(0);
     opacity: 1;
@@ -103,17 +101,16 @@
 /* Responsive */
 
 @media screen and (max-width: 1050px) {
-  .modal.contenu .close-icon {
+  .page.page-contenu .close-icon {
     position: absolute;
     top: 1.5rem;
     right: 1.5rem;
     color: #000;
   }
-  .modal.contenu .modal-body {
+  .page.page-contenu .page-body {
     width: 100vw;
     max-width: 100vw;
-    height: 100vh;
-    max-height: 100vh;
+    height: auto;
     flex-direction: column;
     overflow-y: scroll;
     padding: 4rem 0;

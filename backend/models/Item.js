@@ -8,7 +8,7 @@ const itemSchema = new mongoose.Schema({
   categorie: { type: Array, required: true },
   photos: { type: Array },
   description: { type: Object },
-  date: { type: Date },
+  date: { type: String },
   place: { type: String },
 });
 

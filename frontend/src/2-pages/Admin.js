@@ -5,9 +5,10 @@ import FormAddContenu from "./Components/FormAddContenu";
 import FormDetails from "./Components/FormDetails";
 import Nav from "./Components/Nav";
 import NavAdmin from "./Components/NavAdmin";
+import PageContenu from "./Components/PageContenu";
 import TableItems from "./Components/TableItems";
 
-export default function Admin() {
+export default function Admin(props) {
   return (
     <div className="admin">
       <Nav color={"black"} />
@@ -15,7 +16,11 @@ export default function Admin() {
       <div className="admin-component">
         <Router>
           <Switch>
-            <Route path="/admin/contenu" render={() => <TableItems />} />
+            <Route path="/admin/contenu" exact render={() => <TableItems />} />
+            <Route
+              path="/admin/contenu/:itemId"
+              render={(props) => <PageContenu {...props} />}
+            />
             <Route
               path="/admin/ajouter-contenu"
               render={() => <FormAddContenu update={false} />}

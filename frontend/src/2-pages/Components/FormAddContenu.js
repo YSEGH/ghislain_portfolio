@@ -6,27 +6,36 @@ import { useForm } from "react-hook-form";
 import { BiImport } from "react-icons/bi";
 import { FaPortrait } from "react-icons/fa";
 import uniqId from "uniqid";
-import { addItemHandler, resetItemSuccess } from "../../3-actions/itemActions";
+import {
+  addItemHandler,
+  deleteFileHandler,
+  resetItemSuccess,
+  updateItemHandler,
+} from "../../3-actions/itemActions";
 import { LoadingSVG } from "./SmallComponents";
 import { EDITOR_JS_TOOLS } from "../../constants";
 
-export default function FormAddContenu({
-  update = false,
-  itemFile = null,
-  itemFiles = [],
-  item = { type: "", categories: [], content: null },
-}) {
+export default function FormAddContenu({ update = false, item = null }) {
   const addItem = useSelector((state) => state.addItem);
   const { loading: loadingAdd, success: successAdd, error: errorAdd } = addItem;
 
+  const updateItem = useSelector((state) => state.updateItem);
+  const {
+    loading: loadingUpdate,
+    success: successUpdate,
+    error: errorUpdate,
+  } = updateItem;
+
   const instanceRef = useRef(null);
   const dispatch = useDispatch();
-  const [content, setContent] = useState(item.content);
-  const [file, setFile] = useState(itemFile);
-  const [files, setFiles] = useState(itemFiles);
-  const [type, setType] = useState(item.type);
+  const [content, setContent] = useState(item ? item.content : "null");
+  const [file, setFile] = useState(item ? item.photos[0] : null);
+  const [files, setFiles] = useState(item ? item.photos : []);
+  const [type, setType] = useState(item ? item.type : "null");
+  const [date, setDate] = useState(item ? item.date : "");
   const [categoryName, setCategoryName] = useState("");
-  const [categories, setCategories] = useState(item.categories);
+  const [categories, setCategories] = useState(item ? item.categorie : []);
+  const [filesToDelete, setFilesToDelete] = useState([]);
   const {
     register,
     handleSubmit,
@@ -55,29 +64,41 @@ export default function FormAddContenu({
   };
 
   const importFile = (fileImport) => {
-    const image = fileImport;
-    const newFile = Object.assign(image, {
+    const newFile = fileImport;
+    const previewFile = Object.assign(newFile, {
       id: uniqId(),
-      preview: URL.createObjectURL(image),
+      preview: URL.createObjectURL(newFile),
     });
-    setFile(newFile);
+    setFile(previewFile);
   };
 
   const importFiles = (filesImport) => {
-    const oldImages = files;
-    const images = filesImport;
-    const newFiles = images.map((image, i) => {
+    const oldFiles = files;
+    const newfiles = filesImport;
+    const previewFile = newfiles.map((image, i) => {
       return Object.assign(image, {
         id: uniqId(),
         preview: URL.createObjectURL(image),
       });
     });
-    setFiles(oldImages.concat(newFiles));
+    setFiles(oldFiles.concat(previewFile));
   };
 
-  const deleteFile = (id) => {
-    const images = files.filter((file) => file.id !== id);
-    setFiles(images);
+  const deleteFile = (fileDelete) => {
+    let newFiles;
+    if (fileDelete.preview) {
+      newFiles = files.filter((file) => file.id !== fileDelete.id);
+    } else {
+      setFilesToDelete([...filesToDelete, fileDelete]);
+      newFiles = files.filter((file) => file.src !== fileDelete.src);
+    }
+    setFiles(newFiles);
+  };
+
+  const setDateHandler = (dateSelected) => {
+    const dateFormat = dateSelected.split("T")[0].split("-");
+    const newDate = dateFormat[1] + "-" + dateFormat[2] + "-" + dateFormat[0];
+    setDate(newDate);
   };
 
   const onSubmit = async (data) => {
@@ -86,31 +107,34 @@ export default function FormAddContenu({
       savedData = await instanceRef.current.save();
     }
     const formData = new FormData();
-    const item = {
+    let newItem = {
       content: data.content,
-      type:
-        content === "circus" && data.type
-          ? data.type === "oneFile"
-            ? "single"
-            : "group"
-          : "single",
+      type: data.type ? data.type : "single",
       title: data.title,
       legend: data.legend,
       description: savedData,
       categorie: categories,
-      date: data.date,
+      date: data.date ? date : item.date,
       place: data.place,
     };
-    formData.append("item", JSON.stringify(item));
-    if (content === "circus" && data.type === "manyFiles") {
+    if (update) {
+      newItem._id = item._id;
+    }
+    formData.append("item", JSON.stringify(newItem));
+    if (content === "circus" && data.type === "group") {
       for (let i = 0; i < files.length; i++) {
-        formData.append("files", files[i]);
+        if (files[i].preview) {
+          formData.append("files", files[i]);
+        }
       }
     } else {
       formData.append("file", file);
     }
-
-    dispatch(addItemHandler(formData));
+    if (update) {
+      dispatch(updateItemHandler(item._id, formData, filesToDelete));
+    } else {
+      dispatch(addItemHandler(formData));
+    }
   };
 
   useEffect(() => {
@@ -124,14 +148,18 @@ export default function FormAddContenu({
         instanceRef.current.clear();
       }
     }
+    if (successUpdate) {
+      dispatch(resetItemSuccess());
+      setFilesToDelete([]);
+    }
     return () => {};
-  }, [successAdd]);
+  }, [successAdd, successUpdate]);
 
   return (
     <div className="form-add-contenu">
       <select
         {...register("content")}
-        defaultValue="null"
+        defaultValue={update ? item.content : "null"}
         onChange={(e) => {
           setContent(e.target.value);
         }}
@@ -144,58 +172,75 @@ export default function FormAddContenu({
         <option value="blog">Blog</option>
         <option value="press">Presse</option>
       </select>
+
       {(update || content) && (
         <>
           <form
-            id="form-contenu"
+            id={item ? `form-contenu-${item._id}` : "form-contenu"}
             className="form-contenu"
             onSubmit={handleSubmit(onSubmit)}
           >
             {update ? <h2>Détails</h2> : <h2>Saisissez les détails</h2>}
-            {!update && content === "circus" && (
+            {content === "circus" && (
               <select
                 {...register("type")}
-                defaultValue="null"
+                defaultValue={update ? item.type : "null"}
                 onChange={(e) => handleChange(e)}
               >
                 <option value="null" disabled="disabled">
                   Nombre de fichiers ?
                 </option>
-                <option value="oneFile">Ajouter une image/vidéo</option>
-                <option value="manyFiles">
-                  Ajouter un groupe d'images/videos
-                </option>
+                <option value="single">Ajouter une image/vidéo</option>
+                <option value="group">Ajouter un groupe d'images/videos</option>
               </select>
             )}
             <input
-              {...register("title", { required: true })}
+              {...register("title")}
+              defaultValue={update ? item.title : ""}
               placeholder="Titre"
             />
             {errors.title && <span>Merci de compléter ce champ.</span>}
             <input
-              {...register("legend", { required: true })}
+              {...register("legend")}
+              defaultValue={update ? item.legend : ""}
               placeholder="Légende"
             />
+            {update && <input disabled value={date} />}
             <input
-              {...register("date", { required: true })}
+              {...register("date")}
+              defaultValue={update ? item.date : ""}
+              onChange={(e) => setDateHandler(e.target.value)}
               placeholder="Date"
               type="date"
             />
             <input
-              {...register("place", { required: true })}
+              {...register("place")}
+              defaultValue={update ? item.place : ""}
               placeholder="Lieu"
             />
             {content !== "photography" && (
-              <div className="text-editor">
-                <EditorJs
-                  instanceRef={(instance) => (instanceRef.current = instance)}
-                  tools={EDITOR_JS_TOOLS}
-                  data={{}}
-                />
-              </div>
+              <>
+                <h2>Description</h2>
+                <div className="text-editor" id="text-editor">
+                  <EditorJs
+                    instanceRef={(instance) => (instanceRef.current = instance)}
+                    tools={EDITOR_JS_TOOLS}
+                    data={
+                      update
+                        ? item.description
+                        : { blocks: [], time: "", version: "" }
+                    }
+                    holder="text-editor"
+                  />
+                </div>
+              </>
             )}
           </form>
-          <form id="form-category" onSubmit={(e) => submitCategory(e)}>
+          <form
+            id={item ? `form-category-${item._id}` : "form-category"}
+            onSubmit={(e) => submitCategory(e)}
+          >
+            <h2>Catégories</h2>
             <div className="category-input-container">
               <input
                 value={categoryName}
@@ -203,7 +248,10 @@ export default function FormAddContenu({
                 placeholder="Catégories"
                 onChange={(e) => setCategoryName(e.target.value)}
               />
-              <button type="submit" form="form-category">
+              <button
+                type="submit"
+                form={item ? `form-category-${item._id}` : "form-category"}
+              >
                 +
               </button>
             </div>
@@ -217,7 +265,7 @@ export default function FormAddContenu({
           </form>
 
           {update || content ? (
-            content !== "circus" || type === "oneFile" ? (
+            content !== "circus" || type === "single" ? (
               <div className="upload-zone-container">
                 {update ? (
                   <h2>Modifiez votre fichier</h2>
@@ -228,9 +276,9 @@ export default function FormAddContenu({
                 <div className="apercu-zone one-image">
                   {file ? (
                     file.type === "video/mp4" ? (
-                      <video src={file.preview} />
+                      <video src={file.preview ? file.preview : file.src} />
                     ) : (
-                      <img src={file.preview} />
+                      <img src={file.preview ? file.preview : file.src} />
                     )
                   ) : (
                     <FaPortrait size={250} />
@@ -240,7 +288,7 @@ export default function FormAddContenu({
                   <BiImport size={120} />
                   <p>Cliquez ou déposez votre fichier ici.</p>
                   <input
-                    id="file"
+                    id={item ? `file-${item._id}` : "file"}
                     type="file"
                     {...register("file")}
                     onChange={(e) => {
@@ -250,7 +298,7 @@ export default function FormAddContenu({
                     }}
                   />
                   <label
-                    htmlFor="file"
+                    htmlFor={item ? `file-${item._id}` : "file"}
                     className="drop-zone"
                     onDragLeave={(e) => {
                       e.preventDefault();
@@ -274,7 +322,7 @@ export default function FormAddContenu({
                   ></label>
                 </div>
               </div>
-            ) : content === "circus" && type === "manyFiles" ? (
+            ) : content === "circus" && type === "group" ? (
               <div className="upload-zone-container">
                 <h2>Importez vos fichiers</h2>
                 <div className="apercu-zone many-images">
@@ -283,14 +331,14 @@ export default function FormAddContenu({
                       file.type === "video/mp4" ? (
                         <video
                           key={i}
-                          src={file.preview}
-                          onClick={() => deleteFile(file.id)}
+                          src={file.preview ? file.preview : file.src}
+                          onClick={() => deleteFile(file)}
                         />
                       ) : (
                         <img
                           key={i}
-                          src={file.preview}
-                          onClick={() => deleteFile(file.id)}
+                          src={file.preview ? file.preview : file.src}
+                          onClick={() => deleteFile(file)}
                         />
                       )
                     )
@@ -302,7 +350,7 @@ export default function FormAddContenu({
                   <BiImport size={120} />
                   <p>Cliquez ou déposez vos fichiers ici.</p>
                   <input
-                    id="file"
+                    id={item ? `files-${item._id}` : "files"}
                     type="file"
                     multiple
                     {...register("files")}
@@ -313,7 +361,7 @@ export default function FormAddContenu({
                     }}
                   />
                   <label
-                    htmlFor="file"
+                    htmlFor={item ? `files-${item._id}` : "files"}
                     className="drop-zone"
                     onDragLeave={(e) => {
                       e.preventDefault();
@@ -341,11 +389,11 @@ export default function FormAddContenu({
           ) : null}
           <button
             className="validation-contenu"
-            form="form-contenu"
+            form={item ? `form-contenu-${item._id}` : "form-contenu"}
             type="submit"
-            disabled={loadingAdd ? true : false}
+            disabled={loadingAdd || loadingUpdate ? true : false}
           >
-            {loadingAdd ? <LoadingSVG /> : "Valider"}
+            {loadingAdd || loadingUpdate ? <LoadingSVG /> : "Valider"}
           </button>
         </>
       )}

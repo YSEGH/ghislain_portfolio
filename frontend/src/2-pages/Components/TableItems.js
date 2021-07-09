@@ -1,42 +1,94 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MaterialTable from "material-table";
-import "../../1-css/Contenu.css";
-import ModalContenu from "./ModalContenu";
+import "../../1-css/TableItem.css";
 import { BiSearch } from "react-icons/bi";
+import { MdDelete } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  deleteItemHandler,
+  getItemsHandler,
+  resetItemSuccess,
+} from "../../3-actions/itemActions";
+
+import { TABLE_ICONS } from "../../constants";
+import { Link } from "react-router-dom";
 
 export default function TableItems() {
-  const displayModal = () => {
-    const modal = document.querySelector(".modal.contenu");
-    modal.classList.remove("close");
-    modal.classList.add("open");
+  const getItem = useSelector((state) => state.getItem);
+  const { loading: loadingGet, items, error: errorGet } = getItem;
+
+  const deleteItem = useSelector((state) => state.deleteItem);
+  const {
+    loading: loadingDelete,
+    success: successDelete,
+    error: errorDelete,
+  } = deleteItem;
+
+  const dispatch = useDispatch();
+
+  const onClickDeleteItem = (itemId) => {
+    dispatch(deleteItemHandler(itemId));
   };
+
+  useEffect(() => {
+    if (!successDelete) {
+      dispatch(getItemsHandler());
+    }
+    if (successDelete) {
+      dispatch(resetItemSuccess());
+    }
+    return () => {};
+  }, [successDelete]);
+
   return (
     <div className="table-items">
       <MaterialTable
+        icons={TABLE_ICONS}
         style={{ boxShadow: "none" }}
         columns={[
-          { title: "Adı", field: "name" },
+          { title: "Titre", field: "title" },
           {
-            title: "Doğum Yılı",
-            field: "birthYear",
-            type: "numeric",
+            title: "Type",
+            field: "content",
+            render: (RowData) => {
+              switch (RowData.content) {
+                case "circus":
+                  return "Cirque";
+                case "photography":
+                  return "Photo";
+                case "blog":
+                  return "Blog";
+                default:
+                  break;
+              }
+            },
+          },
+          {
+            render: (RowData) => (
+              <Link
+                className="button-page-contenu"
+                to={`/admin/contenu/${RowData._id}`}
+                onClick={() => window.scrollTo(0, 0)}
+              >
+                <BiSearch size={30} />
+              </Link>
+            ),
+          },
+          {
             render: (RowData) => (
               <>
-                <ModalContenu />
                 <button
-                  className="button-modal-contenu"
-                  onClick={() => displayModal()}
+                  className="button-delete-contenu"
+                  onClick={() => onClickDeleteItem(RowData._id)}
                 >
-                  <BiSearch size={30} />
+                  <MdDelete size={30} />
                 </button>
               </>
             ),
           },
         ]}
-        data={[
-          { name: "Mehmet", surname: "Baran", birthYear: 1987, birthCity: 63 },
-        ]}
-        title="Demo"
+        data={items}
+        title="Contenu"
       />
     </div>
   );

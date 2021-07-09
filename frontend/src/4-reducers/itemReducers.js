@@ -36,8 +36,7 @@ const getItemsReducer = (state = { loading: true, items: [] }, action) => {
       return { loading: false, items: action.payload };
     case "GET_ITEM_FAIL":
       return { loading: false, error: action.payload };
-    case "ITEM_RESET":
-      return { loading: true, items: [] };
+
     default:
       return state;
   }
@@ -73,10 +72,26 @@ const deleteItemReducer = (state = {}, action) => {
   }
 };
 
+const deleteFileReducer = (state = {}, action) => {
+  switch (action.type) {
+    case "DELETE_FILE_REQUEST":
+      return { loading: true };
+    case "DELETE_FILE_SUCCESS":
+      return { loading: false, success: true };
+    case "DELETE_FILE_FAIL":
+      return { loading: false, error: action.payload };
+    case "ITEM_RESET":
+      return {};
+    default:
+      return state;
+  }
+};
+
 export {
   getItemsReducer,
   getFiltersReducer,
   addItemReducer,
   updateItemReducer,
   deleteItemReducer,
+  deleteFileReducer,
 };

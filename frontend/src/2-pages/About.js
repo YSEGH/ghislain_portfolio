@@ -7,8 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getInfosHandler } from "../3-actions/infoActions";
 
 export default function About() {
-  const instanceRef = useRef(null);
-
   const getInfos = useSelector((state) => state.getInfos);
   const { loading: loadingGet, data, error: errorGet } = getInfos;
 
@@ -29,7 +27,6 @@ export default function About() {
         <div className="paragraphe-container">
           {data.aboutDescription && (
             <EditorJs
-              instanceRef={(instance) => (instanceRef.current = instance)}
               tools={EDITOR_JS_TOOLS}
               data={data.aboutDescription}
               readOnly

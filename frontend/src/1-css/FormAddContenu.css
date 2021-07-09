@@ -36,9 +36,10 @@
   box-sizing: border-box !important;
 }
 .form-add-contenu .text-editor {
-  min-height: 10rem;
-  width: 20rem;
+  min-height: 20rem;
+  width: 30rem;
   font-size: 14px;
+  color: #000;
 }
 .form-add-contenu button {
   height: 3rem;

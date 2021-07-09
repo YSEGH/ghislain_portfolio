@@ -14,17 +14,26 @@
   font-weight: 400;
   margin: 1rem 0;
 }
-.blog-item p {
+.blog-item .editor-js {
+  height: 144px;
   font-weight: 200;
   text-align: justify;
   font-size: 14px;
-  overflow: scroll;
+  line-height: 14px !important;
+  overflow: hidden;
+  position: relative;
+}
+
+.blog-item .editor-js .ce-paragraph {
+  padding: 0 !important;
+  line-height: 18px !important;
 }
 .blog-item a {
   display: block;
   margin-top: 1rem;
   cursor: pointer;
   transition: 0.25s;
+  color: #ff0513;
 }
 .blog-item a:hover {
   text-decoration: underline;

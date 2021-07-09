@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../../1-css/BlogItem.css";
 import ModalBlog from "./ModalBlog";
+import EditorJs from "react-editor-js";
+import { EDITOR_JS_TOOLS } from "../../constants";
 
 export default function BlogItem({ item }) {
   const [text, setText] = useState("");
+  const instanceRef = useRef(null);
 
   const displayModal = () => {
     const modal = document.querySelector(`.modal-blog#modal-${item._id}`);
@@ -12,12 +15,10 @@ export default function BlogItem({ item }) {
   };
 
   useEffect(() => {
-    console.log(item);
-    console.log(text);
     setText(
       item.description.blocks
         .map((para, i) => {
-          return para.data.text;
+          return para.data.text.replaceAll("&nbsp;", " ");
         })
         .join(", ")
     );
@@ -34,7 +35,15 @@ export default function BlogItem({ item }) {
         }}
       />
       <h2>{item.title}</h2>
-      <p>{text.substring(0, 200)}</p>
+      <div className="editor-js">
+        <EditorJs
+          instanceRef={(instance) => (instanceRef.current = instance)}
+          tools={EDITOR_JS_TOOLS}
+          data={item.description}
+          readOnly
+        />
+      </div>
+      <span>(...)</span>
       <a
         onClick={() => {
           displayModal();
