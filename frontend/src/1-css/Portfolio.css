@@ -15,6 +15,7 @@
   font-weight: 600;
   position: relative;
   padding: 0 2rem;
+  text-align: center;
 }
 .portfolio h1::after {
   content: "";

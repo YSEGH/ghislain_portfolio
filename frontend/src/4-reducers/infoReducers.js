@@ -13,12 +13,12 @@ const updateInfosReducer = (state = {}, action) => {
   }
 };
 
-const getInfosReducer = (state = { data: {} }, action) => {
+const getInfosReducer = (state = { infos: {} }, action) => {
   switch (action.type) {
     case "GET_INFOS_REQUEST":
-      return { loading: true, data: {} };
+      return { loading: true, infos: {} };
     case "GET_INFOS_SUCCESS":
-      return { loading: false, data: action.payload };
+      return { loading: false, infos: action.payload };
     case "GET_INFOS_FAIL":
       return { loading: false, error: action.payload };
     case "GET_INFOS_RESET":

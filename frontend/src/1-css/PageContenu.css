@@ -29,7 +29,7 @@
   cursor: auto;
   pointer-events: all;
   overflow-y: scroll;
-  padding: 2rem 2rem 5rem 2rem;
+  padding: 0rem 2rem 5rem 2rem;
 }
 .page.page-contenu .back-icon {
   margin: 2rem;

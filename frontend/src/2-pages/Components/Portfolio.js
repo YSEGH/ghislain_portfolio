@@ -30,7 +30,7 @@ export default function Portfolio() {
         <div className="mask"></div>
         <div className="text-container">
           <MdPhotoCamera size={50} />
-          <h2>Photo</h2>
+          <h2>Photography</h2>
         </div>
       </Link>
     </div>

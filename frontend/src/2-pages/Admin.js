@@ -1,10 +1,10 @@
 import React from "react";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import "../1-css/Admin.css";
-import FormAddContenu from "./Components/FormAddContenu";
 import FormDetails from "./Components/FormDetails";
 import Nav from "./Components/Nav";
 import NavAdmin from "./Components/NavAdmin";
+import PageAddContenu from "./Components/PageAddContenu";
 import PageContenu from "./Components/PageContenu";
 import TableItems from "./Components/TableItems";
 
@@ -23,7 +23,7 @@ export default function Admin(props) {
             />
             <Route
               path="/admin/ajouter-contenu"
-              render={() => <FormAddContenu update={false} />}
+              render={() => <PageAddContenu update={false} />}
             />
             <Route
               path="/admin/infos-generales"

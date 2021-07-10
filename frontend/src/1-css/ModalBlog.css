@@ -56,6 +56,7 @@
   width: 100%;
   object-fit: contain;
   background-color: #040312;
+  cursor: auto;
 }
 .modal-blog .modal .details-infos {
   width: 100%;

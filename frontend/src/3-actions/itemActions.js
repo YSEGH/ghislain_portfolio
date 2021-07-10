@@ -6,7 +6,6 @@ const addItemHandler = (item) => async (dispatch) => {
     const { data } = await axios.post("/api/item/", item);
     dispatch({ type: "ADD_ITEM_SUCCESS", payload: data });
   } catch (error) {
-    console.log(error.response.data.message);
     dispatch({ type: "ADD_ITEM_FAIL", payload: error.response.data.message });
   }
 };
@@ -20,7 +19,6 @@ const getItemsHandler =
         params: { filters, itemId },
       });
       dispatch({ type: "GET_ITEM_SUCCESS", payload: data });
-      console.log(data);
     } catch (error) {
       dispatch({
         type: "GET_ITEM_FAIL",
@@ -49,12 +47,13 @@ const updateItemHandler =
     try {
       const { data } = await axios.put(`/api/item/`, item);
 
-      if (filesToDelete.length) {
+      if (filesToDelete && filesToDelete.length) {
         const res = await axios.put(`/api/item/file-delete`, {
           itemId,
           filesToDelete,
         });
       }
+
       dispatch({ type: "UPDATE_ITEM_SUCCESS", payload: data });
     } catch (error) {
       dispatch({

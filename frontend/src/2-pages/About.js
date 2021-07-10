@@ -8,12 +8,12 @@ import { getInfosHandler } from "../3-actions/infoActions";
 
 export default function About() {
   const getInfos = useSelector((state) => state.getInfos);
-  const { loading: loadingGet, data, error: errorGet } = getInfos;
+  const { loading: loadingGet, infos, error: errorGet } = getInfos;
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (Object.keys(data).length === 0) {
+    if (Object.keys(infos).length === 0) {
       dispatch(getInfosHandler());
     }
     return () => {};
@@ -25,17 +25,17 @@ export default function About() {
       <div className="text-container">
         <h1>About Me</h1>
         <div className="paragraphe-container">
-          {data.aboutDescription && (
+          {infos.aboutDescription && (
             <EditorJs
               tools={EDITOR_JS_TOOLS}
-              data={data.aboutDescription}
+              data={infos.aboutDescription}
               readOnly
             />
           )}
         </div>
       </div>
       <div className="photo-container">
-        <img src={data.aboutPhoto} alt="ghislain_ramage" />
+        <img src={infos.aboutPhoto} alt="ghislain_ramage" />
       </div>
     </div>
   );

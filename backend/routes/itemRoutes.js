@@ -13,12 +13,12 @@ router.post(
     let result;
     let photos = [];
 
+    console.log(req.body.item);
     const itemAdd = JSON.parse(req.body.item);
     const item = new Item({
-      type: itemAdd.type,
       content: itemAdd.content,
       title: itemAdd.title,
-      legend: itemAdd.legend,
+      legend: itemAdd.legend ? itemAdd.legend : "",
       categorie: itemAdd.categorie,
       description: itemAdd.description
         ? itemAdd.description
@@ -128,7 +128,6 @@ router.get("/filters/:contentType", async (req, res) => {
 });
 
 router.put("/file-delete", async (req, res) => {
-  console.log(req.body);
   let itemId = req.body.itemId;
   let filesToDelete = req.body.filesToDelete;
 
@@ -147,7 +146,6 @@ router.put("/file-delete", async (req, res) => {
         return element.src === el.src;
       });
     });
-    console.log(newPhotos);
     item.photos = newPhotos;
     await item.save();
     return res.status(200).send({ message: `Modifications enregistrées.` });
@@ -204,14 +202,17 @@ router.put(
             .send({ message: "Impossible d'importer les fichiers." });
         }
       }
-      item.type = itemAdd.type;
       item.content = itemAdd.content;
       item.title = itemAdd.title;
-      item.legend = itemAdd.legend;
       item.categorie = itemAdd.categorie;
-      item.description = itemAdd.description
-        ? itemAdd.description
-        : { blocks: [], time: "", version: "" };
+      if (item.content !== "photography") {
+        item.addDescription = itemAdd.addDescription;
+        item.description = itemAdd.addDescription
+          ? itemAdd.description
+          : item.description;
+      } else {
+        item.legend = itemAdd.legend;
+      }
       item.date = itemAdd.date;
       item.place = itemAdd.place;
       console.log(item);
