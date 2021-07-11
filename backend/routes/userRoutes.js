@@ -12,7 +12,9 @@ router.post("/register", async (req, res) => {
   //checking if user already in db
   const userExist = await User.findOne({ username: req.body.username });
   if (userExist) {
-    return res.status(400).send("Ce nom d'utilisateur est déjà enregistré.");
+    return res
+      .status(400)
+      .send({ message: "Ce nom d'utilisateur est déjà enregistré." });
   }
   //Hash the password
   const salt = await bcrypt.genSaltSync(10);
@@ -35,14 +37,16 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   const user = await User.findOne({ username: req.body.username });
   if (!user) {
-    return res.status(400).send("Email ou mot de passe incorrect.");
+    return res
+      .status(400)
+      .send({ message: "Email ou mot de passe incorrect." });
   }
   const validPassword = await bcrypt.compareSync(
     req.body.password,
     user.password
   );
   if (!validPassword) {
-    return res.status(400).send("Mot de passe invalide.");
+    return res.status(400).send({ message: "Mot de passe invalide." });
   }
   const token = jwt.sign(
     {
@@ -51,9 +55,13 @@ router.post("/login", async (req, res) => {
     },
     process.env.TOKEN_SECRET
   );
-  res.header("auth-token", token).status(200).send({
-    _id: user._id,
-    username: user.username,
+  res.status(200).send({
+    user: {
+      _id: user._id,
+      username: user.username,
+    },
+    token: token,
+    message: "Vous êtes connecté !",
   });
 });
 

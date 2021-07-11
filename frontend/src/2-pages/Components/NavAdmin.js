@@ -9,7 +9,7 @@ export default function NavAdmin({ color }) {
         <NavLink
           activeClassName="active"
           activeStyle={{ textDecoration: "underline" }}
-          to="/admin/contenu"
+          to="/admin/mon-compte/contenu"
           style={{ color: color }}
           exact
         >
@@ -21,7 +21,7 @@ export default function NavAdmin({ color }) {
         <NavLink
           activeClassName="active"
           activeStyle={{ textDecoration: "underline" }}
-          to="/admin/ajouter-contenu"
+          to="/admin/mon-compte/ajouter-contenu"
           style={{ color: color }}
         >
           Ajouter contenu
@@ -32,7 +32,7 @@ export default function NavAdmin({ color }) {
         <NavLink
           activeClassName="active"
           activeStyle={{ textDecoration: "underline" }}
-          to="/admin/infos-generales"
+          to="/admin/mon-compte/infos-generales"
           style={{ color: color }}
         >
           Infos générales

@@ -7,6 +7,7 @@ import About from "./2-pages/About";
 import Circus from "./2-pages/Circus";
 import Photos from "./2-pages/Photos";
 import Footer from "./2-pages/Components/Footer";
+import Auth from "./2-pages/Auth";
 
 function App() {
   return (
@@ -15,7 +16,11 @@ function App() {
         <Switch>
           <Route path="/" exact render={() => <Home />} />
           <Route path="/about" render={() => <About />} />
-          <Route path="/admin" render={() => <Admin />} />
+          <Route path="/admin" exact render={(props) => <Auth {...props} />} />
+          <Route
+            path="/admin/mon-compte"
+            render={(props) => <Admin {...props} />}
+          />
           <Route
             path="/photography"
             render={() => <Photos category={"Photography"} />}

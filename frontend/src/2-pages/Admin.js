@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import "../1-css/Admin.css";
 import FormDetails from "./Components/FormDetails";
@@ -9,6 +9,15 @@ import PageContenu from "./Components/PageContenu";
 import TableItems from "./Components/TableItems";
 
 export default function Admin(props) {
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      props.history.push("/admin");
+    }
+    if (props.location.pathname === "/admin/mon-compte/") {
+      props.history.push("/admin/mon-compte/contenu");
+    }
+    return () => {};
+  }, []);
   return (
     <div className="admin">
       <Nav color={"black"} />
@@ -16,17 +25,21 @@ export default function Admin(props) {
       <div className="admin-component">
         <Router>
           <Switch>
-            <Route path="/admin/contenu" exact render={() => <TableItems />} />
             <Route
-              path="/admin/contenu/:itemId"
+              path="/admin/mon-compte/contenu"
+              exact
+              render={() => <TableItems />}
+            />
+            <Route
+              path="/admin/mon-compte/contenu/:itemId"
               render={(props) => <PageContenu {...props} />}
             />
             <Route
-              path="/admin/ajouter-contenu"
+              path="/admin/mon-compte/ajouter-contenu"
               render={() => <PageAddContenu update={false} />}
             />
             <Route
-              path="/admin/infos-generales"
+              path="/admin/mon-compte/infos-generales"
               render={() => <FormDetails />}
             />
           </Switch>

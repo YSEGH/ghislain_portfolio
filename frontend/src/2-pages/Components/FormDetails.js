@@ -25,7 +25,7 @@ export default function FormDetails() {
   } = updateInfos;
 
   const getInfos = useSelector((state) => state.getInfos);
-  const { loading: loadingGet, data, error: errorGet } = getInfos;
+  const { loading: loadingGet, infos, error: errorGet } = getInfos;
 
   const [file, setFile] = useState(null);
 
@@ -49,15 +49,15 @@ export default function FormDetails() {
   const onSubmit = async (dataForm) => {
     const savedData = await instanceRef.current.save();
     const infos = {
-      lastname: dataForm.lastname ? dataForm.lastname : data.lastname,
-      firstname: dataForm.firstname ? dataForm.firstname : data.firstname,
-      email: dataForm.email ? dataForm.email : data.email,
-      phone: dataForm.phone ? dataForm.phone : data.phone,
-      city: dataForm.city ? dataForm.city : data.city,
-      country: dataForm.country ? dataForm.country : data.country,
-      facebook: dataForm.facebook ? dataForm.facebook : data.facebook,
-      instagram: dataForm.instagram ? dataForm.instagram : data.instagram,
-      twitter: dataForm.twitter ? dataForm.twitter : data.twitter,
+      lastname: dataForm.lastname ? dataForm.lastname : infos.lastname,
+      firstname: dataForm.firstname ? dataForm.firstname : infos.firstname,
+      email: dataForm.email ? dataForm.email : infos.email,
+      phone: dataForm.phone ? dataForm.phone : infos.phone,
+      city: dataForm.city ? dataForm.city : infos.city,
+      country: dataForm.country ? dataForm.country : infos.country,
+      facebook: dataForm.facebook ? dataForm.facebook : infos.facebook,
+      instagram: dataForm.instagram ? dataForm.instagram : infos.instagram,
+      twitter: dataForm.twitter ? dataForm.twitter : infos.twitter,
       aboutDescription: savedData,
     };
     const formData = new FormData();
@@ -82,39 +82,39 @@ export default function FormDetails() {
         <input
           {...register("lastname")}
           placeholder="Nom"
-          defaultValue={data.lastname}
+          defaultValue={infos.lastname}
         />
         <input
           {...register("firstname")}
           placeholder="Prénom"
-          defaultValue={data.firstname}
+          defaultValue={infos.firstname}
         />
         <input
           {...register("email")}
           placeholder="Email"
-          defaultValue={data.email}
+          defaultValue={infos.email}
         />
         <input
           {...register("phone")}
           placeholder="Téléphone"
-          defaultValue={data.phone}
+          defaultValue={infos.phone}
         />
         <input
           {...register("city")}
           placeholder="Ville"
-          defaultValue={data.city}
+          defaultValue={infos.city}
         />
         <input
           {...register("country")}
           placeholder="Pays"
-          defaultValue={data.country}
+          defaultValue={infos.country}
         />
       </form>
       <div className="upload-zone-container">
         <h2>Modifiez l'image de présentation</h2>
         <div className="apercu-zone one-image">
           {!file ? (
-            <img src={data.aboutPhoto} />
+            <img src={infos.aboutPhoto} />
           ) : file.type === "video/mp4" ? (
             <video src={file.preview} />
           ) : (
@@ -162,11 +162,11 @@ export default function FormDetails() {
       <div className="presentation-details">
         <h2>Modifiez le texte de présentation</h2>
         <div className="text-editor">
-          {data.aboutDescription && (
+          {infos.aboutDescription && (
             <EditorJs
               instanceRef={(instance) => (instanceRef.current = instance)}
               tools={EDITOR_JS_TOOLS}
-              data={data.aboutDescription}
+              data={infos.aboutDescription}
             />
           )}
         </div>
