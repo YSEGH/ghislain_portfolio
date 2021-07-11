@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "../../1-css/Carrousel.css";
-import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
+import {
+  MdNavigateNext,
+  MdNavigateBefore,
+  MdDateRange,
+  MdPlace,
+  MdInfoOutline,
+} from "react-icons/md";
 
 export default function Carrousel({
   modalSelector,
@@ -8,6 +14,7 @@ export default function Carrousel({
   slides,
   secondaryClass,
   initialIndex = 0,
+  items = [],
   close,
 }) {
   const [startX, setStartX] = useState(0);
@@ -62,6 +69,20 @@ export default function Carrousel({
     slider.style.transform = `translateX(${translateX + width}px)`;
   };
 
+  const showText = (index) => {
+    const text = document.querySelector(
+      `.modal.photo .carousel-photography [id=slide-${index}] .text-container`
+    );
+    console.log(text);
+    if (text.classList.contains("open")) {
+      text.classList.add("close");
+      text.classList.remove("open");
+    } else {
+      text.classList.add("open");
+      text.classList.remove("close");
+    }
+  };
+
   useEffect(() => {
     const carousel = document.querySelector(`${modalSelector} .carousel`);
     const slider = document.querySelector(`${modalSelector} .slide-container`);
@@ -90,7 +111,37 @@ export default function Carrousel({
         onMouseMove={(e) => mouseMoveHandler(e)}
       >
         {slides.map((img, i) => (
-          <div className={`slide`} key={i} style={{ width: width }}>
+          <div
+            className="slide"
+            id={`slide-${i}`}
+            key={i}
+            style={{ width: width }}
+          >
+            {items.length ? (
+              <>
+                <MdInfoOutline
+                  className="info-icon"
+                  size={25}
+                  onClick={() => showText(i)}
+                />
+                <div className="text-container close">
+                  <h2>{items[i].title}</h2>
+                  <p>{items[i].legend}</p>
+                  <p>
+                    <span>
+                      <MdDateRange size={40} />
+                    </span>
+                    {items[i].date}
+                  </p>
+                  <p>
+                    <span>
+                      <MdPlace size={40} />
+                    </span>
+                    {items[i].place}
+                  </p>
+                </div>
+              </>
+            ) : null}
             <img src={img.src} />
           </div>
         ))}

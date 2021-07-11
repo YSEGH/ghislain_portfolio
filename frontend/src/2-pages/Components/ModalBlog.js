@@ -65,7 +65,6 @@ export default function ModalBlog({ item }) {
             </p>
           </div>
           <h2>{item.title}</h2>
-          <p>{item.legend}</p>
           <div className="editor-js">
             <EditorJs
               instanceRef={(instance) => (instanceRef.current = instance)}

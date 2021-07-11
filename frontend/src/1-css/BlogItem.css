@@ -14,17 +14,17 @@
   font-weight: 400;
   margin: 1rem 0;
 }
-.blog-item .editor-js {
+.blog-item .editor-js-blog-item {
   height: 144px;
   font-weight: 200;
   text-align: justify;
   font-size: 14px;
   line-height: 14px !important;
-  overflow: hidden;
+  overflow: hidden !important;
   position: relative;
 }
 
-.blog-item .editor-js .ce-paragraph {
+.blog-item .editor-js-blog-item .ce-paragraph {
   padding: 0 !important;
   line-height: 18px !important;
 }
@@ -41,6 +41,7 @@
 @media screen and (max-width: 960px) {
   .blog-item {
     width: 40%;
+    margin: 0 1rem 4rem 1rem;
   }
 }
 @media screen and (max-width: 700px) {

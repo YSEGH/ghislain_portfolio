@@ -33,7 +33,9 @@ export default function Circus() {
         <Nav color={"black"} />
         <div className="text-container">
           <h1>Circus</h1>
-          <FilterContainer content="circus" filters={filters} />
+          {filters.length ? (
+            <FilterContainer content="circus" filters={filters} />
+          ) : null}
         </div>
         <CircusContainer items={items} />
       </div>

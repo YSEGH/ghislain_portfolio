@@ -93,7 +93,7 @@ export default function FormPhotos({ update = false, item }) {
     if (successAdd) {
       reset({});
       dispatch(resetItemSuccess());
-      setFile({});
+      setFile(null);
       setCategories([]);
     }
     if (successUpdate) {
@@ -116,14 +116,6 @@ export default function FormPhotos({ update = false, item }) {
         </div>
         {errors.title && <span>Merci de compléter ce champ.</span>}
         <div className="form-group">
-          <label>Légende</label>
-          <input
-            {...register("legend")}
-            defaultValue={update ? item.legend : ""}
-            placeholder="Légende"
-          />
-        </div>
-        <div className="form-group">
           <label>Date</label>
           {update && <input disabled value={date} />}
           <input
@@ -140,6 +132,14 @@ export default function FormPhotos({ update = false, item }) {
             {...register("place")}
             defaultValue={update ? item.place : ""}
             placeholder="Lieu"
+          />
+        </div>
+        <div className="form-group">
+          <label>Légende</label>
+          <textarea
+            {...register("legend")}
+            defaultValue={update ? item.legend : ""}
+            placeholder="Légende"
           />
         </div>
       </form>

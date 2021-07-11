@@ -31,6 +31,7 @@
   display: flex;
 }
 .filter-container .filter-container-list .filters-button {
+  height: 2.5rem;
   width: 5rem;
   font: 400 14px "Poppins", sans-serif;
   display: flex;
@@ -79,4 +80,13 @@
 .filter-container .filter-container-absolute h2 {
   font-weight: 400;
   margin-bottom: 2rem;
+}
+
+@media screen and (max-width: 960px) {
+  .filter-container .filter-container-list {
+    flex-direction: column;
+  }
+  .filter-container .filter-container-list .filters-button {
+    margin: 1rem 0;
+  }
 }

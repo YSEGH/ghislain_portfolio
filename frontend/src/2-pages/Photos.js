@@ -33,7 +33,9 @@ export default function Photos() {
         <Nav color={"black"} />
         <div className="text-container">
           <h1>Photography</h1>
-          <FilterContainer content="photography" filters={filters} />
+          {filters.length ? (
+            <FilterContainer content="photography" filters={filters} />
+          ) : null}
         </div>
         <PhotosContainer items={items} />
       </div>

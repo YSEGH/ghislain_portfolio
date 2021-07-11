@@ -205,14 +205,10 @@ router.put(
       item.content = itemAdd.content;
       item.title = itemAdd.title;
       item.categorie = itemAdd.categorie;
-      if (item.content !== "photography") {
-        item.addDescription = itemAdd.addDescription;
-        item.description = itemAdd.addDescription
-          ? itemAdd.description
-          : item.description;
-      } else {
-        item.legend = itemAdd.legend;
-      }
+      item.description = itemAdd.description
+        ? itemAdd.description
+        : item.description;
+      item.legend = itemAdd.legend ? itemAdd.legend : item.legend;
       item.date = itemAdd.date;
       item.place = itemAdd.place;
       console.log(item);

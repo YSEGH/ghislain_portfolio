@@ -35,7 +35,7 @@ export default function BlogItem({ item }) {
         }}
       />
       <h2>{item.title}</h2>
-      <div className="editor-js">
+      <div className="editor-js-blog-item">
         <EditorJs
           instanceRef={(instance) => (instanceRef.current = instance)}
           tools={EDITOR_JS_TOOLS}

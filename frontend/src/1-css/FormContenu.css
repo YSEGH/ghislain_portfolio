@@ -54,6 +54,9 @@ textarea {
   outline: none;
   box-sizing: border-box !important;
 }
+textarea {
+  height: 10rem;
+}
 .form-contenu input[type="checkbox"] {
   height: 1rem;
   width: 1rem;

@@ -7,7 +7,7 @@
 
 .slide-container {
   height: 100%;
-  width: 100%;
+  width: auto;
   transition: 0.25s;
   display: flex;
   justify-content: flex-start;
@@ -15,7 +15,12 @@
   transition: 0.25s;
 }
 .slide {
+  height: 100vh;
   pointer-events: none;
+  position: relative;
+}
+.slide .info-icon {
+  pointer-events: all;
 }
 .slide img {
   image-rendering: -webkit-optimize-contrast;
@@ -64,6 +69,12 @@
     height: auto;
     object-fit: contain;
     scroll-snap-align: start;
+  }
+  .slide .text-container {
+    width: auto !important;
+    max-width: 100vw !important;
+    bottom: 0 !important;
+    border-radius: 0 !important;
   }
   .button-slide {
     display: none;

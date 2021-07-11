@@ -34,7 +34,9 @@ export default function Blog() {
         <Nav color={"black"} />
         <div className="text-container">
           <h1>Blog</h1>
-          <FilterContainer content="blog" filters={filters} />
+          {filters.length ? (
+            <FilterContainer content="blog" filters={filters} />
+          ) : null}
         </div>
         <BlogsContainer items={items} />
       </div>

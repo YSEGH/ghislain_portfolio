@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../1-css/ModalPhoto.css";
-import { MdClose } from "react-icons/md";
+import { MdClose, MdInfoOutline } from "react-icons/md";
 import Carrousel from "./Carrousel";
 
 export default function ModalPhoto({ items, index }) {
@@ -35,6 +35,7 @@ export default function ModalPhoto({ items, index }) {
             slides={items.map((item) => {
               return item.photos[0];
             })}
+            items={items}
           />
         </div>
       </div>

@@ -42,7 +42,7 @@ export default function ModalCircus({ item }) {
 
   return (
     <div
-      className={`modal`}
+      className={`modal circus`}
       id={`modal-${item._id}`}
       onClick={() => closeModal()}
     >
@@ -62,24 +62,13 @@ export default function ModalCircus({ item }) {
             modalSelector={`.modal#modal-${item._id}`}
             secondaryClass="carousel-circus"
             close={close}
-            width={
-              window.innerWidth > 1050
-                ? window.innerWidth * 0.65
-                : window.innerWidth
-            }
+            width={window.innerWidth}
             slides={item.photos}
           />
         </div>
         <div className="text-container close">
           <h2>{item.title}</h2>
-          <div className="editor-js">
-            <EditorJs
-              instanceRef={(instance) => (instanceRef.current = instance)}
-              tools={EDITOR_JS_TOOLS}
-              data={item.description}
-              readOnly
-            />
-          </div>
+          <p>{item.legend}</p>
           <p>
             <span>
               <MdDateRange size={40} />

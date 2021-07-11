@@ -40,9 +40,6 @@ export default function FormCircus({ update = false, item }) {
   const [categories, setCategories] = useState(item ? item.categorie : []);
   const [date, setDate] = useState(item ? item.date : "");
   const [filesToDelete, setFilesToDelete] = useState([]);
-  const [addDescription, setAddDescription] = useState(
-    item ? item.addDescription : false
-  );
 
   const submitCategory = (e) => {
     e.preventDefault();
@@ -87,16 +84,11 @@ export default function FormCircus({ update = false, item }) {
   };
 
   const onSubmit = async (data) => {
-    let savedDescription = null;
-    if (addDescription) {
-      savedDescription = await instanceRef.current.save();
-    }
     const formData = new FormData();
     let newItem = {
       content: "circus",
       title: data.title,
-      addDescription: addDescription,
-      description: addDescription ? savedDescription : null,
+      legend: data.legend,
       categorie: categories,
       date: data.date ? date : item.date,
       place: data.place,
@@ -169,33 +161,13 @@ export default function FormCircus({ update = false, item }) {
           />
         </div>
         <div className="form-group">
-          <label>Ajouter une description ?</label>
-          <input
-            {...register("addDescription")}
-            onChange={() => {
-              setAddDescription(!addDescription);
-            }}
-            type="checkbox"
-            defaultChecked={addDescription}
+          <label>Légende</label>
+          <textarea
+            {...register("legend")}
+            rows={8}
+            defaultValue={update ? item.legend : ""}
           />
         </div>
-        {addDescription ? (
-          <>
-            <h2>Description</h2>
-            <div className="text-editor" id="text-editor">
-              <EditorJs
-                instanceRef={(instance) => (instanceRef.current = instance)}
-                tools={EDITOR_JS_TOOLS}
-                data={
-                  update
-                    ? item.description
-                    : { blocks: [], time: "", version: "" }
-                }
-                holder="text-editor"
-              />
-            </div>
-          </>
-        ) : null}
       </form>
       <form id={"form-category"} onSubmit={(e) => submitCategory(e)}>
         <h2>Catégories</h2>

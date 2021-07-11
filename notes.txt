@@ -1,3 +1,3 @@
 Créer deux possibilités video/img
 
-eviter l'accumulation de modale qui vont ralentir l'app
+Modal circus => conditionner la description avec addDescription
