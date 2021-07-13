@@ -9,9 +9,9 @@ import {
   getItemsHandler,
   resetItemSuccess,
 } from "../../3-actions/itemActions";
-
 import { TABLE_ICONS } from "../../constants";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function TableItems() {
   const getItem = useSelector((state) => state.getItem);
@@ -31,14 +31,19 @@ export default function TableItems() {
   };
 
   useEffect(() => {
-    if (!successDelete) {
+    if (!successDelete || !errorDelete) {
       dispatch(getItemsHandler());
     }
     if (successDelete) {
       dispatch(resetItemSuccess());
+      toast.success("Suppression effectuée !");
+    }
+    if (errorDelete) {
+      dispatch(resetItemSuccess());
+      toast.error("Impossible d'effectuer la suppression !");
     }
     return () => {};
-  }, [successDelete]);
+  }, [successDelete, errorDelete]);
 
   return (
     <div className="table-items">
@@ -67,7 +72,7 @@ export default function TableItems() {
             render: (RowData) => (
               <Link
                 className="button-page-contenu"
-                to={`/admin/contenu/${RowData._id}`}
+                to={`/admin/mon-compte/contenu/${RowData._id}`}
                 onClick={() => window.scrollTo(0, 0)}
               >
                 <BiSearch size={30} />

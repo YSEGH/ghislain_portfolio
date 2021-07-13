@@ -18,7 +18,8 @@
 }
 .modal-blog .modal {
   opacity: inherit;
-  height: 80vh;
+  height: fit-content;
+  max-height: 80vh;
   width: fit-content;
   max-width: 80vw;
   background-color: #fff;
@@ -51,8 +52,8 @@
 }
 .modal-blog .modal .photo-container img {
   aspect-ratio: 0;
-  height: 100%;
-  max-height: 20rem;
+  height: 30rem;
+  max-height: 30rem;
   width: 100%;
   object-fit: cover;
   background-color: #040312;
@@ -61,18 +62,14 @@
 .modal-blog .modal .details-infos {
   width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  margin: 2rem;
-  padding-left: 2rem;
-}
-.modal-blog .modal .details-infos.text {
-  display: none;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 2rem;
 }
 .modal-blog .modal .details-infos p {
   display: flex;
   align-items: center;
+  margin-right: 2rem;
 }
 .modal-blog .modal .details-infos p:nth-child(1),
 .modal-blog .modal .details-infos p:nth-child(2) {
@@ -89,7 +86,7 @@
   width: 35rem;
   height: 100%;
   text-align: left;
-  padding: 5rem 5rem 2rem 2rem;
+  padding: 2rem 5rem 2rem 2rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -129,6 +126,7 @@
 .modal-blog .modal .text-container .editor-js {
   max-width: 100%;
   height: auto;
+  max-height: 35rem;
   overflow: scroll;
   font-size: 14px;
   font-weight: 200;
@@ -194,7 +192,11 @@
 }
 
 /* Responsive */
-
+@media screen and (max-width: 1500px) {
+  .modal-blog .modal .text-container .editor-js {
+    max-height: 25rem;
+  }
+}
 @media screen and (max-width: 1050px) {
   .modal-blog .modal svg {
     color: #000;
@@ -233,15 +235,10 @@
     display: flex;
     flex-direction: row;
   }
-  .modal-blog .modal .details-infos.photo {
-    display: none;
-  }
-  .modal-blog .modal .details-infos.text {
-    display: flex;
-  }
   .modal-blog .modal .details-infos p {
     margin-bottom: 0;
     width: 50%;
+    margin-right: 1rem;
   }
   .modal-blog .modal .text-container {
     width: 80%;
@@ -258,10 +255,10 @@
     overflow: visible;
   }
   .modal-blog .modal .text-container h2::after {
-    top: 0;
-    bottom: 0;
-    left: 8rem;
-    width: 4rem;
+    top: auto;
+    bottom: -0.5rem;
+    left: 0;
+    width: 30vw;
   }
   .modal-blog .modal .text-container p:nth-child(2) {
     margin-bottom: 0;

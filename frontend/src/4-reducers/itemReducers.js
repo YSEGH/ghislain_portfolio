@@ -28,12 +28,19 @@ const updateItemReducer = (state = {}, action) => {
   }
 };
 
-const getItemsReducer = (state = { loading: true, items: [] }, action) => {
+const getItemsReducer = (
+  state = { loading: true, items: [], count: 0 },
+  action
+) => {
   switch (action.type) {
     case "GET_ITEM_REQUEST":
-      return { loading: true, items: [] };
+      return { loading: true, items: [], count: 0 };
     case "GET_ITEM_SUCCESS":
-      return { loading: false, items: action.payload };
+      return {
+        loading: false,
+        items: action.payload.items,
+        count: action.payload.count,
+      };
     case "GET_ITEM_FAIL":
       return { loading: false, error: action.payload };
     default:

@@ -89,4 +89,13 @@
   .filter-container .filter-container-list .filters-button {
     margin: 1rem 0;
   }
+  .filter-container .filter-container-absolute {
+    height: 100vh;
+    width: 100vw;
+    z-index: 1000000;
+  }
+  .filter-container .filter-container-absolute,
+  .filter-container .filter-container-absolute.close {
+    transform: translateX(-100vw);
+  }
 }

@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: center;
 }
-.about .text-container,
+
 .about .photo-container {
   display: flex;
   flex-direction: column;
@@ -15,6 +15,17 @@
   align-items: flex-start;
   font-family: "Poppins", sans-serif;
   width: 50%;
+  height: 100%;
+  text-align: left;
+  position: relative;
+}
+.about .text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  font-family: "Poppins", sans-serif;
+  width: 40%;
   height: 100%;
   text-align: left;
   position: relative;
@@ -30,12 +41,12 @@
 }
 .about .text-container h1::before {
   content: "";
-  height: 15rem;
-  width: 15rem;
+  height: 18rem;
+  width: 18rem;
   display: block;
   position: absolute;
   bottom: -2rem;
-  left: -7rem;
+  left: -5rem;
   background-color: #ff7b7b31;
   z-index: -1;
 }
@@ -43,23 +54,23 @@
   content: "";
   display: block;
   height: 1px;
-  width: 12rem;
+  width: 25rem;
   background-color: #ff0513;
   position: absolute;
-  left: 0;
+  left: 15rem;
+  top: 2rem;
   bottom: 0;
   z-index: -1;
 }
 .about .text-container .paragraphe-container {
   width: 30rem;
-  min-height: 500px;
   height: auto;
   margin-right: auto;
   margin-bottom: 2rem;
-  text-align: justify;
+  text-align: left;
   font-size: 14px;
   font-weight: 200;
-  color: rgb(73, 73, 73);
+  color: rgba(0, 0, 0, 0.75);
 }
 .codex-editor__redactor {
   padding-bottom: 0 !important;
@@ -84,15 +95,14 @@
   z-index: -1;
 }
 .about .photo-container img {
-  height: 35rem;
-  width: 25rem;
-  object-fit: contain;
+  height: 45rem;
+  width: 30rem;
+  object-fit: cover;
   position: relative;
 }
 
 @media screen and (min-width: 1500px) {
   .about .text-container h1::after {
-    left: 45rem;
     width: 30rem;
   }
   .about .text-container p {
@@ -102,6 +112,17 @@
     margin: 4rem 0;
   }
 }
+@media screen and (max-width: 1500px) {
+  .about .text-container {
+    width: 50%;
+    padding: 0 1rem;
+  }
+  .about .photo-container img {
+    height: 40rem;
+    width: 25rem;
+    box-shadow: none;
+  }
+}
 @media screen and (max-width: 1200px) {
   .about {
     margin: 0 0 0 0;
@@ -109,13 +130,11 @@
     height: auto;
   }
   .about .text-container {
-    width: 75%;
+    width: 95%;
     padding: 0 1rem;
   }
-  .about .photo-container img {
-    height: auto;
-    width: 25rem;
-    box-shadow: none;
+  .about .text-container h1::after {
+    display: none;
   }
 }
 @media screen and (max-width: 960px) {
@@ -139,7 +158,7 @@
     margin: 4rem 0;
   }
   .about .photo-container img {
-    height: auto;
+    height: 25rem;
     width: 100%;
     max-width: 25rem;
   }

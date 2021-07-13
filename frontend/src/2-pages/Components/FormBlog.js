@@ -8,12 +8,12 @@ import { FaPortrait } from "react-icons/fa";
 import uniqId from "uniqid";
 import {
   addItemHandler,
-  deleteFileHandler,
   resetItemSuccess,
   updateItemHandler,
 } from "../../3-actions/itemActions";
 import { LoadingSVG } from "./SmallComponents";
 import { EDITOR_JS_TOOLS } from "../../constants";
+import { toast } from "react-toastify";
 
 export default function FormBlog({ update = false, item }) {
   const dispatch = useDispatch();
@@ -71,7 +71,6 @@ export default function FormBlog({ update = false, item }) {
   };
 
   const onSubmit = async (data) => {
-    console.log(instanceRef.current);
     let savedDescription = await instanceRef.current.save();
     const formData = new FormData();
     let newItem = {
@@ -100,14 +99,27 @@ export default function FormBlog({ update = false, item }) {
     if (successAdd) {
       reset({});
       dispatch(resetItemSuccess());
-      setFile({});
+      setFile(null);
       setCategories([]);
+      toast.success("Ajouté avec succés !");
+      if (instanceRef.current) {
+        instanceRef.current.clear();
+      }
     }
     if (successUpdate) {
       dispatch(resetItemSuccess());
+      toast.success("Modifications enregistrées !");
+    }
+    if (errorAdd) {
+      toast.error("Ajout impossible !");
+      dispatch(resetItemSuccess());
+    }
+    if (errorUpdate) {
+      toast.error("Impossible d'enregistrer les modifications !");
+      dispatch(resetItemSuccess());
     }
     return () => {};
-  }, [successAdd, successUpdate]);
+  }, [successAdd, successUpdate, errorUpdate, errorAdd]);
 
   return (
     <div className="form-contenu">

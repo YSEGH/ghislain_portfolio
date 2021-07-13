@@ -21,7 +21,7 @@
   margin-right: 0.5rem;
   font-weight: 200;
 }
-.footer ul li a {
+.footer a {
   text-decoration: none;
   color: #fff;
   transition: 0.25s;
@@ -48,6 +48,9 @@
 }
 .footer .text-container .network-container {
   margin: 2rem auto 0 auto;
+}
+.footer .text-container .network-container a {
+  margin-right: 1rem;
 }
 .footer .legal-notice {
   height: 4rem;

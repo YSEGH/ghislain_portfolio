@@ -9,9 +9,11 @@ import { FaPortrait } from "react-icons/fa";
 import { EDITOR_JS_TOOLS } from "../../constants";
 import {
   getInfosHandler,
+  resetInfos,
   updateInfosHandler,
 } from "../../3-actions/infoActions";
 import { LoadingSVG } from "./SmallComponents";
+import { toast } from "react-toastify";
 
 export default function FormDetails() {
   const instanceRef = useRef(null);
@@ -48,7 +50,7 @@ export default function FormDetails() {
 
   const onSubmit = async (dataForm) => {
     const savedData = await instanceRef.current.save();
-    const infos = {
+    const infosUpdated = {
       lastname: dataForm.lastname ? dataForm.lastname : infos.lastname,
       firstname: dataForm.firstname ? dataForm.firstname : infos.firstname,
       email: dataForm.email ? dataForm.email : infos.email,
@@ -61,15 +63,25 @@ export default function FormDetails() {
       aboutDescription: savedData,
     };
     const formData = new FormData();
-    formData.append("infos", JSON.stringify(infos));
+    formData.append("infos", JSON.stringify(infosUpdated));
     formData.append("image", file);
     dispatch(updateInfosHandler(formData));
   };
 
   useEffect(() => {
-    dispatch(getInfosHandler());
+    if (Object.keys(infos).length === 0) {
+      dispatch(getInfosHandler());
+    }
+    if (successUpdate) {
+      toast.success("Modifications enregistrées !");
+      dispatch(resetInfos());
+    }
+    if (errorUpdate) {
+      toast.error("Impossible d'enregistrer les modifications !");
+      dispatch(resetInfos());
+    }
     return () => {};
-  }, []);
+  }, [successUpdate, errorUpdate]);
 
   return (
     <div className="details">
@@ -79,36 +91,70 @@ export default function FormDetails() {
         onSubmit={handleSubmit(onSubmit)}
       >
         <h2>Saisissez les infos générales</h2>
-        <input
-          {...register("lastname")}
-          placeholder="Nom"
-          defaultValue={infos.lastname}
-        />
-        <input
-          {...register("firstname")}
-          placeholder="Prénom"
-          defaultValue={infos.firstname}
-        />
-        <input
-          {...register("email")}
-          placeholder="Email"
-          defaultValue={infos.email}
-        />
-        <input
-          {...register("phone")}
-          placeholder="Téléphone"
-          defaultValue={infos.phone}
-        />
-        <input
-          {...register("city")}
-          placeholder="Ville"
-          defaultValue={infos.city}
-        />
-        <input
-          {...register("country")}
-          placeholder="Pays"
-          defaultValue={infos.country}
-        />
+        <div className="form-group">
+          <label>Nom</label>
+          <input
+            {...register("lastname")}
+            placeholder="Nom"
+            defaultValue={infos.lastname}
+          />
+        </div>
+        <div className="form-group">
+          <label>Prénom</label>
+          <input
+            {...register("firstname")}
+            placeholder="Prénom"
+            defaultValue={infos.firstname}
+          />
+        </div>
+        <div className="form-group">
+          <label>Email</label>
+          <input
+            {...register("email")}
+            placeholder="Email"
+            defaultValue={infos.email}
+          />
+        </div>
+        <div className="form-group">
+          <label>Téléphone</label>
+          <input
+            {...register("phone")}
+            placeholder="Téléphone"
+            defaultValue={infos.phone}
+          />
+        </div>
+        <div className="form-group">
+          <label>Ville</label>
+          <input
+            {...register("city")}
+            placeholder="Ville"
+            defaultValue={infos.city}
+          />
+        </div>
+        <div className="form-group">
+          <label>Pays</label>
+          <input
+            {...register("country")}
+            placeholder="Pays"
+            defaultValue={infos.country}
+          />
+        </div>
+        <div className="form-group">
+          <label>Facebook</label>
+          <input
+            {...register("facebook")}
+            placeholder="Facebook"
+            defaultValue={infos.facebook}
+          />
+        </div>
+        <div className="form-group">
+          <label>Instagram</label>
+          <input
+            {...register("instagram")}
+            placeholder="Instagram"
+            defaultValue={infos.instagram}
+          />
+        </div>
       </form>
       <div className="upload-zone-container">
         <h2>Modifiez l'image de présentation</h2>

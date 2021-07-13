@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../1-css/FilterContainer.css";
 import { useDispatch } from "react-redux";
 import { getItemsHandler } from "../../3-actions/itemActions";
 import { MdClose, MdAdd } from "react-icons/md";
 
-export default function FilterContainer({ content, filters }) {
+export default function FilterContainer({
+  props,
+  content,
+  offset,
+  url,
+  per_page,
+  filters,
+}) {
   const dispatch = useDispatch();
 
   const [filtersSelected, setFiltersSelected] = useState([]);
@@ -25,7 +32,6 @@ export default function FilterContainer({ content, filters }) {
     }
   };
   const selectFilterHandler = (filter, target) => {
-    console.log(target.classList);
     const filterDiv = document.querySelectorAll(`.${target.classList[0]}`);
     let filtersArray;
     let filterExist = filtersSelected.find((x) => x === filter.name);
@@ -36,17 +42,29 @@ export default function FilterContainer({ content, filters }) {
       }
       filtersArray = filtersSelected.filter((x) => x !== filter.name);
       setFiltersSelected(filtersArray);
-      dispatch(getItemsHandler(content, filtersArray));
-      return;
+      console.log(filtersArray);
+      /*       dispatch(getItemsHandler(content, offset, per_page, filtersArray));
+       */ return;
     } else {
       for (let i = 0; i < filterDiv.length; i++) {
         filterDiv[i].classList.add("active");
       }
       filtersArray = [...filtersSelected, filter.name];
       setFiltersSelected(filtersArray);
-      dispatch(getItemsHandler(content, filtersArray));
+      console.log(filtersArray);
+      /*       dispatch(getItemsHandler(content, offset, per_page, filtersArray));
+       */
     }
+
+    const url = encodeURIComponent(JSON.stringify(filtersArray));
+    props.history.push(`/blog/1/${url}`);
+    console.log(url);
   };
+
+  useEffect(() => {
+    console.log(props);
+    return () => {};
+  }, []);
 
   return (
     <div className="filter-container">
@@ -66,7 +84,7 @@ export default function FilterContainer({ content, filters }) {
           )}
         </ul>
         <button className="filters-button" onClick={() => displayFilter()}>
-          Filter <MdAdd />
+          Filter(s) <MdAdd />
         </button>
       </div>
       <div className="filter-container-absolute">
@@ -75,7 +93,7 @@ export default function FilterContainer({ content, filters }) {
           size={25}
           onClick={() => displayFilter()}
         />
-        <h2>Liste des filtres</h2>
+        <h2>Filter(s)</h2>
         <ul>
           {filters.map((filter, i) => (
             <li key={i}>

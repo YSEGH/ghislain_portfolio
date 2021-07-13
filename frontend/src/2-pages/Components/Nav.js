@@ -94,7 +94,7 @@ export default function Nav({ color }) {
             <NavLink
               activeClassName="active"
               activeStyle={{ color: "#ffff" }}
-              to="/"
+              to="/logout"
               style={{ color: color }}
               onClick={() => localStorage.removeItem("token")}
               exact

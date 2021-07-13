@@ -1,0 +1,45 @@
+.form-user {
+  height: auto;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 5rem;
+}
+.form-user h2 {
+  margin: 0;
+  margin-bottom: 2rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+}
+.form-user input {
+  margin: 0;
+  margin-bottom: 2rem;
+}
+.form-user button {
+  width: 20rem;
+  height: 3rem;
+  background-color: #ff0513;
+  border: none;
+  font: 400 18px "Poppins", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.25s;
+  color: #fff;
+}
+.form-user button:hover {
+  background-color: #cf000a;
+}
+.form-user p {
+  text-decoration: underline;
+  color: blue;
+  margin: 2rem auto;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+}
+.form-user p:hover {
+  color: rgb(0, 0, 114);
+}

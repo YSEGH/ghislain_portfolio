@@ -6,13 +6,14 @@ import Admin from "./2-pages/Admin.js";
 import About from "./2-pages/About";
 import Circus from "./2-pages/Circus";
 import Photos from "./2-pages/Photos";
-import Footer from "./2-pages/Components/Footer";
 import Auth from "./2-pages/Auth";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
     <Router>
       <div className="App">
+        <ToastContainer position="bottom-left" autoClose={2500} pauseOnHover />
         <Switch>
           <Route path="/" exact render={() => <Home />} />
           <Route path="/about" render={() => <About />} />
@@ -22,13 +23,18 @@ function App() {
             render={(props) => <Admin {...props} />}
           />
           <Route
-            path="/photography"
+            path="/photography/:page?"
             render={() => <Photos category={"Photography"} />}
           />
-          <Route path="/circus" render={() => <Circus category={"Circus"} />} />
-          <Route path="/blog" render={() => <Blog />} />
+          <Route
+            path="/circus/:page?"
+            render={() => <Circus category={"Circus"} />}
+          />
+          <Route
+            path="/blog/:page?/:filters?"
+            render={(props) => <Blog {...props} />}
+          />
         </Switch>
-        <Footer />
       </div>
     </Router>
   );

@@ -2,12 +2,12 @@ import express from "express";
 import Info from "../models/Info.js";
 import multer from "multer";
 import { deleteFiles, uploadFiles } from "../s3.js";
+import { isAuth } from "../middleware.js";
 
 const router = express.Router();
 const upload = multer({ dest: "uploads/" });
 
-router.put("/", upload.single("image"), async (req, res) => {
-  console.log(req.file);
+router.put("/", isAuth, upload.single("image"), async (req, res) => {
   const updateInfos = JSON.parse(req.body.infos);
   let filePath = null;
   try {

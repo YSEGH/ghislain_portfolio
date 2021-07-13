@@ -16,7 +16,6 @@ export default function ModalBlog({ item }) {
   };
 
   useEffect(() => {
-    console.log(item.description);
     return () => {};
   }, []);
 
@@ -34,23 +33,9 @@ export default function ModalBlog({ item }) {
         />
         <div className="photo-container">
           <img src={item.photos[0].src} alt={item.legend} />
-          <div className="details-infos photo">
-            <p>
-              <span>
-                <MdDateRange size={40} />
-              </span>
-              {item.date}
-            </p>
-            <p>
-              <span>
-                <MdPlace size={40} />
-              </span>
-              {item.place}
-            </p>
-          </div>
         </div>
         <div className="text-container close">
-          <div className="details-infos text">
+          <div className="details-infos">
             <p>
               <span>
                 <MdDateRange size={40} />

@@ -1,20 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../../1-css/Banner.css";
 import Nav from "./Nav";
 import { FiInstagram, FiFacebook } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getInfosHandler } from "../../3-actions/infoActions";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Banner() {
+  const dispatch = useDispatch();
+
+  const getInfos = useSelector((state) => state.getInfos);
+  const { loading, infos, error } = getInfos;
+
+  useEffect(() => {
+    dispatch(getInfosHandler());
+
+    return () => {};
+  }, []);
   return (
-    <div
-      className="banner"
-      style={
-        {
-          /*         backgroundSize: "cover",
-        backgroundPosition: "left center", */
-        }
-      }
-    >
+    <div className="banner part">
       <video
         className="video-banner"
         src="/videos/VIDEO-KENZO.mp4"
@@ -37,8 +42,12 @@ export default function Banner() {
           </p>
           <p>Find Me on</p>
           <div className="network-container">
-            <FiInstagram size={30} />
-            <FiFacebook size={30} />
+            <a href={`${infos.instagram}`} target="_blank">
+              <FiInstagram size={30} />
+            </a>
+            <a href={`${infos.facebook}`} target="_blank">
+              <FiFacebook size={30} />
+            </a>
           </div>
           <div className="buttons-container">
             <button

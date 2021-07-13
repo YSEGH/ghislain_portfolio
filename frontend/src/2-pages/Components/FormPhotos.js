@@ -12,6 +12,7 @@ import {
   updateItemHandler,
 } from "../../3-actions/itemActions";
 import { LoadingSVG } from "./SmallComponents";
+import { toast } from "react-toastify";
 
 export default function FormPhotos({ update = false, item }) {
   const dispatch = useDispatch();
@@ -95,12 +96,23 @@ export default function FormPhotos({ update = false, item }) {
       dispatch(resetItemSuccess());
       setFile(null);
       setCategories([]);
+      toast.success("Ajouté avec succés !");
     }
     if (successUpdate) {
       dispatch(resetItemSuccess());
+      toast.success("Modifications enregistrées !");
     }
+    if (errorAdd) {
+      toast.error("Ajout impossible !");
+      dispatch(resetItemSuccess());
+    }
+    if (errorUpdate) {
+      toast.error("Impossible d'enregistrer les modifications !");
+      dispatch(resetItemSuccess());
+    }
+
     return () => {};
-  }, [successAdd, successUpdate]);
+  }, [successAdd, successUpdate, errorAdd, errorUpdate]);
 
   return (
     <div className="form-contenu">

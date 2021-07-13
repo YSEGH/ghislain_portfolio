@@ -22,7 +22,7 @@ const slides = [
 
 export default function Press() {
   return (
-    <div className="press">
+    <div className="press part">
       <div className="text-container">
         <h1>They talk about me</h1>
         <p>

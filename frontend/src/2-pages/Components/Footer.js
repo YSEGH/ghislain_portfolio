@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "../../1-css/Footer.css";
 import { FiInstagram, FiFacebook } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { getInfosHandler } from "../../3-actions/infoActions";
 
 export default function Footer() {
+  const dispatch = useDispatch();
+
+  const getInfos = useSelector((state) => state.getInfos);
+  const { loading, infos, error } = getInfos;
+
+  useEffect(() => {
+    dispatch(getInfosHandler());
+    return () => {};
+  }, []);
   return (
-    <div className="footer">
+    <div className="footer part">
       <div className="text-container">
-        <h1>Ghislain Gramage</h1>
+        <h1>
+          {infos.firstname} {infos.lastname}
+        </h1>
         <ul>
           <li>
             <Link
@@ -36,27 +49,21 @@ export default function Footer() {
               Blog
             </Link>
           </li>
-          <li>|</li>
-          <li>
-            <Link
-              to="#"
-              onClick={() => {
-                document.getElementById("contact").scrollIntoView();
-              }}
-              className="button"
-            >
-              Contact
-            </Link>
-          </li>
         </ul>
-        <p>Paris / +330620706551 / youssef.segh@hotmail.fr</p>
+        <p>
+          {infos.city}, {infos.country} / {infos.phone} / {infos.email}
+        </p>
         <div className="network-container">
-          <FiInstagram size={30} />
-          <FiFacebook size={30} />
+          <a href={`${infos.instagram}`} target="_blank">
+            <FiInstagram size={30} />
+          </a>
+          <a href={`${infos.facebook}`} target="_blank">
+            <FiFacebook size={30} />
+          </a>
         </div>
       </div>
       <div className="legal-notice">
-        <p>Copyright © 2019 YS Development | All rights reserved </p>
+        <p>Copyright © 2021 YS Development | All rights reserved </p>
       </div>
     </div>
   );

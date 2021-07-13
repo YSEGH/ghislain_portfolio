@@ -12,6 +12,7 @@
   font-size: 1.5em !important;
   margin: 2rem;
   font-weight: 400;
+  text-align: center;
 }
 .details button {
   height: 3rem;
@@ -29,6 +30,22 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.form-details .form-group {
+  width: 20rem;
+  text-align: left;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+.form-details label {
+  width: 20rem;
+  margin-bottom: 0.5rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-decoration: underline;
 }
 
 .form-details input,

@@ -10,8 +10,11 @@ import {
   updateItemReducer,
 } from "./4-reducers/itemReducers";
 import {
+  passwordResetReducer,
+  userGetReducer,
   userLoginReducer,
   userRegisterReducer,
+  userUpdateReducer,
 } from "./4-reducers/userReducers";
 
 const reducer = combineReducers({
@@ -25,6 +28,9 @@ const reducer = combineReducers({
   deleteFile: deleteFileReducer,
   loginUser: userLoginReducer,
   registerUser: userRegisterReducer,
+  getUser: userGetReducer,
+  updateUser: userUpdateReducer,
+  passwordReset: passwordResetReducer,
 });
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducer, {}, composeEnhancer(applyMiddleware(thunk)));

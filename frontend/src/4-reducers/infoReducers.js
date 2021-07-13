@@ -6,7 +6,7 @@ const updateInfosReducer = (state = {}, action) => {
       return { loading: false, success: true };
     case "UPDATE_INFOS_FAIL":
       return { loading: false, error: action.payload };
-    case "UPDATE_INFOS_RESET":
+    case "RESET_INFOS":
       return {};
     default:
       return state;
@@ -21,8 +21,6 @@ const getInfosReducer = (state = { infos: {} }, action) => {
       return { loading: false, infos: action.payload };
     case "GET_INFOS_FAIL":
       return { loading: false, error: action.payload };
-    case "GET_INFOS_RESET":
-      return { data: {} };
     default:
       return state;
   }

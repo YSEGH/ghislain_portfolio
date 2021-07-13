@@ -9,6 +9,18 @@ export default function NavAdmin({ color }) {
         <NavLink
           activeClassName="active"
           activeStyle={{ textDecoration: "underline" }}
+          to="/admin/mon-compte/mes-infos"
+          style={{ color: color }}
+          exact
+        >
+          Mes infos
+        </NavLink>
+      </li>
+      <span>|</span>
+      <li>
+        <NavLink
+          activeClassName="active"
+          activeStyle={{ textDecoration: "underline" }}
           to="/admin/mon-compte/contenu"
           style={{ color: color }}
           exact

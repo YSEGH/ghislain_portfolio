@@ -2,18 +2,19 @@ import express from "express";
 import Item from "../models/Item.js";
 import multer from "multer";
 import { deleteFiles, uploadFiles } from "../s3.js";
+import { isAuth } from "../middleware.js";
 
 const router = express.Router();
 const upload = multer({ dest: "uploads/" });
 
 router.post(
   "/",
+  isAuth,
   upload.fields([{ name: "file" }, { name: "files" }]),
   async (req, res) => {
     let result;
     let photos = [];
 
-    console.log(req.body.item);
     const itemAdd = JSON.parse(req.body.item);
     const item = new Item({
       content: itemAdd.content,
@@ -68,30 +69,32 @@ router.post(
 );
 
 router.get("/?:contentType", async (req, res) => {
-  let filteredItems = [];
-  let items = [];
+  const offset = Number(req.query.offset);
+  const per_page = Number(req.query.per_page);
   const filterContent =
     req.params.contentType !== "null"
       ? { content: req.params.contentType }
       : {};
-
   const filterID = req.query.itemId ? { _id: req.query.itemId } : {};
+  const filterCategorie = req.query.filters
+    ? { categorie: { $all: req.query.filters } }
+    : {};
   try {
-    items = await Item.find({ ...filterContent, ...filterID });
-    if (req.query.filters) {
-      filteredItems = items.filter((item, i) => {
-        let filterCheck = req.query.filters.every((v) =>
-          item.categorie.includes(v)
-        );
-        if (filterCheck) {
-          return item;
-        }
-        return;
-      });
-    } else {
-      filteredItems = items;
-    }
-    return res.status(200).send(filteredItems);
+    const count = await Item.countDocuments({
+      ...filterContent,
+      ...filterCategorie,
+    });
+    const items = await Item.find({
+      ...filterContent,
+      ...filterID,
+      ...filterCategorie,
+    })
+      .limit(per_page)
+      .skip(offset);
+
+    console.log(items);
+
+    return res.status(200).send({ items: items, count: count });
   } catch (error) {
     return res
       .status(400)
@@ -99,6 +102,7 @@ router.get("/?:contentType", async (req, res) => {
   }
 });
 
+/* Recup all filters */
 router.get("/filters/:contentType", async (req, res) => {
   let filters = [];
   try {
@@ -127,7 +131,7 @@ router.get("/filters/:contentType", async (req, res) => {
   }
 });
 
-router.put("/file-delete", async (req, res) => {
+router.put("/file-delete", isAuth, async (req, res) => {
   let itemId = req.body.itemId;
   let filesToDelete = req.body.filesToDelete;
 
@@ -158,6 +162,7 @@ router.put("/file-delete", async (req, res) => {
 
 router.put(
   "/",
+  isAuth,
   upload.fields([{ name: "file" }, { name: "files" }]),
   async (req, res) => {
     let result;
@@ -224,7 +229,7 @@ router.put(
   }
 );
 
-router.delete("/:itemId", async (req, res) => {
+router.delete("/:itemId", isAuth, async (req, res) => {
   try {
     const item = await Item.findById(req.params.itemId);
     /* Suppression des fichiers */

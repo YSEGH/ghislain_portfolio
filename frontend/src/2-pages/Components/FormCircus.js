@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
-import EditorJs from "react-editor-js";
+import React, { useEffect, useState } from "react";
 import "../../1-css/FormContenu.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
@@ -8,12 +7,11 @@ import { FaPortrait } from "react-icons/fa";
 import uniqId from "uniqid";
 import {
   addItemHandler,
-  deleteFileHandler,
   resetItemSuccess,
   updateItemHandler,
 } from "../../3-actions/itemActions";
 import { LoadingSVG } from "./SmallComponents";
-import { EDITOR_JS_TOOLS } from "../../constants";
+import { toast } from "react-toastify";
 
 export default function FormCircus({ update = false, item }) {
   const addItem = useSelector((state) => state.addItem);
@@ -32,7 +30,6 @@ export default function FormCircus({ update = false, item }) {
     reset,
     formState: { errors },
   } = useForm();
-  const instanceRef = useRef(null);
   const dispatch = useDispatch();
 
   const [files, setFiles] = useState(item ? item.photos : []);
@@ -116,16 +113,23 @@ export default function FormCircus({ update = false, item }) {
       dispatch(resetItemSuccess());
       setFiles([]);
       setCategories([]);
-      if (instanceRef.current) {
-        instanceRef.current.clear();
-      }
+      toast.success("Ajouté avec succés !");
     }
     if (successUpdate) {
       dispatch(resetItemSuccess());
       setFilesToDelete([]);
+      toast.success("Modifications enregistrées !");
+    }
+    if (errorAdd) {
+      toast.error("Ajout impossible !");
+      dispatch(resetItemSuccess());
+    }
+    if (errorUpdate) {
+      toast.error("Impossible d'enregistrer les modifications !");
+      dispatch(resetItemSuccess());
     }
     return () => {};
-  }, [successAdd, successUpdate]);
+  }, [successAdd, successUpdate, errorAdd, errorUpdate]);
 
   return (
     <div className="form-contenu">

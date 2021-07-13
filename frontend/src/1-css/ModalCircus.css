@@ -78,17 +78,15 @@
 
 .modal .modal-body .text-container {
   position: absolute;
-  bottom: 2rem;
-  left: 2rem;
-  width: 30rem;
-  max-width: 60rem;
+  bottom: 0rem;
+  left: 0rem;
+  width: 100vw;
   margin: auto;
   height: auto;
   color: #000;
   padding: 1rem 3rem;
   border-left: none;
   background-color: #fff;
-  border-radius: 5px;
 }
 .modal .modal-body .text-container.open {
   animation: showDiv 0.75s forwards;
