@@ -4,7 +4,7 @@
   width: 100vw;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   flex-wrap: wrap;
   font-family: "Poppins", sans-serif;
   position: relative;
@@ -26,11 +26,9 @@
   margin: 1rem auto;
 }
 .portfolio .part-button {
-  width: 33.33333333vw;
+  width: 50vw;
   min-width: 20rem;
-  /*min-height: 20rem; */
   height: 100vh;
-
   position: relative;
   padding: 2rem;
   background-size: cover;
@@ -42,7 +40,8 @@
   text-decoration: none;
 }
 .portfolio .part-button .mask {
-  width: 33.33333333vw;
+  width: 50vw;
+  min-width: 20rem;
   height: 100vh;
   position: absolute;
   top: 0;
@@ -64,6 +63,7 @@
   width: 100%;
   border: 5px solid #fff;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   font-family: "Poppins", sans-serif;
@@ -72,13 +72,10 @@
 .portfolio .part-button .text-container svg {
   margin-right: 1rem;
 }
-.portfolio .part-button:nth-child(2) .text-container svg {
-  margin-bottom: 1rem;
-}
 .portfolio .part-button .text-container h2 {
   position: relative;
   z-index: 5;
-  font-size: 35px;
+  font-size: 45px;
   font-weight: 300;
   text-align: center;
   color: #fff;
@@ -88,8 +85,18 @@
   .portfolio {
     flex-direction: column;
   }
+  .portfolio .part-button {
+    width: 100vw;
+    aspect-ratio: 1/1;
+    height: 50vh;
+  }
+  .portfolio .part-button .mask {
+    width: 100vw;
+    aspect-ratio: 1/1;
+    height: 50vh;
+  }
   .portfolio .part-button .text-container h2 {
-    font-size: 20px;
+    font-size: 40px;
     margin: 0 !important;
   }
 }

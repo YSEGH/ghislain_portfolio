@@ -5,7 +5,6 @@ import ModalCircus from "./ModalCircus";
 export default function Item({
   secondaryClass,
   item = {},
-  category,
   setIndex,
   modalSelector,
 }) {
@@ -26,25 +25,11 @@ export default function Item({
         backgroundImage: `url(${item.photos[0].src})`,
       }}
       onClick={() => {
-        if (item.content === "photography") {
+        if (item.content !== "blog") {
           setIndex(item.index);
         }
         displayModal();
       }}
-    >
-      {category === "circus" && <ModalCircus item={item} />}
-
-      {category === "circus" && (
-        <div
-          className="item-hover"
-          onClick={() => {
-            displayModal();
-          }}
-        >
-          <h2>{item.title}</h2>
-          <p>{item.legend}</p>
-        </div>
-      )}
-    </div>
+    ></div>
   );
 }

@@ -1,9 +1,14 @@
-.items-container {
+.circus-container {
   width: 100%;
   height: auto;
   margin: 2rem auto;
+}
+.circus-container .items-container {
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
+  height: auto;
+  min-height: 800px;
+  width: 100%;
 }

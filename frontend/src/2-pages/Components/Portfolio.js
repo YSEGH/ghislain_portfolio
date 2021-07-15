@@ -17,8 +17,8 @@ export default function Portfolio() {
       >
         <div className="mask"></div>
         <div className="text-container">
-          <GiBarracksTent size={50} />
-          <h2>Circus</h2>
+          <GiBarracksTent size={75} />
+          <h2> Circus</h2>
         </div>
       </Link>
       <Link
@@ -29,11 +29,11 @@ export default function Portfolio() {
       >
         <div className="mask"></div>
         <div className="text-container">
-          <MdPhotoCamera size={50} />
+          <MdPhotoCamera size={75} />
           <h2>Photography</h2>
         </div>
       </Link>
-      <Link
+      {/* <Link
         to="/blog"
         onClick={() => window.scrollTo(0, 0)}
         className="part-button blog"
@@ -44,7 +44,7 @@ export default function Portfolio() {
           <ImNewspaper size={50} />
           <h2>Blog</h2>
         </div>
-      </Link>
+      </Link> */}
     </div>
   );
 }

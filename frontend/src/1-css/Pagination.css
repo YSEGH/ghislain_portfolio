@@ -1,7 +1,41 @@
 .pagination {
   height: 5rem;
-  background-color: red;
+  width: 100%;
+  align-self: flex-end;
   display: flex;
   align-items: center;
   justify-content: space-around;
+  margin-top: 3rem;
+}
+
+.pagination a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff0513;
+  padding: 0.5rem;
+  text-decoration: none;
+  font-weight: 200;
+  transition: 0.25s;
+}
+
+.pagination .previous {
+  margin-right: auto;
+}
+.pagination .previous:hover {
+  color: #a10008;
+}
+.pagination .previous svg {
+  transform: rotate(180deg);
+}
+.pagination .next {
+  margin-left: auto;
+  border: 1px solid #ff0513;
+  background-color: #ff0513;
+  color: #fff;
+}
+.pagination .next:hover {
+  margin-left: auto;
+  background-color: #fff;
+  color: #ff0513;
 }

@@ -17,9 +17,10 @@ export default function PageContenu(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getItemsHandler(null, null, itemId));
+    console.log(itemId);
+    dispatch(getItemsHandler(null, null, null, null, itemId));
     return () => {};
-  }, []);
+  }, [itemId]);
 
   return (
     <div className={`page page-contenu`}>

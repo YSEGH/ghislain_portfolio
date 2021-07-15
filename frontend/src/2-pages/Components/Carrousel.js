@@ -53,6 +53,14 @@ export default function Carrousel({
   };
 
   const nextSlide = () => {
+    const text = document.querySelector(
+      `${modalSelector} .carousel [id=slide-${index}] .text-container`
+    );
+    showText(index);
+    if (text.classList.contains("open")) {
+      text.classList.add("close");
+      text.classList.remove("open");
+    }
     const slider = document.querySelector(`${modalSelector} .slide-container`);
     const newIndex = index + 1;
     setIndex(newIndex);
@@ -60,6 +68,14 @@ export default function Carrousel({
   };
 
   const prevSlide = () => {
+    const text = document.querySelector(
+      `${modalSelector} .carousel [id=slide-${index}] .text-container`
+    );
+    showText(index);
+    if (text.classList.contains("open")) {
+      text.classList.add("close");
+      text.classList.remove("open");
+    }
     const slider = document.querySelector(`${modalSelector} .slide-container`);
     const newIndex = index - 1;
     const translateX = Number(
@@ -71,9 +87,8 @@ export default function Carrousel({
 
   const showText = (index) => {
     const text = document.querySelector(
-      `.modal.photo .carousel-photography [id=slide-${index}] .text-container`
+      `${modalSelector} .carousel [id=slide-${index}] .text-container`
     );
-    console.log(text);
     if (text.classList.contains("open")) {
       text.classList.add("close");
       text.classList.remove("open");

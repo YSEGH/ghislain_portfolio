@@ -2,7 +2,7 @@
   min-height: 100vh;
   height: auto;
   width: 100vw;
-  padding: 10rem 4rem;
+  padding: 10rem 4rem 0rem 4rem;
   font-family: "Poppins", sans-serif;
   position: relative;
   overflow: hidden;
@@ -34,6 +34,6 @@
     left: 0;
   }
   .category {
-    padding: 10rem 1rem;
+    padding: 10rem 1rem 0rem 1rem;
   }
 }

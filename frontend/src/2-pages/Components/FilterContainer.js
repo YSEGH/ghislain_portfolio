@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 import "../../1-css/FilterContainer.css";
-import { useDispatch } from "react-redux";
-import { getItemsHandler } from "../../3-actions/itemActions";
+import { useDispatch, useSelector } from "react-redux";
+import { getFiltersHandler } from "../../3-actions/itemActions";
 import { MdClose, MdAdd } from "react-icons/md";
+import { useParams } from "react-router";
 
-export default function FilterContainer({
-  props,
-  content,
-  offset,
-  url,
-  per_page,
-  filters,
-}) {
+export default function FilterContainer({ content, props, url }) {
   const dispatch = useDispatch();
+  const { filters: filtersParams = null } = useParams();
 
-  const [filtersSelected, setFiltersSelected] = useState([]);
+  const getFilters = useSelector((state) => state.getFilters);
+  const { loading: loadingFilters, filters, error: errorFilters } = getFilters;
+
+  const [filtersSelected, setFiltersSelected] = useState(
+    filtersParams ? filtersParams.split("&") : []
+  );
 
   const displayFilter = () => {
     const filterContainer = document.querySelector(
@@ -42,29 +42,26 @@ export default function FilterContainer({
       }
       filtersArray = filtersSelected.filter((x) => x !== filter.name);
       setFiltersSelected(filtersArray);
-      console.log(filtersArray);
-      /*       dispatch(getItemsHandler(content, offset, per_page, filtersArray));
-       */ return;
     } else {
       for (let i = 0; i < filterDiv.length; i++) {
         filterDiv[i].classList.add("active");
       }
       filtersArray = [...filtersSelected, filter.name];
       setFiltersSelected(filtersArray);
-      console.log(filtersArray);
-      /*       dispatch(getItemsHandler(content, offset, per_page, filtersArray));
-       */
     }
-
-    const url = encodeURIComponent(JSON.stringify(filtersArray));
-    props.history.push(`/blog/1/${url}`);
-    console.log(url);
+    let filtersParams;
+    if (filtersArray.length) {
+      filtersParams = filtersArray.join("&");
+    } else {
+      filtersParams = "";
+    }
+    props.history.push(`${url}/1/${filtersParams}`);
   };
 
   useEffect(() => {
-    console.log(props);
+    dispatch(getFiltersHandler(content, filtersSelected));
     return () => {};
-  }, []);
+  }, [filtersParams]);
 
   return (
     <div className="filter-container">
@@ -74,7 +71,9 @@ export default function FilterContainer({
             i < 3 ? (
               <li key={i}>
                 <a
-                  className={`filter-${filter.name}`}
+                  className={`filter-${filter.name} ${
+                    filtersSelected.includes(filter.name) ? "active" : ""
+                  }`}
                   onClick={(e) => selectFilterHandler(filter, e.target)}
                 >
                   {filter.name} ({filter.qty})
@@ -84,7 +83,7 @@ export default function FilterContainer({
           )}
         </ul>
         <button className="filters-button" onClick={() => displayFilter()}>
-          Filter(s) <MdAdd />
+          Filter(s) <MdAdd size={15} />
         </button>
       </div>
       <div className="filter-container-absolute">
@@ -98,7 +97,9 @@ export default function FilterContainer({
           {filters.map((filter, i) => (
             <li key={i}>
               <a
-                className={`filter-${filter.name}`}
+                className={`filter-${filter.name} ${
+                  filtersSelected.includes(filter.name) ? "active" : ""
+                }`}
                 onClick={(e) => selectFilterHandler(filter, e.target)}
               >
                 {filter.name} ({filter.qty})

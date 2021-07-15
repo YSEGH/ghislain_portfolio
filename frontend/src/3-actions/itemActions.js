@@ -15,7 +15,13 @@ const addItemHandler = (item) => async (dispatch) => {
 };
 
 const getItemsHandler =
-  (contentType = null, offset, per_page, filters = null, itemId = null) =>
+  (
+    contentType = null,
+    offset = null,
+    per_page = null,
+    filters = null,
+    itemId = null
+  ) =>
   async (dispatch) => {
     dispatch({ type: "GET_ITEM_REQUEST" });
     try {
@@ -34,22 +40,25 @@ const getItemsHandler =
     }
   };
 
-const getFiltersHandler = (contentType) => async (dispatch) => {
-  dispatch({ type: "GET_FILTERS_REQUEST" });
-  try {
-    const token = localStorage.getItem("token");
+const getFiltersHandler =
+  (contentType, filters = null) =>
+  async (dispatch) => {
+    dispatch({ type: "GET_FILTERS_REQUEST" });
+    try {
+      const token = localStorage.getItem("token");
 
-    const { data } = await axios.get(`/api/item/filters/${contentType}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    dispatch({ type: "GET_FILTERS_SUCCESS", payload: data });
-  } catch (error) {
-    dispatch({
-      type: "GET_FILTERS_FAIL",
-      payload: error.response.data.message,
-    });
-  }
-};
+      const { data } = await axios.get(`/api/item/filters/${contentType}`, {
+        params: { filters },
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      dispatch({ type: "GET_FILTERS_SUCCESS", payload: data });
+    } catch (error) {
+      dispatch({
+        type: "GET_FILTERS_FAIL",
+        payload: error.response.data.message,
+      });
+    }
+  };
 
 const updateItemHandler =
   (itemId, item, filesToDelete = null) =>

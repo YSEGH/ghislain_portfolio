@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import "../1-css/About.css";
 import Nav from "./Components/Nav";
 import EditorJs from "react-editor-js";

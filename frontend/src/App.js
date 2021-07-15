@@ -23,12 +23,12 @@ function App() {
             render={(props) => <Admin {...props} />}
           />
           <Route
-            path="/photography/:page?"
-            render={() => <Photos category={"Photography"} />}
+            path="/photography/:page?/:filters?"
+            render={(props) => <Photos category={"Photography"} {...props} />}
           />
           <Route
-            path="/circus/:page?"
-            render={() => <Circus category={"Circus"} />}
+            path="/circus/:page?/:filters?"
+            render={(props) => <Circus category={"Circus"} {...props} />}
           />
           <Route
             path="/blog/:page?/:filters?"

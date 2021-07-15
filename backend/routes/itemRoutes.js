@@ -13,64 +13,72 @@ router.post(
   upload.fields([{ name: "file" }, { name: "files" }]),
   async (req, res) => {
     let result;
-    let photos = [];
-
     const itemAdd = JSON.parse(req.body.item);
-    const item = new Item({
-      content: itemAdd.content,
-      title: itemAdd.title,
-      legend: itemAdd.legend ? itemAdd.legend : "",
-      categorie: itemAdd.categorie,
-      description: itemAdd.description
-        ? itemAdd.description
-        : { blocks: [], time: "", version: "" },
-      date: itemAdd.date,
-      place: itemAdd.place,
-    });
 
     /* Importation des fichiers */
-    if (req.files.file) {
-      try {
-        result = await uploadFiles(req.files.file[0]);
-        photos.push({
-          src: `/api/files/${result.Key}`,
-          type: req.files.file[0].mimetype,
+    try {
+      if (req.files.file) {
+        const item = new Item({
+          content: itemAdd.content,
+          title: itemAdd.title,
+          legend: itemAdd.legend ? itemAdd.legend : "",
+          categorie: itemAdd.categorie,
+          description: itemAdd.description
+            ? itemAdd.description
+            : { blocks: [], time: "", version: "" },
+          date: itemAdd.date,
+          place: itemAdd.place,
         });
+        result = await uploadFiles(req.files.file[0]);
+        const photos = [
+          {
+            src: `/api/files/${result.Key}`,
+            type: req.files.file[0].mimetype,
+          },
+        ];
         Object.assign(item, { photos: photos });
-      } catch (error) {
-        return res
-          .status(400)
-          .send({ message: "Impossible d'importer le fichier." });
-      }
-    } else if (req.files.files) {
-      try {
+        await item.save();
+        return res.status(200).send({ message: "Ajout effectué avec succés." });
+      } else if (req.files.files) {
         for (let i = 0; i < req.files.files.length; i++) {
+          const item = new Item({
+            content: itemAdd.content,
+            title: itemAdd.title,
+            legend: itemAdd.legend ? itemAdd.legend : "",
+            categorie: itemAdd.categorie,
+            description: itemAdd.description
+              ? itemAdd.description
+              : { blocks: [], time: "", version: "" },
+            date: itemAdd.date,
+            place: itemAdd.place,
+          });
           const file = req.files.files[i];
           result = await uploadFiles(file);
-          photos.push({
-            src: `/api/files/${result.Key}`,
-            type: file.mimetype,
-          });
+          const photos = [
+            {
+              src: `/api/files/${result.Key}`,
+              type: file.mimetype,
+            },
+          ];
+          Object.assign(item, { photos: photos });
+          console.log(item);
+          await item.save();
         }
-        Object.assign(item, { photos: photos });
-      } catch (error) {
         return res
-          .status(400)
-          .send({ message: "Impossible d'importer les fichiers." });
+          .status(200)
+          .send({ message: "Ajouts effectués avec succés." });
       }
-    }
-    try {
-      await item.save();
-      return res.status(200).send({ message: "Ajout effectué avec succés." });
     } catch (error) {
-      return res.status(400).send({ message: "Ajout impossible." });
+      return res
+        .status(400)
+        .send({ message: "Impossible d'importer les fichiers." });
     }
   }
 );
 
 router.get("/?:contentType", async (req, res) => {
-  const offset = Number(req.query.offset);
-  const per_page = Number(req.query.per_page);
+  const offset = req.query.offset ? Number(req.query.offset) : null;
+  const per_page = req.query.per_page ? Number(req.query.per_page) : null;
   const filterContent =
     req.params.contentType !== "null"
       ? { content: req.params.contentType }
@@ -92,8 +100,6 @@ router.get("/?:contentType", async (req, res) => {
       .limit(per_page)
       .skip(offset);
 
-    console.log(items);
-
     return res.status(200).send({ items: items, count: count });
   } catch (error) {
     return res
@@ -105,8 +111,14 @@ router.get("/?:contentType", async (req, res) => {
 /* Recup all filters */
 router.get("/filters/:contentType", async (req, res) => {
   let filters = [];
+  const filterCategorie = req.query.filters
+    ? { categorie: { $all: req.query.filters } }
+    : {};
   try {
-    const items = await Item.find({ content: req.params.contentType });
+    const items = await Item.find({
+      content: req.params.contentType,
+      ...filterCategorie,
+    });
 
     for (let i = 0; i < items.length; i++) {
       const item = items[i];

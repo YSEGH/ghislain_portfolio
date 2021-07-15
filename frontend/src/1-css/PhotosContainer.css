@@ -1,4 +1,4 @@
-.items-container {
+.photos-container {
   width: 100%;
   height: auto;
   margin: 2rem auto;
@@ -6,4 +6,14 @@
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+}
+
+.photos-container .items-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  height: auto;
+  min-height: 800px;
+  width: 100%;
 }
