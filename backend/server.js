@@ -5,6 +5,7 @@ import userRouter from "./routes/userRoutes.js";
 import infoRouter from "./routes/infoRoutes.js";
 import itemRouter from "./routes/itemRoutes.js";
 import imageRouter from "./routes/imageRoutes.js";
+import emailRouter from "./routes/emailRoutes.js";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ const app = express();
 
 app.use(express.json());
 app.use("/api/user", userRouter);
+app.use("/api/email", emailRouter);
 app.use("/api/info", infoRouter);
 app.use("/api/item", itemRouter);
 app.use("/api/files", imageRouter);

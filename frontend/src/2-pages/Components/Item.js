@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "../../1-css/Item.css";
-import ModalCircus from "./ModalCircus";
+import { MdPlayCircleFilled } from "react-icons/md";
 
 export default function Item({
   secondaryClass,
@@ -21,15 +21,23 @@ export default function Item({
   return (
     <div
       className={`item ${secondaryClass}`}
-      style={{
-        backgroundImage: `url(${item.photos[0].src})`,
-      }}
       onClick={() => {
         if (item.content !== "blog") {
           setIndex(item.index);
         }
         displayModal();
       }}
-    ></div>
+    >
+      {item.photos[0].type.split("/")[0] === "image" ? (
+        <img src={item.photos[0].src} />
+      ) : (
+        <video src={item.photos[0].src} />
+      )}
+      {item.photos[0].type.split("/")[0] === "video" && (
+        <div className="video-button">
+          <MdPlayCircleFilled size={80} />
+        </div>
+      )}
+    </div>
   );
 }

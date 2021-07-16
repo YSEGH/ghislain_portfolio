@@ -31,11 +31,11 @@
 .pagination .next {
   margin-left: auto;
   border: 1px solid #ff0513;
-  background-color: #ff0513;
-  color: #fff;
+  background-color: #fff;
+  color: #ff0513;
 }
 .pagination .next:hover {
   margin-left: auto;
-  background-color: #fff;
-  color: #ff0513;
+  background-color: #ff0513;
+  color: #fff;
 }

@@ -1,41 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "../../1-css/Press.css";
-import Carrousel from "./Carrousel";
-
-const slides = [
-  {
-    src: "/images/press.png",
-  },
-  {
-    src: "/images/press-2.jpg",
-  },
-  {
-    src: "/images/large.jpg",
-  },
-  {
-    src: "/images/KENZO-2.png",
-  },
-  {
-    src: "/images/KOOZA-7.jpg",
-  },
-];
+import { getItemsHandler } from "../../3-actions/itemActions";
+import Carousel3d from "./Carousel3d";
 
 export default function Press() {
+  const getItem = useSelector((state) => state.getItem);
+  const { loading, items, error } = getItem;
+
+  const dispatch = useDispatch();
+
+  const displayModal = (target) => {
+    console.log(target);
+  };
+  useEffect(() => {
+    dispatch(getItemsHandler("press", null, null, null, null));
+    return () => {};
+  }, []);
+
   return (
     <div className="press part">
       <div className="text-container">
         <h1>They talk about me</h1>
-        <p>
-          Et ullamco dolore ipsum culpa amet consequat exercitation. Et ullamco
-          dolore ipsum culpa amet consequat exercitation.
-        </p>
+        <p>Let’s see what people think of me.</p>
       </div>
-      <div className="press-review-container">
-        <div className="item-review">
-          <h2>Spectacle magnifique et moderne ! </h2>
-          <p>Les échos</p>
-        </div>
-      </div>
+      {items.length && (
+        <Carousel3d
+          slides={items.map((item, i) => {
+            return item.photos[0];
+          })}
+          displayModal={displayModal}
+        />
+      )}
     </div>
   );
 }

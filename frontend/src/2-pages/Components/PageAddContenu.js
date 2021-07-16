@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "../../1-css/PageContenu.css";
-
 import FormBlog from "./FormBlog";
 import FormCircus from "./FormCircus";
 import FormPhotos from "./FormPhotos";
+import FormPress from "./FormPress";
 
 export default function PageAddContenu() {
   const [content, setContent] = useState(null);
@@ -34,6 +34,8 @@ export default function PageAddContenu() {
           <FormPhotos />
         ) : content === "blog" ? (
           <FormBlog />
+        ) : content === "press" ? (
+          <FormPress />
         ) : null}
       </div>
     </div>

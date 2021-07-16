@@ -24,7 +24,7 @@ button[disabled] {
   cursor: auto !important;
 }
 img {
-  image-rendering: -webkit-optimize-contrast;
+  image-rendering: -webkit-optimize-contrast !important;
 }
 
 select {

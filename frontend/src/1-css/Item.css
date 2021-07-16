@@ -3,53 +3,32 @@
   aspect-ratio: 1 / 1;
   margin: 2rem;
   overflow: hidden;
-  background-size: cover;
-  background-position: center center;
   cursor: pointer;
-  pointer-events: hover;
-}
-.item.item-photography {
-  pointer-events: all !important;
-}
-.item h2 {
-  font-size: 1.5em !important;
-}
-.item-hover {
-  transform: translateX(-100%);
-  height: 100%;
-  width: 100%;
-  background-color: #ff05124d;
-  transition: 0.35s ease-out;
-  padding: 2rem;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  color: #fff;
-  pointer-events: all;
-}
-.item:hover .item-hover {
-  transform: translateX(0);
-}
-.item-hover h2 {
-  font-weight: 500;
   position: relative;
 }
-.item-hover h2::before {
-  content: "";
-  height: 1px;
-  width: 2rem;
-  background-color: #ffff;
+.item img,
+.item video {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+.video-button {
   position: absolute;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   top: 0;
   bottom: 0;
-  left: -2.5rem;
+  left: 0;
+  right: 0;
   margin: auto;
 }
-.item-hover p {
-  font-weight: 200;
+.video-button svg {
+  color: #ff051270;
 }
+
 @media screen and (max-width: 960px) {
   .item {
     margin: 0;

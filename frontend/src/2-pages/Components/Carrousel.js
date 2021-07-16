@@ -132,32 +132,32 @@ export default function Carrousel({
             key={i}
             style={{ width: width }}
           >
-            {items.length ? (
-              <>
-                <MdInfoOutline
-                  className="info-icon"
-                  size={25}
-                  onClick={() => showText(i)}
-                />
-                <div className="text-container close">
-                  <h2>{items[i].title}</h2>
-                  <p>{items[i].legend}</p>
-                  <p>
-                    <span>
-                      <MdDateRange size={40} />
-                    </span>
-                    {items[i].date}
-                  </p>
-                  <p>
-                    <span>
-                      <MdPlace size={40} />
-                    </span>
-                    {items[i].place}
-                  </p>
-                </div>
-              </>
-            ) : null}
-            <img src={img.src} />
+            <MdInfoOutline
+              className="info-icon"
+              size={25}
+              onClick={() => showText(i)}
+            />
+            <div className="text-container close">
+              <h2>{items[i].title}</h2>
+              <p>{items[i].legend}</p>
+              <p>
+                <span>
+                  <MdDateRange size={40} />
+                </span>
+                {items[i].date}
+              </p>
+              <p>
+                <span>
+                  <MdPlace size={40} />
+                </span>
+                {items[i].place}
+              </p>
+            </div>
+            {img.type.split("/")[0] === "image" ? (
+              <img src={img.src} />
+            ) : (
+              <video src={img.src} controls />
+            )}
           </div>
         ))}
       </div>

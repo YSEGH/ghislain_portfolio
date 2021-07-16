@@ -8,6 +8,7 @@
   flex-wrap: wrap;
   font-family: "Poppins", sans-serif;
   position: relative;
+  background-color: #050317;
 }
 .portfolio h1 {
   margin-top: 4rem;
@@ -26,9 +27,9 @@
   margin: 1rem auto;
 }
 .portfolio .part-button {
-  width: 50vw;
+  width: 40vw;
   min-width: 20rem;
-  height: 100vh;
+  aspect-ratio: 1/1;
   position: relative;
   padding: 2rem;
   background-size: cover;
@@ -36,13 +37,13 @@
   background-position: center center;
   cursor: pointer;
   transition: 0.25s;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   text-decoration: none;
 }
+
 .portfolio .part-button .mask {
-  width: 50vw;
+  width: 40vw;
   min-width: 20rem;
-  height: 100vh;
+  aspect-ratio: 1/1;
   position: absolute;
   top: 0;
   left: 0;
@@ -62,6 +63,7 @@
   height: 100%;
   width: 100%;
   border: 5px solid #fff;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -75,7 +77,7 @@
 .portfolio .part-button .text-container h2 {
   position: relative;
   z-index: 5;
-  font-size: 45px;
+  font-size: 35px;
   font-weight: 300;
   text-align: center;
   color: #fff;

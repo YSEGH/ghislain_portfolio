@@ -8,3 +8,11 @@
 .part {
   scroll-snap-align: start;
 }
+@media screen and (max-width: 900px) {
+  .home {
+    scroll-snap-type: none;
+  }
+  .part {
+    scroll-snap-align: none;
+  }
+}

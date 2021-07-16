@@ -59,11 +59,13 @@
   align-items: center;
   justify-content: center;
 }
-.modal .modal-body .photo-container img {
+.modal .modal-body .photo-container img,
+.modal .modal-body .photo-container video {
   width: 100vw;
   height: 100vh;
   margin: auto;
   object-fit: contain;
+  pointer-events: all;
 }
 /* .modal .modal-body .text-container {
   width: 35rem;
@@ -247,7 +249,8 @@
     height: 100vh;
     background-color: #040312;
   }
-  .modal .modal-body .photo-container img {
+  .modal .modal-body .photo-container img,
+  .modal .modal-body .photo-container video {
     width: 100vw;
     height: auto;
     object-fit: contain;

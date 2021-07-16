@@ -33,7 +33,6 @@ export default function ModalCircus({ items, index }) {
             width={window.innerWidth}
             initialIndex={index}
             slides={items.map((item) => {
-              console.log(item.photos[0]);
               return item.photos[0];
             })}
             items={items}

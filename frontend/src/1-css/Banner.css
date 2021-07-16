@@ -15,6 +15,7 @@
   position: absolute;
   filter: grayscale(1);
   z-index: 0;
+  object-fit: cover;
 }
 .banner .mask {
   height: auto;
@@ -117,6 +118,11 @@
   .banner {
     display: flex;
     align-items: center;
+  }
+  .banner .video-banner {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
   }
   .banner .text-container {
     width: 100%;

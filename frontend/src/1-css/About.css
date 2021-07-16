@@ -35,10 +35,10 @@
 .about .text-container h1 {
   width: 30rem;
   font-size: 35px;
-  font-weight: 400;
+  font-weight: 800;
   color: #000;
   position: relative;
-  margin: 0 auto 2rem auto;
+  margin: 0 auto 1rem auto;
   text-align: left;
 }
 /* .about .text-container h1::before {
@@ -52,7 +52,7 @@
   background-color: #ff7b7b31;
   z-index: -1;
 } */
-.about .text-container h1::after {
+/* .about .text-container h1::after {
   content: "";
   display: block;
   height: 1px;
@@ -63,7 +63,7 @@
   bottom: -0.5rem;
   z-index: -1;
   margin: auto;
-}
+} */
 .about .text-container .paragraphe-container {
   width: 30rem;
   height: auto;
@@ -91,12 +91,11 @@
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 } */
 .about .photo-container img {
-  height: 45rem;
+  height: 30rem;
   width: 30rem;
-  object-fit: cover;
+  object-fit: contain;
   position: relative;
   margin: auto;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 @media screen and (min-width: 1500px) {
@@ -116,7 +115,7 @@
     padding: 0 1rem;
   }
   .about .photo-container img {
-    height: 40rem;
+    height: 30rem;
     width: 25rem;
   }
 }

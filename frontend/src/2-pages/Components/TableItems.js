@@ -50,6 +50,10 @@ export default function TableItems() {
       <MaterialTable
         icons={TABLE_ICONS}
         style={{ boxShadow: "none" }}
+        options={{
+          exportButton: false,
+          pageSize: 50,
+        }}
         columns={[
           { title: "Titre", field: "title" },
           {
@@ -63,6 +67,8 @@ export default function TableItems() {
                   return "Photo";
                 case "blog":
                   return "Blog";
+                case "press":
+                  return "Presse";
                 default:
                   break;
               }
