@@ -46,9 +46,11 @@ export default function FormUser() {
   };
 
   useEffect(() => {
-    if (Object.keys(user).length === 0) {
-      dispatch(getUserHandler());
-    }
+    dispatch(getUserHandler());
+    return () => {};
+  }, []);
+
+  useEffect(() => {
     if (successUpdate) {
       toast.success(successUpdate.message);
       dispatch(userReset());
