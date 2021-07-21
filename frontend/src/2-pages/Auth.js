@@ -5,7 +5,9 @@ import { useForm } from "react-hook-form";
 import {
   loginUserHandler,
   registerUserHandler,
+  userReset,
 } from "../3-actions/userActions";
+import { toast } from "react-toastify";
 
 export default function Auth(props) {
   const dispatch = useDispatch();
@@ -31,7 +33,6 @@ export default function Auth(props) {
   } = loginUser;
 
   const onSubmit = (data) => {
-    console.log(data);
     const user = {
       username: data.username,
       password: data.password,
@@ -41,13 +42,17 @@ export default function Auth(props) {
 
   useEffect(() => {
     if (successLogin) {
-      console.log(successLogin.message);
+      dispatch(userReset());
+      toast.success(successLogin.message);
+    }
+    if (errorLogin) {
+      toast.error("Nom d'utilisateur ou mot de passe incorrect.");
     }
     if (localStorage.getItem("token")) {
-      console.log(props.history.push("/admin/mon-compte/contenu"));
+      props.history.push("/admin/mon-compte/contenu");
     }
     return () => {};
-  }, [successLogin]);
+  }, [successLogin, errorLogin]);
   return (
     <form className="auth" onSubmit={handleSubmit(onSubmit)}>
       <h2>Connexion</h2>

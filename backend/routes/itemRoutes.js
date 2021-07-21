@@ -61,7 +61,6 @@ router.post(
             },
           ];
           Object.assign(item, { photos: photos });
-          console.log(item);
           await item.save();
         }
         return res
@@ -228,7 +227,6 @@ router.put(
       item.legend = itemAdd.legend ? itemAdd.legend : item.legend;
       item.date = itemAdd.date;
       item.place = itemAdd.place;
-      console.log(item);
       await item.save();
       return res
         .status(200)

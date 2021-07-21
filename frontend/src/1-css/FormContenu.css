@@ -191,7 +191,6 @@ textarea {
     justify-content: center;
   }
   .upload-zone-container div {
-    flex-wrap: nowrap;
     margin-bottom: 4rem;
   }
 }

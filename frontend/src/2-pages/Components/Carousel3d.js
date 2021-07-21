@@ -11,7 +11,7 @@ export default function Carousel3d(props) {
   const [slideCurrent, setSlideCurrent] = useState(-1);
   const [slides, setSlides] = useState([]);
   const [height, setHeight] = useState("0px");
-  const [srcFile, setSrcFile] = useState("");
+  const [srcFile, setSrcFile] = useState(null);
   const intervalRef = useRef();
   const handlers = useSwipeable({
     onSwipedLeft: () => slideRight(),
@@ -49,7 +49,7 @@ export default function Carousel3d(props) {
   }, [slides, slideCurrent]);
 
   const openModal = () => {
-    const modalItem = document.querySelector(".modal-item.press-modal");
+    const modalItem = document.querySelector(".modal.press-modal");
     modalItem.classList.add("open");
     modalItem.classList.remove("close");
   };
@@ -181,7 +181,7 @@ export default function Carousel3d(props) {
 
   return (
     <>
-      <ModalPress src={srcFile} />
+      <ModalPress item={srcFile} />
       <div className="react-3d-carousel" style={{ height }} {...handlers}>
         {slides && slides.length > 0 && (
           <div className="slider-container">
@@ -201,12 +201,12 @@ export default function Carousel3d(props) {
 
                   <div
                     className="slider-single-content"
-                    onClick={(e) => {
-                      setSrcFile(e.target.src);
+                    onClick={() => {
+                      setSrcFile(slider);
                       openModal();
                     }}
                   >
-                    <img src={slider.src} />
+                    <img src={slider.photos[0].src} />
                   </div>
                 </div>
               ))}

@@ -2,6 +2,7 @@ import express from "express";
 import mailgun from "mailgun-js";
 import dotenv from "dotenv";
 import Info from "../models/Info.js";
+import { messageValidation } from "../validate.js";
 
 const router = express.Router();
 
@@ -13,12 +14,16 @@ const mg = mailgun({
 });
 
 router.post("/", async (req, res) => {
-  console.log(req.body);
+  const { error } = messageValidation(req.body);
+  if (error) {
+    return res.status(400).send({ message: error.details[0].message });
+  }
   const lastname = req.body.lastname;
   const company = req.body.company;
   const phone = req.body.phone;
   const email = req.body.email;
   const message = req.body.message;
+
   let destinataire;
 
   try {
@@ -41,7 +46,6 @@ router.post("/", async (req, res) => {
   };
   mg.messages().send(data, function (error, body) {
     if (error) {
-      console.log(error);
       return res
         .status(400)
         .send({ message: "Impossible d'envoyer ce message." });

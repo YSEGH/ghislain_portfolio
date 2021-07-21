@@ -10,9 +10,6 @@ export default function Press() {
 
   const dispatch = useDispatch();
 
-  const displayModal = (target) => {
-    console.log(target);
-  };
   useEffect(() => {
     dispatch(getItemsHandler("press", null, null, null, null));
     return () => {};
@@ -24,14 +21,13 @@ export default function Press() {
         <h1>They talk about me</h1>
         <p>Let’s see what people think of me.</p>
       </div>
-      {items.length && (
+      {items.length ? (
         <Carousel3d
           slides={items.map((item, i) => {
-            return item.photos[0];
+            return item;
           })}
-          displayModal={displayModal}
         />
-      )}
+      ) : null}
     </div>
   );
 }

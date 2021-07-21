@@ -54,11 +54,18 @@ export default function FormCircus({ update = false, item }) {
   const importFiles = (filesImport) => {
     const oldFiles = files;
     const newfiles = filesImport;
-    const previewFile = newfiles.map((image, i) => {
-      return Object.assign(image, {
-        id: uniqId(),
-        preview: URL.createObjectURL(image),
-      });
+    const previewFile = newfiles.filter((image, i) => {
+      if (image.type.split("/")[0] === "image" && image.size > 1000000) {
+        toast.error(
+          `${image.name} est trop volumineux (+1Mo). Compression requise.`
+        );
+        return;
+      } else {
+        return Object.assign(image, {
+          id: uniqId(),
+          preview: URL.createObjectURL(image),
+        });
+      }
     });
     setFiles(oldFiles.concat(previewFile));
   };

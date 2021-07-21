@@ -54,11 +54,20 @@ export default function FormPhotos({ update = false, item }) {
 
   const importFile = (fileImport) => {
     const newFile = fileImport;
-    const previewFile = Object.assign(newFile, {
-      id: uniqId(),
-      preview: URL.createObjectURL(newFile),
-    });
-    setFile(previewFile);
+    let previewFile = null;
+    if (newFile.type.split("/")[0] === "image" && newFile.size > 1000000) {
+      toast.error(
+        `${newFile.name} est trop volumineux (+ 1Mo). Compression requise.`
+      );
+    } else {
+      previewFile = Object.assign(newFile, {
+        id: uniqId(),
+        preview: URL.createObjectURL(newFile),
+      });
+    }
+    if (previewFile) {
+      setFile(previewFile);
+    }
   };
 
   const setDateHandler = (dateSelected) => {

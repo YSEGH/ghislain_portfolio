@@ -35,10 +35,15 @@ export default function FormContact() {
   useEffect(() => {
     if (success) {
       toast.success(success.message);
+      reset({});
+      dispatch(emailSuccessReset());
+    }
+    if (error) {
+      toast.error(error);
       dispatch(emailSuccessReset());
     }
     return () => {};
-  }, [success]);
+  }, [success, error]);
 
   return (
     <form className="form-contact" onSubmit={handleSubmit(onSubmit)}>
@@ -47,8 +52,8 @@ export default function FormContact() {
         <input {...register("email")} placeholder="Email" />
       </div>
       <div className="inputs-container">
-        <input {...register("phone")} placeholder="Phone" />
-        <input {...register("company")} placeholder="Company" />
+        <input {...register("phone")} placeholder="Phone (optional)" />
+        <input {...register("company")} placeholder="Company (optional)" />
       </div>
       <textarea {...register("message")} placeholder="Message" />
       <button type="submit">Send</button>

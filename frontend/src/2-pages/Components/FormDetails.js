@@ -40,12 +40,21 @@ export default function FormDetails() {
   } = useForm();
 
   const importFile = (fileImport) => {
-    const image = fileImport;
-    const newFile = Object.assign(image, {
-      id: uniqId(),
-      preview: URL.createObjectURL(image),
-    });
-    setFile(newFile);
+    const newFile = fileImport;
+    let previewFile = null;
+    if (newFile.type.split("/")[0] === "image" && newFile.size > 1000000) {
+      toast.error(
+        `${newFile.name} est trop volumineux (+ 1Mo). Compression requise.`
+      );
+    } else {
+      previewFile = Object.assign(newFile, {
+        id: uniqId(),
+        preview: URL.createObjectURL(newFile),
+      });
+    }
+    if (previewFile) {
+      setFile(previewFile);
+    }
   };
 
   const onSubmit = async (dataForm) => {

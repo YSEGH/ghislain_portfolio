@@ -39,11 +39,20 @@ export default function FormPress({ update = false, item }) {
 
   const importFile = (fileImport) => {
     const newFile = fileImport;
-    const previewFile = Object.assign(newFile, {
-      id: uniqId(),
-      preview: URL.createObjectURL(newFile),
-    });
-    setFile(previewFile);
+    let previewFile = null;
+    if (newFile.type.split("/")[0] === "image" && newFile.size > 1000000) {
+      toast.error(
+        `${newFile.name} est trop volumineux (+ 1Mo). Compression requise.`
+      );
+    } else {
+      previewFile = Object.assign(newFile, {
+        id: uniqId(),
+        preview: URL.createObjectURL(newFile),
+      });
+    }
+    if (previewFile) {
+      setFile(previewFile);
+    }
   };
 
   const setDateHandler = (dateSelected) => {
@@ -60,7 +69,6 @@ export default function FormPress({ update = false, item }) {
       legend: data.legend,
       categorie: categories,
       date: data.date ? date : item.date,
-      place: data.place,
     };
     if (update) {
       newItem._id = item._id;
@@ -123,20 +131,13 @@ export default function FormPress({ update = false, item }) {
             type="date"
           />
         </div>
+        {errors.date && <span>Merci de compléter ce champ.</span>}
         <div className="form-group">
-          <label>Lieu</label>
-          <input
-            {...register("place")}
-            defaultValue={update ? item.place : ""}
-            placeholder="Lieu"
-          />
-        </div>
-        <div className="form-group">
-          <label>Légende</label>
+          <label>Légende (optionnel)</label>
           <textarea
             {...register("legend")}
             defaultValue={update ? item.legend : ""}
-            placeholder="Légende"
+            placeholder="Légende (optionnel)"
           />
         </div>
       </form>

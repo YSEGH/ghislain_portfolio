@@ -27,7 +27,7 @@
   margin: 1rem auto;
 }
 .portfolio .part-button {
-  width: 40vw;
+  width: 45vw;
   min-width: 20rem;
   aspect-ratio: 1/1;
   position: relative;
@@ -41,7 +41,7 @@
 }
 
 .portfolio .part-button .mask {
-  width: 40vw;
+  width: 45vw;
   min-width: 20rem;
   aspect-ratio: 1/1;
   position: absolute;

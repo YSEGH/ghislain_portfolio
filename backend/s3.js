@@ -38,7 +38,12 @@ const getFileStream = (fileKey) => {
     Bucket: bucketName,
   };
 
-  return s3.getObject(downloadParams).createReadStream();
+  return s3
+    .getObject(downloadParams)
+    .createReadStream()
+    .on("error", () => {
+      return;
+    });
 };
 
 // Delete a file

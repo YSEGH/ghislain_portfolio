@@ -46,9 +46,9 @@ $mode: cubic-bezier(0.17, 0.67, 0.55, 1.43); */
 
 .react-3d-carousel {
   position: relative;
-  height: 400px !important;
+  height: 500px !important;
   width: 80vw;
-  margin: 5rem auto;
+  margin: 2rem auto;
 }
 
 .react-3d-carousel .slider-container {
@@ -78,6 +78,7 @@ $mode: cubic-bezier(0.17, 0.67, 0.55, 1.43); */
   width: 100%;
   height: 100%;
   transition: z-index 0ms 0.25s;
+  pointer-events: none;
 }
 
 .slider-single-content {
@@ -100,7 +101,7 @@ $mode: cubic-bezier(0.17, 0.67, 0.55, 1.43); */
 
 .slider-single-content img {
   width: 100%;
-  max-width: 100%;
+  height: 100%;
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
@@ -109,6 +110,8 @@ $mode: cubic-bezier(0.17, 0.67, 0.55, 1.43); */
   /* user-drag: none; */
   -webkit-touch-callout: none;
   object-fit: cover;
+  object-position: center center;
+  border-radius: 5px;
 }
 
 .slider-single.preactivede {
@@ -142,9 +145,10 @@ $mode: cubic-bezier(0.17, 0.67, 0.55, 1.43); */
 }
 .slider-single.active {
   z-index: 2;
-  cursor: zoom-in;
+  cursor: pointer;
   display: flex;
   align-items: center;
+  pointer-events: all;
 }
 .slider-single.active .slider-left,
 .slider-single.active .slider-right {
@@ -155,6 +159,11 @@ $mode: cubic-bezier(0.17, 0.67, 0.55, 1.43); */
   border: none;
   border-radius: 50%;
   margin: auto;
+  transition: 0.25s;
+}
+.slider-single.active .slider-left:hover,
+.slider-single.active .slider-right:hover {
+  background-color: #ff05126b;
 }
 .slider-single.active .slider-left div,
 .slider-single.active .slider-right div {
@@ -174,7 +183,7 @@ $mode: cubic-bezier(0.17, 0.67, 0.55, 1.43); */
   position: absolute;
   display: none;
   z-index: 3;
-  right: 101%;
+  right: 125%;
   margin-right: 5px;
   padding: 20px 15px;
   height: 100%;
@@ -193,7 +202,7 @@ $mode: cubic-bezier(0.17, 0.67, 0.55, 1.43); */
   display: none;
   position: absolute;
   z-index: 3;
-  left: 101%;
+  left: 125%;
   padding: 20px 15px;
   height: 101%;
   cursor: pointer;
@@ -269,18 +278,28 @@ $mode: cubic-bezier(0.17, 0.67, 0.55, 1.43); */
 }
 
 @media screen and (max-width: 900px) {
+  .react-3d-carousel {
+    position: relative;
+    height: 400px !important;
+    width: 80vw;
+    margin: 2rem auto;
+  }
   .slider-left,
   .slider-right {
     display: none !important;
   }
   .react-3d-carousel .slider-container .slider-content {
-    width: 100%;
+    width: 90%;
   }
   .slider-single.preactive .slider-single-content {
-    transform: translateX(0) scale(0.8);
+    transform: translateX(50px) scale(0.8);
   }
 
   .slider-single.proactive .slider-single-content {
-    transform: translateX(0) scale(0.8);
+    transform: translateX(-50px) scale(0.8);
+  }
+  .slider-single-content img {
+    width: 100%;
+    height: auto;
   }
 }
