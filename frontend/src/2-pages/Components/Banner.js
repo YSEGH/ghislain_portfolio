@@ -22,7 +22,7 @@ export default function Banner() {
     <div className="banner part">
       <video
         className="video-banner"
-        src="/videos/VIDEO-KENZO.mp4"
+        src="/static-files/videos/video-bannier.mp4"
         autoPlay
         type="video/mp4"
         muted

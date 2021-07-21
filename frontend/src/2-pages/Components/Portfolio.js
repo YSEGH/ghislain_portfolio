@@ -13,7 +13,9 @@ export default function Portfolio() {
         to="/circus"
         onClick={() => window.scrollTo(0, 0)}
         className="part-button circus"
-        style={{ backgroundImage: "url(/images/Kooza-7.jpg)" }}
+        style={{
+          backgroundImage: "url(/static-files/images/img-button-1.jpg)",
+        }}
       >
         <div className="mask"></div>
         <div className="text-container">
@@ -25,7 +27,9 @@ export default function Portfolio() {
         to="/photography"
         onClick={() => window.scrollTo(0, 0)}
         className="part-button photography"
-        style={{ backgroundImage: "url(/images/large.jpg)" }}
+        style={{
+          backgroundImage: "url(/static-files/images/img-button-2.jpg)",
+        }}
       >
         <div className="mask"></div>
         <div className="text-container">

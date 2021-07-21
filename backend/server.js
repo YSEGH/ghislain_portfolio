@@ -6,6 +6,7 @@ import infoRouter from "./routes/infoRoutes.js";
 import itemRouter from "./routes/itemRoutes.js";
 import imageRouter from "./routes/imageRoutes.js";
 import emailRouter from "./routes/emailRoutes.js";
+import path from "path";
 
 dotenv.config();
 
@@ -24,6 +25,12 @@ app.use("/api/info", infoRouter);
 app.use("/api/item", itemRouter);
 app.use("/api/files", imageRouter);
 
+const __dirname = path.resolve();
+app.use("/static-files", express.static(path.join(__dirname, "/static-files")));
+app.use(express.static(path.join(__dirname, "/frontend/build")));
+app.get("*", (req, res) =>
+  res.sendFile(path.join(__dirname, "/frontend/build/index.html"))
+);
 app.listen(process.env.PORT || 3001, () => {
   console.log(`Serveur démarre sur le port ${process.env.PORT || 3001}`);
 });

@@ -155,7 +155,6 @@ $mode: cubic-bezier(0.17, 0.67, 0.55, 1.43); */
   display: block;
   height: 4rem;
   width: 4rem;
-  background-color: #ff051242;
   border: none;
   border-radius: 50%;
   margin: auto;
@@ -163,7 +162,7 @@ $mode: cubic-bezier(0.17, 0.67, 0.55, 1.43); */
 }
 .slider-single.active .slider-left:hover,
 .slider-single.active .slider-right:hover {
-  background-color: #ff05126b;
+  background-color: #ff051242;
 }
 .slider-single.active .slider-left div,
 .slider-single.active .slider-right div {
