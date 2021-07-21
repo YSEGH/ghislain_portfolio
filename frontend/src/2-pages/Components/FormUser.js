@@ -38,7 +38,7 @@ export default function FormUser() {
 
   const onSubmit = (data) => {
     const userUpdate = {
-      username: data.username ? data.username : user.username,
+      username: user.username,
       password: data.password,
       newPassword: data.newPassword,
     };
@@ -80,8 +80,9 @@ export default function FormUser() {
       <input
         {...register("username")}
         type="text"
-        defaultValue={user.username}
+        value={user.username}
         placeholder="Votre nom de compte"
+        disabled
       />
       <input
         {...register("password")}
