@@ -8,6 +8,10 @@
     "build": "cd frontend && npm install && npm run prebuild && npm run build",
     "start": "nodemon --watch backend --exec babel-node backend/server.js"
   },
+  "engines": {
+    "node": "12.4.0",
+    "npm": "6.9.0"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
