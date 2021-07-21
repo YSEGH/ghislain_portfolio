@@ -96,7 +96,10 @@ export default function Nav({ color }) {
               activeStyle={{ color: "#ffff" }}
               to="/"
               style={{ color: color }}
-              onClick={() => localStorage.removeItem("token")}
+              onClick={() => {
+                localStorage.removeItem("token");
+                localStorage.removeItem("user");
+              }}
               exact
             >
               <BiLogOut size={25} />
