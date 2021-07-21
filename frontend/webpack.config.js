@@ -1,12 +1,7 @@
-/* const path = require("path");
+const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin"); */
-
-import path from "path";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import { CleanWebpackPlugin } from "clean-webpack-plugin";
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 let mode = "development";
 
