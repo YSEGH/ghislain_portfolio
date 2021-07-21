@@ -27,9 +27,9 @@ app.use("/api/files", imageRouter);
 
 const __dirname = path.resolve();
 app.use("/static-files", express.static(path.join(__dirname, "/static-files")));
-app.use(express.static(path.join(__dirname, "/frontend/build")));
+app.use(express.static(path.join(__dirname, "/frontend/dist")));
 app.get("*", (req, res) =>
-  res.sendFile(path.join(__dirname, "/frontend/build/index.html"))
+  res.sendFile(path.join(__dirname, "/frontend/dist/index.html"))
 );
 app.listen(process.env.PORT || 3001, () => {
   console.log(`Serveur démarre sur le port ${process.env.PORT || 3001}`);
