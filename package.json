@@ -5,6 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
+    "build": "cd frontend && npm install && npm run prebuild && npm run build",
     "start": "nodemon --watch backend --exec babel-node backend/server.js"
   },
   "author": "",
