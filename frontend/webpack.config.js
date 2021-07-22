@@ -2,6 +2,7 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const CompressionPlugin = require("compression-webpack-plugin");
 
 let mode = "development";
 
@@ -38,29 +39,26 @@ module.exports = {
           publicPath: "./images/",
         },
       },
-      /* {
-        test: /\.(png|jpe?g|gif)$/i,
-        loader: "file-loader",
-        options: {
-          name: "[name].[ext]",
-          outputPath: "images",
-          publicPath: "images",
-        },
-      }, 
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        type: "asset/resource",
-      },*/
     ],
   },
 
   plugins: [
-    /*     new CleanWebpackPlugin(),
-     */ new MiniCssExtractPlugin({
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({
       filename: "css/[name]-[contenthash].css",
     }),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
+    }),
+    new CompressionPlugin({
+      deleteOriginalAssets: true,
+      compressionOptions: { level: 1 },
+      exclude: /node_modules/,
+      filename: "[path][base].gz",
+      algorithm: "gzip",
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.8,
     }),
   ],
   devtool: "source-map",
