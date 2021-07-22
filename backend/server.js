@@ -19,8 +19,8 @@ mongoose.connect(
 
 const app = express();
 
-app.use(express.json());
 app.use(compression());
+app.use(express.json());
 
 app.use("/api/user", userRouter);
 app.use("/api/email", emailRouter);
