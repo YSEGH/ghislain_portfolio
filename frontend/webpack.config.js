@@ -15,7 +15,7 @@ module.exports = {
   entry: ["@babel/polyfill", "./src/index.js"],
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "js/index_bundle.js",
+    filename: "js/index_bundle.js.gz",
   },
   module: {
     rules: [
