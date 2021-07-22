@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import "../../1-css/CircusContainer.css";
 import { getItemsHandler } from "../../3-actions/itemActions";
 import Item from "./Item";
-import ModalCircus from "./ModalCircus";
+const ModalCircus = lazy(() => import("./ModalCircus"));
 import Pagination from "./Pagination";
 
 export default function CircusContainer() {
