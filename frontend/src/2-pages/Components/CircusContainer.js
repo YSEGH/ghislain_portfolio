@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import "../../1-css/CircusContainer.css";
@@ -26,7 +26,9 @@ export default function CircusContainer() {
 
   return (
     <div className="circus-container circus">
-      <ModalCircus items={items} index={index} />
+      <Suspense fallback={!loadingItems}>
+        <ModalCircus items={items} index={index} />
+      </Suspense>
       <div className="items-container">
         {items.map((item, i) => (
           <Item
