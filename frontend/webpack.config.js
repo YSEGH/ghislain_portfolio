@@ -50,7 +50,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./public/index.html",
     }),
-    new CompressionPlugin({
+    /* new CompressionPlugin({
       compressionOptions: { level: 1 },
       exclude: /node_modules/,
       filename: "[path][base].gz",
@@ -58,7 +58,7 @@ module.exports = {
       test: /\.js$|\.css$|\.html$/,
       threshold: 10240,
       minRatio: 0.8,
-    }),
+    }), */
   ],
   devtool: "source-map",
   devServer: {

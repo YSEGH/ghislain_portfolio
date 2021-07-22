@@ -7,6 +7,7 @@ import itemRouter from "./routes/itemRoutes.js";
 import imageRouter from "./routes/imageRoutes.js";
 import emailRouter from "./routes/emailRoutes.js";
 import path from "path";
+import compression from "compression";
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ mongoose.connect(
 const app = express();
 
 app.use(express.json());
+app.use(compression());
 
 app.use("/api/user", userRouter);
 app.use("/api/email", emailRouter);
@@ -30,19 +32,6 @@ const __dirname = path.resolve();
 
 app.use("/static-files", express.static(path.join(__dirname, "/static-files")));
 app.use(express.static(path.join(__dirname, "/frontend/dist")));
-
-app.get("*.js", function (req, res, next) {
-  req.url = req.url + ".gz";
-  res.set("Content-Encoding", "gzip");
-  res.set("Content-Type", "text/javascript");
-  next();
-});
-app.get("*.css", function (req, res, next) {
-  req.url = req.url + ".gz";
-  res.set("Content-Encoding", "gzip");
-  res.set("Content-Type", "text/css");
-  next();
-});
 app.get("*", (req, res) =>
   res.sendFile(path.join(__dirname, "/frontend/dist/index.html"))
 );
