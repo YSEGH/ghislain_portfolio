@@ -42,7 +42,7 @@
   text-align: left;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding-bottom: 7.5rem;
   padding-top: 2rem;
   z-index: 2;
