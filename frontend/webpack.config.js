@@ -15,7 +15,7 @@ module.exports = {
   entry: ["@babel/polyfill", "./src/index.js"],
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "js/index_bundle.js.gz",
+    filename: "js/index_bundle.js",
   },
   module: {
     rules: [
@@ -51,7 +51,6 @@ module.exports = {
       template: "./public/index.html",
     }),
     new CompressionPlugin({
-      deleteOriginalAssets: true,
       compressionOptions: { level: 1 },
       exclude: /node_modules/,
       filename: "[path][base].gz",
