@@ -3,6 +3,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 let mode = "development";
 
@@ -51,14 +53,15 @@ module.exports = {
       template: "./public/index.html",
     }),
     /* new CompressionPlugin({
-      compressionOptions: { level: 1 },
-      exclude: /node_modules/,
+      compressionOptions: { level: 9 },
       filename: "[path][base].gz",
       algorithm: "gzip",
       test: /\.js$|\.css$|\.html$/,
       threshold: 10240,
       minRatio: 0.8,
+      deleteOriginalAssets: true,
     }), */
+    /* new BundleAnalyzerPlugin(), */
   ],
   devtool: "source-map",
   devServer: {

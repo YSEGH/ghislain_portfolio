@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import "../../1-css/CircusContainer.css";
 import { getItemsHandler } from "../../3-actions/itemActions";
 import Item from "./Item";
-const ModalCircus = lazy(() => import("./ModalCircus"));
+import ModalCircus from "./ModalCircus";
 import Pagination from "./Pagination";
 
 export default function CircusContainer() {
@@ -26,9 +26,7 @@ export default function CircusContainer() {
 
   return (
     <div className="circus-container circus">
-      <Suspense fallback={!loadingItems}>
-        <ModalCircus items={items} index={index} />
-      </Suspense>
+      <ModalCircus items={items} index={index} />
       <div className="items-container">
         {items.map((item, i) => (
           <Item
