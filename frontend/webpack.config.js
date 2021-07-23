@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 let mode = "development";
 
@@ -41,13 +42,20 @@ module.exports = {
       },
     ],
   },
-
+  /* optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        test: /\.js$/,
+      }),
+    ],
+  }, */
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: "css/[name]-[contenthash].css",
     }),
-    new HtmlWebpackPlugin({
+    /*     new UglifyJsPlugin(),
+     */ new HtmlWebpackPlugin({
       template: "./public/index.html",
     }),
     new CompressionPlugin({
@@ -60,6 +68,7 @@ module.exports = {
       deleteOriginalAssets: true,
     }),
   ],
+
   devtool: "source-map",
   devServer: {
     contentBase: __dirname + "dist",
