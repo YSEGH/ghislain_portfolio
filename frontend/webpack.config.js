@@ -42,13 +42,13 @@ module.exports = {
       },
     ],
   },
-  /* optimization: {
-    minimizer: [
+  optimization: {
+    /* minimizer: [
       new UglifyJsPlugin({
         test: /\.js$/,
       }),
-    ],
-  }, */
+    ], */
+  },
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
