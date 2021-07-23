@@ -6,8 +6,6 @@ import "../../1-css/Pagination.css";
 export default function Pagination({ count, per_page, page, filters, url }) {
   const [link, setLink] = useState(0);
   useEffect(() => {
-    /*     console.log({ count, per_page, page, url });
-    console.log(link); */
     setLink(Math.ceil(count / per_page));
     return () => {};
   }, [count]);
@@ -18,6 +16,7 @@ export default function Pagination({ count, per_page, page, filters, url }) {
         <Link
           className="previous"
           to={`${url}/${page - 1}/${filters ? filters : ""}`}
+          onClick={() => window.scrollTo(0, 0)}
         >
           <MdNavigateNext size={20} />
           Page précédente
@@ -27,6 +26,7 @@ export default function Pagination({ count, per_page, page, filters, url }) {
         <Link
           className="next"
           to={`${url}/${page + 1}/${filters ? filters : ""}`}
+          onClick={() => window.scrollTo(0, 0)}
         >
           Page suivante <MdNavigateNext size={20} />
         </Link>

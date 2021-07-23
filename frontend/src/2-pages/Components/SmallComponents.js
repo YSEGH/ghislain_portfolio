@@ -17,6 +17,14 @@ function LoadingSpinnerFixed() {
     </div>
   );
 }
+
+function LoadingSpinnerFullPage() {
+  return (
+    <div className="small-component full-page loading">
+      <ImSpinner6 size={40} />
+    </div>
+  );
+}
 function SuccessUpdate() {
   return (
     <div className="small-component success fixed">
@@ -25,4 +33,10 @@ function SuccessUpdate() {
   );
 }
 
-export { LoadingSVG, LoadingSpinner, LoadingSpinnerFixed, SuccessUpdate };
+export {
+  LoadingSVG,
+  LoadingSpinner,
+  LoadingSpinnerFixed,
+  SuccessUpdate,
+  LoadingSpinnerFullPage,
+};

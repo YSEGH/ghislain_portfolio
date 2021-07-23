@@ -9,6 +9,7 @@ import Circus from "./2-pages/Circus";
 import Photos from "./2-pages/Photos";
 import Auth from "./2-pages/Auth"; */
 import { ToastContainer } from "react-toastify";
+import { LoadingSpinnerFullPage } from "./2-pages/Components/SmallComponents";
 
 const Home = lazy(() => import("./2-pages/Home"));
 const Blog = lazy(() => import("./2-pages/Blog"));
@@ -23,7 +24,7 @@ function App() {
     <Router>
       <div className="App">
         <ToastContainer position="bottom-left" autoClose={2500} pauseOnHover />
-        <Suspense fallback={<div>Chargement...</div>}>
+        <Suspense fallback={<LoadingSpinnerFullPage />}>
           <Switch>
             <Route path="/" exact render={() => <Home />} />
             <Route path="/about" render={() => <About />} />
