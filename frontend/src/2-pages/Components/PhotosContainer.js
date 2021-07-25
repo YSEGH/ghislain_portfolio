@@ -12,7 +12,7 @@ export default function PhotosContainer() {
 
   const dispatch = useDispatch();
   const { page = 1, filters: filtersParams = null } = useParams();
-  const per_page = 6;
+  const per_page = 25;
   const offset = page * per_page - per_page;
   const filters = filtersParams ? filtersParams.split("&") : [];
 

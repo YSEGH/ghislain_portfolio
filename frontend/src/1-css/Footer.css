@@ -42,6 +42,7 @@
   font-size: 50px;
   font-weight: 300;
   margin-bottom: 1rem;
+  font-family: "Nothing You Could Do", cursive;
 }
 .footer .text-container p {
   font-weight: 200;
@@ -50,7 +51,7 @@
   margin: 2rem auto 0 auto;
 }
 .footer .text-container .network-container a {
-  margin-right: 1rem;
+  margin-right: 0.5rem;
 }
 .footer .legal-notice {
   height: 4rem;

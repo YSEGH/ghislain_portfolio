@@ -1,7 +1,8 @@
 .item {
-  width: 25%;
-  aspect-ratio: 1 / 1;
-  margin: 2rem;
+  width: 25vw;
+  height: 25vw;
+  margin: 1rem;
+  margin-bottom: 2rem;
   overflow: hidden;
   cursor: pointer;
   position: relative;
@@ -31,13 +32,13 @@
 
 @media screen and (max-width: 960px) {
   .item {
-    margin: 0;
-    margin-bottom: 2rem;
-    width: 40%;
+    width: 40vw;
+    height: 40vw;
   }
 }
 @media screen and (max-width: 700px) {
   .item {
-    width: 100%;
+    width: 100vw;
+    height: 100vw;
   }
 }

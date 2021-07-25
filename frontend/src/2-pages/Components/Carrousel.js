@@ -99,7 +99,6 @@ export default function Carrousel({
   };
 
   useEffect(() => {
-    console.log(close);
     const carousel = document.querySelector(`${modalSelector} .carousel`);
     const slider = document.querySelector(`${modalSelector} .slide-container`);
     const newIndex = initialIndex;

@@ -17,18 +17,15 @@
   cursor: pointer;
   padding: 0.5rem;
   white-space: nowrap;
-  border: 1px solid rgba(211, 211, 211, 0.226);
   transition: 0.25s;
 }
 .filter-container ul li a:hover {
   background-color: #ed3833;
   color: #fff;
-  border: 1px solid #ed3833;
 }
 .filter-container ul li a.active {
   background-color: #ed3833;
   color: #fff;
-  border: 1px solid #ed3833;
 }
 .filter-container .filter-container-list {
   display: flex;
@@ -92,6 +89,7 @@
 @media screen and (max-width: 960px) {
   .filter-container .filter-container-list {
     flex-direction: column;
+    overflow: scroll;
   }
   .filter-container .filter-container-list .filters-button {
     margin: 1rem 0;

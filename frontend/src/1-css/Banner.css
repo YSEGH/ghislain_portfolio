@@ -7,6 +7,7 @@
   justify-content: flex-start;
   align-items: center;
   overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.342);
 }
 .banner .video-banner {
   height: auto;
@@ -26,23 +27,18 @@
   left: 0;
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.342);
-  background: linear-gradient(
-    0deg,
-    rgb(5, 3, 23) 0%,
-    rgba(5, 3, 23, 0.25) 100%,
-    rgba(5, 3, 23, 0.5) 100%
-  );
 }
 .banner .text-container {
-  font-family: "Poppins", sans-serif;
+  position: relative;
   color: white;
   height: 100vh;
-  width: 50%;
+  width: 100%;
   padding-left: 2rem;
   text-align: left;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
   padding-bottom: 7.5rem;
   padding-top: 2rem;
   z-index: 2;
@@ -51,25 +47,35 @@
   font-size: 60px;
   font-weight: 200;
 }
-.banner .text-container div h1 {
+.banner .text-container h1 {
   font-size: 90px !important;
-  font-weight: 800;
+  font-weight: 600;
   line-height: 90px;
   margin-bottom: 2rem;
+  font-family: "Nothing You Could Do", cursive;
+  text-align: center;
 }
-.banner .text-container div p:nth-child(2) {
+.banner .text-container .links-container * {
+  font-size: 40px;
   margin: 1rem 0;
   font-weight: 300;
-}
-.banner .text-container div p:nth-child(2) span {
+  font-family: "Nothing You Could Do", cursive;
+  text-decoration: none;
   color: #ff0513;
 }
-.banner .text-container div p:nth-child(3) {
-  font-weight: 300;
+.banner .text-container .links-container span {
+  margin: 0 1rem;
+  color: #fff;
+}
+.banner .text-container .links-container a:hover {
+  text-decoration: underline;
 }
 .banner .network-container {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  width: fit-content;
   display: flex;
-  margin: 1rem 0 0 0;
 }
 .banner .network-container a {
   text-decoration: none;
@@ -77,43 +83,7 @@
   transition: 0.25s;
   margin-right: 1rem;
 }
-.banner .buttons-container {
-  display: flex;
-  margin: 3rem 0 0 0;
-}
-.banner .buttons-container .button {
-  height: 3.4rem;
-  width: 10rem;
-  border-radius: 60px;
-  border: none;
-  font: 400 14px "Poppins", sans-serif;
-  color: #ffff;
-  margin-right: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: 0.25s;
-  text-decoration: none;
-}
-.banner .buttons-container .button:nth-child(1) {
-  background-color: #ff0513;
-  border: 1px solid #ff0513;
-}
-.banner .buttons-container .button:nth-child(1):hover {
-  background-color: transparent;
-  color: #ff0513;
-  border: 1px solid #fff;
-}
-.banner .buttons-container .button:nth-child(2) {
-  background-color: transparent;
-  border: 1px solid #ffff;
-}
-.banner .buttons-container .button:nth-child(2):hover {
-  background-color: #fff;
-  color: #ff0513;
-  border: 1px solid #fff;
-}
+
 @media screen and (max-width: 960px) {
   .banner {
     display: flex;
@@ -127,11 +97,10 @@
   .banner .text-container {
     width: 100%;
     padding: 2rem 1rem;
-    justify-content: space-around;
   }
 }
 @media screen and (max-width: 650px) {
-  .banner .text-container div h1 {
+  .banner .text-container h1 {
     font-size: 70px !important;
   }
 }
@@ -139,11 +108,15 @@
   .banner {
     height: auto;
   }
-  .banner .buttons-container {
-    justify-content: space-around;
-    margin-top: 4rem;
+  .banner .text-container .links-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
-  .banner .buttons-container button {
-    margin-right: 0rem;
+  .banner .network-container {
+    left: 0;
+    right: 0;
+    margin: auto;
   }
 }

@@ -55,10 +55,10 @@ export default function Footer() {
         </p>
         <div className="network-container">
           <a href={`${infos.instagram}`} target="_blank">
-            <FiInstagram size={30} />
+            <FiInstagram size={20} />
           </a>
           <a href={`${infos.facebook}`} target="_blank">
-            <FiFacebook size={30} />
+            <FiFacebook size={20} />
           </a>
         </div>
       </div>

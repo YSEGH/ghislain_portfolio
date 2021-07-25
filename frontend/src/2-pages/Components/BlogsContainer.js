@@ -9,7 +9,7 @@ import Pagination from "./Pagination";
 export default function BlogsContainer() {
   const dispatch = useDispatch();
   const { page = 1, filters: filtersParams = null } = useParams();
-  const per_page = 6;
+  const per_page = 12;
   const offset = page * per_page - per_page;
   const filters = filtersParams ? filtersParams.split("&") : [];
 

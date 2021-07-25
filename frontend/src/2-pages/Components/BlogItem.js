@@ -3,6 +3,7 @@ import "../../1-css/BlogItem.css";
 import ModalBlog from "./ModalBlog";
 import EditorJs from "react-editor-js";
 import { EDITOR_JS_TOOLS } from "../../constants";
+import { Link } from "react-router-dom";
 
 export default function BlogItem({ item }) {
   const [text, setText] = useState("");
@@ -26,14 +27,17 @@ export default function BlogItem({ item }) {
   }, []);
   return (
     <div className="blog-item">
-      <ModalBlog item={item} />
-      <img
-        src={item.photos[0].src}
-        alt="blog"
-        onClick={() => {
-          displayModal();
-        }}
-      />
+      {/*       <ModalBlog item={item} />
+       */}
+      <Link to={`/blog/article/id/${item._id}`}>
+        <img
+          src={item.photos[0].src}
+          alt="blog"
+          /*           onClick={() => {
+            displayModal();
+          }} */
+        />
+      </Link>
       <h2>{item.title}</h2>
       <div className="editor-js-blog-item">
         <EditorJs
@@ -44,13 +48,7 @@ export default function BlogItem({ item }) {
         />
       </div>
       <span>(...)</span>
-      <a
-        onClick={() => {
-          displayModal();
-        }}
-      >
-        Lire la suite
-      </a>
+      <Link to={`/blog/article/id/${item._id}`}>Lire la suite</Link>
     </div>
   );
 }

@@ -29,42 +29,28 @@ export default function Banner() {
         loop
       />
       <div className="mask"></div>
-      <Nav color="white" />
+      <Nav color="white" background="transparent" />
       <div className="text-container">
-        <div>
-          <h1>
-            Ghislain
-            <br /> Ramage
-          </h1>
-          <p>
-            <span>Circus</span> & <span>Photography</span> Artist.
-          </p>
-          <p>Find Me on</p>
-          <div className="network-container">
-            <a href={`${infos.instagram}`} target="_blank">
-              <FiInstagram size={30} />
-            </a>
-            <a href={`${infos.facebook}`} target="_blank">
-              <FiFacebook size={30} />
-            </a>
-          </div>
-          <div className="buttons-container">
-            <button
-              onClick={() => {
-                document.getElementById("contact").scrollIntoView();
-              }}
-              className="button"
-            >
-              Contact
-            </button>
-            <Link
-              to="/about"
-              className="button"
-              onClick={() => window.scrollTo(0, 0)}
-            >
-              About
-            </Link>
-          </div>
+        <h1>
+          Ghislain
+          <br /> Ramage
+        </h1>
+        <div className="links-container">
+          <Link to="/circus" onClick={() => window.scrollTo(0, 0)}>
+            Circus
+          </Link>
+          <span>&</span>
+          <Link to="/photography" onClick={() => window.scrollTo(0, 0)}>
+            Photography
+          </Link>
+        </div>
+        <div className="network-container">
+          <a href={`${infos.instagram}`} target="_blank">
+            <FiInstagram size={20} />
+          </a>
+          <a href={`${infos.facebook}`} target="_blank">
+            <FiFacebook size={20} />
+          </a>
         </div>
       </div>
     </div>

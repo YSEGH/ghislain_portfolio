@@ -5,7 +5,7 @@ import { AiOutlineHome } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
 import { NavLink } from "react-router-dom";
 
-export default function Nav({ color }) {
+export default function Nav({ background = "#fff", color }) {
   const displayNav = () => {
     const nav = document.getElementsByClassName("nav")[0];
     if (nav.classList.contains("open")) {
@@ -16,6 +16,7 @@ export default function Nav({ color }) {
       nav.classList.add("open");
     }
   };
+
   return (
     <>
       <GiHamburgerMenu
@@ -24,11 +25,10 @@ export default function Nav({ color }) {
         className="nav-burger"
         onClick={() => displayNav()}
       />
-      <ul className="nav close">
+      <ul className="nav close" style={{ backgroundColor: background }}>
         <li>
           <NavLink
             activeClassName="active"
-            activeStyle={{ color: "#ffff" }}
             to="/"
             style={{ color: color }}
             exact
@@ -39,7 +39,6 @@ export default function Nav({ color }) {
         <li>
           <NavLink
             activeClassName="active"
-            activeStyle={{ color: "#ffff" }}
             to="/about"
             style={{ color: color }}
             exact
@@ -50,7 +49,6 @@ export default function Nav({ color }) {
         <li>
           <NavLink
             activeClassName="active"
-            activeStyle={{ color: "#ffff" }}
             to="/circus"
             style={{ color: color }}
           >
@@ -60,7 +58,6 @@ export default function Nav({ color }) {
         <li>
           <NavLink
             activeClassName="active"
-            activeStyle={{ color: "#ffff" }}
             to="/photography"
             style={{ color: color }}
           >
@@ -68,12 +65,7 @@ export default function Nav({ color }) {
           </NavLink>
         </li>
         <li>
-          <NavLink
-            activeClassName="active"
-            activeStyle={{ color: "#ffff" }}
-            to="/blog"
-            style={{ color: color }}
-          >
+          <NavLink activeClassName="active" to="/blog" style={{ color: color }}>
             Blog
           </NavLink>
         </li>
@@ -81,7 +73,6 @@ export default function Nav({ color }) {
           <li>
             <NavLink
               activeClassName="active"
-              activeStyle={{ color: "#ffff" }}
               to="/admin/mon-compte"
               style={{ color: color }}
             >
@@ -93,7 +84,6 @@ export default function Nav({ color }) {
           <li>
             <NavLink
               activeClassName="logout"
-              activeStyle={{ color: "#ffff" }}
               to="/"
               style={{ color: color }}
               onClick={() => {
