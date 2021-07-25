@@ -1,11 +1,11 @@
 .blog-item {
-  width: 25%;
+  width: 25vw;
   height: auto;
-  margin: 0 2rem 4rem 2rem;
+  margin: 0 1rem 4rem 1rem;
 }
 .blog-item img {
-  width: 100%;
-  aspect-ratio: 1/1;
+  width: 25vw;
+  height: 25vw;
   object-fit: cover;
   cursor: pointer;
 }
@@ -13,6 +13,12 @@
   font-size: 1.5em !important;
   font-weight: 400;
   margin: 1rem 0;
+}
+.codex-editor--narrow .codex-editor__redactor {
+  margin-right: 0px !important;
+}
+.codex-editor__redactor {
+  padding-bottom: 0 !important;
 }
 .blog-item .editor-js-blog-item {
   height: 144px;
@@ -40,12 +46,20 @@
 }
 @media screen and (max-width: 960px) {
   .blog-item {
-    width: 40%;
+    width: 40vw;
     margin: 0 1rem 4rem 1rem;
+  }
+  .blog-item img {
+    width: 40vw;
+    height: 40vw;
   }
 }
 @media screen and (max-width: 700px) {
   .blog-item {
-    width: 100%;
+    width: 100vw;
+  }
+  .blog-item img {
+    width: 90vw;
+    height: 90vw;
   }
 }
