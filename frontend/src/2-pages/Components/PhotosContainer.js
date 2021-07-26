@@ -30,27 +30,31 @@ export default function PhotosContainer() {
     <div className="photos-container photo">
       <ModalPhoto items={items} index={index} />
 
-      <div className="items-container">
-        {items.map((item, i) => (
-          <Item
-            key={i}
-            item={Object.assign(item, { index: i })}
-            secondaryClass={"item-photography"}
-            setIndex={setIndex}
-            modalSelector={`.modal.photo`}
-          />
-        ))}
-      </div>
+      {!loadingItems && (
+        <>
+          <div className="items-container">
+            {items.map((item, i) => (
+              <Item
+                key={i}
+                item={Object.assign(item, { index: i })}
+                secondaryClass={"item-photography"}
+                setIndex={setIndex}
+                modalSelector={`.modal.photo`}
+              />
+            ))}
+          </div>
 
-      {count / per_page > 1 ? (
-        <Pagination
-          count={count}
-          per_page={per_page}
-          page={Number(page)}
-          filters={filtersParams}
-          url={`/photography`}
-        />
-      ) : null}
+          {count / per_page > 1 ? (
+            <Pagination
+              count={count}
+              per_page={per_page}
+              page={Number(page)}
+              filters={filtersParams}
+              url={`/photography`}
+            />
+          ) : null}
+        </>
+      )}
     </div>
   );
 }

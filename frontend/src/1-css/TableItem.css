@@ -1,8 +1,8 @@
 .tabe-items {
   height: auto;
   width: 100vw;
-  background-color: lightblue;
   font: 400 20px "Poppins";
+  color: #303030;
 }
 
 .table-items table * {

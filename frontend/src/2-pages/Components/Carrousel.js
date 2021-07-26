@@ -139,7 +139,6 @@ export default function Carrousel({
             /> */}
             <div className="text-container close">
               <h2>{items[i].title}</h2>
-              <p>{items[i].legend}</p>
               <p>
                 <span>
                   <MdDateRange size={40} />

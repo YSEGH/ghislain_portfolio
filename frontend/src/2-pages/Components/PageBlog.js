@@ -31,19 +31,22 @@ export default function PageBlog(props) {
       {items[0] ? (
         <div className="page-blog-content">
           <div className="photo-container">
-            <img src={items[0].photos[0].src} alt={items[0].legend} />
+            <img
+              src={items[0].photos[items[0].photos.length - 1].src}
+              alt={items[0].title}
+            />
           </div>
           <div className="text-container">
             <div className="details-infos">
               <p>
                 <span>
-                  <MdDateRange size={40} />
+                  <MdDateRange size={30} />
                 </span>
                 {items[0].date}
               </p>
               <p>
                 <span>
-                  <MdPlace size={40} />
+                  <MdPlace size={30} />
                 </span>
                 {items[0].place}
               </p>
@@ -56,13 +59,11 @@ export default function PageBlog(props) {
                 readOnly
               />
             </div>
-            <Link
-              className="back-link"
-              to={""}
-              onClick={() => window.history.back()}
-            >
-              Retour
-            </Link>
+          </div>
+          <div className="photos-container">
+            {items[0].photos.map((photo, i) => (
+              <img src={photo.src} alt={items[0].title} />
+            ))}
           </div>
         </div>
       ) : null}

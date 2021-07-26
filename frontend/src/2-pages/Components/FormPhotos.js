@@ -7,7 +7,7 @@ import { FaPortrait } from "react-icons/fa";
 import uniqId from "uniqid";
 import {
   addItemHandler,
-  deleteFileHandler,
+  getItemsHandler,
   resetItemSuccess,
   updateItemHandler,
 } from "../../3-actions/itemActions";
@@ -15,11 +15,10 @@ import { LoadingSVG } from "./SmallComponents";
 import { toast } from "react-toastify";
 
 export default function FormPhotos({ update = false, item }) {
-  const dispatch = useDispatch();
-  const [file, setFile] = useState(item ? item.photos[0] : null);
-  const [date, setDate] = useState(item ? item.date : "");
+  const [files, setFiles] = useState(item ? item.photos : []);
   const [categoryName, setCategoryName] = useState("");
   const [categories, setCategories] = useState(item ? item.categorie : []);
+  const [filesToDelete, setFilesToDelete] = useState([]);
 
   const addItem = useSelector((state) => state.addItem);
   const { loading: loadingAdd, success: successAdd, error: errorAdd } = addItem;
@@ -31,6 +30,7 @@ export default function FormPhotos({ update = false, item }) {
     error: errorUpdate,
   } = updateItem;
 
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -52,28 +52,35 @@ export default function FormPhotos({ update = false, item }) {
     setCategories(category);
   };
 
-  const importFile = (fileImport) => {
-    const newFile = fileImport;
-    let previewFile = null;
-    if (newFile.type.split("/")[0] === "image" && newFile.size > 1000000) {
-      toast.error(
-        `${newFile.name} est trop volumineux (+ 1Mo). Compression requise.`
-      );
-    } else {
-      previewFile = Object.assign(newFile, {
-        id: uniqId(),
-        preview: URL.createObjectURL(newFile),
-      });
-    }
-    if (previewFile) {
-      setFile(previewFile);
-    }
+  const importFiles = (filesImport) => {
+    const oldFiles = files;
+    const newfiles = filesImport;
+    const previewFile = newfiles.filter((image, i) => {
+      if (image.type.split("/")[0] === "image" && image.size > 1000000) {
+        toast.error(
+          `${image.name} est trop volumineux (+1Mo). Compression requise.`
+        );
+        return;
+      } else {
+        return Object.assign(image, {
+          id: uniqId(),
+          imported: false,
+          preview: URL.createObjectURL(image),
+        });
+      }
+    });
+    setFiles(oldFiles.concat(previewFile));
   };
 
-  const setDateHandler = (dateSelected) => {
-    const dateFormat = dateSelected.split("T")[0].split("-");
-    const newDate = dateFormat[1] + "-" + dateFormat[2] + "-" + dateFormat[0];
-    setDate(newDate);
+  const deleteFile = (fileDelete) => {
+    let newFiles;
+    if (fileDelete.imported === false) {
+      newFiles = files.filter((file) => file.id !== fileDelete.id);
+    } else {
+      setFilesToDelete([...filesToDelete, fileDelete]);
+      newFiles = files.filter((file) => file.src !== fileDelete.src);
+    }
+    setFiles(newFiles);
   };
 
   const onSubmit = async (data) => {
@@ -81,19 +88,22 @@ export default function FormPhotos({ update = false, item }) {
     let newItem = {
       content: "photography",
       title: data.title,
-      legend: data.legend,
       categorie: categories,
-      date: data.date ? date : item.date,
       place: data.place,
     };
     if (update) {
       newItem._id = item._id;
     }
     formData.append("item", JSON.stringify(newItem));
-    formData.append("file", file);
+    for (let i = 0; i < files.length; i++) {
+      if (!files[i].imported) {
+        formData.append("files", files[i]);
+        files[i].imported = true;
+      }
+    }
 
     if (update) {
-      dispatch(updateItemHandler(item._id, formData));
+      dispatch(updateItemHandler(item._id, formData, filesToDelete));
     } else {
       dispatch(addItemHandler(formData));
     }
@@ -101,15 +111,17 @@ export default function FormPhotos({ update = false, item }) {
 
   useEffect(() => {
     if (successAdd) {
-      reset({});
-      dispatch(resetItemSuccess());
-      setFile(null);
-      setCategories([]);
       toast.success("Ajouté avec succés !");
+      reset({});
+      setFiles([]);
+      setCategories([]);
+      dispatch(resetItemSuccess());
     }
     if (successUpdate) {
-      dispatch(resetItemSuccess());
       toast.success("Modifications enregistrées !");
+      setFilesToDelete([]);
+      dispatch(resetItemSuccess());
+      dispatch(getItemsHandler(null, null, null, null, item._id));
     }
     if (errorAdd) {
       toast.error("Ajout impossible !");
@@ -135,32 +147,12 @@ export default function FormPhotos({ update = false, item }) {
             placeholder="Titre"
           />
         </div>
-        {errors.title && <span>Merci de compléter ce champ.</span>}
-        <div className="form-group">
-          <label>Date</label>
-          {update && <input disabled value={date} />}
-          <input
-            {...register("date")}
-            defaultValue={update ? item.date : ""}
-            onChange={(e) => setDateHandler(e.target.value)}
-            placeholder="Date"
-            type="date"
-          />
-        </div>
         <div className="form-group">
           <label>Lieu</label>
           <input
             {...register("place")}
             defaultValue={update ? item.place : ""}
             placeholder="Lieu"
-          />
-        </div>
-        <div className="form-group">
-          <label>Légende</label>
-          <textarea
-            {...register("legend")}
-            defaultValue={update ? item.legend : ""}
-            placeholder="Légende"
           />
         </div>
       </form>
@@ -187,17 +179,26 @@ export default function FormPhotos({ update = false, item }) {
       </form>
       <div className="upload-zone-container">
         {update ? (
-          <h2>Modifiez votre fichier</h2>
+          <h2>Modifiez vos fichiers</h2>
         ) : (
-          <h2>Importez votre fichier</h2>
+          <h2>Importez vos fichiers</h2>
         )}
-
-        <div className="apercu-zone one-image">
-          {file ? (
-            file.type === "video/mp4" ? (
-              <video src={file.preview ? file.preview : file.src} />
-            ) : (
-              <img src={file.preview ? file.preview : file.src} />
+        <div className="apercu-zone many-images">
+          {files.length > 0 ? (
+            files.map((file, i) =>
+              file.type === "video/mp4" ? (
+                <video
+                  key={i}
+                  src={file.preview ? file.preview : file.src}
+                  onClick={() => deleteFile(file)}
+                />
+              ) : (
+                <img
+                  key={i}
+                  src={file.preview ? file.preview : file.src}
+                  onClick={() => deleteFile(file)}
+                />
+              )
             )
           ) : (
             <FaPortrait size={250} />
@@ -205,19 +206,20 @@ export default function FormPhotos({ update = false, item }) {
         </div>
         <div className="upload-zone">
           <BiImport size={120} />
-          <p>Cliquez ou déposez votre fichier ici.</p>
+          <p>Cliquez ou déposez vos fichiers ici.</p>
           <input
-            id={"file"}
+            id={"files"}
             type="file"
-            {...register("file")}
+            multiple
+            {...register("files")}
             onChange={(e) => {
-              if (e.target.files[0]) {
-                importFile(e.target.files[0]);
+              if (e.target.files.length > 0) {
+                importFiles([...e.target.files]);
               }
             }}
           />
           <label
-            htmlFor={"file"}
+            htmlFor={"files"}
             className="drop-zone"
             onDragLeave={(e) => {
               e.preventDefault();
@@ -233,7 +235,7 @@ export default function FormPhotos({ update = false, item }) {
               e.preventDefault();
               const dropZone = document.getElementsByClassName("drop-zone")[0];
               dropZone.classList.remove("active");
-              importFile(e.dataTransfer.files[0]);
+              importFiles([...e.dataTransfer.files]);
             }}
           ></label>
         </div>

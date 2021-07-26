@@ -7,7 +7,6 @@ import { useParams } from "react-router";
 import FormCircus from "./FormCircus";
 import FormPhotos from "./FormPhotos";
 import FormBlog from "./FormBlog";
-import FormPress from "./FormPress";
 
 export default function PageContenu(props) {
   const getItem = useSelector((state) => state.getItem);
@@ -20,7 +19,7 @@ export default function PageContenu(props) {
   useEffect(() => {
     dispatch(getItemsHandler(null, null, null, null, itemId));
     return () => {};
-  }, [itemId]);
+  }, []);
 
   return (
     <div className={`page page-contenu`}>
@@ -39,8 +38,6 @@ export default function PageContenu(props) {
             <FormPhotos update={true} item={items[0]} />
           ) : items[0].content === "blog" ? (
             <FormBlog update={true} item={items[0]} />
-          ) : items[0].content === "press" ? (
-            <FormPress update={true} item={items[0]} />
           ) : null
         ) : null}
       </div>

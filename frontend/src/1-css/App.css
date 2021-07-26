@@ -1,3 +1,7 @@
+.App {
+  position: relative;
+}
+
 /* Editor js */
 .codex-editor__redactor {
   width: 100% !important;
@@ -7,4 +11,7 @@
   max-width: none;
   width: 100% !important;
   margin-right: auto;
+}
+.editor-js {
+  letter-spacing: 1px;
 }

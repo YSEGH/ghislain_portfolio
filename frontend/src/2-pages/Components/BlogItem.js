@@ -3,6 +3,7 @@ import "../../1-css/BlogItem.css";
 import EditorJs from "react-editor-js";
 import { EDITOR_JS_TOOLS } from "../../constants";
 import { Link } from "react-router-dom";
+import { MdDateRange } from "react-icons/md";
 
 export default function BlogItem({ item }) {
   const [text, setText] = useState("");
@@ -20,10 +21,14 @@ export default function BlogItem({ item }) {
   return (
     <div className="blog-item">
       <Link to={`/blog/article/id/${item._id}`}>
-        <img src={item.photos[0].src} alt="blog" />
+        <img src={item.photos[item.photos.length - 1].src} alt={item.title} />
       </Link>
       <div className="text-container">
-        <h2>{item.title}</h2>
+        <Link to={`/blog/article/id/${item._id}`}>{item.title}</Link>
+        <p>
+          <MdDateRange size={22} />
+          {item.date}
+        </p>
         <div className="editor-js-blog-item">
           <EditorJs tools={EDITOR_JS_TOOLS} data={item.description} readOnly />
         </div>

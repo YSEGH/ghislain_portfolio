@@ -5,7 +5,6 @@ import EditorJs from "react-editor-js";
 import { EDITOR_JS_TOOLS } from "../constants";
 import { useDispatch, useSelector } from "react-redux";
 import { getInfosHandler } from "../3-actions/infoActions";
-import Footer from "./Components/Footer";
 
 export default function About() {
   const getInfos = useSelector((state) => state.getInfos);
@@ -40,7 +39,6 @@ export default function About() {
           <img src={infos.aboutPhoto} alt="ghislain_ramage" />
         </div>
       </div>
-      <Footer />
     </>
   );
 }

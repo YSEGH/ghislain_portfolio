@@ -29,26 +29,30 @@ export default function CircusContainer() {
   return (
     <div className="circus-container circus">
       <ModalCircus items={items} index={index} />
-      <div className="items-container">
-        {items.map((item, i) => (
-          <Item
-            key={i}
-            item={Object.assign(item, { index: i })}
-            setIndex={setIndex}
-            secondaryClass={"item-circus"}
-            modalSelector={`.modal.circus`}
-          />
-        ))}
-      </div>
-      {count / per_page > 1 ? (
-        <Pagination
-          count={count}
-          per_page={per_page}
-          page={Number(page)}
-          filters={filtersParams}
-          url={`/circus`}
-        />
-      ) : null}
+      {!loadingItems && (
+        <>
+          <div className="items-container">
+            {items.map((item, i) => (
+              <Item
+                key={i}
+                item={Object.assign(item, { index: i })}
+                setIndex={setIndex}
+                secondaryClass={"item-circus"}
+                modalSelector={`.modal.circus`}
+              />
+            ))}
+          </div>
+          {count / per_page > 1 ? (
+            <Pagination
+              count={count}
+              per_page={per_page}
+              page={Number(page)}
+              filters={filtersParams}
+              url={`/circus`}
+            />
+          ) : null}
+        </>
+      )}
     </div>
   );
 }

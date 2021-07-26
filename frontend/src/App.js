@@ -24,7 +24,6 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <ToastContainer position="bottom-left" autoClose={2500} pauseOnHover />
         <Suspense fallback={<LoadingSpinnerFullPage />}>
           <Switch>
             <Route path="/" exact render={() => <Home />} />
@@ -57,6 +56,7 @@ function App() {
             />
           </Switch>
         </Suspense>
+        <ToastContainer position="bottom-left" autoClose={2500} pauseOnHover />
       </div>
     </Router>
   );

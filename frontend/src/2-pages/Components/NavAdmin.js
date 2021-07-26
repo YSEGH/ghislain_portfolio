@@ -2,15 +2,14 @@ import React from "react";
 import "../../1-css/NavAdmin.css";
 import { NavLink } from "react-router-dom";
 
-export default function NavAdmin({ color }) {
+export default function NavAdmin() {
   return (
     <ul className="nav-admin">
       <li>
         <NavLink
           activeClassName="active"
-          activeStyle={{ textDecoration: "underline" }}
+          activeStyle={{ textDecoration: "underline", color: "#ff0513" }}
           to="/admin/mon-compte/mes-infos"
-          style={{ color: color }}
           exact
         >
           Mes infos
@@ -20,9 +19,8 @@ export default function NavAdmin({ color }) {
       <li>
         <NavLink
           activeClassName="active"
-          activeStyle={{ textDecoration: "underline" }}
+          activeStyle={{ textDecoration: "underline", color: "#ff0513" }}
           to="/admin/mon-compte/contenu"
-          style={{ color: color }}
           exact
         >
           Contenu
@@ -32,9 +30,8 @@ export default function NavAdmin({ color }) {
       <li>
         <NavLink
           activeClassName="active"
-          activeStyle={{ textDecoration: "underline" }}
+          activeStyle={{ textDecoration: "underline", color: "#ff0513" }}
           to="/admin/mon-compte/ajouter-contenu"
-          style={{ color: color }}
         >
           Ajouter contenu
         </NavLink>
@@ -43,9 +40,8 @@ export default function NavAdmin({ color }) {
       <li>
         <NavLink
           activeClassName="active"
-          activeStyle={{ textDecoration: "underline" }}
+          activeStyle={{ textDecoration: "underline", color: "#ff0513" }}
           to="/admin/mon-compte/infos-generales"
-          style={{ color: color }}
         >
           Infos générales
         </NavLink>

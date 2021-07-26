@@ -25,21 +25,25 @@ export default function BlogsContainer() {
 
   return (
     <div className="blogs-container">
-      <div className="items-container">
-        {items.map((item, i) => (
-          <BlogItem item={item} key={i} />
-        ))}
-      </div>
+      {!loadingItems && (
+        <>
+          <div className="items-container">
+            {items.map((item, i) => (
+              <BlogItem item={item} key={i} />
+            ))}
+          </div>
 
-      {count / per_page > 1 ? (
-        <Pagination
-          count={count}
-          per_page={per_page}
-          page={Number(page)}
-          filters={filtersParams}
-          url={`/blog`}
-        />
-      ) : null}
+          {count / per_page > 1 ? (
+            <Pagination
+              count={count}
+              per_page={per_page}
+              page={Number(page)}
+              filters={filtersParams}
+              url={`/blog`}
+            />
+          ) : null}
+        </>
+      )}
     </div>
   );
 }

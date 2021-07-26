@@ -51,7 +51,6 @@ router.put("/", isAuth, upload.single("image"), async (req, res) => {
     info.aboutPhoto = filePath ? filePath : info.aboutPhoto;
 
     await info.save();
-    console.log("Modifications enregistrées.");
     return res
       .status(200)
       .send({ message: "Les modifications ont été enregistrées." });

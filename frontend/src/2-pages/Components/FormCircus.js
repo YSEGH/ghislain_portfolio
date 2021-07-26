@@ -7,6 +7,7 @@ import { FaPortrait } from "react-icons/fa";
 import uniqId from "uniqid";
 import {
   addItemHandler,
+  getItemsHandler,
   resetItemSuccess,
   updateItemHandler,
 } from "../../3-actions/itemActions";
@@ -14,6 +15,11 @@ import { LoadingSVG } from "./SmallComponents";
 import { toast } from "react-toastify";
 
 export default function FormCircus({ update = false, item }) {
+  const [files, setFiles] = useState(item ? item.photos : []);
+  const [categoryName, setCategoryName] = useState("");
+  const [categories, setCategories] = useState(item ? item.categorie : []);
+  const [filesToDelete, setFilesToDelete] = useState([]);
+
   const addItem = useSelector((state) => state.addItem);
   const { loading: loadingAdd, success: successAdd, error: errorAdd } = addItem;
 
@@ -24,19 +30,13 @@ export default function FormCircus({ update = false, item }) {
     error: errorUpdate,
   } = updateItem;
 
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
-  const dispatch = useDispatch();
-
-  const [files, setFiles] = useState(item ? item.photos : []);
-  const [categoryName, setCategoryName] = useState("");
-  const [categories, setCategories] = useState(item ? item.categorie : []);
-  const [date, setDate] = useState(item ? item.date : "");
-  const [filesToDelete, setFilesToDelete] = useState([]);
 
   const submitCategory = (e) => {
     e.preventDefault();
@@ -63,6 +63,7 @@ export default function FormCircus({ update = false, item }) {
       } else {
         return Object.assign(image, {
           id: uniqId(),
+          imported: false,
           preview: URL.createObjectURL(image),
         });
       }
@@ -72,7 +73,7 @@ export default function FormCircus({ update = false, item }) {
 
   const deleteFile = (fileDelete) => {
     let newFiles;
-    if (fileDelete.preview) {
+    if (fileDelete.imported === false) {
       newFiles = files.filter((file) => file.id !== fileDelete.id);
     } else {
       setFilesToDelete([...filesToDelete, fileDelete]);
@@ -81,20 +82,12 @@ export default function FormCircus({ update = false, item }) {
     setFiles(newFiles);
   };
 
-  const setDateHandler = (dateSelected) => {
-    const dateFormat = dateSelected.split("T")[0].split("-");
-    const newDate = dateFormat[1] + "-" + dateFormat[2] + "-" + dateFormat[0];
-    setDate(newDate);
-  };
-
   const onSubmit = async (data) => {
     const formData = new FormData();
     let newItem = {
       content: "circus",
       title: data.title,
-      legend: data.legend,
       categorie: categories,
-      date: data.date ? date : item.date,
       place: data.place,
     };
     if (update) {
@@ -102,8 +95,9 @@ export default function FormCircus({ update = false, item }) {
     }
     formData.append("item", JSON.stringify(newItem));
     for (let i = 0; i < files.length; i++) {
-      if (files[i].preview) {
+      if (!files[i].imported) {
         formData.append("files", files[i]);
+        files[i].imported = true;
       }
     }
 
@@ -116,19 +110,20 @@ export default function FormCircus({ update = false, item }) {
 
   useEffect(() => {
     if (successAdd) {
+      toast.success("Ajouté avec succés !");
       reset({});
-      dispatch(resetItemSuccess());
       setFiles([]);
       setCategories([]);
-      toast.success("Ajouté avec succés !");
+      dispatch(resetItemSuccess());
     }
     if (successUpdate) {
-      dispatch(resetItemSuccess());
-      setFilesToDelete([]);
       toast.success("Modifications enregistrées !");
+      setFilesToDelete([]);
+      dispatch(resetItemSuccess());
+      dispatch(getItemsHandler(null, null, null, null, item._id));
     }
     if (errorAdd) {
-      toast.error("Ajout impossible !");
+      toast.error(errorAdd);
       dispatch(resetItemSuccess());
     }
     if (errorUpdate) {
@@ -143,24 +138,11 @@ export default function FormCircus({ update = false, item }) {
       <form id="form-contenu" onSubmit={handleSubmit(onSubmit)}>
         {update ? <h2>Détails</h2> : <h2>Saisissez les détails</h2>}
         <div className="form-group">
-          <label>Nom</label>
+          <label>Titre</label>
           <input
             {...register("title")}
             defaultValue={update ? item.title : ""}
-            placeholder="Nom du cirque"
-          />
-        </div>
-        {errors.title && <span>Merci de compléter ce champ.</span>}
-
-        <div className="form-group">
-          <label>Date</label>
-          {update && <input disabled value={date} />}
-          <input
-            {...register("date")}
-            defaultValue={update ? item.date : ""}
-            onChange={(e) => setDateHandler(e.target.value)}
-            placeholder="Date"
-            type="date"
+            placeholder="Titre"
           />
         </div>
         <div className="form-group">
@@ -169,14 +151,6 @@ export default function FormCircus({ update = false, item }) {
             {...register("place")}
             defaultValue={update ? item.place : ""}
             placeholder="Lieu"
-          />
-        </div>
-        <div className="form-group">
-          <label>Légende</label>
-          <textarea
-            {...register("legend")}
-            rows={8}
-            defaultValue={update ? item.legend : ""}
           />
         </div>
       </form>
@@ -201,6 +175,7 @@ export default function FormCircus({ update = false, item }) {
           ))}
         </div>
       </form>
+
       <div className="upload-zone-container">
         {update ? (
           <h2>Modifiez vos fichiers</h2>
@@ -264,6 +239,7 @@ export default function FormCircus({ update = false, item }) {
           ></label>
         </div>
       </div>
+
       <button
         className="validation-contenu"
         form={"form-contenu"}

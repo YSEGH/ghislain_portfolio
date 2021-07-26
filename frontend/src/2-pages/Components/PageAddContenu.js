@@ -3,7 +3,6 @@ import "../../1-css/PageContenu.css";
 import FormBlog from "./FormBlog";
 import FormCircus from "./FormCircus";
 import FormPhotos from "./FormPhotos";
-import FormPress from "./FormPress";
 
 export default function PageAddContenu() {
   const [content, setContent] = useState(null);
@@ -24,7 +23,6 @@ export default function PageAddContenu() {
           <option value="circus">Cirque</option>
           <option value="photography">Photographie</option>
           <option value="blog">Blog</option>
-          <option value="press">Presse</option>
         </select>
       </div>
       <div className="form-container">
@@ -34,8 +32,6 @@ export default function PageAddContenu() {
           <FormPhotos />
         ) : content === "blog" ? (
           <FormBlog />
-        ) : content === "press" ? (
-          <FormPress />
         ) : null}
       </div>
     </div>

@@ -25,7 +25,7 @@ export default function Admin(props) {
       <div className="admin">
         <Nav />
         <div className="admin-component">
-          <NavAdmin color={"black"} />
+          <NavAdmin />
           <Router>
             <Switch>
               <Route

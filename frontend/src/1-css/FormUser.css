@@ -12,6 +12,8 @@
   margin-bottom: 2rem;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
+  color: #303030;
+  letter-spacing: 3px;
 }
 .form-user input {
   margin: 0;

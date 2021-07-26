@@ -19,11 +19,26 @@
   align-items: flex-start;
   justify-content: center;
 }
-.blog-item h2 {
-  font-size: 1.5em !important;
-  font-weight: 400;
-  margin: 1rem 0;
+
+.blog-item .text-container a:nth-child(1) {
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
   color: #303030;
+  margin: 1rem 0;
+}
+.blog-item .text-container p:nth-child(2) {
+  font-style: italic;
+  font-weight: 200;
+  letter-spacing: 1px;
+  color: #303030;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+.blog-item .text-container p:nth-child(2) svg {
+  margin-right: 0.5rem;
 }
 .codex-editor--narrow .codex-editor__redactor {
   margin-right: 0px !important;
@@ -36,6 +51,7 @@
   font-weight: 200;
   text-align: justify;
   font-size: 14px;
+  letter-spacing: 1px;
   line-height: 14px !important;
   overflow: hidden !important;
   position: relative;
@@ -45,14 +61,15 @@
   padding: 0 !important;
   line-height: 18px !important;
 }
-.blog-item a {
+.blog-item .text-container a:nth-child(5) {
   display: block;
   margin-top: 1rem;
   cursor: pointer;
   transition: 0.25s;
   color: #ff0513;
+  text-decoration: none;
 }
-.blog-item a:hover {
+.blog-item .text-container a:nth-child(5):hover {
   text-decoration: underline;
 }
 @media screen and (max-width: 1050px) {

@@ -31,16 +31,19 @@ export default function TableItems() {
   };
 
   useEffect(() => {
-    if (!successDelete || !errorDelete) {
+    dispatch(getItemsHandler());
+    return () => {};
+  }, []);
+
+  useEffect(() => {
+    if (successDelete) {
+      toast.success("Suppression effectuée !");
+      dispatch(resetItemSuccess());
       dispatch(getItemsHandler());
     }
-    if (successDelete) {
-      dispatch(resetItemSuccess());
-      toast.success("Suppression effectuée !");
-    }
     if (errorDelete) {
+      toast.error(errorDelete);
       dispatch(resetItemSuccess());
-      toast.error("Impossible d'effectuer la suppression !");
     }
     return () => {};
   }, [successDelete, errorDelete]);
@@ -49,7 +52,7 @@ export default function TableItems() {
     <div className="table-items">
       <MaterialTable
         icons={TABLE_ICONS}
-        style={{ boxShadow: "none" }}
+        style={{ boxShadow: "none", color: "#303030" }}
         options={{
           exportButton: false,
           pageSize: 50,
