@@ -1,8 +1,8 @@
 .item {
-  width: 25vw;
-  height: 25vw;
+  width: 20rem;
+  height: 20rem;
   margin: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   overflow: hidden;
   cursor: pointer;
   position: relative;
@@ -27,18 +27,30 @@
   margin: auto;
 }
 .video-button svg {
-  color: #ff051270;
+  color: rgba(255, 255, 255, 0.75);
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 1050px) {
   .item {
-    width: 40vw;
-    height: 40vw;
+    width: 30rem;
+    height: 30rem;
   }
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 768px) {
   .item {
-    width: 100vw;
-    height: 100vw;
+    width: 30rem;
+    height: 30rem;
+  }
+}
+@media screen and (max-width: 450px) {
+  .item {
+    width: 20rem;
+    height: 20rem;
+  }
+}
+@media screen and (max-width: 350px) {
+  .item {
+    width: 275px;
+    height: 275px;
   }
 }

@@ -1,31 +1,38 @@
 .filter-container {
+  margin-top: 2rem;
+  overflow: scroll;
   font-family: "Poppins", sans-serif;
+  padding: 0 2rem;
 }
-
 .filter-container ul {
   display: flex;
   flex-wrap: wrap;
 }
 .filter-container ul li {
   list-style-type: none;
-  font-weight: 200;
   text-transform: capitalize;
   margin-right: 1rem;
 }
 .filter-container ul li a {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 1px;
   display: block;
   cursor: pointer;
   padding: 0.5rem;
   white-space: nowrap;
   transition: 0.25s;
+  color: #7c7c7c;
+  border: 1px solid rgb(124, 124, 124, 0.1);
+  border-radius: 5px;
 }
 .filter-container ul li a:hover {
-  background-color: #ed3833;
-  color: #fff;
+  border: 1px solid #303030;
+  color: #303030;
 }
 .filter-container ul li a.active {
-  background-color: #ed3833;
-  color: #fff;
+  border: 1px solid #303030;
+  color: #303030;
 }
 .filter-container .filter-container-list {
   display: flex;
@@ -33,20 +40,22 @@
 .filter-container .filter-container-list .filters-button {
   height: fit-content;
   width: auto;
-  font: 300 16px "Poppins", sans-serif;
+  font: 400 14px "Poppins", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: 0.25s;
   text-decoration: none;
-  background-color: rgba(211, 211, 211, 0.226);
-  border: 1px solid lightgrey;
+  background-color: rgba(211, 211, 211, 0.2);
+  border: 1px solid rgb(211, 211, 211, 0.5);
   padding: 0.5rem;
+  border-radius: 5px;
+  color: #7c7c7c;
 }
 .filter-container .filter-container-list .filters-button.active,
 .filter-container .filter-container-list .filters-button:hover {
-  background-color: rgba(168, 168, 168, 0.459);
+  background-color: rgba(211, 211, 211, 0.4);
   color: #fff;
 }
 .filter-container .filter-container-list ul {
@@ -85,14 +94,24 @@
   font-weight: 400;
   margin-bottom: 2rem;
 }
+@media screen and (max-width: 1050px) {
+  .filter-container {
+    margin: 5rem auto 2rem auto;
+  }
+  .filter-container .filter-container-list ul {
+    max-width: 100%;
+    overflow: scroll;
+    margin: auto;
+  }
 
-@media screen and (max-width: 960px) {
   .filter-container .filter-container-list {
     flex-direction: column;
     overflow: scroll;
   }
   .filter-container .filter-container-list .filters-button {
-    margin: 1rem 0;
+    margin: 2rem auto 1rem auto;
+    width: 30rem;
+    max-width: 100%;
   }
   .filter-container .filter-container-absolute {
     height: 100vh;

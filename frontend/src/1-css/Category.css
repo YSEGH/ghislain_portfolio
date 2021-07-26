@@ -1,11 +1,16 @@
 .category {
-  min-height: 100vh;
   height: auto;
-  width: 100vw;
-  padding: 5rem 4rem 0rem 4rem;
+  padding: 0;
   font-family: "Poppins", sans-serif;
   position: relative;
   overflow: hidden;
+  display: flex;
+}
+.category .page-content {
+  /*   padding: 3rem;
+ */
+  width: auto;
+  flex: auto;
 }
 .category .text-container {
   text-align: left;
@@ -18,24 +23,20 @@
   white-space: nowrap;
   font-family: "Nothing You Could Do", cursive;
 }
-/* .category .text-container h1::after {
-  content: "";
-  height: 1px;
-  width: 15rem;
-  background-color: #ff0513;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 20rem;
-  margin: auto;
-} */
-
+@media screen and (max-width: 1050px) {
+  .category {
+    flex-direction: column;
+  }
+}
 @media screen and (max-width: 960px) {
   .category .text-container h1::after {
     bottom: -4.5rem;
     left: 0;
   }
-  .category {
-    padding: 10rem 1rem 0rem 1rem;
+  /*   .category {
+    padding: 3rem 1rem 0rem 1rem;
   }
+  .category .page-content {
+    padding: 1rem;
+  } */
 }

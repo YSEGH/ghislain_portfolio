@@ -1,73 +1,90 @@
-.nav-burger {
-  display: block;
-  position: fixed;
-  z-index: 1000;
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  cursor: pointer;
-}
 .nav {
-  flex-direction: column;
-  height: auto;
+  width: 15rem;
+  min-width: 15rem;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+  position: relative;
+}
+.nav .nav-burger {
+  background-color: rgba(255, 255, 255, 0.2);
+  display: none;
   position: fixed;
   top: 1rem;
-  right: 5rem;
-  z-index: 100000;
-  transition: 0.25s;
-  background-color: #fff;
+  right: 0;
+  left: 0;
+  margin: auto;
+  cursor: pointer;
+  z-index: 10;
+  padding: 0.25rem;
 }
-.nav.close {
-  transform: translateX(20rem);
+.nav .nav-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 15rem;
+  min-width: 15rem;
+  height: 100vh;
+  position: fixed;
+  padding: 2rem;
 }
-.nav.open {
-  transform: translateX(0);
+.nav .nav-content .nav-ul {
 }
-.nav li {
-  width: 8rem;
+.nav .nav-content .nav-ul li {
   height: 3rem;
+  width: 100%;
   list-style-type: none;
 }
-.nav li svg {
-  transition: 0.25s;
-}
-.nav li a {
-  font-family: "Poppins", sans-serif;
+.nav .nav-content .nav-ul li a {
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
   text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  font-weight: 300;
-  height: 3rem;
-  color: #fff;
-  transition: 0.25s;
+  color: #303030;
 }
-.nav li svg:hover {
-  transform: scale(1.1);
+.nav .nav-content .nav-ul li a:hover {
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #7c7c7c;
 }
-.nav li a:hover {
+.nav .nav-content .nav-ul li a.active {
   text-decoration: underline;
 }
-.nav li a.active {
-  border: none;
+.nav .nav-content .network-container {
+  margin-top: 2rem;
 }
-.nav li a:hover {
-  transform: scale(1);
+.nav .nav-content .network-container svg {
+  color: #303030;
 }
-
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 1050px) {
   .nav {
-    flex-direction: column;
-    height: auto;
+    width: 100%;
+    height: 5rem;
+    font-family: "Poppins", sans-serif;
+    position: absolute;
+  }
+  .nav .nav-burger {
+    display: block;
+    color: #000;
+  }
+  .nav .nav-content {
+    padding: 1rem 0;
+    height: 20rem;
+    width: 100vw;
+    text-align: center;
+    z-index: 10;
     position: fixed;
-    top: 1rem;
-    right: 5rem;
-    z-index: 100000;
-    transition: 0.25s;
+    bottom: 0;
+    background-color: #fff;
+  }
+  .nav .nav-content .nav-ul li {
+  }
+  .nav.close .nav-content {
+    display: none;
+  }
+  .nav.open .nav-content {
+    display: block;
   }
 }
-
 /* .nav-burger {
   display: none;
   color: #ffff;
@@ -76,7 +93,7 @@
   right: 1rem;
   cursor: pointer;
 }
-.nav {
+.nav-ul {
   position: absolute;
   top: 0;
   right: 0;
@@ -88,11 +105,11 @@
   margin: 0;
   font-family: "Poppins", sans-serif;
 }
-.nav li {
+.nav-ul li {
   width: 6.5rem;
   list-style-type: none;
 }
-.nav li a {
+.nav-ul li a {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -104,15 +121,15 @@
   cursor: pointer;
   transition: 0.25s;
 }
-.nav li a:hover {
+.nav-ul li a:hover {
   transform: scale(1.05);
 }
-.nav li a.active {
+.nav-ul li a.active {
   width: 6.5rem;
   border-bottom: 1px solid #ff0513;
   color: #fff;
 }
-.nav li a.active:before {
+.nav-ul li a.active:before {
   content: "";
   display: block;
   width: 6.5rem;
@@ -129,7 +146,7 @@
     position: fixed;
     z-index: 1000;
   }
-  .nav {
+  .nav-ul {
     flex-direction: column;
     height: auto;
     position: fixed;
@@ -145,11 +162,11 @@
   .nav.open {
     transform: translateX(0);
   }
-  .nav li {
+  .nav-ul li {
     width: 7.5rem;
     height: 3rem;
   }
-  .nav li a {
+  .nav-ul li a {
     font-weight: 300;
     width: 7.5rem;
     height: 3rem;
@@ -159,20 +176,20 @@
     background-color: #fff;
     color: black !important;
   }
-  .nav li:nth-last-child(1) a {
+  .nav-ul li:nth-last-child(1) a {
     border-bottom: 1px solid rgba(207, 207, 207, 0.521);
   }
-  .nav li a.active {
+  .nav-ul li a.active {
     width: 7.5rem;
     border: none;
     color: #fff !important;
   }
-  .nav li a.active:before {
+  .nav-ul li a.active:before {
     width: 7.5rem;
     height: 3rem;
     box-sizing: border-box !important;
   }
-  .nav li a:hover {
+  .nav-ul li a:hover {
     transform: scale(1);
   }
 }

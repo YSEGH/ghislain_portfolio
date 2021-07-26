@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import "../../1-css/PhotosContainer.css";
-import { getItemsHandler } from "../../3-actions/itemActions";
+import { getItemsHandler, resetGetItem } from "../../3-actions/itemActions";
 import Item from "./Item";
 import ModalPhoto from "./ModalPhoto";
 import Pagination from "./Pagination";
@@ -21,7 +21,9 @@ export default function PhotosContainer() {
 
   useEffect(() => {
     dispatch(getItemsHandler("photography", offset, per_page, filters));
-    return () => {};
+    return () => {
+      dispatch(resetGetItem());
+    };
   }, [page, filtersParams]);
 
   return (
@@ -39,13 +41,16 @@ export default function PhotosContainer() {
           />
         ))}
       </div>
-      <Pagination
-        count={count}
-        per_page={per_page}
-        page={Number(page)}
-        filters={filtersParams}
-        url={`/photography`}
-      />
+
+      {count / per_page > 1 ? (
+        <Pagination
+          count={count}
+          per_page={per_page}
+          page={Number(page)}
+          filters={filtersParams}
+          url={`/photography`}
+        />
+      ) : null}
     </div>
   );
 }

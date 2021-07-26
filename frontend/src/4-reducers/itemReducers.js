@@ -43,6 +43,8 @@ const getItemsReducer = (
       };
     case "GET_ITEM_FAIL":
       return { loading: false, error: action.payload };
+    case "RESET_GET_ITEM":
+      return { loading: true, items: [], count: 0 };
     default:
       return state;
   }

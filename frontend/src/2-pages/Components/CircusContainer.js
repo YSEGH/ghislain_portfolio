@@ -2,7 +2,7 @@ import React, { useEffect, useState, lazy, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import "../../1-css/CircusContainer.css";
-import { getItemsHandler } from "../../3-actions/itemActions";
+import { getItemsHandler, resetGetItem } from "../../3-actions/itemActions";
 import Item from "./Item";
 import ModalCircus from "./ModalCircus";
 import Pagination from "./Pagination";
@@ -21,7 +21,9 @@ export default function CircusContainer() {
 
   useEffect(() => {
     dispatch(getItemsHandler("circus", offset, per_page, filters));
-    return () => {};
+    return () => {
+      dispatch(resetGetItem());
+    };
   }, [page, filtersParams]);
 
   return (
@@ -38,13 +40,15 @@ export default function CircusContainer() {
           />
         ))}
       </div>
-      <Pagination
-        count={count}
-        per_page={per_page}
-        page={Number(page)}
-        filters={filtersParams}
-        url={`/circus`}
-      />
+      {count / per_page > 1 ? (
+        <Pagination
+          count={count}
+          per_page={per_page}
+          page={Number(page)}
+          filters={filtersParams}
+          url={`/circus`}
+        />
+      ) : null}
     </div>
   );
 }

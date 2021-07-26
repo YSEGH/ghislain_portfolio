@@ -126,6 +126,10 @@ const deleteItemHandler = (itemId) => async (dispatch) => {
   }
 };
 
+const resetGetItem = () => (dispatch) => {
+  dispatch({ type: "RESET_GET_ITEM" });
+};
+
 const resetItemSuccess = () => (dispatch) => {
   dispatch({ type: "ITEM_RESET" });
 };
@@ -138,4 +142,5 @@ export {
   updateItemHandler,
   resetItemSuccess,
   deleteFileHandler,
+  resetGetItem,
 };

@@ -56,8 +56,8 @@ export default function Carrousel({
     const text = document.querySelector(
       `${modalSelector} .carousel [id=slide-${index}] .text-container`
     );
-    showText(index);
-    if (text.classList.contains("open")) {
+    /*     showText(index);
+     */ if (text.classList.contains("open")) {
       text.classList.add("close");
       text.classList.remove("open");
     }
@@ -71,8 +71,8 @@ export default function Carrousel({
     const text = document.querySelector(
       `${modalSelector} .carousel [id=slide-${index}] .text-container`
     );
-    showText(index);
-    if (text.classList.contains("open")) {
+    /*     showText(index);
+     */ if (text.classList.contains("open")) {
       text.classList.add("close");
       text.classList.remove("open");
     }
@@ -85,7 +85,7 @@ export default function Carrousel({
     slider.style.transform = `translateX(${translateX + width}px)`;
   };
 
-  const showText = (index) => {
+  /*   const showText = (index) => {
     const text = document.querySelector(
       `${modalSelector} .carousel [id=slide-${index}] .text-container`
     );
@@ -96,7 +96,7 @@ export default function Carrousel({
       text.classList.add("open");
       text.classList.remove("close");
     }
-  };
+  }; */
 
   useEffect(() => {
     const carousel = document.querySelector(`${modalSelector} .carousel`);
@@ -132,11 +132,11 @@ export default function Carrousel({
             key={i}
             style={{ width: width }}
           >
-            <MdInfoOutline
+            {/* <MdInfoOutline
               className="info-icon"
               size={25}
               onClick={() => showText(i)}
-            />
+            /> */}
             <div className="text-container close">
               <h2>{items[i].title}</h2>
               <p>{items[i].legend}</p>

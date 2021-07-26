@@ -68,7 +68,7 @@ export default function FilterContainer({ content, props, url }) {
       <div className="filter-container-list">
         <ul>
           {filters.map((filter, i) =>
-            i < 10 ? (
+            i < 3 ? (
               <li key={i}>
                 <a
                   className={`filter-${filter.name} ${
@@ -82,7 +82,7 @@ export default function FilterContainer({ content, props, url }) {
             ) : null
           )}
         </ul>
-        {filters.length > 10 && (
+        {filters.length > 3 && (
           <button className="filters-button" onClick={() => displayFilter()}>
             Filter(s) <MdAdd size={15} />
           </button>

@@ -23,9 +23,9 @@ export default function Admin(props) {
   return (
     <>
       <div className="admin">
-        <Nav color={"black"} />
-        <NavAdmin color={"black"} />
+        <Nav />
         <div className="admin-component">
+          <NavAdmin color={"black"} />
           <Router>
             <Switch>
               <Route
@@ -54,7 +54,8 @@ export default function Admin(props) {
           </Router>
         </div>
       </div>
-      <Footer />
+      {/*       <Footer />
+       */}
     </>
   );
 }

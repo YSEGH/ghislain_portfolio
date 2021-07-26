@@ -29,7 +29,6 @@ export default function Banner() {
         loop
       />
       <div className="mask"></div>
-      <Nav color="white" background="transparent" />
       <div className="text-container">
         <h1>
           Ghislain

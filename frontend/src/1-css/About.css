@@ -88,7 +88,7 @@
 @media screen and (max-width: 1200px) {
   .about {
     margin: 0 0 0 0;
-    padding: 7.5rem 1rem 0 1rem;
+    padding: 5rem 1rem 0 1rem;
     height: auto;
   }
   .about .text-container {

@@ -1,6 +1,5 @@
 .form-contenu {
   height: auto;
-  width: fit-content;
   max-width: 50rem;
   margin: auto;
   font-family: "Poppins", sans-serif;
@@ -189,8 +188,42 @@ textarea {
 @media screen and (max-width: 960px) {
   .upload-zone-container {
     justify-content: center;
+    margin: 0;
   }
   .upload-zone-container div {
     margin-bottom: 4rem;
+  }
+}
+@media screen and (max-width: 400px) {
+  .form-contenu h2 {
+    margin: 1rem;
+    max-width: 100vw;
+  }
+  .form-contenu .form-group {
+    width: 15rem;
+  }
+  .form-contenu .form-group input {
+    margin: 1rem 0 2rem 0;
+  }
+  .upload-zone-container {
+    margin: 0;
+  }
+  .form-contenu button {
+    width: 95%;
+  }
+  select {
+    width: 15rem;
+  }
+
+  .form-contenu label,
+  .form-contenu .form-group input,
+  .form-contenu .form-group textarea {
+    width: 100%;
+  }
+  .category-input-container input {
+    width: 12rem;
+  }
+  .category-input-container button {
+    width: 3rem;
   }
 }

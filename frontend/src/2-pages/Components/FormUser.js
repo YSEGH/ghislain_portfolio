@@ -80,7 +80,7 @@ export default function FormUser() {
       <input
         {...register("username")}
         type="text"
-        value={user.username}
+        defaultValue={user.username}
         placeholder="Votre nom de compte"
         disabled
       />

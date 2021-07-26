@@ -3,7 +3,7 @@
   min-height: 100vh;
   width: 100vw;
   position: relative;
-  padding-top: 12rem;
+  display: flex;
 }
 .admin-component {
   width: 100%;
@@ -12,6 +12,5 @@
 }
 @media screen and (max-width: 960px) {
   .admin {
-    padding-top: 20rem;
   }
 }

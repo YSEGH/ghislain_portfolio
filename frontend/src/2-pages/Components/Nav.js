@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../../1-css/Nav.css";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AiOutlineHome } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getInfosHandler } from "../../3-actions/infoActions";
+import { FiInstagram, FiFacebook } from "react-icons/fi";
 
-export default function Nav({ background = "#fff", color }) {
+export default function Nav() {
+  const dispatch = useDispatch();
+
+  const getInfos = useSelector((state) => state.getInfos);
+  const { loading, infos, error } = getInfos;
+
   const displayNav = () => {
     const nav = document.getElementsByClassName("nav")[0];
     if (nav.classList.contains("open")) {
@@ -17,86 +25,78 @@ export default function Nav({ background = "#fff", color }) {
     }
   };
 
+  useEffect(() => {
+    dispatch(getInfosHandler());
+
+    return () => {};
+  }, []);
+
   return (
-    <>
+    <div className="nav close">
       <GiHamburgerMenu
         size={40}
-        style={{ color: color }}
         className="nav-burger"
         onClick={() => displayNav()}
       />
-      <ul className="nav close" style={{ backgroundColor: background }}>
-        <li>
-          <NavLink
-            activeClassName="active"
-            to="/"
-            style={{ color: color }}
-            exact
-          >
-            <AiOutlineHome size={25} />
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            activeClassName="active"
-            to="/about"
-            style={{ color: color }}
-            exact
-          >
-            About
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            activeClassName="active"
-            to="/circus"
-            style={{ color: color }}
-          >
-            Circus
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            activeClassName="active"
-            to="/photography"
-            style={{ color: color }}
-          >
-            Photography
-          </NavLink>
-        </li>
-        <li>
-          <NavLink activeClassName="active" to="/blog" style={{ color: color }}>
-            Blog
-          </NavLink>
-        </li>
-        {localStorage.getItem("token") ? (
+      <div className="nav-content">
+        <ul className="nav-ul">
           <li>
-            <NavLink
-              activeClassName="active"
-              to="/admin/mon-compte"
-              style={{ color: color }}
-            >
-              Admin
+            <NavLink activeClassName="active" to="/" exact>
+              <AiOutlineHome size={25} />
             </NavLink>
           </li>
-        ) : null}
-        {localStorage.getItem("token") ? (
           <li>
-            <NavLink
-              activeClassName="logout"
-              to="/"
-              style={{ color: color }}
-              onClick={() => {
-                localStorage.removeItem("token");
-                localStorage.removeItem("user");
-              }}
-              exact
-            >
-              <BiLogOut size={25} />
+            <NavLink activeClassName="active" to="/about" exact>
+              About
             </NavLink>
           </li>
-        ) : null}
-      </ul>
-    </>
+          <li>
+            <NavLink activeClassName="active" to="/circus">
+              Circus
+            </NavLink>
+          </li>
+          <li>
+            <NavLink activeClassName="active" to="/photography">
+              Photography
+            </NavLink>
+          </li>
+          <li>
+            <NavLink activeClassName="active" to="/blog">
+              Blog
+            </NavLink>
+          </li>
+          {localStorage.getItem("token") ? (
+            <li>
+              <NavLink activeClassName="active" to="/admin/mon-compte">
+                Admin
+              </NavLink>
+            </li>
+          ) : null}
+          {localStorage.getItem("token") ? (
+            <li>
+              <NavLink
+                activeClassName="logout"
+                to="/"
+                onClick={() => {
+                  localStorage.removeItem("token");
+                  localStorage.removeItem("user");
+                }}
+                exact
+              >
+                <BiLogOut size={25} />
+              </NavLink>
+            </li>
+          ) : null}
+        </ul>
+        <div className="network-container">
+          <a href={`${infos.instagram}`} target="_blank">
+            <FiInstagram size={20} />
+          </a>
+          <a href={`${infos.facebook}`} target="_blank">
+            <FiFacebook size={20} />
+          </a>
+        </div>
+      </div>
+    </div>
   );
 }

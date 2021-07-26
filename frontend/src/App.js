@@ -10,7 +10,6 @@ import Photos from "./2-pages/Photos";
 import Auth from "./2-pages/Auth"; */
 import { ToastContainer } from "react-toastify";
 import { LoadingSpinnerFullPage } from "./2-pages/Components/SmallComponents";
-import ModalBlog from "./2-pages/Components/ModalBlog";
 
 const Home = lazy(() => import("./2-pages/Home"));
 const Blog = lazy(() => import("./2-pages/Blog"));
@@ -19,6 +18,7 @@ const About = lazy(() => import("./2-pages/About"));
 const Circus = lazy(() => import("./2-pages/Circus"));
 const Photos = lazy(() => import("./2-pages/Photos"));
 const Auth = lazy(() => import("./2-pages/Auth"));
+const PageBlog = lazy(() => import("./2-pages/Components/PageBlog"));
 
 function App() {
   return (
@@ -51,7 +51,10 @@ function App() {
               render={(props) => <Blog {...props} />}
               exact
             />
-            <Route path="/blog/article/id/:id" render={() => <About />} />
+            <Route
+              path="/blog/article/id/:id"
+              render={(props) => <PageBlog {...props} />}
+            />
           </Switch>
         </Suspense>
       </div>

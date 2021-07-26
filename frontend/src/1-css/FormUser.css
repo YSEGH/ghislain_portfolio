@@ -1,11 +1,11 @@
 .form-user {
   height: auto;
-  width: 100vw;
+  width: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 5rem;
+  margin: auto;
 }
 .form-user h2 {
   margin: 0;
@@ -42,4 +42,18 @@
 }
 .form-user p:hover {
   color: rgb(0, 0, 114);
+}
+
+@media screen and (max-width: 400px) {
+  /* .form-user {
+    margin: 1rem;
+    max-width: 100vw;
+  } */
+  .form-user input {
+    width: 95%;
+  }
+
+  .form-user button {
+    width: 95%;
+  }
 }

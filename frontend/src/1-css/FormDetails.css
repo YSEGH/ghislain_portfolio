@@ -1,6 +1,6 @@
 .details {
   height: auto;
-  width: 100vw;
+  width: fit-content;
   font-family: "Poppins", sans-serif;
   padding-bottom: 5rem;
   display: flex;
@@ -8,6 +8,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .details h2 {
   font-size: 1.5em !important;
   margin: 2rem;
@@ -40,7 +41,7 @@
   margin-bottom: 2rem;
 }
 .form-details label {
-  width: 20rem;
+  width: 100%;
   margin-bottom: 0.5rem;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
@@ -52,7 +53,7 @@
 .form-details select,
 .form-details textarea {
   border: 1px solid rgba(199, 199, 199, 0.363);
-  width: 20rem;
+  width: 100%;
   height: 3rem;
   margin-bottom: 1.5rem;
   font-family: "Poppins", sans-serif;
@@ -68,25 +69,30 @@
   background-color: #d6000b;
 }
 
-.details {
-  height: auto;
-  width: 100vw;
-  font-family: "Poppins", sans-serif;
-  padding-bottom: 5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 .text-editor {
   height: fit-content;
   min-height: 10rem;
   width: 50rem;
-  max-width: 80vw;
+  max-width: 95vw;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 2rem;
   font-weight: 300;
   text-align: left;
   margin: auto;
+}
+
+@media screen and (max-width: 400px) {
+  .details h2 {
+    margin: 1rem;
+    max-width: 100vw;
+  }
+  .form-details .form-group {
+    width: 15rem;
+  }
+  .upload-zone-container {
+    margin: 0;
+  }
+  .details button {
+    width: 90%;
+  }
 }
