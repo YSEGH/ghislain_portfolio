@@ -7,6 +7,7 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getInfosHandler } from "../../3-actions/infoActions";
 import { FiInstagram, FiFacebook } from "react-icons/fi";
+import Logo from "./Logo";
 
 export default function Nav() {
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ export default function Nav() {
         onClick={() => displayNav()}
       />
       <div className="nav-content">
+        <Logo />
         <ul className="nav-ul">
           <li>
             <NavLink activeClassName="active" to="/" exact>
