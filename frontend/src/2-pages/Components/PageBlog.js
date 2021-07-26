@@ -62,7 +62,7 @@ export default function PageBlog(props) {
           </div>
           <div className="photos-container">
             {items[0].photos.map((photo, i) => (
-              <img src={photo.src} alt={items[0].title} />
+              <img src={photo.src} alt={items[0].title} key={i} />
             ))}
           </div>
         </div>

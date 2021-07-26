@@ -123,6 +123,10 @@
 .page-blog .page-blog-content .photos-container {
   margin: 3rem 0;
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
 }
 .page-blog .page-blog-content .photos-container img {
   width: 20rem;
@@ -164,6 +168,7 @@
     overflow-y: scroll;
     padding: 0rem 0;
     border-radius: 0;
+    flex-wrap: nowrap;
   }
 
   .page-blog .photo-container {
@@ -196,9 +201,9 @@
   .page-blog .text-container {
     width: 80%;
     margin: 2rem auto 2rem auto;
-    height: auto;
+    height: fit-content;
     padding: 0;
-    overflow: scroll;
+    overflow: visible;
     display: block;
   }
 
@@ -233,7 +238,19 @@
   }
 }
 @media screen and (max-width: 550px) {
+  .page-blog .page-blog-content .photos-container {
+    width: 100vw;
+  }
   .page-blog .photo-container .details-infos {
     flex-direction: column;
+  }
+  .page-blog .page-blog-content .photos-container img {
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .page-blog .page-blog-content .photos-container img {
+    width: 15rem;
+    height: 15rem;
   }
 }
