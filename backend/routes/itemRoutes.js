@@ -10,63 +10,40 @@ const upload = multer({ dest: "uploads/" });
 router.post(
   "/",
   isAuth,
-  upload.fields([{ name: "file" }, { name: "files" }]),
+  upload.fields([{ name: "files" }]),
   async (req, res) => {
     let result;
     const itemAdd = JSON.parse(req.body.item);
+    let photos = [];
+
+    const item = new Item({
+      content: itemAdd.content,
+      title: itemAdd.title,
+      categorie: itemAdd.categorie,
+      description: itemAdd.description
+        ? itemAdd.description
+        : { blocks: [], time: "", version: "" },
+      date: itemAdd.date,
+      place: itemAdd.place,
+    });
 
     /* Importation des fichiers */
     try {
-      if (req.files.file) {
-        const item = new Item({
-          content: itemAdd.content,
-          title: itemAdd.title,
-          legend: itemAdd.legend ? itemAdd.legend : "",
-          categorie: itemAdd.categorie,
-          description: itemAdd.description
-            ? itemAdd.description
-            : { blocks: [], time: "", version: "" },
-          date: itemAdd.date,
-          place: itemAdd.place,
-        });
-        result = await uploadFiles(req.files.file[0]);
-        const photos = [
-          {
-            src: `/api/files/${result.Key}`,
-            type: req.files.file[0].mimetype,
-          },
-        ];
-        Object.assign(item, { photos: photos });
-        await item.save();
-        return res.status(200).send({ message: "Ajout effectué avec succés." });
-      } else if (req.files.files) {
+      if (req.files.files) {
         for (let i = 0; i < req.files.files.length; i++) {
-          const item = new Item({
-            content: itemAdd.content,
-            title: itemAdd.title,
-            legend: itemAdd.legend ? itemAdd.legend : "",
-            categorie: itemAdd.categorie,
-            description: itemAdd.description
-              ? itemAdd.description
-              : { blocks: [], time: "", version: "" },
-            date: itemAdd.date,
-            place: itemAdd.place,
-          });
           const file = req.files.files[i];
           result = await uploadFiles(file);
-          const photos = [
-            {
-              src: `/api/files/${result.Key}`,
-              type: file.mimetype,
-            },
-          ];
-          Object.assign(item, { photos: photos });
-          await item.save();
+          photos.push({
+            src: `/api/files/${result.Key}`,
+            type: file.mimetype,
+          });
         }
-        return res
-          .status(200)
-          .send({ message: "Ajouts effectués avec succés." });
       }
+
+      item.photos = photos;
+
+      await item.save();
+      return res.status(200).send({ message: "Ajouts effectués avec succés." });
     } catch (error) {
       return res
         .status(400)
@@ -174,59 +151,38 @@ router.put("/file-delete", isAuth, async (req, res) => {
 router.put(
   "/",
   isAuth,
-  upload.fields([{ name: "file" }, { name: "files" }]),
+  upload.fields([{ name: "files" }]),
   async (req, res) => {
     let result;
     let photos = [];
     const itemAdd = JSON.parse(req.body.item);
 
+    console.log(req.files);
+
     try {
       const item = await Item.findById(itemAdd._id);
       /* Importation des fichiers */
-      if (req.files.file) {
-        try {
-          const oldFileKey = item.photos[0].src.split("/")[3];
-          const deleteResult = await deleteFiles(oldFileKey);
-          result = await uploadFiles(req.files.file[0]);
-
+      if (req.files.files) {
+        for (let i = 0; i < req.files.files.length; i++) {
+          const file = req.files.files[i];
+          result = await uploadFiles(file);
           photos.push({
             src: `/api/files/${result.Key}`,
-            type: req.files.file[0].mimetype,
+            type: file.mimetype,
           });
-          Object.assign(itemAdd, { photos: photos });
-          item.photos = photos;
-        } catch (error) {
-          return res
-            .status(400)
-            .send({ message: "Impossible d'importer le fichier." });
         }
-      } else if (req.files.files) {
-        try {
-          for (let i = 0; i < req.files.files.length; i++) {
-            const file = req.files.files[i];
-            result = await uploadFiles(file);
-            photos.push({
-              src: `/api/files/${result.Key}`,
-              type: file.mimetype,
-            });
-          }
-          Object.assign(itemAdd, { photos: photos });
-          item.photos = item.photos.concat(photos);
-        } catch (error) {
-          return res
-            .status(400)
-            .send({ message: "Impossible d'importer les fichiers." });
-        }
+        Object.assign(itemAdd, { photos: photos });
+        item.photos = item.photos.concat(photos);
       }
-      item.content = itemAdd.content;
+
       item.title = itemAdd.title;
       item.categorie = itemAdd.categorie;
       item.description = itemAdd.description
         ? itemAdd.description
         : item.description;
-      item.legend = itemAdd.legend ? itemAdd.legend : item.legend;
-      item.date = itemAdd.date;
+      item.date = itemAdd.date ? itemAdd.date : item.date;
       item.place = itemAdd.place;
+
       await item.save();
       return res
         .status(200)
@@ -242,29 +198,16 @@ router.put(
 router.delete("/:itemId", isAuth, async (req, res) => {
   try {
     const item = await Item.findById(req.params.itemId);
+
+    console.log(item);
     /* Suppression des fichiers */
-    if (item.type === "single") {
-      const oldFileKey = item.photos[0].src.split("/")[3];
-      try {
-        const deleteResult = await deleteFiles(oldFileKey);
-      } catch (error) {
-        return res
-          .status(400)
-          .send({ message: `Impossible de supprimer le fichier.` });
-      }
-    } else if (item.type === "group") {
-      try {
-        for (let i = 0; i < item.photos; i++) {
-          const file = item.photos[i];
-          const oldFileKey = file.src.split("/")[3];
-          const deleteResult = await deleteFiles(oldFileKey);
-        }
-      } catch (error) {
-        return res
-          .status(400)
-          .send({ message: "Impossible de supprimer les fichiers." });
-      }
+    for (let i = 0; i < item.photos.length; i++) {
+      const file = item.photos[i];
+      const oldFileKey = file.src.split("/")[3];
+      console.log(oldFileKey);
+      const deleteResult = await deleteFiles(oldFileKey);
     }
+
     /* Suppression de l'item de la BDD */
     await item.remove();
     return res

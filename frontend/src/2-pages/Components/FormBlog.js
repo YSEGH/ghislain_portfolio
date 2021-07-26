@@ -8,6 +8,7 @@ import { FaPortrait } from "react-icons/fa";
 import uniqId from "uniqid";
 import {
   addItemHandler,
+  getItemsHandler,
   resetItemSuccess,
   updateItemHandler,
 } from "../../3-actions/itemActions";
@@ -16,13 +17,11 @@ import { EDITOR_JS_TOOLS } from "../../constants";
 import { toast } from "react-toastify";
 
 export default function FormBlog({ update = false, item }) {
-  const dispatch = useDispatch();
-  const instanceRef = useRef(null);
-
-  const [file, setFile] = useState(item ? item.photos[0] : null);
+  const [files, setFiles] = useState(item ? item.photos : []);
   const [date, setDate] = useState(item ? item.date : "");
   const [categoryName, setCategoryName] = useState("");
   const [categories, setCategories] = useState(item ? item.categorie : []);
+  const [filesToDelete, setFilesToDelete] = useState([]);
 
   const addItem = useSelector((state) => state.addItem);
   const { loading: loadingAdd, success: successAdd, error: errorAdd } = addItem;
@@ -41,6 +40,8 @@ export default function FormBlog({ update = false, item }) {
     reset,
     formState: { errors },
   } = useForm();
+  const dispatch = useDispatch();
+  const instanceRef = useRef(null);
 
   const submitCategory = (e) => {
     e.preventDefault();
@@ -55,22 +56,35 @@ export default function FormBlog({ update = false, item }) {
     setCategories(category);
   };
 
-  const importFile = (fileImport) => {
-    const newFile = fileImport;
-    let previewFile = null;
-    if (newFile.type.split("/")[0] === "image" && newFile.size > 1500000) {
-      toast.error(
-        `${newFile.name} est trop volumineux (+ 1.5Mo). Compression requise.`
-      );
+  const importFiles = (filesImport) => {
+    const oldFiles = files;
+    const newfiles = filesImport;
+    const previewFile = newfiles.filter((image, i) => {
+      if (image.type.split("/")[0] === "image" && image.size > 1000000) {
+        toast.error(
+          `${image.name} est trop volumineux (+1Mo). Compression requise.`
+        );
+        return;
+      } else {
+        return Object.assign(image, {
+          id: uniqId(),
+          imported: false,
+          preview: URL.createObjectURL(image),
+        });
+      }
+    });
+    setFiles(oldFiles.concat(previewFile));
+  };
+
+  const deleteFile = (fileDelete) => {
+    let newFiles;
+    if (fileDelete.imported === false) {
+      newFiles = files.filter((file) => file.id !== fileDelete.id);
     } else {
-      previewFile = Object.assign(newFile, {
-        id: uniqId(),
-        preview: URL.createObjectURL(newFile),
-      });
+      setFilesToDelete([...filesToDelete, fileDelete]);
+      newFiles = files.filter((file) => file.src !== fileDelete.src);
     }
-    if (previewFile) {
-      setFile(previewFile);
-    }
+    setFiles(newFiles);
   };
 
   const setDateHandler = (dateSelected) => {
@@ -85,7 +99,6 @@ export default function FormBlog({ update = false, item }) {
     let newItem = {
       content: "blog",
       title: data.title,
-      addDescription: true,
       description: savedDescription,
       categorie: categories,
       date: data.date ? date : item.date,
@@ -95,10 +108,15 @@ export default function FormBlog({ update = false, item }) {
       newItem._id = item._id;
     }
     formData.append("item", JSON.stringify(newItem));
-    formData.append("file", file);
+    for (let i = 0; i < files.length; i++) {
+      if (!files[i].imported) {
+        formData.append("files", files[i]);
+        files[i].imported = true;
+      }
+    }
 
     if (update) {
-      dispatch(updateItemHandler(item._id, formData));
+      dispatch(updateItemHandler(item._id, formData, filesToDelete));
     } else {
       dispatch(addItemHandler(formData));
     }
@@ -106,18 +124,20 @@ export default function FormBlog({ update = false, item }) {
 
   useEffect(() => {
     if (successAdd) {
-      reset({});
-      dispatch(resetItemSuccess());
-      setFile(null);
-      setCategories([]);
       toast.success("Ajouté avec succés !");
+      reset({});
+      setFiles([]);
+      setCategories([]);
       if (instanceRef.current) {
         instanceRef.current.clear();
       }
+      dispatch(resetItemSuccess());
     }
     if (successUpdate) {
-      dispatch(resetItemSuccess());
       toast.success("Modifications enregistrées !");
+      setFilesToDelete([]);
+      dispatch(resetItemSuccess());
+      dispatch(getItemsHandler(null, null, null, null, item._id));
     }
     if (errorAdd) {
       toast.error("Ajout impossible !");
@@ -163,17 +183,7 @@ export default function FormBlog({ update = false, item }) {
           />
         </div>
       </form>
-      <h2>Rédigez votre article</h2>
-      <div className="text-editor" id="text-editor">
-        <EditorJs
-          instanceRef={(instance) => (instanceRef.current = instance)}
-          tools={EDITOR_JS_TOOLS}
-          data={
-            update ? item.description : { blocks: [], time: "", version: "" }
-          }
-          holder="text-editor"
-        />
-      </div>
+
       <form id={"form-category"} onSubmit={(e) => submitCategory(e)}>
         <h2>Catégories</h2>
         <div className="category-input-container">
@@ -195,19 +205,40 @@ export default function FormBlog({ update = false, item }) {
           ))}
         </div>
       </form>
+      <h2>Rédigez votre article</h2>
+      <div className="text-editor" id="text-editor">
+        <EditorJs
+          instanceRef={(instance) => (instanceRef.current = instance)}
+          tools={EDITOR_JS_TOOLS}
+          data={
+            update ? item.description : { blocks: [], time: "", version: "" }
+          }
+          holder="text-editor"
+        />
+      </div>
+
       <div className="upload-zone-container">
         {update ? (
-          <h2>Modifiez votre fichier</h2>
+          <h2>Modifiez vos fichiers</h2>
         ) : (
-          <h2>Importez votre fichier</h2>
+          <h2>Importez vos fichiers</h2>
         )}
-
-        <div className="apercu-zone one-image">
-          {file ? (
-            file.type === "video/mp4" ? (
-              <video src={file.preview ? file.preview : file.src} />
-            ) : (
-              <img src={file.preview ? file.preview : file.src} />
+        <div className="apercu-zone many-images">
+          {files.length > 0 ? (
+            files.map((file, i) =>
+              file.type === "video/mp4" ? (
+                <video
+                  key={i}
+                  src={file.preview ? file.preview : file.src}
+                  onClick={() => deleteFile(file)}
+                />
+              ) : (
+                <img
+                  key={i}
+                  src={file.preview ? file.preview : file.src}
+                  onClick={() => deleteFile(file)}
+                />
+              )
             )
           ) : (
             <FaPortrait size={250} />
@@ -215,19 +246,20 @@ export default function FormBlog({ update = false, item }) {
         </div>
         <div className="upload-zone">
           <BiImport size={120} />
-          <p>Cliquez ou déposez votre fichier ici.</p>
+          <p>Cliquez ou déposez vos fichiers ici.</p>
           <input
-            id={"file"}
+            id={"files"}
             type="file"
-            {...register("file")}
+            multiple
+            {...register("files")}
             onChange={(e) => {
-              if (e.target.files[0]) {
-                importFile(e.target.files[0]);
+              if (e.target.files.length > 0) {
+                importFiles([...e.target.files]);
               }
             }}
           />
           <label
-            htmlFor={"file"}
+            htmlFor={"files"}
             className="drop-zone"
             onDragLeave={(e) => {
               e.preventDefault();
@@ -243,11 +275,12 @@ export default function FormBlog({ update = false, item }) {
               e.preventDefault();
               const dropZone = document.getElementsByClassName("drop-zone")[0];
               dropZone.classList.remove("active");
-              importFile(e.dataTransfer.files[0]);
+              importFiles([...e.dataTransfer.files]);
             }}
           ></label>
         </div>
       </div>
+
       <button
         className="validation-contenu"
         form={"form-contenu"}
