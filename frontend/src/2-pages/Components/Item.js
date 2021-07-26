@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "../../1-css/Item.css";
-import { MdPlayCircleFilled } from "react-icons/md";
+import { MdPlayCircleFilled, MdPlace } from "react-icons/md";
 
 export default function Item({
   secondaryClass,
@@ -33,6 +33,14 @@ export default function Item({
       ) : (
         <video src={item.photos[0].src} />
       )}
+      <div className="mask"></div>
+      <h1 className="item-title">{item.title}</h1>
+      <p className="item-place">
+        <span>
+          <MdPlace size={20} />
+        </span>
+        {item.place}
+      </p>
       {item.photos[0].type.split("/")[0] === "video" && (
         <div className="video-button">
           <MdPlayCircleFilled size={80} />
