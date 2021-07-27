@@ -38,7 +38,8 @@ export default function Banner() {
           <Link to="/circus" onClick={() => window.scrollTo(0, 0)}>
             Circus
           </Link>
-          <span>&</span>
+          {/*           <span>&</span>
+           */}{" "}
           <Link to="/photography" onClick={() => window.scrollTo(0, 0)}>
             Photography
           </Link>

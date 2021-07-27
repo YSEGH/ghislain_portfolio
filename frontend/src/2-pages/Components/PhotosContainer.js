@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import "../../1-css/PhotosContainer.css";
 import { getItemsHandler, resetGetItem } from "../../3-actions/itemActions";
 import Item from "./Item";
-import ModalPhoto from "./ModalPhoto";
 import Pagination from "./Pagination";
 
 export default function PhotosContainer() {
-  const [index, setIndex] = useState(0);
+  const params = useParams();
 
   const dispatch = useDispatch();
   const { page = 1, filters: filtersParams = null } = useParams();
@@ -28,18 +27,14 @@ export default function PhotosContainer() {
 
   return (
     <div className="photos-container photo">
-      <ModalPhoto items={items} index={index} />
-
       {!loadingItems && (
         <>
           <div className="items-container">
             {items.map((item, i) => (
               <Item
+                content="photography"
                 key={i}
                 item={Object.assign(item, { index: i })}
-                secondaryClass={"item-photography"}
-                setIndex={setIndex}
-                modalSelector={`.modal.photo`}
               />
             ))}
           </div>

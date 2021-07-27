@@ -119,6 +119,7 @@
 
 /* Page add contenu */
 
-.page-add-contenu * {
+.page-add-contenu h2,
+.page-add-contenu select {
   color: #303030;
 }

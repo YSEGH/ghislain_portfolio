@@ -9,13 +9,18 @@
   font-size: 30px !important;
   font-weight: 600;
   margin-bottom: 2rem;
-  font-family: "Nothing You Could Do", cursive;
-  text-align: left;
+  font-family: "Zen Loop", cursive;
+  text-align: center;
+  width: fit-content;
+  margin-right: auto;
   letter-spacing: 5px;
 }
 
 @media screen and (max-width: 1050px) {
   .nav .logo h1 {
-    text-align: center;
+    margin-right: 0;
+
+    margin: auto;
+    margin-bottom: 2rem;
   }
 }

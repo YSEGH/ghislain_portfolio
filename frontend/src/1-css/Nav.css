@@ -67,10 +67,12 @@
     height: 5rem;
     font-family: "Poppins", sans-serif;
     position: absolute;
+    pointer-events: none;
   }
   .nav .nav-burger {
     display: block;
     color: #000;
+    pointer-events: all;
   }
   .nav .nav-content {
     padding: 1rem 0;
@@ -81,6 +83,7 @@
     position: fixed;
     bottom: 0;
     background-color: #fff;
+    pointer-events: all;
   }
   .nav .nav-content .nav-ul li {
   }

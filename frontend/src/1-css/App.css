@@ -1,6 +1,9 @@
 .App {
   position: relative;
 }
+* {
+  box-sizing: border-box;
+}
 
 /* Editor js */
 .codex-editor__redactor {

@@ -98,7 +98,6 @@ export default function FormPhotos({ update = false, item }) {
     for (let i = 0; i < files.length; i++) {
       if (!files[i].imported) {
         formData.append("files", files[i]);
-        files[i].imported = true;
       }
     }
 

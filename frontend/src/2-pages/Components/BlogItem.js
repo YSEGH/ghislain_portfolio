@@ -6,6 +6,9 @@ import { Link } from "react-router-dom";
 import { MdDateRange } from "react-icons/md";
 
 export default function BlogItem({ item }) {
+  const image = item.photos.filter(
+    (photo) => photo.type.split("/")[0] !== "video"
+  );
   const [text, setText] = useState("");
 
   useEffect(() => {
@@ -21,7 +24,7 @@ export default function BlogItem({ item }) {
   return (
     <div className="blog-item">
       <Link to={`/blog/article/id/${item._id}`}>
-        <img src={item.photos[item.photos.length - 1].src} alt={item.title} />
+        {<img src={image[image.length - 1].src} alt={item.title} />}
       </Link>
       <div className="text-container">
         <Link to={`/blog/article/id/${item._id}`}>{item.title}</Link>

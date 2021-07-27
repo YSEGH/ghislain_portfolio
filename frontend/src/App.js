@@ -1,15 +1,10 @@
 import React, { Suspense, lazy } from "react";
 import "./1-css/App.css";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
-/* import Home from "./2-pages/Home";
-import Blog from "./2-pages/Blog";
-import Admin from "./2-pages/Admin.js";
-import About from "./2-pages/About";
-import Circus from "./2-pages/Circus";
-import Photos from "./2-pages/Photos";
-import Auth from "./2-pages/Auth"; */
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { LoadingSpinnerFullPage } from "./2-pages/Components/SmallComponents";
+import PageItem from "./2-pages/Components/PageItem";
 
 const Home = lazy(() => import("./2-pages/Home"));
 const Blog = lazy(() => import("./2-pages/Blog"));
@@ -40,10 +35,17 @@ function App() {
             <Route
               path="/photography/:page?/:filters?"
               render={(props) => <Photos category={"Photography"} {...props} />}
+              exact
             />
             <Route
               path="/circus/:page?/:filters?"
               render={(props) => <Circus category={"Circus"} {...props} />}
+              exact
+            />
+            <Route
+              path="/details/:itemId"
+              render={(props) => <PageItem {...props} />}
+              exact
             />
             <Route
               path="/blog/:page?/:filters?"
@@ -51,7 +53,7 @@ function App() {
               exact
             />
             <Route
-              path="/blog/article/id/:id"
+              path="/blog/article/id/:itemId"
               render={(props) => <PageBlog {...props} />}
             />
           </Switch>
