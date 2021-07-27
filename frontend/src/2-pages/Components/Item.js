@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "../../1-css/Item.css";
-import { MdPlayCircleFilled, MdPlace } from "react-icons/md";
+import { MdPlace } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 export default function Item({ secondaryClass, item = {} }) {
@@ -23,11 +23,6 @@ export default function Item({ secondaryClass, item = {} }) {
         </span>
         {item.place}
       </p>
-      {item.photos[item.photos.length - 1].type.split("/")[0] === "video" && (
-        <div className="video-button">
-          <MdPlayCircleFilled size={80} />
-        </div>
-      )}
     </Link>
   );
 }
