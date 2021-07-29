@@ -28,9 +28,9 @@ export default function BlogsContainer() {
       {!loadingItems && (
         <>
           <div className="items-container">
-            {items.map((item, i) => (
-              <BlogItem item={item} key={i} />
-            ))}
+            {items.map((item, i) =>
+              item.content === "blog" ? <BlogItem item={item} key={i} /> : null
+            )}
           </div>
 
           {count / per_page > 1 ? (

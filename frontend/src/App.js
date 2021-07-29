@@ -15,6 +15,7 @@ const Photos = lazy(() => import("./2-pages/Photos"));
 const Auth = lazy(() => import("./2-pages/Auth"));
 const Contact = lazy(() => import("./2-pages/Contact"));
 const Project = lazy(() => import("./2-pages/Project"));
+const Agenda = lazy(() => import("./2-pages/Agenda"));
 const PageBlog = lazy(() => import("./2-pages/Components/PageBlog"));
 
 function App() {
@@ -26,8 +27,7 @@ function App() {
             <Route path="/" exact render={() => <Home />} />
             <Route path="/about" render={() => <About />} />
             <Route path="/contact" render={() => <Contact />} />
-            <Route path="/projects" render={() => <Project />} />
-
+            <Route path="/agenda" render={() => <Agenda />} />
             <Route
               path="/admin"
               exact
@@ -40,6 +40,11 @@ function App() {
             <Route
               path="/photography/:page?/:filters?"
               render={(props) => <Photos category={"Photography"} {...props} />}
+              exact
+            />
+            <Route
+              path="/projects/:page?/:filters?"
+              render={(props) => <Project {...props} />}
               exact
             />
             <Route

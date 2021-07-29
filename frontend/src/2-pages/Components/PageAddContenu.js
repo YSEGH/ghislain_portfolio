@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../../1-css/PageContenu.css";
+import FormAgenda from "./FormAgenda";
 import FormBlog from "./FormBlog";
 import FormCircus from "./FormCircus";
 import FormPhotos from "./FormPhotos";
@@ -25,6 +26,7 @@ export default function PageAddContenu() {
           <option value="photography">Photographie</option>
           <option value="blog">Blog</option>
           <option value="project">Projet</option>
+          <option value="agenda">Agenda</option>
         </select>
       </div>
       <div className="form-container">
@@ -36,6 +38,8 @@ export default function PageAddContenu() {
           <FormBlog />
         ) : content === "project" ? (
           <FormProject />
+        ) : content === "agenda" ? (
+          <FormAgenda />
         ) : null}
       </div>
     </div>

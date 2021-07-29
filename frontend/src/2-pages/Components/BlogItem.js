@@ -12,15 +12,17 @@ export default function BlogItem({ item }) {
   const [text, setText] = useState("");
 
   useEffect(() => {
-    setText(
-      item.description.blocks
-        .map((para, i) => {
-          return para.data.text.replaceAll("&nbsp;", " ");
-        })
-        .join(", ")
-    );
+    if (item.description.blocks) {
+      setText(
+        item.description.blocks
+          .map((para, i) => {
+            return para.data.text.replaceAll("&nbsp;", " ");
+          })
+          .join(", ")
+      );
+    }
     return () => {};
-  }, []);
+  }, [item]);
   return (
     <div className="blog-item">
       <Link to={`/blog/article/id/${item._id}`}>

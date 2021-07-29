@@ -78,7 +78,7 @@
 @media screen and (max-width: 1500px) {
   .about .text-container {
     width: 50%;
-    padding: 0 1rem;
+    padding: 0;
   }
   .about .photo-container img {
     height: 30rem;
@@ -93,7 +93,7 @@
   }
   .about .text-container {
     width: 95%;
-    padding: 0 1rem;
+    padding: 0;
   }
   .about .text-container h1::after {
     display: none;
@@ -115,7 +115,7 @@
     width: 100%;
     min-height: 0;
     margin: auto;
-    text-align: center;
+    text-align: justify;
   }
 
   .about .photo-container {

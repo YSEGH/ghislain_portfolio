@@ -104,6 +104,9 @@ export default function Nav() {
             </li>
           ) : null}
         </ul>
+        <NavLink activeClassName="active" to="/agenda" exact>
+          Agenda
+        </NavLink>
         <div className="network-container">
           <a href={`${infos.instagram}`} target="_blank">
             <FiInstagram size={20} />

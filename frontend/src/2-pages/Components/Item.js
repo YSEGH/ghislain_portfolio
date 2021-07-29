@@ -4,7 +4,7 @@ import { MdPlace, MdDateRange, MdWork } from "react-icons/md";
 import { IoEarthOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
-export default function Item({ secondaryClass, item = {} }) {
+export default function Item({ item = {} }) {
   const image = item.photos.filter(
     (photo) => photo.type.split("/")[0] !== "video"
   );
@@ -24,21 +24,13 @@ export default function Item({ secondaryClass, item = {} }) {
         )}
       </h1>
       {item.content === "project" && (
-        <p className="item-date">
-          <span>
-            <MdDateRange size={20} />
-          </span>
-          {item.date}
-        </p>
-      )}
-      {/* {item.content === "work" && (
         <p className="item-subtitle">
           <span>
             <MdWork size={20} />
           </span>
           {item.subtitle}
         </p>
-      )} */}
+      )}
       {(item.content === "circus" || item.content === "photography") && (
         <p className="item-place">
           <span>

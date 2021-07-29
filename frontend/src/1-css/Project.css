@@ -1,9 +1,18 @@
 .project {
   display: flex;
 }
-.project-container {
-  padding: 3rem 0;
+.project .page-content {
   flex: auto;
+}
+.project .page-content .project-container {
+  padding: 2rem 0;
   display: flex;
   flex-wrap: wrap;
+}
+
+@media screen and (max-width: 1050px) {
+  .project .page-content .project-container {
+    padding: 0;
+    justify-content: center;
+  }
 }

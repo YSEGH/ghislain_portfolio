@@ -16,12 +16,13 @@
   padding-right: 3rem;
   width: 60%;
   font-family: "Poppins", sans-serif;
+  text-align: justify;
 }
 .page-item .text-container h1 {
   font-size: 2em;
   color: #303030;
-  font-weight: 400;
-  text-transform: uppercase;
+  font-weight: 300;
+  text-transform: capitalize;
 }
 .page-item .text-container h1 span {
   font-weight: 200;
@@ -114,6 +115,25 @@
   .page-item {
     padding: 5rem 0;
   }
+  .page-item .page-content {
+    padding-top: 0;
+  }
+  .page-item .page-content .text-container {
+    margin-top: 0;
+    padding: 0;
+    width: 80%;
+  }
+  .page-item .page-content .text-container h1 {
+    text-align: center;
+  }
+  .page-item .page-content .text-container div {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+  }
   .page-item .page-content .photo-content .photo-background img,
   .page-item .page-content .photo-content .photo-background video {
     width: 100%;
@@ -121,6 +141,9 @@
   }
 }
 @media screen and (max-width: 500px) {
+  .page-item .text-container {
+    width: 100%;
+  }
   .page-item .page-content .photo-content {
     height: fit-content;
   }

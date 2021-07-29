@@ -93,7 +93,11 @@ export default function PageBlog(props) {
           <div className="photos-container">
             {items[0].photos.map((photo, i) =>
               photo.type.split("/")[0] === "image" ? (
-                <div className="photo-content" onClick={(e) => displayFile(e)}>
+                <div
+                  className="photo-content"
+                  onClick={(e) => displayFile(e)}
+                  key={i}
+                >
                   <div
                     className="photo-background"
                     onClick={(e) => displayFile(e)}
@@ -102,7 +106,11 @@ export default function PageBlog(props) {
                   </div>
                 </div>
               ) : (
-                <div className="photo-content" onClick={(e) => displayFile(e)}>
+                <div
+                  className="photo-content"
+                  onClick={(e) => displayFile(e)}
+                  key={i}
+                >
                   <div
                     className="photo-background"
                     onClick={(e) => displayFile(e)}

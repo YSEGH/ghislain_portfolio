@@ -60,26 +60,17 @@ export default function PageItem() {
                 <MdDateRange size={30} />
                 {items[0].date}
               </p>
-              <p>
-                {items[0].content === "project" ? (
-                  <MdWork size={30} />
-                ) : (
-                  <MdPlace size={30} />
-                )}
-                {items[0].categorie.map((name, i) => (
-                  <span>
-                    {i > 0 ? ", " : ""}
-                    {name}
-                  </span>
-                ))}
-              </p>
             </div>
           </div>
         ) : null}
         {items[0]
           ? items[0].photos.reverse().map((file, i) =>
               file.type.split("/")[0] === "image" ? (
-                <div className="photo-content" onClick={(e) => displayFile(e)}>
+                <div
+                  className="photo-content"
+                  onClick={(e) => displayFile(e)}
+                  key={i}
+                >
                   <div
                     className="photo-background"
                     onClick={(e) => displayFile(e)}
@@ -88,7 +79,11 @@ export default function PageItem() {
                   </div>
                 </div>
               ) : (
-                <div className="photo-content" onClick={(e) => displayFile(e)}>
+                <div
+                  className="photo-content"
+                  onClick={(e) => displayFile(e)}
+                  key={i}
+                >
                   <div
                     className="photo-background"
                     onClick={(e) => displayFile(e)}

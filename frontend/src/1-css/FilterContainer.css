@@ -1,4 +1,5 @@
 .filter-container {
+  max-width: 100vw;
   margin-top: 2rem;
   overflow: scroll;
   font-family: "Poppins", sans-serif;

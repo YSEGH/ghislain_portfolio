@@ -35,20 +35,23 @@
   width: 100%;
   list-style-type: none;
 }
-.nav .nav-content .nav-ul li a {
+.nav .nav-content a {
   font-weight: 500;
   letter-spacing: 3px;
   text-transform: uppercase;
   text-decoration: none;
   color: #303030;
 }
-.nav .nav-content .nav-ul li a:hover {
+.nav .nav-content a:nth-child(3) {
+  font-weight: 200;
+}
+.nav .nav-content a:hover {
   text-transform: uppercase;
   text-decoration: none;
   color: #ff0513;
 }
 
-.nav .nav-content .nav-ul li a.active {
+.nav .nav-content a.active {
   text-decoration: underline;
   color: #ff0513;
 }

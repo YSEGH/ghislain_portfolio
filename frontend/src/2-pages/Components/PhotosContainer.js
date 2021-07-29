@@ -30,13 +30,13 @@ export default function PhotosContainer() {
       {!loadingItems && (
         <>
           <div className="items-container">
-            {items.map((item, i) => (
-              <Item
-                content="photography"
-                key={i}
-                item={Object.assign(item, { index: i })}
-              />
-            ))}
+            {items
+              .reverse()
+              .map((item, i) =>
+                item.content === "photography" ? (
+                  <Item key={i} item={Object.assign(item, { index: i })} />
+                ) : null
+              )}
           </div>
 
           {count / per_page > 1 ? (

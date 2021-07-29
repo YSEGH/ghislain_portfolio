@@ -1,0 +1,106 @@
+.agenda-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: #303030;
+  margin: 1rem;
+}
+.agenda-item .date-container {
+  width: 12rem;
+  height: 20rem;
+  position: relative;
+}
+.agenda-item .date-container:before {
+  content: "";
+  width: 12rem;
+  height: 20rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(48, 48, 48, 0.1);
+}
+.agenda-item .date-container img {
+  width: 12rem;
+  height: 20rem;
+  object-fit: cover;
+  object-position: center center;
+}
+.agenda-item .date-container h1 {
+  display: block;
+  text-align: center;
+  padding: 1rem 1rem 0 1rem;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  font-family: "Teko", sans-serif;
+  font-weight: 300;
+  line-height: 9rem;
+  font-size: 200px;
+  word-break: break-all;
+  color: #fff;
+}
+.agenda-item .text-container {
+  padding: 0 3rem;
+  width: 55rem;
+  color: #303030;
+}
+.agenda-item .text-container h1 {
+  font-size: 2em !important;
+  text-decoration: none;
+  font-weight: 300;
+  text-transform: capitalize;
+  font-family: "Poppins", sans-serif;
+}
+.agenda-item .text-container h1 span {
+  font-weight: 200;
+}
+.agenda-item .text-container p {
+  font-family: "Poppins", sans-serif;
+  text-align: justify;
+  font-weight: 200;
+}
+.agenda-item .text-container p:nth-child(2) {
+  margin: 1rem auto;
+}
+
+.agenda-item .text-container p:nth-child(3),
+.agenda-item .text-container p:nth-child(4) {
+  display: flex;
+  align-items: center;
+  margin: 1rem auto;
+  font-style: italic;
+}
+.agenda-item .text-container p:nth-child(3) svg,
+.agenda-item .text-container p:nth-child(4) svg {
+  margin-right: 0.5rem;
+}
+.agenda-item .text-container p:nth-child(4) {
+  font-style: normal;
+}
+@media screen and (max-width: 1050px) {
+  .agenda-item {
+    flex-direction: column;
+  }
+  .agenda-item .text-container {
+    padding: 0 3rem;
+    width: 30rem;
+    text-align: center;
+    max-width: 100vw;
+  }
+  .agenda-item .text-container h1 {
+    margin: 2rem auto;
+  }
+}
+@media screen and (max-width: 500px) {
+  .agenda-item .text-container {
+    padding: 0 2rem;
+  }
+  .agenda-item .text-container h1 {
+    margin: 0;
+  }
+}
