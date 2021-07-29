@@ -144,6 +144,9 @@
   .page-item .text-container {
     width: 100%;
   }
+  .page-item .page-content .text-container div {
+    width: 100%;
+  }
   .page-item .page-content .photo-content {
     height: fit-content;
   }
