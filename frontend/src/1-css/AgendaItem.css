@@ -26,20 +26,18 @@
   object-position: center center;
 }
 .agenda-item .date-container h1 {
-  display: block;
   text-align: center;
-  padding: 1rem 1rem 0 1rem;
+  padding: 1rem 0.5rem 1rem 0.5rem;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  width: fit-content;
-  height: fit-content;
-  margin: auto;
+  width: 100%;
+  height: 100%;
   font-family: "Teko", sans-serif;
   font-weight: 300;
-  line-height: 9rem;
+  line-height: 10rem;
   font-size: 200px;
   word-break: break-all;
   color: #fff;
