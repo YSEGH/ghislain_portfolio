@@ -42,16 +42,16 @@
 }
 .page-item .text-container div p:nth-child(1),
 .page-item .text-container div p:nth-child(2) {
+  width: 100%;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   font-size: 20px;
   text-transform: capitalize;
-  width: fit-content;
   margin: 0.5rem 0;
 }
 .page-item .text-container div p:nth-child(1) svg,
 .page-item .text-container div p:nth-child(2) svg {
-  width: fit-content;
   margin: 0;
   margin-right: 1rem;
 }
@@ -125,6 +125,10 @@
   }
   .page-item .page-content .text-container h1 {
     text-align: center;
+  }
+  .page-item .text-container div p:nth-child(1),
+  .page-item .text-container div p:nth-child(2) {
+    justify-content: center;
   }
   .page-item .page-content .text-container div {
     display: flex;
