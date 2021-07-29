@@ -7,6 +7,7 @@ import { useParams } from "react-router";
 import FormCircus from "./FormCircus";
 import FormPhotos from "./FormPhotos";
 import FormBlog from "./FormBlog";
+import FormProject from "./FormProject";
 
 export default function PageContenu(props) {
   const getItem = useSelector((state) => state.getItem);
@@ -38,6 +39,8 @@ export default function PageContenu(props) {
             <FormPhotos update={true} item={items[0]} />
           ) : items[0].content === "blog" ? (
             <FormBlog update={true} item={items[0]} />
+          ) : items[0].content === "project" ? (
+            <FormProject update={true} item={items[0]} />
           ) : null
         ) : null}
       </div>

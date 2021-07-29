@@ -13,6 +13,8 @@ const About = lazy(() => import("./2-pages/About"));
 const Circus = lazy(() => import("./2-pages/Circus"));
 const Photos = lazy(() => import("./2-pages/Photos"));
 const Auth = lazy(() => import("./2-pages/Auth"));
+const Contact = lazy(() => import("./2-pages/Contact"));
+const Project = lazy(() => import("./2-pages/Project"));
 const PageBlog = lazy(() => import("./2-pages/Components/PageBlog"));
 
 function App() {
@@ -23,6 +25,9 @@ function App() {
           <Switch>
             <Route path="/" exact render={() => <Home />} />
             <Route path="/about" render={() => <About />} />
+            <Route path="/contact" render={() => <Contact />} />
+            <Route path="/projects" render={() => <Project />} />
+
             <Route
               path="/admin"
               exact

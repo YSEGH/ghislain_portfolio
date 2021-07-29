@@ -70,8 +70,8 @@ export default function TableItems() {
                   return "Photo";
                 case "blog":
                   return "Blog";
-                case "press":
-                  return "Presse";
+                case "project":
+                  return "Projet";
                 default:
                   break;
               }

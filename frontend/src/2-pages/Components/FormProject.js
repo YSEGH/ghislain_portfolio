@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
-import EditorJs from "react-editor-js";
+import React, { useEffect, useState } from "react";
 import "../../1-css/FormContenu.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
@@ -13,12 +12,10 @@ import {
   updateItemHandler,
 } from "../../3-actions/itemActions";
 import { LoadingSVG } from "./SmallComponents";
-import { EDITOR_JS_TOOLS } from "../../constants";
 import { toast } from "react-toastify";
 
-export default function FormBlog({ update = false, item }) {
+export default function FormProject({ update = false, item }) {
   const [files, setFiles] = useState(item ? item.photos : []);
-  const [date, setDate] = useState(item ? item.date : "");
   const [categoryName, setCategoryName] = useState("");
   const [categories, setCategories] = useState(item ? item.categorie : []);
   const [filesToDelete, setFilesToDelete] = useState([]);
@@ -33,15 +30,13 @@ export default function FormBlog({ update = false, item }) {
     error: errorUpdate,
   } = updateItem;
 
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     formState: { errors },
   } = useForm();
-  const dispatch = useDispatch();
-  const instanceRef = useRef(null);
 
   const submitCategory = (e) => {
     e.preventDefault();
@@ -87,22 +82,15 @@ export default function FormBlog({ update = false, item }) {
     setFiles(newFiles);
   };
 
-  const setDateHandler = (dateSelected) => {
-    const dateFormat = dateSelected.split("T")[0].split("-");
-    const newDate = dateFormat[1] + "/" + dateFormat[2] + "/" + dateFormat[0];
-    setDate(newDate);
-  };
-
   const onSubmit = async (data) => {
-    let savedDescription = await instanceRef.current.save();
     const formData = new FormData();
     let newItem = {
-      content: "blog",
+      content: "project",
       title: data.title,
-      description: savedDescription,
+      subtitle: data.subtitle,
+      date: data.date,
       categorie: categories,
-      date: data.date ? date : item.date,
-      place: data.place,
+      description: data.description,
     };
     if (update) {
       newItem._id = item._id;
@@ -127,9 +115,6 @@ export default function FormBlog({ update = false, item }) {
       reset({});
       setFiles([]);
       setCategories([]);
-      if (instanceRef.current) {
-        instanceRef.current.clear();
-      }
       dispatch(resetItemSuccess());
     }
     if (successUpdate) {
@@ -139,7 +124,7 @@ export default function FormBlog({ update = false, item }) {
       dispatch(getItemsHandler(null, null, null, null, item._id));
     }
     if (errorAdd) {
-      toast.error("Ajout impossible !");
+      toast.error(errorAdd);
       dispatch(resetItemSuccess());
     }
     if (errorUpdate) {
@@ -147,49 +132,52 @@ export default function FormBlog({ update = false, item }) {
       dispatch(resetItemSuccess());
     }
     return () => {};
-  }, [successAdd, successUpdate, errorUpdate, errorAdd]);
+  }, [successAdd, successUpdate, errorAdd, errorUpdate]);
 
   return (
     <div className="form-contenu">
       <form id="form-contenu" onSubmit={handleSubmit(onSubmit)}>
         {update ? <h2>Détails</h2> : <h2>Saisissez les détails</h2>}
         <div className="form-group">
-          <label>Titre</label>
+          <label>Marque / Evenement</label>
           <input
             {...register("title")}
             defaultValue={update ? item.title : ""}
-            placeholder="Titre"
+            placeholder="Ex. Cirque du soleil, Kenzo"
           />
         </div>
-        {errors.title && <span>Merci de compléter ce champ.</span>}
         <div className="form-group">
-          <label>Date</label>
-          {update && <input disabled value={date} />}
+          <label>Poste / Rôle</label>
+          <input
+            {...register("subtitle")}
+            defaultValue={update ? item.subtitle : ""}
+            placeholder="Ex. Acting, Performer"
+          />
+        </div>
+        <div className="form-group">
+          <label>Présentation</label>
+          <textarea
+            {...register("description")}
+            defaultValue={update ? item.description : ""}
+            placeholder=""
+          />
+        </div>
+        <div className="form-group">
+          <label>Année(s)</label>
           <input
             {...register("date")}
             defaultValue={update ? item.date : ""}
-            onChange={(e) => setDateHandler(e.target.value)}
-            placeholder="Date"
-            type="date"
-          />
-        </div>
-        <div className="form-group">
-          <label>Lieu</label>
-          <input
-            {...register("place")}
-            defaultValue={update ? item.place : ""}
-            placeholder="Lieu"
+            placeholder="Ex. 2019, 2019-2020"
           />
         </div>
       </form>
-
       <form id={"form-category"} onSubmit={(e) => submitCategory(e)}>
         <h2>Catégories</h2>
         <div className="category-input-container">
           <input
             value={categoryName}
             className="category-input"
-            placeholder="Catégories"
+            placeholder="Hip Hop, Acting, Dance"
             onChange={(e) => setCategoryName(e.target.value)}
           />
           <button type="submit" form={"form-category"}>
@@ -204,17 +192,6 @@ export default function FormBlog({ update = false, item }) {
           ))}
         </div>
       </form>
-      <h2>Rédigez votre article</h2>
-      <div className="text-editor" id="text-editor">
-        <EditorJs
-          instanceRef={(instance) => (instanceRef.current = instance)}
-          tools={EDITOR_JS_TOOLS}
-          data={
-            update ? item.description : { blocks: [], time: "", version: "" }
-          }
-          holder="text-editor"
-        />
-      </div>
 
       <div className="upload-zone-container">
         {update ? (

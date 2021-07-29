@@ -1,0 +1,29 @@
+.contact {
+  display: flex;
+  color: #303030;
+}
+.contact .contact-content {
+  flex: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.contact .text-container {
+}
+.contact .text-container h1 {
+  font-size: 70px;
+  font-family: "Zen Loop", cursive;
+  font-weight: 600;
+}
+.contact .text-container p {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 200;
+  display: flex;
+  align-items: center;
+  line-height: 40px;
+  letter-spacing: 1px;
+}
+.contact .text-container p svg {
+  margin-right: 1rem;
+}

@@ -143,15 +143,15 @@ export default function FormPhotos({ update = false, item }) {
           <input
             {...register("title")}
             defaultValue={update ? item.title : ""}
-            placeholder="Titre"
+            placeholder="Titre Ex. Australie"
           />
         </div>
         <div className="form-group">
-          <label>Lieu</label>
+          <label>Continent</label>
           <input
             {...register("place")}
             defaultValue={update ? item.place : ""}
-            placeholder="Lieu"
+            placeholder="Continent Ex. Océanie"
           />
         </div>
       </form>

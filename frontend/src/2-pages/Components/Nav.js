@@ -67,9 +67,23 @@ export default function Nav() {
               Blog
             </NavLink>
           </li>
+          <li>
+            <NavLink activeClassName="active" to="/projects">
+              Projects
+            </NavLink>
+          </li>
+          <li>
+            <NavLink activeClassName="active" to="/contact">
+              Contact
+            </NavLink>
+          </li>
           {localStorage.getItem("token") ? (
             <li>
-              <NavLink activeClassName="active" to="/admin/mon-compte">
+              <NavLink
+                activeClassName="active"
+                to="/admin/mon-compte"
+                style={{ fontWeight: "200" }}
+              >
                 Admin
               </NavLink>
             </li>

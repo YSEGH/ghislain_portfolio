@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getItemsHandler, resetGetItem } from "../../3-actions/itemActions";
 import Nav from "./Nav";
+import { MdDateRange, MdWork, MdPlace } from "react-icons/md";
 import "../../1-css/PageItem.css";
 
 export default function PageItem() {
@@ -46,6 +47,35 @@ export default function PageItem() {
     <div className="page-item">
       <Nav />
       <div className="page-content">
+        {items[0] &&
+        (items[0].content === "project" || items[0].content === "circus") ? (
+          <div className="text-container">
+            <h1>
+              {items[0].title}
+              {items[0].subtitle ? <span> - {items[0].subtitle}</span> : null}
+            </h1>
+            <p>{items[0].description}</p>
+            <div>
+              <p>
+                <MdDateRange size={30} />
+                {items[0].date}
+              </p>
+              <p>
+                {items[0].content === "project" ? (
+                  <MdWork size={30} />
+                ) : (
+                  <MdPlace size={30} />
+                )}
+                {items[0].categorie.map((name, i) => (
+                  <span>
+                    {i > 0 ? ", " : ""}
+                    {name}
+                  </span>
+                ))}
+              </p>
+            </div>
+          </div>
+        ) : null}
         {items[0]
           ? items[0].photos.reverse().map((file, i) =>
               file.type.split("/")[0] === "image" ? (

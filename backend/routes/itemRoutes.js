@@ -19,6 +19,7 @@ router.post(
     const item = new Item({
       content: itemAdd.content,
       title: itemAdd.title,
+      subtitle: itemAdd.subtitle ? itemAdd.subtitle : "",
       categorie: itemAdd.categorie,
       description: itemAdd.description
         ? itemAdd.description
@@ -157,8 +158,6 @@ router.put(
     let photos = [];
     const itemAdd = JSON.parse(req.body.item);
 
-    console.log(req.files);
-
     try {
       const item = await Item.findById(itemAdd._id);
       /* Importation des fichiers */
@@ -176,6 +175,7 @@ router.put(
       }
 
       item.title = itemAdd.title;
+      item.subtitle = itemAdd.subtitle;
       item.categorie = itemAdd.categorie;
       item.description = itemAdd.description
         ? itemAdd.description

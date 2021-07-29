@@ -87,6 +87,9 @@ export default function FormCircus({ update = false, item }) {
     let newItem = {
       content: "circus",
       title: data.title,
+      subtitle: data.subtitle,
+      description: data.description,
+      date: data.date,
       categorie: categories,
       place: data.place,
     };
@@ -137,11 +140,19 @@ export default function FormCircus({ update = false, item }) {
       <form id="form-contenu" onSubmit={handleSubmit(onSubmit)}>
         {update ? <h2>Détails</h2> : <h2>Saisissez les détails</h2>}
         <div className="form-group">
-          <label>Titre</label>
+          <label>Nom du cirque</label>
           <input
             {...register("title")}
             defaultValue={update ? item.title : ""}
-            placeholder="Titre"
+            placeholder="Titre Ex. Cirque du soleil"
+          />
+        </div>
+        <div className="form-group">
+          <label>Nom de la tournée</label>
+          <input
+            {...register("subtitle")}
+            defaultValue={update ? item.subtitle : ""}
+            placeholder="Tournée Ex. Kooza"
           />
         </div>
         <div className="form-group">
@@ -150,6 +161,22 @@ export default function FormCircus({ update = false, item }) {
             {...register("place")}
             defaultValue={update ? item.place : ""}
             placeholder="Lieu"
+          />
+        </div>
+        <div className="form-group">
+          <label>Présentation</label>
+          <textarea
+            {...register("description")}
+            defaultValue={update ? item.description : ""}
+            placeholder=""
+          />
+        </div>
+        <div className="form-group">
+          <label>Année(s)</label>
+          <input
+            {...register("date")}
+            defaultValue={update ? item.date : ""}
+            placeholder="Date Ex. 2019, 2019-2020"
           />
         </div>
       </form>

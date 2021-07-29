@@ -6,6 +6,10 @@
   overflow: hidden;
   cursor: pointer;
   position: relative;
+  font-family: "Poppins", sans-serif;
+}
+.item.project {
+  width: 15rem;
 }
 .item .mask {
   width: 100%;
@@ -36,13 +40,22 @@
   text-transform: uppercase;
   z-index: 2;
 }
+.item .item-title span {
+  font-weight: 200;
+  font-size: 14px;
+}
 .item:hover .item-title {
   transform: translateY(-1.5rem);
 }
-.item .item-place {
+/* .item.photography:hover .item-title {
+  transform: translateY(-0.25rem);
+} */
+.item .item-place,
+.item .item-date,
+.item .item-subtitle {
   display: flex;
   align-items: center;
-  font-weight: 400;
+  font-weight: 300;
   letter-spacing: 1px;
   font-size: 12px;
   color: #fff;
@@ -52,13 +65,28 @@
   transition: 0.25s;
   text-transform: uppercase;
   z-index: 2;
+  height: fit-content;
 }
-.item .item-place svg {
+
+.item .item-subtitle {
+  align-items: flex-start;
+  bottom: auto;
+  top: -5.5rem;
+}
+
+.item .item-place svg,
+.item .item-date svg,
+.item .item-subtitle svg {
   margin-right: 0.5rem;
 }
-.item:hover .item-place {
+.item:hover .item-place,
+.item:hover .item-date {
   transform: translateY(-5.5rem);
 }
+.item:hover .item-subtitle {
+  transform: translateY(6.5rem);
+}
+
 .item img,
 .item video {
   height: 100%;

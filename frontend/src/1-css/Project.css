@@ -1,0 +1,9 @@
+.project {
+  display: flex;
+}
+.project-container {
+  padding: 3rem 0;
+  flex: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
