@@ -6,23 +6,33 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { getItemsHandler, resetGetItem } from "../3-actions/itemActions";
 import FilterContainer from "./Components/FilterContainer";
+import { LoadingSVG } from "./Components/SmallComponents";
 
 export default function Project(props) {
   const dispatch = useDispatch();
   const { page = 1, filters: filtersParams = null } = useParams();
-  const per_page = 25;
-  const offset = page * per_page - per_page;
+  const per_page = 12;
   const filters = filtersParams ? filtersParams.split("&") : [];
 
   const getItem = useSelector((state) => state.getItem);
   const { loading: loadingItems, items, count, error: errorItems } = getItem;
 
+  const showMore = (e) => {
+    e.preventDefault();
+    let newPage = Number(page) + 1;
+    let newOffset = newPage * per_page - per_page;
+    dispatch(getItemsHandler("project", newOffset, per_page, filters));
+    props.history.push(
+      `/projects/${newPage}/${filtersParams ? filtersParams : ""}`
+    );
+  };
+
   useEffect(() => {
-    dispatch(getItemsHandler("project", offset, per_page, filters));
+    dispatch(getItemsHandler("project", 0, page * per_page, filters));
     return () => {
       dispatch(resetGetItem());
     };
-  }, [page, filtersParams]);
+  }, [filtersParams]);
 
   return (
     <div className="project">
@@ -38,6 +48,13 @@ export default function Project(props) {
               item.content === "project" ? <Item item={item} /> : null
             )}
         </div>
+        {count > items.length ? (
+          <div className={"show-more-button"}>
+            <button onClick={(e) => showMore(e)}>
+              {loadingItems ? <LoadingSVG /> : "Show more"}
+            </button>
+          </div>
+        ) : null}
       </div>
     </div>
   );

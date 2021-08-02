@@ -7,7 +7,7 @@ import { useParams } from "react-router";
 
 export default function FilterContainer({ content, props, url }) {
   const dispatch = useDispatch();
-  const { filters: filtersParams = null } = useParams();
+  const { page = 1, filters: filtersParams = null } = useParams();
 
   const getFilters = useSelector((state) => state.getFilters);
   const { loading: loadingFilters, filters, error: errorFilters } = getFilters;
@@ -55,7 +55,7 @@ export default function FilterContainer({ content, props, url }) {
     } else {
       filtersParams = "";
     }
-    props.history.push(`${url}/1/${filtersParams}`);
+    props.history.push(`${url}/${page}/${filtersParams}`);
   };
 
   useEffect(() => {

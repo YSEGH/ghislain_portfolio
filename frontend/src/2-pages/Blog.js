@@ -13,7 +13,7 @@ export default function Blog(props) {
           <div className="text-container">
             <FilterContainer content="blog" props={props} url={`/blog`} />
           </div>
-          <BlogsContainer />
+          <BlogsContainer props={props} />
         </div>
       </div>
     </>

@@ -146,19 +146,19 @@ export default function FormAgenda({ update = false, item }) {
       <form id="form-contenu" onSubmit={handleSubmit(onSubmit)}>
         {update ? <h2>Détails</h2> : <h2>Saisissez les détails</h2>}
         <div className="form-group">
-          <label>Évènement</label>
+          <label>Titre</label>
           <input
             {...register("title")}
             defaultValue={update ? item.title : ""}
-            placeholder="Titre Ex. Cirque du soleil"
+            placeholder="Ex. Cirque du soleil, Voyage"
           />
         </div>
         <div className="form-group">
-          <label>Détails</label>
+          <label>Sous-titre</label>
           <input
             {...register("subtitle")}
             defaultValue={update ? item.subtitle : ""}
-            placeholder="Ex. Tournée, Rôle"
+            placeholder="Ex. Kooza, Road Trip Photo"
           />
         </div>
         <div className="form-group">

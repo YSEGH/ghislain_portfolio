@@ -4,6 +4,7 @@
   align-items: center;
   color: #303030;
   margin: 1rem;
+  margin-bottom: 3rem;
 }
 .agenda-item .date-container {
   width: 12rem;
@@ -64,6 +65,8 @@
 }
 .agenda-item .text-container p:nth-child(2) {
   margin: 1rem auto;
+  max-height: 9rem;
+  overflow: scroll;
 }
 
 .agenda-item .text-container p:nth-child(3),

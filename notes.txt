@@ -1,1 +1,4 @@
 "webpack": "^5.47.0",
+
+
+Probleme lorsque tu actualises les filtres. Les items affichés sont réinitialisés (page 1).

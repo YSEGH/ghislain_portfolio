@@ -25,6 +25,7 @@ export default function Banner() {
         src="/static-files/videos/video-bannier.mp4"
         autoPlay
         type="video/mp4"
+        poster="/static-files/images/poster-bannier.png"
         muted
         loop
       />

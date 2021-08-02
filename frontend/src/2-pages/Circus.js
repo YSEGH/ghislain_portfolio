@@ -13,7 +13,7 @@ export default function Circus(props) {
           <div className="text-container">
             <FilterContainer content="circus" props={props} url={`/circus`} />
           </div>
-          <CircusContainer />
+          <CircusContainer props={props} />
         </div>
       </div>
     </>

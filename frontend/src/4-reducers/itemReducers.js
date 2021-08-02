@@ -34,11 +34,11 @@ const getItemsReducer = (
 ) => {
   switch (action.type) {
     case "GET_ITEM_REQUEST":
-      return { loading: true, items: [], count: 0 };
+      return { ...state, loading: true };
     case "GET_ITEM_SUCCESS":
       return {
         loading: false,
-        items: action.payload.items,
+        items: [...state.items, ...action.payload.items],
         count: action.payload.count,
       };
     case "GET_ITEM_FAIL":

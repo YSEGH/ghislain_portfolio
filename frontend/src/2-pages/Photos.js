@@ -17,7 +17,7 @@ export default function Photos(props) {
               url={`/photography`}
             />
           </div>
-          <PhotosContainer />
+          <PhotosContainer props={props} />
         </div>
       </div>
     </>

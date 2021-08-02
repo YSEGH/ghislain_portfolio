@@ -10,6 +10,28 @@
   align-items: flex-start;
   flex-wrap: wrap;
   height: auto;
-  min-height: 800px;
   width: 100%;
+}
+
+.show-more-button {
+  width: 100%;
+  margin: 5rem 0;
+}
+.show-more-button button {
+  height: 3rem;
+  width: 10rem;
+  max-width: 100vw;
+  margin: auto;
+  padding: 0.5rem;
+  color: #ff0513;
+  border: 1px solid #ff0513;
+  background-color: transparent;
+  cursor: pointer;
+  transition: 0.25s;
+  font: 200 14px "Poppins", sans-serif;
+}
+.show-more-button button:hover {
+  color: #fff;
+  border: 1px solid #ff0513;
+  background-color: #ff0513;
 }
