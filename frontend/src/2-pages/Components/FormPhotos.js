@@ -137,7 +137,7 @@ export default function FormPhotos({ update = false, item }) {
   return (
     <div className="form-contenu">
       <form id="form-contenu" onSubmit={handleSubmit(onSubmit)}>
-        {update ? <h2>Détails</h2> : <h2>Saisissez les détails</h2>}
+        {update ? <h2>Photographie</h2> : <h2>Saisissez les détails</h2>}
         <div className="form-group">
           <label>Titre</label>
           <input

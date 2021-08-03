@@ -76,6 +76,8 @@ export default function TableItems() {
                   return "Blog";
                 case "project":
                   return "Projet";
+                case "agenda":
+                  return "Agenda";
                 default:
                   break;
               }
