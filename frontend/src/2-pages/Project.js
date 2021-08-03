@@ -45,7 +45,7 @@ export default function Project(props) {
           {items
             .reverse()
             .map((item, i) =>
-              item.content === "project" ? <Item item={item} /> : null
+              item.content === "project" ? <Item item={item} key={i} /> : null
             )}
         </div>
         {count > items.length ? (

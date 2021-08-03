@@ -7,7 +7,7 @@ const router = express.Router();
 router.get("/:key", async (req, res) => {
   const key = req.params.key;
   const readStream = getFileStream(key);
-  readStream.pipe(res);
+  readStream.pipe(res).on("error", () => console.log("Fichier introuvable."));
 });
 
 export default router;

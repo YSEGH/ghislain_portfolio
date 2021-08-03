@@ -41,9 +41,7 @@ const getFileStream = (fileKey) => {
   return s3
     .getObject(downloadParams)
     .createReadStream()
-    .on("error", () => {
-      return;
-    });
+    .on("error", () => console.log("Fichier introuvable"));
 };
 
 // Delete a file

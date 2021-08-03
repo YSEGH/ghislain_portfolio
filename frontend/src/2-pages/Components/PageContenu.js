@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "../../1-css/PageContenu.css";
 import { BiArrowBack } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
-import { getItemsHandler } from "../../3-actions/itemActions";
+import { getItemsHandler, resetGetItem } from "../../3-actions/itemActions";
 import { useParams } from "react-router";
 import FormCircus from "./FormCircus";
 import FormPhotos from "./FormPhotos";
@@ -20,7 +20,9 @@ export default function PageContenu(props) {
 
   useEffect(() => {
     dispatch(getItemsHandler(null, null, null, null, itemId));
-    return () => {};
+    return () => {
+      dispatch(resetGetItem());
+    };
   }, []);
 
   return (

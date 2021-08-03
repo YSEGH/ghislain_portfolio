@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   deleteItemHandler,
   getItemsHandler,
+  resetGetItem,
   resetItemSuccess,
 } from "../../3-actions/itemActions";
 import { TABLE_ICONS } from "../../constants";
@@ -32,14 +33,17 @@ export default function TableItems() {
 
   useEffect(() => {
     dispatch(getItemsHandler());
-    return () => {};
+    return () => {
+      dispatch(resetGetItem());
+    };
   }, []);
 
   useEffect(() => {
     if (successDelete) {
+      dispatch(resetGetItem());
+      dispatch(getItemsHandler());
       toast.success("Suppression effectuée !");
       dispatch(resetItemSuccess());
-      dispatch(getItemsHandler());
     }
     if (errorDelete) {
       toast.error(errorDelete);

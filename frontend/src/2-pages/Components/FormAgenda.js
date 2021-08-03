@@ -201,7 +201,7 @@ export default function FormAgenda({ update = false, item }) {
         ) : (
           <h2>Importez votre fichier</h2>
         )}
-        <div className="apercu-zone many-images">
+        <div className="apercu-zone one-image">
           {files.length > 0 ? (
             <img
               src={files[0].preview ? files[0].preview : files[0].src}

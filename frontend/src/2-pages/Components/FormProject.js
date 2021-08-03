@@ -151,7 +151,7 @@ export default function FormProject({ update = false, item }) {
           <input
             {...register("subtitle")}
             defaultValue={update ? item.subtitle : ""}
-            placeholder="Ex. Acting, Performer"
+            placeholder="Ex. Piece of Theatre, Promotional video"
           />
         </div>
         <div className="form-group">

@@ -1,5 +1,6 @@
 .agenda {
   display: flex;
+  align-items: flex-start;
 }
 .agenda .page-content {
   padding-top: 3rem;

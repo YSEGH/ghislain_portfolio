@@ -73,17 +73,24 @@ export default function FormDetails() {
     };
     const formData = new FormData();
     formData.append("infos", JSON.stringify(infosUpdated));
-    formData.append("image", file);
+    if (file) {
+      formData.append("image", file);
+    }
     dispatch(updateInfosHandler(formData));
   };
 
   useEffect(() => {
-    if (Object.keys(infos).length === 0) {
-      dispatch(getInfosHandler());
-    }
+    dispatch(getInfosHandler());
+
+    return () => {};
+  }, []);
+
+  useEffect(() => {
     if (successUpdate) {
       toast.success("Modifications enregistrées !");
+      setFile(null);
       dispatch(resetInfos());
+      dispatch(getInfosHandler());
     }
     if (errorUpdate) {
       toast.error("Impossible d'enregistrer les modifications !");
