@@ -82,11 +82,13 @@ export default function FilterContainer({ content, props, url }) {
             ) : null
           )}
         </ul>
-        {filters.length > 3 && (
-          <button className="filters-button" onClick={() => displayFilter()}>
-            Filter(s) <MdAdd size={15} />
-          </button>
-        )}
+        <button
+          className="filters-button"
+          style={{ visibility: filters.length > 3 ? "visible" : "hidden" }}
+          onClick={() => displayFilter()}
+        >
+          Filter(s) <MdAdd size={15} />
+        </button>
       </div>
       <div className="filter-container-absolute">
         <MdClose
