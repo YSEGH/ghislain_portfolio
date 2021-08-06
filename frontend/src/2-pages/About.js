@@ -25,6 +25,11 @@ export default function About() {
         <Nav color="black" />
         <div className="text-container">
           <h1>About Me</h1>
+          <div className="photo-container">
+            {infos.aboutPhoto && (
+              <img src={infos.aboutPhoto} alt="ghislain_ramage" />
+            )}
+          </div>
           <div className="paragraphe-container">
             {infos.aboutDescription && (
               <EditorJs
@@ -34,9 +39,6 @@ export default function About() {
               />
             )}
           </div>
-        </div>
-        <div className="photo-container">
-          <img src={infos.aboutPhoto} alt="ghislain_ramage" />
         </div>
       </div>
     </>

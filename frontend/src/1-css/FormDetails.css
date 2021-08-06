@@ -17,6 +17,7 @@
   font-weight: 400;
   text-align: center;
   letter-spacing: 3px;
+  width: 100%;
 }
 .details button {
   height: 3rem;
@@ -31,20 +32,21 @@
 }
 .form-details {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 }
 .form-details .form-group {
-  width: 20rem;
+  width: 50%;
   text-align: left;
   display: flex;
-  align-items: flex-start;
   flex-direction: column;
+  align-items: center;
   margin-bottom: 2rem;
 }
 .form-details label {
-  width: 100%;
+  width: 20rem;
+  max-width: 100%;
   margin-bottom: 0.5rem;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
@@ -56,7 +58,8 @@
 .form-details select,
 .form-details textarea {
   border: 1px solid rgba(199, 199, 199, 0.363);
-  width: 100%;
+  width: 20rem;
+  max-width: 100%;
   height: 3rem;
   margin-bottom: 1.5rem;
   font-family: "Poppins", sans-serif;
@@ -72,6 +75,12 @@
   background-color: #d6000b;
 }
 
+.form-details-button {
+  margin-top: 5rem !important;
+  text-transform: uppercase;
+  height: 5rem !important;
+}
+
 .text-editor {
   height: fit-content;
   min-height: 10rem;
@@ -83,14 +92,23 @@
   text-align: left;
   margin: auto;
 }
+@media screen and (max-width: 1050px) {
+  .form-details {
+    flex-direction: column;
+  }
+  .form-details .form-group {
+    width: 100%;
+  }
+}
 
 @media screen and (max-width: 400px) {
   .details h2 {
-    margin: 1rem;
+    margin: 1rem 0;
     max-width: 100vw;
   }
+
   .form-details .form-group {
-    width: 15rem;
+    width: 95vw;
   }
   .upload-zone-container {
     margin: 0;

@@ -156,34 +156,46 @@ export default function FormBlog({ update = false, item }) {
         <div className="form-group">
           <label>Titre</label>
           <input
-            {...register("title")}
+            {...register("title", { required: true })}
             defaultValue={update ? item.title : ""}
             placeholder="Titre"
           />
+          {errors.title && (
+            <span className="danger">Merci de saisir un titre.</span>
+          )}
         </div>
-        {errors.title && <span>Merci de compléter ce champ.</span>}
+        <div className="form-group">
+          <label>Lieu</label>
+          <input
+            {...register("place", { required: true })}
+            defaultValue={update ? item.place : ""}
+            placeholder="Lieu"
+          />
+          {errors.place && (
+            <span className="danger">Merci de saisir un lieu.</span>
+          )}
+        </div>
         <div className="form-group">
           <label>Date</label>
           {update && <input disabled value={date} />}
           <input
-            {...register("date")}
+            {...register("date", { required: true })}
             defaultValue={update ? item.date : ""}
             onChange={(e) => setDateHandler(e.target.value)}
             placeholder="Date"
             type="date"
           />
-        </div>
-        <div className="form-group">
-          <label>Lieu</label>
-          <input
-            {...register("place")}
-            defaultValue={update ? item.place : ""}
-            placeholder="Lieu"
-          />
+          {errors.date && (
+            <span className="danger">Merci de saisir une date.</span>
+          )}
         </div>
       </form>
 
-      <form id={"form-category"} onSubmit={(e) => submitCategory(e)}>
+      <form
+        id={"form-category"}
+        className="form-category"
+        onSubmit={(e) => submitCategory(e)}
+      >
         <h2>Catégories</h2>
         <div className="category-input-container">
           <input

@@ -141,21 +141,31 @@ export default function FormPhotos({ update = false, item }) {
         <div className="form-group">
           <label>Titre</label>
           <input
-            {...register("title")}
+            {...register("title", { required: true })}
             defaultValue={update ? item.title : ""}
             placeholder="Titre Ex. Australie"
           />
+          {errors.title && (
+            <span className="danger">Merci de saisir un titre.</span>
+          )}
         </div>
         <div className="form-group">
           <label>Continent</label>
           <input
-            {...register("place")}
+            {...register("place", { required: true })}
             defaultValue={update ? item.place : ""}
             placeholder="Continent Ex. Océanie"
           />
+          {errors.title && (
+            <span className="danger">Merci de saisir le continent.</span>
+          )}
         </div>
       </form>
-      <form id={"form-category"} onSubmit={(e) => submitCategory(e)}>
+      <form
+        id={"form-category"}
+        className="form-category"
+        onSubmit={(e) => submitCategory(e)}
+      >
         <h2>Catégories</h2>
         <div className="category-input-container">
           <input

@@ -30,14 +30,15 @@ export default function BlogItem({ item }) {
       </Link>
       <div className="text-container">
         <Link to={`/blog/article/id/${item._id}`}>{item.title}</Link>
-        <p>
-          <MdDateRange size={22} />
-          {item.date}
-        </p>
+
         <div className="editor-js-blog-item">
           <EditorJs tools={EDITOR_JS_TOOLS} data={item.description} readOnly />
         </div>
         <span>(...)</span>
+        <p>
+          <MdDateRange size={22} />
+          {item.date}
+        </p>
         <Link to={`/blog/article/id/${item._id}`}>Lire la suite</Link>
       </div>
     </div>

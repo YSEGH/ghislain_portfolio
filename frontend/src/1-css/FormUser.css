@@ -36,6 +36,7 @@
   background-color: #cf000a;
 }
 .form-user p {
+  font-weight: 200;
   text-decoration: underline;
   color: blue;
   margin: 2rem auto;

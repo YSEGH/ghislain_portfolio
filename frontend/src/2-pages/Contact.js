@@ -21,9 +21,11 @@ export default function Contact() {
       <Nav />
       <div className="contact-content">
         <div className="text-container">
-          <h1>
-            {infos.firstname} {infos.lastname}
-          </h1>
+          <h1>Contact</h1>
+          <p>
+            Do not hesitate to contact me for any question, I will answer you as
+            soon as possible.
+          </p>
           <p>
             <MdPlace size={30} />
             {infos.city}, {infos.country}

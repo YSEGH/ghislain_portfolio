@@ -234,11 +234,12 @@ export default function FormDetails() {
         </div>
       </div>
       <button
+        className="form-details-button"
         form="form-details"
         type="submit"
         disabled={loadingUpdate ? true : false}
       >
-        {loadingUpdate ? <LoadingSVG /> : "Valider les modifications"}
+        {loadingUpdate ? <LoadingSVG /> : "Valider"}
       </button>
     </div>
   );

@@ -6,7 +6,7 @@
   flex: auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   padding: 2rem 0;
 }
 .page-item .page-content .show-infos {
@@ -107,7 +107,7 @@
 .page-item .page-content .photo-content {
   min-width: 1rem;
   width: fit-content;
-  max-width: 90%;
+  max-width: 100%;
   height: 40rem;
   margin: 0.5rem 1rem 2rem 1rem;
   cursor: pointer;
@@ -127,7 +127,7 @@
 .page-item .page-content .photo-content .photo-background video {
   display: block;
   width: auto;
-  max-width: 100%;
+  max-width: 90%;
   height: 100%;
   object-fit: contain;
   object-position: center center;

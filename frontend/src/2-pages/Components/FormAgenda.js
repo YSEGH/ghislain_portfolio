@@ -20,7 +20,9 @@ export default function FormAgenda({ update = false, item }) {
   const [beginDate, setBeginDate] = useState(
     item ? item.date.split("-")[0] : ""
   );
-  const [endDate, setEndDate] = useState(item ? item.date.split("-")[1] : "");
+  const [endDate, setEndDate] = useState(
+    item ? item.date.split("-")[1] : "Unknow"
+  );
 
   const addItem = useSelector((state) => state.addItem);
   const { loading: loadingAdd, success: successAdd, error: errorAdd } = addItem;
@@ -91,29 +93,33 @@ export default function FormAgenda({ update = false, item }) {
   };
 
   const onSubmit = async (data) => {
-    const formData = new FormData();
-    let newItem = {
-      content: "agenda",
-      title: data.title,
-      subtitle: data.subtitle,
-      description: data.description,
-      date: `${beginDate} - ${endDate}`,
-      place: data.place,
-    };
-    if (update) {
-      newItem._id = item._id;
-    }
-    formData.append("item", JSON.stringify(newItem));
-    for (let i = 0; i < files.length; i++) {
-      if (!files[i].imported) {
-        formData.append("files", files[i]);
+    if (beginDate) {
+      const formData = new FormData();
+      let newItem = {
+        content: "agenda",
+        title: data.title,
+        subtitle: data.subtitle,
+        description: data.description,
+        date: `${beginDate} - ${endDate}`,
+        place: data.place,
+      };
+      if (update) {
+        newItem._id = item._id;
       }
-    }
+      formData.append("item", JSON.stringify(newItem));
+      for (let i = 0; i < files.length; i++) {
+        if (!files[i].imported) {
+          formData.append("files", files[i]);
+        }
+      }
 
-    if (update) {
-      dispatch(updateItemHandler(item._id, formData, filesToDelete));
+      if (update) {
+        dispatch(updateItemHandler(item._id, formData, filesToDelete));
+      } else {
+        dispatch(addItemHandler(formData));
+      }
     } else {
-      dispatch(addItemHandler(formData));
+      toast.error("Merci de saisir une date de début.");
     }
   };
 
@@ -148,34 +154,48 @@ export default function FormAgenda({ update = false, item }) {
         <div className="form-group">
           <label>Titre</label>
           <input
-            {...register("title")}
+            {...register("title", { required: true })}
             defaultValue={update ? item.title : ""}
             placeholder="Ex. Cirque du soleil, Voyage"
           />
+          {errors.title && (
+            <span className="danger">Merci de saisir un titre.</span>
+          )}
         </div>
         <div className="form-group">
           <label>Sous-titre</label>
           <input
-            {...register("subtitle")}
+            {...register("subtitle", { required: true })}
             defaultValue={update ? item.subtitle : ""}
             placeholder="Ex. Kooza, Road Trip Photo"
           />
+          {errors.title && (
+            <span className="danger">Merci de saisir un sous-titre.</span>
+          )}
         </div>
         <div className="form-group">
           <label>Lieu</label>
           <input
-            {...register("place")}
+            {...register("place", { required: true })}
             defaultValue={update ? item.place : ""}
             placeholder="Lieu"
           />
+          {errors.title && (
+            <span className="danger">Merci de saisir le lieu.</span>
+          )}
         </div>
         <div className="form-group">
           <label>Présentation</label>
           <textarea
-            {...register("description")}
+            {...register("description", { required: true })}
             defaultValue={update ? item.description : ""}
             placeholder=""
           />
+          {errors.title && (
+            <span className="danger">
+              Merci de saisir un texte de présentation.
+            </span>
+          )}
         </div>
         <div className="form-group">
           <label>Date de début</label>
@@ -186,7 +206,7 @@ export default function FormAgenda({ update = false, item }) {
           />
         </div>
         <div className="form-group">
-          <label>Date de fin</label>
+          <label>Date de fin (optionnelle)</label>
           {update && <input disabled value={endDate} />}
           <input
             onChange={(e) => setDateHandler(e.target.value, "fin")}

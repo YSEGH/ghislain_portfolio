@@ -28,3 +28,7 @@ img {
 select {
   display: block !important;
 }
+
+.danger {
+  color: red;
+}

@@ -142,45 +142,68 @@ export default function FormCircus({ update = false, item }) {
         <div className="form-group">
           <label>Nom du cirque</label>
           <input
-            {...register("title")}
+            {...register("title", { required: true })}
             defaultValue={update ? item.title : ""}
-            placeholder="Titre Ex. Cirque du soleil"
+            placeholder="Ex. Cirque du soleil"
           />
+          {errors.title && (
+            <span className="danger">Merci de saisir un nom de cirque.</span>
+          )}
         </div>
         <div className="form-group">
           <label>Nom de la tournée</label>
           <input
-            {...register("subtitle")}
+            {...register("subtitle", { required: true })}
             defaultValue={update ? item.subtitle : ""}
-            placeholder="Tournée Ex. Kooza"
+            placeholder="Ex. Kooza"
           />
+          {errors.title && (
+            <span className="danger">
+              Merci de saisir le nom de la tournée.
+            </span>
+          )}
         </div>
         <div className="form-group">
           <label>Lieu</label>
           <input
-            {...register("place")}
+            {...register("place", { required: true })}
             defaultValue={update ? item.place : ""}
             placeholder="Lieu"
           />
-        </div>
-        <div className="form-group">
-          <label>Présentation</label>
-          <textarea
-            {...register("description")}
-            defaultValue={update ? item.description : ""}
-            placeholder=""
-          />
+          {errors.title && (
+            <span className="danger">Merci de saisir le lieu.</span>
+          )}
         </div>
         <div className="form-group">
           <label>Année(s)</label>
           <input
-            {...register("date")}
+            {...register("date", { required: true })}
             defaultValue={update ? item.date : ""}
-            placeholder="Date Ex. 2019, 2019-2020"
+            placeholder="Ex. 2019, 2019-2020"
           />
+          {errors.title && (
+            <span className="danger">Merci de saisir l'année.</span>
+          )}
+        </div>
+        <div className="form-group">
+          <label>Présentation</label>
+          <textarea
+            {...register("description", { required: true })}
+            defaultValue={update ? item.description : ""}
+            placeholder=""
+          />
+          {errors.title && (
+            <span className="danger">
+              Merci de saisir un texte de présentation.
+            </span>
+          )}
         </div>
       </form>
-      <form id={"form-category"} onSubmit={(e) => submitCategory(e)}>
+      <form
+        id={"form-category"}
+        className="form-category"
+        onSubmit={(e) => submitCategory(e)}
+      >
         <h2>Catégories</h2>
         <div className="category-input-container">
           <input

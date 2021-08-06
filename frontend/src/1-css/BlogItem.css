@@ -7,7 +7,9 @@
 }
 .blog-item img {
   width: 25vw;
+  min-width: 20rem;
   height: 25vw;
+  min-height: 20rem;
   object-fit: cover;
   cursor: pointer;
 }
@@ -23,10 +25,10 @@
 
 .blog-item .text-container a:nth-child(1) {
   font-size: 2em;
-  font-weight: 200;
-  letter-spacing: 3px;
-  text-transform: capitalize;
+  font-weight: 400;
+  letter-spacing: 2px;
   text-decoration: none;
+  text-transform: uppercase;
   color: #303030;
   margin-bottom: 1rem;
   transition: 0.25s;
@@ -35,16 +37,16 @@
   color: #ff0513;
   text-decoration: underline;
 }
-.blog-item .text-container p:nth-child(2) {
+.blog-item .text-container p:nth-child(4) {
   font-style: italic;
   font-weight: 200;
   letter-spacing: 1px;
   color: #303030;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
   display: flex;
   align-items: center;
 }
-.blog-item .text-container p:nth-child(2) svg {
+.blog-item .text-container p:nth-child(4) svg {
   margin-right: 0.5rem;
 }
 .codex-editor--narrow .codex-editor__redactor {
@@ -69,12 +71,11 @@
   padding: 0 !important;
   line-height: 18px !important;
 }
-.blog-item .text-container span:nth-child(4) {
+.blog-item .text-container span:nth-child(3) {
   font-weight: 300;
 }
 .blog-item .text-container a:nth-child(5) {
   display: block;
-  margin-top: 1rem;
   cursor: pointer;
   transition: 0.25s;
   color: #ff0513;
@@ -87,18 +88,20 @@
   .blog-item {
     margin: 0 auto 4rem auto;
   }
+  .blog-item .text-container a:nth-child(1) {
+    font-size: 1.75em;
+  }
 }
 @media screen and (max-width: 960px) {
   .blog-item {
     width: auto;
   }
-  .blog-item img {
-    width: 20rem;
-    height: 20rem;
-  }
   .blog-item .text-container {
     width: 20rem;
     margin: 0 2rem;
+  }
+  .blog-item .text-container a:nth-child(1) {
+    margin: 1rem 0;
   }
 }
 @media screen and (max-width: 768px) {
@@ -123,23 +126,28 @@
   .blog-item img {
     width: 20rem;
     height: 20rem;
+    min-width: 0;
+    min-height: 0;
   }
   .blog-item .text-container {
     margin: 0 0rem;
     width: 20rem;
   }
+  .blog-item .text-container a:nth-child(1) {
+    font-size: 1.5em;
+  }
 }
 @media screen and (max-width: 350px) {
   .blog-item {
-    width: 15rem;
+    width: 95vw;
     flex-direction: column;
   }
   .blog-item img {
-    width: 15rem;
-    height: 15rem;
+    width: 95vw;
+    height: 95vw;
   }
   .blog-item .text-container {
     margin: 0 0rem;
-    width: 15rem;
+    width: 90%;
   }
 }
