@@ -141,7 +141,7 @@ export default function FormPhotos({ update = false, item }) {
         <div className="form-group">
           <label>Titre</label>
           <input
-            {...register("title", { required: true })}
+            {...register("title", { required: !update ? true : false })}
             defaultValue={update ? item.title : ""}
             placeholder="Titre Ex. Australie"
           />
@@ -152,7 +152,7 @@ export default function FormPhotos({ update = false, item }) {
         <div className="form-group">
           <label>Continent</label>
           <input
-            {...register("place", { required: true })}
+            {...register("place", { required: !update ? true : false })}
             defaultValue={update ? item.place : ""}
             placeholder="Continent Ex. Océanie"
           />

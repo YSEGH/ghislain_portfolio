@@ -154,7 +154,7 @@ export default function FormAgenda({ update = false, item }) {
         <div className="form-group">
           <label>Titre</label>
           <input
-            {...register("title", { required: true })}
+            {...register("title", { required: !update ? true : false })}
             defaultValue={update ? item.title : ""}
             placeholder="Ex. Cirque du soleil, Voyage"
           />
@@ -165,7 +165,7 @@ export default function FormAgenda({ update = false, item }) {
         <div className="form-group">
           <label>Sous-titre</label>
           <input
-            {...register("subtitle", { required: true })}
+            {...register("subtitle", { required: !update ? true : false })}
             defaultValue={update ? item.subtitle : ""}
             placeholder="Ex. Kooza, Road Trip Photo"
           />
@@ -176,7 +176,7 @@ export default function FormAgenda({ update = false, item }) {
         <div className="form-group">
           <label>Lieu</label>
           <input
-            {...register("place", { required: true })}
+            {...register("place", { required: !update ? true : false })}
             defaultValue={update ? item.place : ""}
             placeholder="Lieu"
           />
@@ -187,7 +187,7 @@ export default function FormAgenda({ update = false, item }) {
         <div className="form-group">
           <label>Présentation</label>
           <textarea
-            {...register("description", { required: true })}
+            {...register("description", { required: !update ? true : false })}
             defaultValue={update ? item.description : ""}
             placeholder=""
           />

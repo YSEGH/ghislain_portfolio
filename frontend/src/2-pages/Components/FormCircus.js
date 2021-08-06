@@ -142,7 +142,7 @@ export default function FormCircus({ update = false, item }) {
         <div className="form-group">
           <label>Nom du cirque</label>
           <input
-            {...register("title", { required: true })}
+            {...register("title", { required: !update ? true : false })}
             defaultValue={update ? item.title : ""}
             placeholder="Ex. Cirque du soleil"
           />
@@ -153,7 +153,7 @@ export default function FormCircus({ update = false, item }) {
         <div className="form-group">
           <label>Nom de la tournée</label>
           <input
-            {...register("subtitle", { required: true })}
+            {...register("subtitle", { required: !update ? true : false })}
             defaultValue={update ? item.subtitle : ""}
             placeholder="Ex. Kooza"
           />
@@ -166,7 +166,7 @@ export default function FormCircus({ update = false, item }) {
         <div className="form-group">
           <label>Lieu</label>
           <input
-            {...register("place", { required: true })}
+            {...register("place", { required: !update ? true : false })}
             defaultValue={update ? item.place : ""}
             placeholder="Lieu"
           />
@@ -177,7 +177,7 @@ export default function FormCircus({ update = false, item }) {
         <div className="form-group">
           <label>Année(s)</label>
           <input
-            {...register("date", { required: true })}
+            {...register("date", { required: !update ? true : false })}
             defaultValue={update ? item.date : ""}
             placeholder="Ex. 2019, 2019-2020"
           />
@@ -188,7 +188,7 @@ export default function FormCircus({ update = false, item }) {
         <div className="form-group">
           <label>Présentation</label>
           <textarea
-            {...register("description", { required: true })}
+            {...register("description", { required: !update ? true : false })}
             defaultValue={update ? item.description : ""}
             placeholder=""
           />

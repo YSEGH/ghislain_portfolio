@@ -156,7 +156,7 @@ export default function FormBlog({ update = false, item }) {
         <div className="form-group">
           <label>Titre</label>
           <input
-            {...register("title", { required: true })}
+            {...register("title", { required: !update ? true : false })}
             defaultValue={update ? item.title : ""}
             placeholder="Titre"
           />
@@ -167,7 +167,7 @@ export default function FormBlog({ update = false, item }) {
         <div className="form-group">
           <label>Lieu</label>
           <input
-            {...register("place", { required: true })}
+            {...register("place", { required: !update ? true : false })}
             defaultValue={update ? item.place : ""}
             placeholder="Lieu"
           />
@@ -179,7 +179,7 @@ export default function FormBlog({ update = false, item }) {
           <label>Date</label>
           {update && <input disabled value={date} />}
           <input
-            {...register("date", { required: true })}
+            {...register("date", { required: !update ? true : false })}
             defaultValue={update ? item.date : ""}
             onChange={(e) => setDateHandler(e.target.value)}
             placeholder="Date"
