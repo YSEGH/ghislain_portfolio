@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useEffect } from "react";
+import React, { Suspense, lazy } from "react";
 import "./1-css/App.css";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -19,12 +19,6 @@ const Agenda = lazy(() => import("./2-pages/Agenda"));
 const PageBlog = lazy(() => import("./2-pages/Components/PageBlog"));
 
 function App() {
-  useEffect(() => {
-    if (window.location.origin === "http://ghislainramage.com") {
-      window.location.replace("https://www.ghislainramage.com/#/");
-    }
-    return () => {};
-  }, []);
   return (
     <Router>
       <div className="App">
