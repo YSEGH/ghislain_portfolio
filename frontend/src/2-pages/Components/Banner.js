@@ -42,14 +42,15 @@ export default function Banner() {
         muted
         autoPlay
         loop
-        poster="/static-files/images/poster-bannier.png"
+        /*         poster="/static-files/images/poster-bannier.png"
+         */
       />
       <div className="mask"></div>
       {/*       {loadingData ? (
         <LoadingSpinnerFullPage color="#ff0513" />
       ) : ( */}
       <div className="text-container">
-        <div className="fade-in-bottom">
+        <div className="">
           <h1>
             Ghislain
             <br /> Ramage
@@ -63,7 +64,7 @@ export default function Banner() {
             </Link>
           </div>
         </div>
-        <div className="network-container fade-in">
+        <div className="network-container">
           <a href={`${infos.instagram}`} target="_blank">
             <FiInstagram size={20} />
           </a>
