@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getInfosHandler } from "../../3-actions/infoActions";
 import "react-toastify/dist/ReactToastify.css";
-import { LoadingSpinnerFullPage, LoadingSVG } from "./SmallComponents";
+import { LoadingSpinnerFullPage } from "./SmallComponents";
 
 export default function Banner() {
   const [loadingData, setLoadingData] = useState(true);
@@ -15,10 +15,14 @@ export default function Banner() {
   const getInfos = useSelector((state) => state.getInfos);
   const { loading, infos, error } = getInfos;
 
-  useEffect(() => {
+  const launchVideo = () => {
     var video = document.querySelector(".video-banner");
     video.muted = true;
     video.play();
+    setLoadingData(false);
+  };
+
+  useEffect(() => {
     dispatch(getInfosHandler());
 
     return () => {};
@@ -26,7 +30,6 @@ export default function Banner() {
 
   return (
     <div className="banner part">
-      {loadingData && <LoadingSpinnerFullPage color="#ff0513" />}
       <video
         className="video-banner"
         src="/static-files/videos/video-banner-1.mp4"
@@ -34,38 +37,38 @@ export default function Banner() {
         muted
         autoPlay
         loop
-        onLoadedData={() => setLoadingData(false)}
+        onLoadedData={() => launchVideo()}
         poster="/static-files/images/poster-bannier.png"
       />
       <div className="mask"></div>
-      {/*       {loadingData ? (
+      {loadingData ? (
         <LoadingSpinnerFullPage color="#ff0513" />
-      ) : ( */}
-      <div className="text-container">
-        <div className="">
-          <h1>
-            Ghislain
-            <br /> Ramage
-          </h1>
-          <div className="links-container">
-            <Link to="/circus" onClick={() => window.scrollTo(0, 0)}>
-              Circus
-            </Link>
-            <Link to="/photography" onClick={() => window.scrollTo(0, 0)}>
-              Photography
-            </Link>
+      ) : (
+        <div className="text-container">
+          <div className="fade-in-bottom">
+            <h1>
+              Ghislain
+              <br /> Ramage
+            </h1>
+            <div className="links-container">
+              <Link to="/circus" onClick={() => window.scrollTo(0, 0)}>
+                Circus
+              </Link>
+              <Link to="/photography" onClick={() => window.scrollTo(0, 0)}>
+                Photography
+              </Link>
+            </div>
+          </div>
+          <div className="network-container fade-in">
+            <a href={`${infos.instagram}`} target="_blank">
+              <FiInstagram size={20} />
+            </a>
+            <a href={`${infos.facebook}`} target="_blank">
+              <FiFacebook size={20} />
+            </a>
           </div>
         </div>
-        <div className="network-container">
-          <a href={`${infos.instagram}`} target="_blank">
-            <FiInstagram size={20} />
-          </a>
-          <a href={`${infos.facebook}`} target="_blank">
-            <FiFacebook size={20} />
-          </a>
-        </div>
-      </div>
-      {/*       )} */}
+      )}
     </div>
   );
 }
