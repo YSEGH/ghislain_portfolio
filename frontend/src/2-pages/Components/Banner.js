@@ -35,8 +35,7 @@ export default function Banner() {
         autoPlay
         loop
         onLoadedData={() => setLoadingData(false)}
-        /*         poster="/static-files/images/poster-bannier.png"
-         */
+        poster="/static-files/images/poster-bannier.png"
       />
       <div className="mask"></div>
       {/*       {loadingData ? (
