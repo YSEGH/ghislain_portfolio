@@ -15,19 +15,10 @@ export default function Banner() {
   const getInfos = useSelector((state) => state.getInfos);
   const { loading, infos, error } = getInfos;
 
-  const checkLoaded = (video) => {
-    if (video.readyState === 4) {
-      console.log("4");
-      setLoadingData(false);
-    }
-  };
-
   useEffect(() => {
     var video = document.querySelector(".video-banner");
     video.muted = true;
     video.play();
-    video.addEventListener("loadeddata", () => checkLoaded(video));
-
     dispatch(getInfosHandler());
 
     return () => {};
@@ -43,6 +34,7 @@ export default function Banner() {
         muted
         autoPlay
         loop
+        onLoadedData={() => setLoadingData(false)}
         /*         poster="/static-files/images/poster-bannier.png"
          */
       />
