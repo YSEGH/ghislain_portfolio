@@ -44,12 +44,9 @@
   padding-top: 2rem;
   z-index: 2;
 }
+
 .banner .text-container h1 {
-  font-size: 60px;
-  font-weight: 200;
-}
-.banner .text-container h1 {
-  font-size: 90px !important;
+  font-size: 80px !important;
   font-weight: 600;
   line-height: 90px;
   margin-bottom: 2rem;
@@ -78,7 +75,7 @@
 }
 .banner .text-container .links-container a {
   border: 3px solid #fff;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   position: relative;
   overflow: hidden;
 
@@ -92,7 +89,7 @@
   width: 300%;
   height: 400%;
   background-color: rgba(255, 5, 18, 0.5);
-  transform: translateX(-100%) translateY(-75%) rotate(25deg);
+  transform: translateX(-110%) translateY(-75%) rotate(25deg);
   transition: 0.5s;
   z-index: -1;
 }

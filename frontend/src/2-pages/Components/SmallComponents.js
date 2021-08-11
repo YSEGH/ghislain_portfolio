@@ -18,10 +18,10 @@ function LoadingSpinnerFixed() {
   );
 }
 
-function LoadingSpinnerFullPage() {
+function LoadingSpinnerFullPage({ color }) {
   return (
     <div className="small-component full-page loading">
-      <ImSpinner6 size={40} />
+      <ImSpinner6 size={40} fontStyle={{ color: color }} />
     </div>
   );
 }
