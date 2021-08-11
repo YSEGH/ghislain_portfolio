@@ -36,7 +36,7 @@ export default function Banner() {
     <div className="banner part">
       <video
         className="video-banner"
-        src="/static-files/videos/video-banner.mp4"
+        src="/static-files/videos/video-banner-1.mp4"
         type="video/mp4"
         muted
         autoPlay
