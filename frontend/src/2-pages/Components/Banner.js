@@ -24,6 +24,7 @@ export default function Banner() {
 
   useEffect(() => {
     var video = document.querySelector(".video-banner");
+    video.muted = true;
     video.play();
     /*     video.addEventListener("loadeddata", () => checkLoaded(video));
      */
