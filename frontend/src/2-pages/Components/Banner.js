@@ -42,34 +42,34 @@ export default function Banner() {
         loop
       />
       <div className="mask"></div>
-      {loadingData ? (
+      {/*       {loadingData ? (
         <LoadingSpinnerFullPage color="#ff0513" />
-      ) : (
-        <div className="text-container">
-          <div className="fade-in-bottom">
-            <h1>
-              Ghislain
-              <br /> Ramage
-            </h1>
-            <div className="links-container">
-              <Link to="/circus" onClick={() => window.scrollTo(0, 0)}>
-                Circus
-              </Link>
-              <Link to="/photography" onClick={() => window.scrollTo(0, 0)}>
-                Photography
-              </Link>
-            </div>
-          </div>
-          <div className="network-container fade-in">
-            <a href={`${infos.instagram}`} target="_blank">
-              <FiInstagram size={20} />
-            </a>
-            <a href={`${infos.facebook}`} target="_blank">
-              <FiFacebook size={20} />
-            </a>
+      ) : ( */}
+      <div className="text-container">
+        <div className="fade-in-bottom">
+          <h1>
+            Ghislain
+            <br /> Ramage
+          </h1>
+          <div className="links-container">
+            <Link to="/circus" onClick={() => window.scrollTo(0, 0)}>
+              Circus
+            </Link>
+            <Link to="/photography" onClick={() => window.scrollTo(0, 0)}>
+              Photography
+            </Link>
           </div>
         </div>
-      )}
+        <div className="network-container fade-in">
+          <a href={`${infos.instagram}`} target="_blank">
+            <FiInstagram size={20} />
+          </a>
+          <a href={`${infos.facebook}`} target="_blank">
+            <FiFacebook size={20} />
+          </a>
+        </div>
+      </div>
+      {/*       )} */}
     </div>
   );
 }
