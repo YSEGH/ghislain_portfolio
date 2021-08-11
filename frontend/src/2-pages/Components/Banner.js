@@ -24,6 +24,7 @@ export default function Banner() {
 
   useEffect(() => {
     var video = document.querySelector(".video-banner");
+    video.play();
     /*     video.addEventListener("loadeddata", () => checkLoaded(video));
      */
     dispatch(getInfosHandler());
@@ -36,11 +37,11 @@ export default function Banner() {
       <video
         className="video-banner"
         src="/static-files/videos/video-banner.mp4"
-        poster="/static-files/images/poster-bannier.png"
+        type="video/mp4"
         muted
         autoPlay
-        type="video/mp4"
         loop
+        poster="/static-files/images/poster-bannier.png"
       />
       <div className="mask"></div>
       {/*       {loadingData ? (
