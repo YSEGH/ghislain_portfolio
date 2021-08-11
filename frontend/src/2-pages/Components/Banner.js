@@ -26,8 +26,8 @@ export default function Banner() {
     var video = document.querySelector(".video-banner");
     video.muted = true;
     video.play();
-    /*     video.addEventListener("loadeddata", () => checkLoaded(video));
-     */
+    video.addEventListener("loadeddata", () => checkLoaded(video));
+
     dispatch(getInfosHandler());
 
     return () => {};
@@ -35,6 +35,7 @@ export default function Banner() {
 
   return (
     <div className="banner part">
+      {loadingData && <LoadingSpinnerFullPage color="#ff0513" />}
       <video
         className="video-banner"
         src="/static-files/videos/video-banner-1.mp4"
