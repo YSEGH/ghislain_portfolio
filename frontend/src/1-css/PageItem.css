@@ -45,7 +45,8 @@
 /* Text container */
 .page-item .text-container {
   margin: 2rem auto 2rem auto;
-  width: 80%;
+  width: 40rem;
+  max-width: 90vw;
   font-family: "Poppins", sans-serif;
   text-align: left;
   display: flex;
@@ -63,7 +64,7 @@
 .page-item .text-container h1 {
   font-size: 2em;
   color: #303030;
-  font-weight: 300;
+  font-weight: 400;
   text-transform: capitalize;
 }
 .page-item .text-container h1 span {
@@ -127,11 +128,10 @@
 .page-item .page-content .photo-content .photo-background video {
   display: block;
   width: auto;
-  max-width: 90%;
+  max-width: 100%;
   height: 100%;
   object-fit: contain;
   object-position: center center;
-
   pointer-events: none;
 }
 .page-item .page-content .photo-content.active {
@@ -168,7 +168,6 @@
   .page-item .page-content .text-container {
     margin-top: 2rem;
     padding: 0;
-    width: 80%;
     text-align: justify;
     justify-content: flex-start;
   }

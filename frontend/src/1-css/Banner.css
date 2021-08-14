@@ -74,11 +74,10 @@
   width: 15rem;
 }
 .banner .text-container .links-container a {
-  border: 3px solid #fff;
-  padding: 0.5rem 1rem;
+  border: 1px solid #fff;
+  padding: 1rem 1rem;
   position: relative;
   overflow: hidden;
-
   z-index: 1;
 }
 .banner .text-container .links-container a:before {
@@ -88,7 +87,7 @@
   left: 0;
   width: 300%;
   height: 400%;
-  background-color: rgba(255, 5, 18, 0.5);
+  background-color: rgba(255, 5, 18, 0.3);
   transform: translateX(-110%) translateY(-75%) rotate(25deg);
   transition: 0.5s;
   z-index: -1;
@@ -100,9 +99,7 @@
   margin: 0 1rem;
   color: #fff;
 }
-.banner .text-container .links-container a:hover {
-  color: #fff;
-}
+
 .banner .network-container {
   position: absolute;
   bottom: 1rem;

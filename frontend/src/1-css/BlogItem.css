@@ -24,14 +24,14 @@
 }
 
 .blog-item .text-container a:nth-child(1) {
-  font-size: 1.5em;
-  font-weight: 300;
-  letter-spacing: 2px;
+  font-size: 1.75em;
+  font-weight: 400;
+  letter-spacing: 1px;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   color: #303030;
   transition: 0.25s;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
 }
 .blog-item .text-container a:nth-child(1):hover {
   color: #ff0513;
