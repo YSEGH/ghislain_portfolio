@@ -1,14 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "../../1-css/Logo.css";
 
 export default function Logo() {
   return (
-    <Link className="logo" to="/">
+    <div className="logo">
       <h1>
         Ghislain
-        <br /> Ramage
+        <br />
+        <span>Ramage</span>
       </h1>
-    </Link>
+    </div>
   );
 }

@@ -42,33 +42,33 @@ export default function Banner() {
       />
       <div className="mask"></div>
 
-      <div className="text-container">
-        {loadingData ? (
-          <BannerLoading />
-        ) : (
-          <div className="fade-in-bottom">
-            <h1>
-              Ghislain
-              <br /> Ramage
-            </h1>
-            <div className="links-container fade-in-bottom">
-              <Link to="/circus" onClick={() => window.scrollTo(0, 0)}>
-                Circus
-              </Link>
-              <Link to="/photography" onClick={() => window.scrollTo(0, 0)}>
-                Photography
-              </Link>
-            </div>
+      {loadingData ? (
+        <>{/* <BannerLoading /> */}</>
+      ) : (
+        <div
+          className="text-container fade-in" /* className="fade-in-bottom" */
+        >
+          <h1>
+            Ghislain<span>Ramage</span>
+          </h1>
+          <div className="links-container ">
+            <Link to="/circus" onClick={() => window.scrollTo(0, 0)}>
+              Circus
+            </Link>
+            <Link to="/photography" onClick={() => window.scrollTo(0, 0)}>
+              Photography
+            </Link>
           </div>
-        )}
-        <div className="network-container fade-in">
-          <a href={`${infos.instagram}`} target="_blank">
-            <FiInstagram size={20} />
-          </a>
-          <a href={`${infos.facebook}`} target="_blank">
-            <FiFacebook size={20} />
-          </a>
+          <p>Circus artist and photographer as a hobby.</p>
         </div>
+      )}
+      <div className="network-container fade-in">
+        <a href={`${infos.instagram}`} target="_blank">
+          <FiInstagram size={20} />
+        </a>
+        <a href={`${infos.facebook}`} target="_blank">
+          <FiFacebook size={20} />
+        </a>
       </div>
     </div>
   );

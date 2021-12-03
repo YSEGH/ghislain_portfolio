@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
-  font-family: "Poppins", sans-serif;
+  font-family: "Josefin sans", sans-serif;
   position: relative;
   background-color: #050317;
 }
@@ -68,7 +68,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: "Poppins", sans-serif;
   z-index: 5;
 }
 .portfolio .part-button .text-container svg {

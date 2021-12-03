@@ -30,82 +30,100 @@
   background-color: rgba(0, 0, 0, 0.342);
 }
 .banner .text-container {
-  position: relative;
   color: white;
   height: 100vh;
   width: 100%;
-  padding-left: 2rem;
   text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-bottom: 7.5rem;
-  padding-top: 2rem;
   z-index: 2;
 }
 
 .banner .text-container h1 {
   font-size: 80px !important;
-  font-weight: 600;
-  line-height: 90px;
+  font-weight: 200;
   margin-bottom: 2rem;
-  font-family: "Zen Loop", cursive;
+  font-family: "Josefin Sans", sans-serif;
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 5px;
+  letter-spacing: 2px;
+  font-style: italic;
+  color: #fff;
+}
+.banner .text-container h1 span {
+  font-weight: 600;
+  font-style: normal;
 }
 .banner .text-container .links-container {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  width: 45%;
+  margin: 2rem auto;
 }
 .banner .text-container .links-container * {
-  font-size: 40px;
   margin: 1rem 0;
-  font-weight: 600;
-  font-family: "Zen Loop", cursive;
+  font-weight: 300;
+  font-family: "Josefin Sans", sans-serif;
   text-decoration: none;
   color: #fff;
   letter-spacing: 3px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 15rem;
+  width: 16rem;
 }
 .banner .text-container .links-container a {
-  border: 1px solid #fff;
+  font-size: 30px;
+  border: 1px solid #ffffffb2;
   padding: 1rem 1rem;
+  text-align: center;
   position: relative;
   overflow: hidden;
   z-index: 1;
-}
-.banner .text-container .links-container a:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 300%;
-  height: 400%;
-  background-color: rgba(255, 5, 18, 0.3);
-  transform: translateX(-110%) translateY(-75%) rotate(25deg);
-  transition: 0.5s;
-  z-index: -1;
-}
-.banner .text-container .links-container a:hover:before {
-  transform: translateX(-50%) translateY(-75%) rotate(25deg);
-}
-.banner .text-container .links-container span {
   margin: 0 1rem;
+  border-radius: 60px;
+}
+.banner .text-container .links-container a:nth-child(1) {
+  background-color: transparent;
   color: #fff;
 }
-
+.banner .text-container .links-container a:nth-child(1):hover {
+  background-color: #ffffffe0;
+  color: #000;
+}
+.banner .text-container .links-container a:nth-child(2) {
+  border-color: #ff0512e0;
+  background-color: transparent;
+  color: #ff0513;
+}
+.banner .text-container .links-container a:nth-child(2):hover {
+  background-color: #ff0512e0;
+  color: #fff;
+}
+.banner .text-container p {
+  font-family: "Spectral", serif;
+  font-style: italic;
+  font-weight: 200;
+  font-size: 20px;
+  margin-top: 4rem;
+  letter-spacing: 2px;
+  color: #fff !important;
+}
+.banner .text-container p span {
+  font-size: 45px;
+}
 .banner .network-container {
   position: absolute;
   bottom: 1rem;
-  left: 1rem;
+  left: 0;
+  right: 0;
   width: fit-content;
   display: flex;
+  z-index: 3;
+  margin: auto;
 }
 .banner .network-container a {
   text-decoration: none;
@@ -117,7 +135,7 @@
   color: #ff0513;
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 1050px) {
   .banner {
     display: flex;
     align-items: center;
@@ -131,15 +149,37 @@
     width: 100%;
     padding: 2rem 1rem;
   }
-}
-@media screen and (max-width: 650px) {
-  .banner .text-container h1 {
-    font-size: 70px !important;
+  .banner .text-container .links-container {
+    flex-direction: column;
+    width: 100%;
+    margin: 2rem auto;
+  }
+  .banner .text-container .links-container a {
+    font-size: 30px;
+    border: 1px solid #ffffffb2;
+    padding: 1rem 1rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    margin: 1rem 0;
+    border-radius: 60px;
   }
 }
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 750px) {
+  .banner .text-container h1 {
+    font-size: 50px !important;
+  }
+  .banner .text-container p {
+    text-align: center;
+  }
+}
+@media screen and (max-width: 500px) {
   .banner {
     height: auto;
+  }
+  .banner .text-container h1 {
+    font-size: 30px !important;
   }
   .banner .text-container .links-container {
     display: flex;
@@ -147,9 +187,7 @@
     align-items: center;
     justify-content: center;
   }
-  .banner .network-container {
-    left: 0;
-    right: 0;
-    margin: auto;
+  .banner .text-container .links-container a {
+    font-size: 25px;
   }
 }

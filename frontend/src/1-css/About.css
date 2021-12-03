@@ -20,8 +20,8 @@
   margin: 4rem auto;
 }
 .about .text-container h1 {
-  font-size: 60px;
-  font-family: "Zen Loop", cursive;
+  font-size: 40px;
+  font-family: "Josefin Sans", sans-serif;
   font-weight: 600;
   text-align: center;
   margin: auto;
@@ -32,7 +32,6 @@
   align-items: center;
   justify-content: center;
   align-items: flex-start;
-  font-family: "Poppins", sans-serif;
   height: 100%;
   text-align: left;
   position: relative;
@@ -52,10 +51,10 @@
   margin: auto;
   margin-bottom: 2rem;
   text-align: left;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 200;
   color: rgba(0, 0, 0, 0.75);
-  font-family: "Poppins", sans-serif;
+  font-family: "Spectral", serif;
 }
 .codex-editor__redactor {
   padding-bottom: 0 !important;
@@ -76,7 +75,7 @@
     height: auto;
   }
   .about .text-container {
-    width: 95%;
+    width: 80%;
     padding: 0;
   }
 }

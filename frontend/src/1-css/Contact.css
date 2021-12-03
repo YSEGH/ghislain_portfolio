@@ -10,20 +10,19 @@
 }
 
 .contact .text-container h1 {
-  font-size: 60px;
-  font-family: "Zen Loop", cursive;
+  font-size: 40px;
+  font-family: "Josefin Sans", sans-serif;
   font-weight: 600;
   text-align: center;
 }
 .contact .text-container p {
-  font-family: "Poppins", sans-serif;
+  font-family: "Spectral", serif;
   font-size: 18px;
   font-weight: 200;
   display: flex;
   justify-content: center;
   align-items: center;
   line-height: 40px;
-  letter-spacing: 1px;
   text-align: center;
 }
 .contact .text-container p:nth-child(2) {

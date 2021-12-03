@@ -31,7 +31,7 @@
   background-color: transparent;
   padding: 0.5rem;
   cursor: pointer;
-  font: 200 14px "Poppins", sans-serif;
+  font: 200 22px "Josefin sans", sans-serif;
   color: #303030;
 }
 .page-item .page-content .show-infos .show-infos-button svg {
@@ -44,37 +44,40 @@
 
 /* Text container */
 .page-item .text-container {
+  padding-top: 3rem;
   margin: 2rem auto 2rem auto;
-  width: 40rem;
+  width: 100%;
   max-width: 90vw;
-  font-family: "Poppins", sans-serif;
-  text-align: left;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   height: 0px;
   transition: 0.25s;
   overflow: hidden;
 }
 .page-item .text-container.active {
-  height: 30rem;
+  height: 25rem;
   max-height: 30rem;
   overflow: scroll;
 }
 .page-item .text-container h1 {
+  font-family: "Josefin Sans", sans-serif;
   font-size: 2em;
   color: #303030;
-  font-weight: 400;
-  text-transform: capitalize;
+  font-weight: 600;
+  text-transform: none;
 }
 .page-item .text-container h1 span {
   font-weight: 200;
 }
 .page-item .text-container p {
-  margin: 1rem 0;
+  width: 80%;
+  margin: 1rem auto;
   color: #303030;
   font-weight: 200;
   letter-spacing: 1px;
+  font-family: "Spectral", serif;
 }
 /* .page-item .text-container p:nth-child(2) {
   max-height: 30rem;
@@ -84,12 +87,12 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
 }
 .page-item .text-container div p:nth-child(1),
 .page-item .text-container div p:nth-child(2) {
-  width: 100%;
+  width: fit-content;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -166,6 +169,7 @@
     padding-top: 0;
   }
   .page-item .page-content .text-container {
+    width: 90%;
     margin-top: 2rem;
     padding: 0;
     text-align: justify;

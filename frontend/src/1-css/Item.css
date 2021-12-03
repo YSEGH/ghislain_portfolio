@@ -6,7 +6,7 @@
   overflow: hidden;
   cursor: pointer;
   position: relative;
-  font-family: "Poppins", sans-serif;
+  font-family: "Josefin sans", sans-serif;
 }
 .item.project {
   width: 15rem;
@@ -29,6 +29,7 @@
   transform: translateY(-50%);
 }
 .item .item-title {
+  font-family: "Josefin Sans", sans-serif;
   font-weight: 500;
   letter-spacing: 1px;
   font-size: 14px;
@@ -57,7 +58,7 @@
   align-items: center;
   font-weight: 300;
   letter-spacing: 1px;
-  font-size: 12px;
+  font-size: 12px !important;
   color: #fff;
   position: absolute;
   bottom: -4.5rem;
@@ -66,6 +67,8 @@
   text-transform: uppercase;
   z-index: 2;
   height: fit-content;
+  color: #fff !important;
+  font-family: "Josefin sans", sans-serif !important;
 }
 .item .item-place svg,
 .item .item-date svg,

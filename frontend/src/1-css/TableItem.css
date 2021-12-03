@@ -1,12 +1,12 @@
 .tabe-items {
   height: auto;
   width: 100vw;
-  font: 400 20px "Poppins";
+  font: 400 20px "Josefin sans", sans-serif;
   color: #303030;
 }
 
 .table-items table * {
-  font-family: "Poppins", sans-serif !important;
+  font-family: "Josefin sans", sans-serif !important;
   font-weight: 300;
 }
 .table-items button[disabled] {
@@ -27,7 +27,7 @@
   border: none;
   cursor: pointer;
   transition: 0.25s;
-  font: 400 20px "Poppins";
+  font: 400 20px "Josefin sans", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,7 +41,7 @@
   border: none;
   cursor: pointer;
   transition: 0.25s;
-  font: 400 20px "Poppins";
+  font: 400 20px "Josefin sans", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;

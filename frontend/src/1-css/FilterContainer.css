@@ -2,7 +2,7 @@
   max-width: 100vw;
   margin-top: 2rem;
   overflow: scroll;
-  font-family: "Poppins", sans-serif;
+  font-family: "Josefin sans", sans-serif;
   padding: 0 2rem;
 }
 .filter-container ul {
@@ -38,7 +38,7 @@
 .filter-container .filter-container-list .filters-button {
   height: fit-content;
   width: auto;
-  font: 400 14px "Poppins", sans-serif;
+  font: 400 14px "Josefin sans", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;

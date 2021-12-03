@@ -69,7 +69,7 @@ export default function PageItem() {
                 className="show-infos-button"
                 onClick={() => displayInfos()}
               >
-                <FiChevronDown size={25} />+ Infos
+                <FiChevronDown size={25} /> Infos
               </button>
             </div>
             <div className="text-container">

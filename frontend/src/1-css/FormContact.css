@@ -14,7 +14,7 @@
   width: 20rem;
   height: auto;
   border: none;
-  font-family: "Poppins", sans-serif;
+  font-family: "Josefin sans", sans-serif;
   padding: 1rem;
   background-color: #fff;
   border-image: initial;
@@ -24,7 +24,7 @@
   width: 42rem;
   height: 8.5rem;
   border: none;
-  font-family: "Poppins", sans-serif;
+  font-family: "Josefin sans", sans-serif;
   padding: 1rem;
   background-color: #fff;
   border-image: initial;
@@ -35,7 +35,7 @@
   width: 10rem;
   border-radius: 60px;
   border: none;
-  font: 400 14px "Poppins", sans-serif;
+  font: 400 14px "Josefin sans", sans-serif;
   color: #ffff;
   margin: 2rem auto;
   display: flex;

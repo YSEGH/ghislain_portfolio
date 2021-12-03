@@ -1,5 +1,5 @@
 .page-blog {
-  font-family: "Poppins", sans-serif;
+  font-family: "Josefin sans", sans-serif;
   position: relative;
   opacity: inherit;
   height: 100vh;
@@ -56,6 +56,8 @@
 }
 .page-blog .details-infos p:nth-child(1),
 .page-blog .details-infos p:nth-child(2) {
+  font-family: "Josefin sans", sans-serif;
+  font-size: 18px !important;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -64,6 +66,7 @@
 .page-blog .details-infos p:nth-child(1) svg,
 .page-blog .details-infos p:nth-child(2) svg {
   margin-right: 1rem;
+  padding-bottom: 0.2rem;
 }
 .page-blog .text-container {
   width: 60%;
@@ -78,13 +81,15 @@
   color: #303030;
 }
 .page-blog .text-container h2 {
-  font-size: 2em;
-  font-weight: 300;
-  letter-spacing: 3px;
-  text-transform: uppercase;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 2.2em !important;
+  font-weight: 600;
+  letter-spacing: 1px;
   text-decoration: none;
+  text-transform: none;
   color: #303030;
-  margin: 1rem 0 0 0;
+  transition: 0.25s;
+  margin: 1rem 0 1rem 0;
 }
 .page-blog .text-container p {
   font-weight: 200;
@@ -104,19 +109,7 @@
   height: fit-content;
   max-height: 100%;
   overflow: scroll;
-  font-size: 14px;
-  font-weight: 200;
-  text-align: left;
-  pointer-events: all;
-  margin-bottom: 2rem;
-}
-
-.page-blog .text-container .editor-js {
-  max-width: 100%;
-  height: fit-content;
-  max-height: 100%;
-  overflow: scroll;
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 200;
   text-align: left;
   pointer-events: all;

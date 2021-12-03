@@ -9,7 +9,6 @@
 .auth h2 {
   margin: 0;
   margin-bottom: 2rem;
-  font-family: "Poppins", sans-serif;
   font-weight: 400;
 }
 .auth input {
@@ -19,7 +18,6 @@
   width: 20rem;
   height: 3rem;
   margin-bottom: 1.5rem;
-  font-family: "Poppins", sans-serif;
   padding: 0.5rem;
   outline: none;
   box-sizing: border-box !important;
@@ -31,7 +29,7 @@ input {
   height: 3rem;
   background-color: #ff0513;
   border: none;
-  font: 400 18px "Poppins", sans-serif;
+  font: 400 18px "Josefin sans", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
