@@ -29,6 +29,17 @@ export default function Project(props) {
   };
 
   useEffect(() => {
+    document.title = "Ghislain Ramage - Projects";
+    document
+      .querySelector('meta[name="description"]')
+      .setAttribute(
+        "content",
+        "Find on this page all my activities outside the circus. Brands, associations etc..."
+      );
+    return () => {};
+  }, []);
+
+  useEffect(() => {
     dispatch(getItemsHandler("project", 0, page * per_page, filters));
     return () => {
       dispatch(resetGetItem());

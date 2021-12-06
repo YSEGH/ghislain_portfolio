@@ -40,7 +40,7 @@ export default function PageItem() {
   const displayInfos = () => {
     const text = document.querySelector(".page-item .text-container");
     const button = document.querySelector(".page-item .show-infos-button");
-    console.log(button);
+
     if (text.classList.contains("active")) {
       text.classList.remove("active");
       button.classList.remove("active");
@@ -56,6 +56,14 @@ export default function PageItem() {
       dispatch(resetGetItem());
     };
   }, [itemId]);
+
+  useEffect(() => {
+    if (items[0]) {
+      document.title =
+        items[0].title + (items[0].subtitle ? " - " + items[0].subtitle : "");
+    }
+    return () => {};
+  }, [items]);
 
   return (
     <div className="page-item">

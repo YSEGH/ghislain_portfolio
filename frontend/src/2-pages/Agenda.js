@@ -13,6 +13,17 @@ export default function Agenda() {
   const { loading: loadingItems, items, count, error: errorItems } = getItem;
 
   useEffect(() => {
+    document.title = "Ghislain Ramage - Agenda";
+    document
+      .querySelector('meta[name="description"]')
+      .setAttribute(
+        "content",
+        "Would you like to know where you can find me ? Here you will find my future performances."
+      );
+    return () => {};
+  }, []);
+
+  useEffect(() => {
     dispatch(getItemsHandler("agenda", null, null, null));
     return () => {
       dispatch(resetGetItem());

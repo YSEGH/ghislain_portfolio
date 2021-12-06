@@ -49,6 +49,7 @@ export default function PageBlog(props) {
 
   useEffect(() => {
     if (items[0]) {
+      document.title = items[0].title + " - " + items[0].place;
       setImages(
         items[0].photos.filter((photo) => photo.type.split("/")[0] !== "video")
       );

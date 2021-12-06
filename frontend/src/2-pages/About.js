@@ -14,6 +14,13 @@ export default function About() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    document.title = "Ghislain Ramage - About";
+    document
+      .querySelector('meta[name="description"]')
+      .setAttribute(
+        "content",
+        "Want to know more about me ? That’s what this page is for."
+      );
     if (Object.keys(infos).length === 0) {
       dispatch(getInfosHandler());
     }

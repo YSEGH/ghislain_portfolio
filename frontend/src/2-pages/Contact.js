@@ -13,6 +13,17 @@ export default function Contact() {
   const { loading, infos, error } = getInfos;
 
   useEffect(() => {
+    document.title = "Ghislain Ramage - Contact";
+    document
+      .querySelector('meta[name="description"]')
+      .setAttribute(
+        "content",
+        "Would you like to contact me ? You can find my contact details on this page."
+      );
+    return () => {};
+  }, []);
+
+  useEffect(() => {
     dispatch(getInfosHandler());
     return () => {};
   }, []);
