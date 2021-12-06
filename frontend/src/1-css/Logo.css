@@ -6,10 +6,10 @@
 
 .nav .logo h1 {
   text-transform: uppercase;
-  font-size: 20px !important;
-  font-weight: 200;
+  font-size: 30px !important;
+  font-weight: 300;
   margin-bottom: 2rem;
-  font-family: "Josefin Sans", sans-serif;
+  font-family: "Zen Loop", cursive !important;
   text-align: left;
   width: fit-content;
   margin-right: auto;

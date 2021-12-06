@@ -60,6 +60,7 @@
 .agenda-item .text-container p {
   text-align: justify;
   font-weight: 200;
+  letter-spacing: 1px;
 }
 .agenda-item .text-container p:nth-child(2) {
   margin: 1rem auto;
@@ -69,6 +70,7 @@
 
 .agenda-item .text-container p:nth-child(3),
 .agenda-item .text-container p:nth-child(4) {
+  font-size: 18px !important;
   display: flex;
   align-items: center;
   margin: 1rem auto;
@@ -77,6 +79,7 @@
 .agenda-item .text-container p:nth-child(3) svg,
 .agenda-item .text-container p:nth-child(4) svg {
   margin-right: 0.5rem;
+  padding-bottom: 0.3rem;
 }
 .agenda-item .text-container p:nth-child(4) {
   font-style: normal;

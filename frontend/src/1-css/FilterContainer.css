@@ -1,6 +1,6 @@
 .filter-container {
   max-width: 100vw;
-  margin-top: 2rem;
+
   overflow: scroll;
   font-family: "Josefin sans", sans-serif;
   padding: 0 2rem;
@@ -93,7 +93,7 @@
 }
 @media screen and (max-width: 1050px) {
   .filter-container {
-    margin: 5rem auto 2rem auto;
+    margin: 2rem auto 2rem auto;
   }
   .filter-container .filter-container-list ul {
     max-width: 100%;

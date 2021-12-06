@@ -7,6 +7,7 @@ import { useParams } from "react-router";
 import { getItemsHandler, resetGetItem } from "../3-actions/itemActions";
 import FilterContainer from "./Components/FilterContainer";
 import { LoadingSVG } from "./Components/SmallComponents";
+import Title from "./Components/Title";
 
 export default function Project(props) {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ export default function Project(props) {
     <div className="project">
       <Nav />
       <div className="page-content">
+        <Title title="Projects" />
         <div className="text-container">
           <FilterContainer content="project" props={props} url={`/projects`} />
         </div>

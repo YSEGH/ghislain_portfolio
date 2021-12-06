@@ -5,6 +5,12 @@
 .contact .contact-content {
   flex: auto;
   display: flex;
+  flex-direction: column;
+}
+.contact .text-container {
+  flex: auto;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -13,22 +19,20 @@
   font-size: 40px;
   font-family: "Josefin Sans", sans-serif;
   font-weight: 600;
-  text-align: center;
+  text-align: left;
+  margin-bottom: 1.5rem;
 }
 .contact .text-container p {
-  font-family: "Spectral", serif;
+  font-family: "Josefin sans", sans-serif;
   font-size: 18px;
   font-weight: 200;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   line-height: 40px;
-  text-align: center;
+  width: 25rem;
 }
-.contact .text-container p:nth-child(2) {
-  margin: 1rem;
-  margin-bottom: 2rem;
-}
+
 .contact .text-container p svg {
   margin-right: 1rem;
 }
@@ -36,5 +40,9 @@
   .contact .contact-content {
     height: 100vh;
     width: 100vw;
+  }
+  .contact .text-container p {
+    justify-content: center;
+    width: fit-content;
   }
 }

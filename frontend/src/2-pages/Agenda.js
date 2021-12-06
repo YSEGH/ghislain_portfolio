@@ -4,6 +4,7 @@ import Nav from "./Components/Nav";
 import { useDispatch, useSelector } from "react-redux";
 import { getItemsHandler, resetGetItem } from "../3-actions/itemActions";
 import AgendaItem from "./Components/AgendaItem";
+import Title from "./Components/Title";
 
 export default function Agenda() {
   const dispatch = useDispatch();
@@ -21,9 +22,7 @@ export default function Agenda() {
     <div className="agenda">
       <Nav />
       <div className="page-content">
-        <div className="text-container">
-          <h1>Agenda</h1>
-        </div>
+        <Title title="Agenda" />
         <div className="agenda-container">
           {items
             .reverse()

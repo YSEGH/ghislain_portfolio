@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3001",
+  "homepage": "http://localhost:3001/",
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "@editorjs/header": "^2.6.1",
@@ -62,7 +63,6 @@
     "@babel/preset-react": "^7.14.5",
     "@editorjs/editorjs": "^2.22.0",
     "@editorjs/paragraph": "^2.8.0",
-    "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "compression-webpack-plugin": "^8.0.1",
     "css-loader": "^6.2.0",

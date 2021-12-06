@@ -11,13 +11,13 @@
 .about .text-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   height: 100%;
   text-align: left;
   position: relative;
   flex: auto;
-  margin: 4rem auto;
+  margin: auto;
 }
 .about .text-container h1 {
   font-size: 40px;
@@ -38,8 +38,8 @@
   margin: 4rem auto;
 }
 .about .text-container .photo-container img {
-  height: 30rem;
-  width: 30rem;
+  height: 25rem;
+  width: 25rem;
   object-fit: cover;
   position: relative;
   margin: auto;
@@ -54,24 +54,18 @@
   font-size: 22px;
   font-weight: 200;
   color: rgba(0, 0, 0, 0.75);
-  font-family: "Spectral", serif;
+  font-family: "Josefin sans", sans-serif;
+  letter-spacing: 1px;
 }
 .codex-editor__redactor {
   padding-bottom: 0 !important;
   margin-right: 0 !important;
 }
-.about .text-container .photo-container img {
-  height: 30rem;
-  width: 30rem;
-  object-fit: cover;
-  position: relative;
-  margin: auto;
-}
 
 @media screen and (max-width: 1200px) {
   .about {
     margin: 0 0 0 0;
-    padding: 5rem 0 0 0;
+    padding: 0rem 0 0 0;
     height: auto;
   }
   .about .text-container {

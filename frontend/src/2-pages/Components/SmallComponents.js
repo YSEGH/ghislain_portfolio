@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { ImSpinner6 } from "react-icons/im";
+import { BiLoaderAlt } from "react-icons/bi";
 import { TiTick } from "react-icons/ti";
 import "../../1-css/LoadingSpinner.css";
 
@@ -21,7 +22,7 @@ function LoadingSpinnerFixed() {
 function LoadingSpinnerFullPage({ color }) {
   return (
     <div className="small-component full-page loading">
-      <ImSpinner6 size={40} fontStyle={{ color: color }} />
+      <BiLoaderAlt size={40} style={{ color: color }} />
     </div>
   );
 }

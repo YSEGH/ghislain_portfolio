@@ -42,15 +42,14 @@
 }
 
 .banner .text-container h1 {
-  font-size: 80px !important;
-  font-weight: 200;
+  font-size: 100px !important;
   margin-bottom: 2rem;
-  font-family: "Josefin Sans", sans-serif;
+  font-family: "Zen Loop", cursive !important;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 2px;
-  font-style: italic;
   color: #fff;
+  font-weight: 300;
 }
 .banner .text-container h1 span {
   font-weight: 600;
@@ -58,6 +57,7 @@
 }
 .banner .text-container .links-container {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   width: 45%;
@@ -83,8 +83,9 @@
   position: relative;
   overflow: hidden;
   z-index: 1;
-  margin: 0 1rem;
+  margin: 1rem 0;
   border-radius: 60px;
+  transition: 0.25s;
 }
 .banner .text-container .links-container a:nth-child(1) {
   background-color: transparent;
@@ -168,7 +169,7 @@
 }
 @media screen and (max-width: 750px) {
   .banner .text-container h1 {
-    font-size: 50px !important;
+    font-size: 70px !important;
   }
   .banner .text-container p {
     text-align: center;
@@ -179,7 +180,7 @@
     height: auto;
   }
   .banner .text-container h1 {
-    font-size: 30px !important;
+    font-size: 50px !important;
   }
   .banner .text-container .links-container {
     display: flex;

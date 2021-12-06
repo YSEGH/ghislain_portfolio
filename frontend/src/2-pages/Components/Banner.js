@@ -43,7 +43,7 @@ export default function Banner() {
       <div className="mask"></div>
 
       {loadingData ? (
-        <>{/* <BannerLoading /> */}</>
+        <LoadingSpinnerFullPage color="#fff" />
       ) : (
         <div
           className="text-container fade-in" /* className="fade-in-bottom" */
@@ -59,7 +59,7 @@ export default function Banner() {
               Photography
             </Link>
           </div>
-          <p>Circus artist and photographer as a hobby.</p>
+          <p>Professional circus artist and photographer as a hobby.</p>
         </div>
       )}
       <div className="network-container fade-in">

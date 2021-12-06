@@ -4,6 +4,7 @@ import { getInfosHandler } from "../3-actions/infoActions";
 import Nav from "./Components/Nav";
 import "../1-css/Contact.css";
 import { MdPhone, MdPlace, MdMail } from "react-icons/md";
+import Title from "./Components/Title";
 
 export default function Contact() {
   const dispatch = useDispatch();
@@ -20,12 +21,8 @@ export default function Contact() {
     <div className="contact">
       <Nav />
       <div className="contact-content">
+        <Title title="Contact" />
         <div className="text-container">
-          <h1>Contact</h1>
-          <p>
-            Do not hesitate to contact me for any question, I will answer you as
-            soon as possible.
-          </p>
           <p>
             <MdPlace size={30} />
             {infos.city}, {infos.country}

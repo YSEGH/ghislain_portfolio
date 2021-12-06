@@ -34,11 +34,11 @@ export default function Nav() {
 
   return (
     <div className="nav close">
-      <GiHamburgerMenu
-        size={40}
-        className="nav-burger"
-        onClick={() => displayNav()}
-      />
+      <div className="nav-burger" onClick={() => displayNav()}>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
       <div className="nav-content">
         <Logo />
         <ul className="nav-ul">

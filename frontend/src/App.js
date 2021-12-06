@@ -1,10 +1,13 @@
 import React, { Suspense, lazy } from "react";
 import "./1-css/App.css";
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { LoadingSpinnerFullPage } from "./2-pages/Components/SmallComponents";
 import PageItem from "./2-pages/Components/PageItem";
+import { createBrowserHistory } from "history";
+
+const history = createBrowserHistory();
 
 const Home = lazy(() => import("./2-pages/Home"));
 const Blog = lazy(() => import("./2-pages/Blog"));
@@ -25,9 +28,9 @@ function App() {
         <Suspense fallback={<LoadingSpinnerFullPage />}>
           <Switch>
             <Route path="/" exact render={() => <Home />} />
-            <Route path="/about" render={() => <About />} />
             <Route path="/contact" render={() => <Contact />} />
             <Route path="/agenda" render={() => <Agenda />} />
+            <Route path="/about" render={() => <About />} />
             <Route
               path="/admin"
               exact
@@ -55,7 +58,6 @@ function App() {
             <Route
               path="/details/:itemId"
               render={(props) => <PageItem {...props} />}
-              exact
             />
             <Route
               path="/blog/:page?/:filters?"

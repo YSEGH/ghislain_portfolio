@@ -3,7 +3,6 @@
   align-items: flex-start;
 }
 .agenda .page-content {
-  padding-top: 3rem;
   flex: auto;
   display: flex;
   flex-direction: column;
@@ -14,7 +13,7 @@
   font-family: "Josefin Sans", sans-serif;
 }
 .agenda .page-content .text-container h1 {
-  font-size: 40px;
+  font-size: 1.75em !important;
 }
 .agenda .page-content .agenda-container {
   padding: 2rem 0;
@@ -23,9 +22,6 @@
 }
 
 @media screen and (max-width: 1050px) {
-  .agenda .page-content {
-    padding-top: 3rem;
-  }
   .agenda .page-content .agenda-container {
     width: 100vw;
     padding: 0;

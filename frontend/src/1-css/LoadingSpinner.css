@@ -22,7 +22,7 @@
 }
 .small-component.loading svg,
 .loading-svg {
-  animation: rotate 1s infinite;
+  animation: rotate 2s infinite;
 }
 .small-component.loading.fixed {
   position: fixed;
