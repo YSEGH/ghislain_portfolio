@@ -85,10 +85,7 @@ export default function PageItem() {
                 {items[0].title}
                 {items[0].subtitle ? <span> - {items[0].subtitle}</span> : null}
               </h1>
-              <p>
-                {items[0].description}
-                {items[0].description}
-              </p>
+              <p>{items[0].description}</p>
               <div>
                 <p>
                   <MdDateRange size={30} />
