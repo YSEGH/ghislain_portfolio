@@ -157,7 +157,7 @@ app.get("/agenda", (req, res, next) => {
     data = data.replace(/\$OG_TITLE/g, "Ghislain Ramage - Agenda");
     data = data.replace(
       /\$OG_DESCRIPTION/g,
-      "Would you like to know where you can find me ? Here you will find my future performances."
+      "Would you like to know where you can find me ? Here you will find my future performances. "
     );
     res.send(data);
   });
