@@ -33,8 +33,6 @@ const __dirname = path.resolve();
 
 app.use("/static-files", express.static(path.join(__dirname, "/static-files")));
 
-app.use(express.static(path.join(__dirname, "/frontend/dist")));
-
 app.use(
   "/js",
   (req, res, next) => {
@@ -58,7 +56,7 @@ app.use(
   express.static(path.join(__dirname, "/frontend/dist/css"))
 );
 
-app.get("/home", (req, res) => {
+app.get("/", (req, res) => {
   const filePath = path.join(__dirname, "/frontend/dist/index.html");
   fs.readFile(filePath, "utf8", (err, data) => {
     if (err) {
@@ -177,6 +175,8 @@ app.get("/agenda", (req, res, next) => {
     res.send(data);
   });
 });
+
+app.use(express.static(path.join(__dirname, "/frontend/dist")));
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "/frontend/dist/index.html"));
