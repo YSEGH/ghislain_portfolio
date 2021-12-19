@@ -43,7 +43,7 @@ export default function Nav() {
         <Logo />
         <ul className="nav-ul">
           <li>
-            <NavLink activeClassName="active" to="/" exact>
+            <NavLink activeClassName="active" to="/home" exact>
               <AiOutlineHome size={25} />
             </NavLink>
           </li>

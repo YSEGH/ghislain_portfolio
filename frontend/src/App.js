@@ -27,7 +27,7 @@ function App() {
       <div className="App">
         <Suspense fallback={<LoadingSpinnerFullPage />}>
           <Switch>
-            <Route path="/" exact render={() => <Home />} />
+            <Route path="/home" render={() => <Home />} />
             <Route path="/contact" render={() => <Contact />} />
             <Route path="/agenda" render={() => <Agenda />} />
             <Route path="/about" render={() => <About />} />

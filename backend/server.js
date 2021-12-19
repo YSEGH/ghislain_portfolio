@@ -58,6 +58,21 @@ app.use(
   express.static(path.join(__dirname, "/frontend/dist/css"))
 );
 
+app.get("/home", (req, res) => {
+  const filePath = path.join(__dirname, "/frontend/dist/index.html");
+  fs.readFile(filePath, "utf8", (err, data) => {
+    if (err) {
+      return console.log(err);
+    }
+    data = data.replace(/\$OG_TITLE/g, "Ghislain Ramage");
+    data = data.replace(
+      /\$OG_DESCRIPTION/g,
+      "Ghislain Ramage. Professional circus artist and photographer as a hobby. This is my website."
+    );
+    res.send(data);
+  });
+});
+
 app.get("/about", (req, res, next) => {
   const filePath = path.join(__dirname, "/frontend/dist/index.html");
   fs.readFile(filePath, "utf8", (err, data) => {
@@ -158,21 +173,6 @@ app.get("/agenda", (req, res, next) => {
     data = data.replace(
       /\$OG_DESCRIPTION/g,
       "Would you like to know where you can find me ? Here you will find my future performances. "
-    );
-    res.send(data);
-  });
-});
-
-app.get("/", (req, res, next) => {
-  const filePath = path.join(__dirname, "/frontend/dist/index.html");
-  fs.readFile(filePath, "utf8", (err, data) => {
-    if (err) {
-      return console.log(err);
-    }
-    data = data.replace(/\$OG_TITLE/g, "Ghislain Ramage");
-    data = data.replace(
-      /\$OG_DESCRIPTION/g,
-      "Ghislain Ramage. Professional circus artist and photographer as a hobby. This is my website."
     );
     res.send(data);
   });
