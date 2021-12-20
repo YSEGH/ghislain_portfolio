@@ -59,7 +59,10 @@ export default function Banner() {
               Photography
             </Link>
           </div>
-          <p>Professional circus artist and photographer as a hobby.</p>
+          <p>
+            Ghislain Ramage. Professional Cyr wheel artist and photographer as a
+            hobby.
+          </p>
         </div>
       )}
       <div className="network-container fade-in">

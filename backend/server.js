@@ -65,7 +65,7 @@ app.get("/", (req, res) => {
     data = data.replace(/\$OG_TITLE/g, "Ghislain Ramage");
     data = data.replace(
       /\$OG_DESCRIPTION/g,
-      "Ghislain Ramage. Professional circus artist and photographer as a hobby. This is my website."
+      "Ghislain Ramage. Professional Cyr wheel artist and photographer as a hobby. This is my website and you can find everything about me there."
     );
     res.send(data);
   });

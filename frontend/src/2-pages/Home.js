@@ -9,7 +9,7 @@ export default function Home() {
       .querySelector('meta[name="description"]')
       .setAttribute(
         "content",
-        "Ghislain Ramage. Professional circus artist and photographer as a hobby. This is my website."
+        "Ghislain Ramage. Professional Cyr wheel artist and photographer as a hobby. This is my website and you can find everything about me there."
       );
     return () => {};
   }, []);
