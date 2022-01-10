@@ -18,8 +18,13 @@ export default function Admin(props) {
     if (props.location.pathname === "/admin/mon-compte") {
       props.history.push("/admin/mon-compte/mes-infos");
     }
+    document.title = "Espace Admin";
     return () => {};
   }, []);
+
+  useEffect(() => {
+    return () => {};
+  }, [props.history]);
   return (
     <>
       <div className="admin">
