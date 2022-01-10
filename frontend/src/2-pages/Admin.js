@@ -24,7 +24,8 @@ export default function Admin(props) {
 
   useEffect(() => {
     return () => {};
-  }, [props.history]);
+  }, [props.location.pathname]);
+
   return (
     <>
       <div className="admin">

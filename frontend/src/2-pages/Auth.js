@@ -49,7 +49,7 @@ export default function Auth(props) {
       toast.error("Nom d'utilisateur ou mot de passe incorrect.");
     }
     if (localStorage.getItem("token")) {
-      props.history.push("/admin/mon-compte/contenu");
+      props.history.push("/admin/mon-compte/mes-infos");
     }
     return () => {};
   }, [successLogin, errorLogin]);
