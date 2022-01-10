@@ -29,7 +29,7 @@ function App() {
           <Route path="/admin" exact render={(props) => <Auth {...props} />} />
           <Route
             path="/admin/mon-compte"
-            render={(props) => <Admin {...props} />}
+            render={(props) => <Admin {...props} key={Date.now()} />}
           />
           <Route
             path="/photography/:page?/:filters?"

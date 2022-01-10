@@ -41,6 +41,7 @@ export default function Auth(props) {
   };
 
   useEffect(() => {
+    document.title = "Connexion";
     if (successLogin) {
       dispatch(userReset());
       toast.success(successLogin.message);

@@ -22,10 +22,6 @@ export default function Admin(props) {
     return () => {};
   }, []);
 
-  useEffect(() => {
-    return () => {};
-  }, [props.location.pathname]);
-
   return (
     <>
       <div className="admin">
@@ -46,10 +42,12 @@ export default function Admin(props) {
               />
               <Route
                 path="/admin/mon-compte/contenu/:itemId"
+                exact
                 render={(props) => <PageContenu {...props} />}
               />
               <Route
                 path="/admin/mon-compte/ajouter-contenu"
+                exact
                 render={() => <PageAddContenu update={false} />}
               />
               <Route
