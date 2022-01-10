@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "../1-css/Admin.css";
 import FormDetails from "./Components/FormDetails";
 import Nav from "./Components/Nav";
