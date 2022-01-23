@@ -34,7 +34,7 @@ export default function Banner() {
         className="video-banner"
         src="/static-files/videos/video-banner-1.mp4"
         type="video/mp4"
-        autoplay
+        autoPlay
         loop
         muted
         playsInline
