@@ -35,8 +35,10 @@ export default function Banner() {
         src="/static-files/videos/video-banner-1.mp4"
         type="video/mp4"
         muted
-        autoPlay
         loop
+        autoPlay
+        playsinline="true"
+        disablePictureInPicture="true"
         onLoadedData={() => launchVideo()}
         poster="/static-files/images/poster-bannier.png"
       />
