@@ -34,11 +34,13 @@ export default function Banner() {
         className="video-banner"
         src="/static-files/videos/video-banner-1.mp4"
         type="video/mp4"
-        muted
+        autoplay
         loop
-        autoPlay
-        playsinline="true"
-        disablePictureInPicture="true"
+        muted
+        playsinline
+        disablepictureinpicture
+        preload="auto"
+        controls={false}
         onLoadedData={() => launchVideo()}
         poster="/static-files/images/poster-bannier.png"
       />
