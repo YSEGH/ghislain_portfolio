@@ -9,15 +9,21 @@
   overflow: hidden;
   background-color: black;
 }
-.banner .video-banner {
+.banner .video-banner,
+.banner .img-banner {
   height: auto;
   min-height: 100vh;
   width: 100vw;
   position: absolute;
+  top: 0;
+  left: 0;
   filter: grayscale(1);
   z-index: 0;
   object-fit: cover;
   background-color: black;
+}
+.banner .img-banner {
+  background-position: center center;
 }
 .banner .mask {
   height: auto;
