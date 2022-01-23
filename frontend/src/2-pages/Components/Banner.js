@@ -37,8 +37,8 @@ export default function Banner() {
         autoplay
         loop
         muted
-        playsinline
-        disablepictureinpicture
+        playsInline
+        disablePictureInPicture
         preload="auto"
         controls={false}
         onLoadedData={() => launchVideo()}
