@@ -20,10 +20,6 @@
   filter: grayscale(1);
   z-index: 0;
   object-fit: cover;
-  background-color: black;
-}
-.banner .img-banner {
-  background-position: center center;
 }
 .banner .mask {
   height: auto;

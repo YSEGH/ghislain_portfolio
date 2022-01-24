@@ -12,6 +12,7 @@ import {
   MobileView,
   isBrowser,
   isMobile,
+  isSafari,
 } from "react-device-detect";
 
 export default function Banner() {
@@ -29,7 +30,7 @@ export default function Banner() {
   };
 
   useEffect(() => {
-    if (isMobile) {
+    if (isMobile && isSafari) {
       setLoadingData(false);
     }
     dispatch(getInfosHandler());
@@ -39,11 +40,11 @@ export default function Banner() {
 
   return (
     <div className="banner part">
-      <BrowserView>
+      {isMobile && isSafari ? (
+        <img className="img-banner" src="/static-files/images/img-safari.png" />
+      ) : (
         <video
           className="video-banner"
-          src="/static-files/videos/video-banner-1.mp4"
-          type="video/mp4"
           autoPlay
           loop
           muted
@@ -52,14 +53,13 @@ export default function Banner() {
           controls={false}
           onLoadedData={() => launchVideo()}
           poster="/static-files/images/poster-bannier.png"
-        />
-      </BrowserView>
-      <MobileView>
-        <img
-          className="img-banner"
-          src="/static-files/images/poster-bannier.png"
-        />
-      </MobileView>
+        >
+          <source
+            src="/static-files/videos/video-banner-1.mp4"
+            type="video/mp4"
+          />
+        </video>
+      )}
 
       <div className="mask"></div>
 
